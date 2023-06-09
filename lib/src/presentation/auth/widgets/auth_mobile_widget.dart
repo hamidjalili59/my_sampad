@@ -94,6 +94,7 @@ class AuthMobileWidget extends StatelessWidget {
                               ),
                               androidSmsAutofillMethod:
                                   AndroidSmsAutofillMethod.none,
+                              autofocus: true,
                               controller: _pinCodecontroller,
                               onChanged: (value) {
                                 if (value.length == 4 &&

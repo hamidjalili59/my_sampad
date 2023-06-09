@@ -6,8 +6,8 @@ import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/classroom/bloc/classroom_bloc.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 
-class ClassesListPage extends StatelessWidget {
-  const ClassesListPage({super.key});
+class TeacherClassesPage extends StatelessWidget {
+  const TeacherClassesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class ClassesListPage extends StatelessWidget {
                         title: 'کلاس ها : ',
                         titleHelper:
                             'با کلیک بر روی هر کلاس میتوانید گزینه های بیشتری برای کلاس را مشاهده کنید',
-                        pathString: ' -  کلاس‌ها'),
+                        pathString: 'دبیر  -  کلاس‌ها'),
                     SizedBox(
                       width: 1.sw,
                       height: 0.69.sh,

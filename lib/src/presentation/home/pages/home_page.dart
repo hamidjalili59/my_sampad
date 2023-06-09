@@ -7,7 +7,7 @@ import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_sampad/src/features/home/domain/models/appbar_page_type.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/classroom/bloc/classroom_bloc.dart';
-import 'package:my_sampad/src/presentation/classroom/pages/classes_page.dart';
+import 'package:my_sampad/src/presentation/classroom/pages/teacher_classes_page.dart';
 import 'package:my_sampad/src/presentation/course/bloc/course/course_bloc.dart';
 import 'package:my_sampad/src/presentation/course/pages/course_page.dart';
 import 'package:my_sampad/src/presentation/exam/bloc/exam/exam_bloc.dart';
@@ -27,7 +27,6 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
   final int pagePosition = 0;
   final HomeBloc _homeBloc = getIt.get<HomeBloc>();
-  final AppRouter _appRouter = getIt.get<AppRouter>();
 
   @override
   Widget build(BuildContext context) {
@@ -104,8 +103,7 @@ class HomePage extends StatelessWidget {
                               return const TeacherHomePage();
                             }
                             if (pageState == AppbarPageType.classroom) {
-                              return SizedBox(
-                                  child: ClassesPage(appRouter: _appRouter));
+                              return SizedBox(child: TeacherClassesPage());
                             } else if (pageState == AppbarPageType.teacher) {
                               return SizedBox(child: TeacherPage());
                             } else {

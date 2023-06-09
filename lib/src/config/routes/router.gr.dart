@@ -55,6 +55,12 @@ class _$AppRouter extends RootStackRouter {
         child: const ClassesListPage(),
       );
     },
+    TeacherClassesRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const TeacherClassesPage(),
+      );
+    },
     TeacherListRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -144,6 +150,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           ClassesListRoute.name,
           path: '/classes',
+        ),
+        RouteConfig(
+          TeacherClassesRoute.name,
+          path: '/teacher_classes',
         ),
         RouteConfig(
           TeacherListRoute.name,
@@ -262,6 +272,18 @@ class ClassesListRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ClassesListRoute';
+}
+
+/// generated route for
+/// [TeacherClassesPage]
+class TeacherClassesRoute extends PageRouteInfo<void> {
+  const TeacherClassesRoute()
+      : super(
+          TeacherClassesRoute.name,
+          path: '/teacher_classes',
+        );
+
+  static const String name = 'TeacherClassesRoute';
 }
 
 /// generated route for

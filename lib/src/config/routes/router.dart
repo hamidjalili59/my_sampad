@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:my_sampad/src/presentation/auth/pages/auth_page.dart';
 import 'package:my_sampad/src/presentation/classroom/pages/class_details_page.dart';
 import 'package:my_sampad/src/presentation/classroom/pages/classes_list_page.dart';
-import 'package:my_sampad/src/presentation/classroom/pages/classes_page.dart';
+import 'package:my_sampad/src/presentation/classroom/pages/teacher_classes_page.dart';
 import 'package:my_sampad/src/presentation/course/pages/course_list_page.dart';
-import 'package:my_sampad/src/presentation/course/pages/course_page.dart';
 import 'package:my_sampad/src/presentation/home/pages/home_page.dart';
 import 'package:my_sampad/src/presentation/intro/pages/intro_page.dart';
 import 'package:my_sampad/src/presentation/rollcall/pages/class_rollcall_page.dart';
@@ -16,7 +15,6 @@ import 'package:my_sampad/src/presentation/splash/pages/splash_page.dart';
 import 'package:my_sampad/src/presentation/student/pages/class_student_page.dart';
 import 'package:my_sampad/src/presentation/student/pages/student_details_page.dart';
 import 'package:my_sampad/src/presentation/teacher/pages/teacher_list_page.dart';
-import 'package:my_sampad/src/presentation/teacher/pages/teacher_page.dart';
 
 part 'router.gr.dart';
 
@@ -31,6 +29,7 @@ part 'router.gr.dart';
   AutoRoute(path: "/rulePage", page: SelectRulePage),
   AutoRoute(path: "/school_select_page", page: SelectSchoolPage),
   AutoRoute(path: "/classes", page: ClassesListPage),
+  AutoRoute(path: "/teacher_classes", page: TeacherClassesPage),
   AutoRoute(path: "/teacher", page: TeacherListPage),
   AutoRoute(path: "/course", page: CourseListPage),
   AutoRoute(
