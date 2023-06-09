@@ -6,6 +6,8 @@ import 'package:my_sampad/src/injectable/injectable.dart';
 class AppbarSchoolWidget extends StatelessWidget {
   const AppbarSchoolWidget({
     super.key,
+    this.isWidget = false,
+    this.widget,
     required this.title,
     required this.titleHelper,
     required this.pathString,
@@ -13,6 +15,8 @@ class AppbarSchoolWidget extends StatelessWidget {
     this.onPressed,
   });
   final void Function()? onPressed;
+  final bool isWidget;
+  final Widget? widget;
   final IconData icon;
   final String title;
   final String titleHelper;
@@ -43,14 +47,14 @@ class AppbarSchoolWidget extends StatelessWidget {
             height: 80.h,
             width: 1.sw,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 InkWell(
                   onTap: () {
                     getIt.get<AppRouter>().pop();
                   },
                   child: SizedBox(
-                    width: 90.w,
+                    width: 100.w,
                     child: Icon(
                       Icons.arrow_back_ios_new_rounded,
                       color: Colors.black,
@@ -58,6 +62,7 @@ class AppbarSchoolWidget extends StatelessWidget {
                     ),
                   ),
                 ),
+                const Spacer(),
                 SizedBox(
                     child: Text(
                   'مدرسه من',
@@ -67,15 +72,18 @@ class AppbarSchoolWidget extends StatelessWidget {
                     color: Colors.black,
                   ),
                 )),
+                const Spacer(),
                 SizedBox(
-                  width: 90.sp,
-                  child: IconButton(
-                      onPressed: onPressed ?? () {},
-                      icon: Icon(
-                        icon,
-                        size: 36.sp,
-                        color: Colors.black,
-                      )),
+                  width: 120.w,
+                  child: isWidget
+                      ? widget
+                      : IconButton(
+                          onPressed: onPressed ?? () {},
+                          icon: Icon(
+                            icon,
+                            size: 36.sp,
+                            color: Colors.black,
+                          )),
                 ),
               ],
             ),

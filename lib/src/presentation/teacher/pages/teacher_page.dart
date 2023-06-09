@@ -12,7 +12,6 @@ import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/custom_textfield_widget.dart';
 import 'package:my_sampad/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
 import 'package:my_sampad/src/presentation/teacher/widget/custom_card_teacher_widget.dart';
-import 'package:my_sampad/src/presentation/teacher/widget/teacher_class_card_widget.dart';
 import 'package:ndialog/ndialog.dart';
 
 class TeacherPage extends StatelessWidget {
@@ -116,7 +115,8 @@ class TeacherPage extends StatelessWidget {
         ),
       );
     } else {
-      return const TeacherClassWidget();
+      // return const TeacherClassWidget();
+      return SizedBox();
     }
   }
 

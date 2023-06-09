@@ -19,6 +19,7 @@ class PngAssets {
   static String get modir => 'modir'.headMasterPng;
   static String get school => 'school'.png;
   static String get classroom => 'classroom'.png;
+  static String get course => 'course_icon'.coursePng;
 }
 
 extension on String {

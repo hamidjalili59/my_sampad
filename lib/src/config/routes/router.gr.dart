@@ -62,9 +62,11 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     CourseListRoute.name: (routeData) {
+      final args = routeData.argsAs<CourseListRouteArgs>(
+          orElse: () => const CourseListRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const CourseListPage(),
+        child: CourseListPage(key: args.key),
       );
     },
     HomeRoute.name: (routeData) {
@@ -83,6 +85,18 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const SingleScoreViewPage(),
+      );
+    },
+    ExamRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const ExamPage(),
+      );
+    },
+    TeacherClassWidget.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const TeacherClassWidget(),
       );
     },
     ClassDetailsRoute.name: (routeData) {
@@ -172,6 +186,14 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           SingleScoreViewRoute.name,
           path: '/student_score_view',
+        ),
+        RouteConfig(
+          ExamRoute.name,
+          path: '/exam_page',
+        ),
+        RouteConfig(
+          TeacherClassWidget.name,
+          path: '/mediator_page',
         ),
         RouteConfig(
           ClassDetailsRoute.name,
@@ -294,14 +316,26 @@ class TeacherListRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CourseListPage]
-class CourseListRoute extends PageRouteInfo<void> {
-  const CourseListRoute()
+class CourseListRoute extends PageRouteInfo<CourseListRouteArgs> {
+  CourseListRoute({Key? key})
       : super(
           CourseListRoute.name,
           path: '/course',
+          args: CourseListRouteArgs(key: key),
         );
 
   static const String name = 'CourseListRoute';
+}
+
+class CourseListRouteArgs {
+  const CourseListRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'CourseListRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for
@@ -338,6 +372,30 @@ class SingleScoreViewRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SingleScoreViewRoute';
+}
+
+/// generated route for
+/// [ExamPage]
+class ExamRoute extends PageRouteInfo<void> {
+  const ExamRoute()
+      : super(
+          ExamRoute.name,
+          path: '/exam_page',
+        );
+
+  static const String name = 'ExamRoute';
+}
+
+/// generated route for
+/// [TeacherClassWidget]
+class TeacherClassWidget extends PageRouteInfo<void> {
+  const TeacherClassWidget()
+      : super(
+          TeacherClassWidget.name,
+          path: '/mediator_page',
+        );
+
+  static const String name = 'TeacherClassWidget';
 }
 
 /// generated route for

@@ -66,8 +66,6 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
             },
           ),
         );
-
-    getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
   }
 
   FutureOr<void> _onUpdateCourse(
