@@ -106,8 +106,12 @@ class HomePageItemWidget extends StatelessWidget {
               getIt.get<AppRouter>().pushNamed('/classes');
             }
           : index == 1
-              ? () {}
-              : () {},
+              ? () {
+                  getIt.get<AppRouter>().pushNamed('/teacher');
+                }
+              : () {
+                  getIt.get<AppRouter>().pushNamed('/course');
+                },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
