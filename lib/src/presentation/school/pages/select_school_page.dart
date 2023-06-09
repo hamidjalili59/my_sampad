@@ -136,7 +136,7 @@ class SelectSchoolTileWidget extends StatelessWidget {
               );
               getIt.registerSingleton<TeacherGetSchools>(tempModel);
             }
-            getIt.get<AppRouter>().replaceNamed('/classes');
+            getIt.get<AppRouter>().replaceNamed('/teacher_classes');
           },
           child: Container(
             decoration: BoxDecoration(

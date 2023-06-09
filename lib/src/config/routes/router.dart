@@ -35,20 +35,6 @@ part 'router.gr.dart';
   AutoRoute(
     path: "/home_page",
     page: HomePage,
-    // children: [
-    //   AutoRoute(
-    //     path: "teacher_page",
-    //     page: TeacherPage,
-    //   ),
-    //   AutoRoute(
-    //     path: "course_page",
-    //     page: CoursePage,
-    //   ),
-    //   AutoRoute(
-    //     path: "classes_page",
-    //     page: ClassesPage,
-    //   ),
-    // ],
   ),
   // class page
   AutoRoute(

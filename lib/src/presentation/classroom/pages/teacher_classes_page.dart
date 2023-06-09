@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/classroom/bloc/classroom_bloc.dart';
+import 'package:my_sampad/src/presentation/classroom/bloc/teacher_classroom/teacher_classroom_bloc.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 
 class TeacherClassesPage extends StatelessWidget {
@@ -18,8 +19,8 @@ class TeacherClassesPage extends StatelessWidget {
           child: SizedBox(
             width: 1.sw,
             height: 1.sh,
-            child: BlocBuilder<ClassroomBloc, ClassroomState>(
-              bloc: getIt.get<ClassroomBloc>(),
+            child: BlocBuilder<TeacherClassroomBloc, TeacherClassroomState>(
+              bloc: getIt.get<TeacherClassroomBloc>(),
               builder: (context, state) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -71,12 +72,11 @@ class TeacherClassesPage extends StatelessWidget {
                                                 flex: 5,
                                                 child: Column(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
+                                                      MainAxisAlignment.center,
                                                   children: [
                                                     SizedBox(
                                                       width: 110.w,
-                                                      height: 50.h,
+                                                      height: 25.h,
                                                       child: Align(
                                                         alignment: Alignment
                                                             .centerRight,
@@ -94,9 +94,27 @@ class TeacherClassesPage extends StatelessWidget {
                                                         ),
                                                       ),
                                                     ),
+                                                    SizedBox(height: 5.h),
                                                     SizedBox(
-                                                        width: 110.w,
-                                                        height: 50.h),
+                                                      width: 110.w,
+                                                      height: 25.h,
+                                                      child: Align(
+                                                        alignment: Alignment
+                                                            .centerRight,
+                                                        child: Text(
+                                                          state.classes[index]
+                                                              .courseName,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyle(
+                                                            fontSize: 18.sp,
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                                'Ordibehesht',
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
                                                   ],
                                                 ),
                                               ),
