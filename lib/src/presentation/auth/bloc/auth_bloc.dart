@@ -13,6 +13,9 @@ import 'package:my_sampad/src/features/auth/domain/use_cases/cache_auth_data_use
 import 'package:my_sampad/src/features/auth/domain/use_cases/logout_auth_use_case.dart';
 import 'package:my_sampad/src/features/auth/domain/use_cases/otp_handshake_use_case.dart';
 import 'package:my_sampad/src/features/core/models/tuple.dart' as tuple;
+import 'package:my_sampad/src/features/parent/domain/models/parent_model/parent.dart';
+import 'package:my_sampad/src/features/school/domain/models/principal.dart';
+import 'package:my_sampad/src/features/teacher/domain/models/teacher.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 
 part 'auth_state.dart';
@@ -24,7 +27,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final OtpHandshakeUseCase _otpHandshakeUseCase;
   final CacheAuthDataUseCase _cacheAuthDataUseCase;
   final LogoutAuthDataUseCase _logoutAuthDataUseCase;
-  // final getIt.get<AppRouter>()r getIt.get<AppRouter>() = getIt.get<getIt.get<AppRouter>()r>();
   AuthBloc(
     this._otpHandshakeUseCase,
     this._cacheAuthDataUseCase,
@@ -48,23 +50,27 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(const _Idle(isLoading: true));
     try {
+      if (getIt.isRegistered<double>()) {
+        getIt.unregister<double>();
+        getIt.registerSingleton<double>(event.phoneNumber);
+      } else {
+        getIt.registerSingleton<double>(event.phoneNumber);
+      }
       final handshakeResult =
           await _otpHandshakeUseCase(param: tuple.Tuple1(event.phoneNumber));
       await Future.delayed(const Duration(seconds: 2));
       handshakeResult.fold(
         (l) {
           emit(_Failure(failure: l));
+          emit(const _Idle());
         },
         (r) {
-          emit(_OtpHandshakeSuccess(r));
           if (!getIt.isRegistered<OtpHandshakeResponse>()) {
             getIt.registerSingleton<OtpHandshakeResponse>(r);
           }
+          emit(_OtpHandshakeSuccess(r));
         },
       );
-      await Future.delayed(const Duration(milliseconds: 200));
-      emit(const AuthState.idle(isLoading: false));
-      getIt.get<AppRouter>().replaceNamed('/splash');
     } catch (e) {
       FunctionHelper().logErrorDetailMessage(
         e,
@@ -94,10 +100,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(const AuthState.idle(isLoading: true));
     try {
       final cacheResult = await _cacheAuthDataUseCase(
-        param: tuple.Tuple3<String, String, double>(
+        param: tuple.Tuple7<String, String, int, Parent, Teacher, Principal,
+            double>(
           event.token.token,
           event.token.typeOfUser,
-          event.token.phoneNumber,
+          event.token.code,
+          event.token.parent,
+          event.token.teacher,
+          event.token.principal,
+          event.token.phoneNumber!,
         ),
       );
       cacheResult.fold(
@@ -105,7 +116,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(_Failure(failure: l));
         },
         (r) {
-          return;
+          getIt.get<AppRouter>().replaceNamed('/splash');
+          return null;
         },
       );
     } catch (e) {

@@ -201,7 +201,6 @@ class _ExamPageState extends State<ExamPage> {
                     ),
                   ]),
                   controller: _controllerExamDescription,
-                  initialValue: '',
                   width: 200.w,
                   heghit: 65.h,
                   keyboardType: TextInputType.text,

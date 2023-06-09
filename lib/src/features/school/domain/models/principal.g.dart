@@ -1,27 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'parent.dart';
+part of 'principal.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class ParentAdapter extends TypeAdapter<Parent> {
+class PrincipalAdapter extends TypeAdapter<Principal> {
   @override
-  final int typeId = 19;
+  final int typeId = 40;
 
   @override
-  Parent read(BinaryReader reader) {
+  Principal read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Parent();
+    return Principal(
+      schoolId: fields[0] as int,
+      basicInfo: fields[1] as BasicInfoModel,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, Parent obj) {
-    writer.writeByte(0);
+  void write(BinaryWriter writer, Principal obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.schoolId)
+      ..writeByte(1)
+      ..write(obj.basicInfo);
   }
 
   @override
@@ -30,7 +38,7 @@ class ParentAdapter extends TypeAdapter<Parent> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ParentAdapter &&
+      other is PrincipalAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -39,16 +47,13 @@ class ParentAdapter extends TypeAdapter<Parent> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Parent _$$_ParentFromJson(Map<String, dynamic> json) => _$_Parent(
-      parentId: json['parentId'] as int?,
-      schoolId: json['schoolId'] as int?,
-      basicInfo: json['basicInfo'] == null
-          ? null
-          : BasicInfoModel.fromJson(json['basicInfo'] as Map<String, dynamic>),
+Principal _$PrincipalFromJson(Map<String, dynamic> json) => Principal(
+      schoolId: json['school_ID'] as int,
+      basicInfo:
+          BasicInfoModel.fromJson(json['basic_Info'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_ParentToJson(_$_Parent instance) => <String, dynamic>{
-      'parentId': instance.parentId,
-      'schoolId': instance.schoolId,
-      'basicInfo': instance.basicInfo,
+Map<String, dynamic> _$PrincipalToJson(Principal instance) => <String, dynamic>{
+      'school_ID': instance.schoolId,
+      'basic_Info': instance.basicInfo,
     };

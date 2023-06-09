@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 
 class GeneralConstants {
-  static Size defaultDesignSize = const Size(360, 690);
+  static Size defaultDesignSize = const Size(360, 800);
 
   static double defaultBorderRadius = 10;
   static int currentIndexPage = 0;

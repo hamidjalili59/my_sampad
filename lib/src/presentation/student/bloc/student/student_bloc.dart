@@ -98,7 +98,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
     await _getStudentParentUseCase
         .call(
           param: tuple.Tuple1<double>(
-            getIt.get<OtpHandshakeResponse>().phoneNumber,
+            getIt.get<OtpHandshakeResponse>().phoneNumber!,
           ),
         )
         .then(

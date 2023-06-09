@@ -1,16 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:my_sampad/src/presentation/auth/bloc/auth_bloc.dart';
 import 'package:my_sampad/src/presentation/auth/pages/auth_page.dart';
 import 'package:my_sampad/src/presentation/classroom/pages/class_details_page.dart';
 import 'package:my_sampad/src/presentation/classroom/pages/classes_page.dart';
 import 'package:my_sampad/src/presentation/course/pages/course_page.dart';
 import 'package:my_sampad/src/presentation/home/pages/home_page.dart';
-import 'package:my_sampad/src/presentation/auth/pages/user_authentication_page.dart';
-import 'package:my_sampad/src/presentation/auth/pages/verify_code_page.dart';
 import 'package:my_sampad/src/presentation/intro/pages/intro_page.dart';
 import 'package:my_sampad/src/presentation/rollcall/pages/class_rollcall_page.dart';
 import 'package:my_sampad/src/presentation/score/pages/add_score_for_class_page.dart';
+import 'package:my_sampad/src/presentation/splash/pages/select_role_page.dart';
 import 'package:my_sampad/src/presentation/splash/pages/splash_page.dart';
 import 'package:my_sampad/src/presentation/student/pages/class_student_page.dart';
 import 'package:my_sampad/src/presentation/student/pages/student_details_page.dart';
@@ -25,13 +23,8 @@ part 'router.gr.dart';
     initial: true,
   ),
   AutoRoute(path: "/intro", page: IntroPage),
-  AutoRoute(path: "/auth", page: AuthPage, children: [
-    AutoRoute(
-      name: "authentication",
-      page: UserAuthenticationPage,
-    ),
-    AutoRoute(name: "verify_code", page: VerificationCodePage),
-  ]),
+  AutoRoute(path: "/auth", page: AuthPage),
+  AutoRoute(path: "/rulePage", page: SelectRulePage),
   AutoRoute(
     path: "/home_page",
     page: HomePage,

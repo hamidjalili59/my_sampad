@@ -204,13 +204,13 @@ import 'package:my_sampad/src/injectable/module_injection/feature/parent_feature
 import 'package:my_sampad/src/injectable/module_injection/feature/rollcall_feature_module.dart'
     as _i113;
 import 'package:my_sampad/src/injectable/module_injection/feature/school_feature_module.dart'
-    as _i117;
-import 'package:my_sampad/src/injectable/module_injection/feature/score_feature_module.dart'
     as _i114;
-import 'package:my_sampad/src/injectable/module_injection/feature/student_feature_module.dart'
+import 'package:my_sampad/src/injectable/module_injection/feature/score_feature_module.dart'
     as _i115;
-import 'package:my_sampad/src/injectable/module_injection/feature/teacher_feature_module.dart'
+import 'package:my_sampad/src/injectable/module_injection/feature/student_feature_module.dart'
     as _i116;
+import 'package:my_sampad/src/injectable/module_injection/feature/teacher_feature_module.dart'
+    as _i117;
 import 'package:my_sampad/src/presentation/auth/bloc/auth_bloc.dart' as _i100;
 import 'package:my_sampad/src/presentation/classroom/bloc/classroom_bloc.dart'
     as _i101;
@@ -490,10 +490,10 @@ class _$ParentFeatureModule extends _i112.ParentFeatureModule {}
 
 class _$RollcallFeatureModule extends _i113.RollcallFeatureModule {}
 
-class _$ScoreFeatureModule extends _i114.ScoreFeatureModule {}
+class _$SchoolFeatureModule extends _i114.SchoolFeatureModule {}
 
-class _$StudentFeatureModule extends _i115.StudentFeatureModule {}
+class _$ScoreFeatureModule extends _i115.ScoreFeatureModule {}
 
-class _$TeacherFeatureModule extends _i116.TeacherFeatureModule {}
+class _$StudentFeatureModule extends _i116.StudentFeatureModule {}
 
-class _$SchoolFeatureModule extends _i117.SchoolFeatureModule {}
+class _$TeacherFeatureModule extends _i117.TeacherFeatureModule {}

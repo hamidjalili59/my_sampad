@@ -16,9 +16,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<Either<DioException, Response<Map<String, dynamic>>>> otpHandshake(
       {required double phoneNumber}) {
     return apiService.postMethod<Map<String, dynamic>>(
-      '${GeneralConstants.host}api/v1/login',
+      '${GeneralConstants.host}api/v1/LogIn',
       body: {
-        "PhoneNumber": phoneNumber,
+        "phoneNumber": phoneNumber,
       },
     );
   }

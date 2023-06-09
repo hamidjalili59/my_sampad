@@ -187,7 +187,6 @@ class CoursePage extends StatelessWidget {
                     } else {}
                   },
                   controller: _controller,
-                  initialValue: '',
                   width: 200.w,
                   heghit: 65.h,
                 ),

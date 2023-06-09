@@ -123,7 +123,6 @@ class __$$_ParentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 19)
 class _$_Parent implements _Parent {
   _$_Parent(
       {@HiveField(0) this.parentId,
