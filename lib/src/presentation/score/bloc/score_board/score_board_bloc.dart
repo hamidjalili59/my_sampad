@@ -147,6 +147,7 @@ class ScoreBoardBloc extends Bloc<ScoreBoardEvent, ScoreBoardState> {
               for (var i = 0; i < state.scoresNumeric.length; i++) {
                 state.scoresNumeric[i].dispose();
               }
+              await Future.delayed(const Duration(seconds: 1));
               getIt.get<AppRouter>().pop();
             },
           ),
