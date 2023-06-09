@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_sampad/src/config/constants/general_constants.dart';
-import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_sampad/src/features/home/domain/models/appbar_page_type.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
@@ -103,7 +102,8 @@ class HomePage extends StatelessWidget {
                               return const TeacherHomePage();
                             }
                             if (pageState == AppbarPageType.classroom) {
-                              return SizedBox(child: TeacherClassesPage());
+                              return const SizedBox(
+                                  child: TeacherClassesPage());
                             } else if (pageState == AppbarPageType.teacher) {
                               return SizedBox(child: TeacherPage());
                             } else {
