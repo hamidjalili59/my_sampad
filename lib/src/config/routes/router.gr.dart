@@ -43,6 +43,30 @@ class _$AppRouter extends RootStackRouter {
         child: const SelectRulePage(),
       );
     },
+    SelectSchoolRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SelectSchoolPage(),
+      );
+    },
+    ClassesListRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const ClassesListPage(),
+      );
+    },
+    TeacherListRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const TeacherListPage(),
+      );
+    },
+    CourseListRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const CourseListPage(),
+      );
+    },
     HomeRoute.name: (routeData) {
       final args =
           routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
@@ -87,32 +111,6 @@ class _$AppRouter extends RootStackRouter {
         child: const AddScoreForClassPage(),
       );
     },
-    TeacherRoute.name: (routeData) {
-      final args = routeData.argsAs<TeacherRouteArgs>(
-          orElse: () => const TeacherRouteArgs());
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: TeacherPage(key: args.key),
-      );
-    },
-    CourseRoute.name: (routeData) {
-      final args = routeData.argsAs<CourseRouteArgs>(
-          orElse: () => const CourseRouteArgs());
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: CoursePage(key: args.key),
-      );
-    },
-    ClassesRoute.name: (routeData) {
-      final args = routeData.argsAs<ClassesRouteArgs>();
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: ClassesPage(
-          key: args.key,
-          appRouter: args.appRouter,
-        ),
-      );
-    },
   };
 
   @override
@@ -140,25 +138,24 @@ class _$AppRouter extends RootStackRouter {
           path: '/rulePage',
         ),
         RouteConfig(
+          SelectSchoolRoute.name,
+          path: '/school_select_page',
+        ),
+        RouteConfig(
+          ClassesListRoute.name,
+          path: '/classes',
+        ),
+        RouteConfig(
+          TeacherListRoute.name,
+          path: '/teacher',
+        ),
+        RouteConfig(
+          CourseListRoute.name,
+          path: '/course',
+        ),
+        RouteConfig(
           HomeRoute.name,
           path: '/home_page',
-          children: [
-            RouteConfig(
-              TeacherRoute.name,
-              path: 'teacher_page',
-              parent: HomeRoute.name,
-            ),
-            RouteConfig(
-              CourseRoute.name,
-              path: 'course_page',
-              parent: HomeRoute.name,
-            ),
-            RouteConfig(
-              ClassesRoute.name,
-              path: 'classes_page',
-              parent: HomeRoute.name,
-            ),
-          ],
         ),
         RouteConfig(
           ClassDetailsRoute.name,
@@ -244,16 +241,61 @@ class SelectRuleRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SelectSchoolPage]
+class SelectSchoolRoute extends PageRouteInfo<void> {
+  const SelectSchoolRoute()
+      : super(
+          SelectSchoolRoute.name,
+          path: '/school_select_page',
+        );
+
+  static const String name = 'SelectSchoolRoute';
+}
+
+/// generated route for
+/// [ClassesListPage]
+class ClassesListRoute extends PageRouteInfo<void> {
+  const ClassesListRoute()
+      : super(
+          ClassesListRoute.name,
+          path: '/classes',
+        );
+
+  static const String name = 'ClassesListRoute';
+}
+
+/// generated route for
+/// [TeacherListPage]
+class TeacherListRoute extends PageRouteInfo<void> {
+  const TeacherListRoute()
+      : super(
+          TeacherListRoute.name,
+          path: '/teacher',
+        );
+
+  static const String name = 'TeacherListRoute';
+}
+
+/// generated route for
+/// [CourseListPage]
+class CourseListRoute extends PageRouteInfo<void> {
+  const CourseListRoute()
+      : super(
+          CourseListRoute.name,
+          path: '/course',
+        );
+
+  static const String name = 'CourseListRoute';
+}
+
+/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
+  HomeRoute({Key? key})
+      : super(
           HomeRoute.name,
           path: '/home_page',
           args: HomeRouteArgs(key: key),
-          initialChildren: children,
         );
 
   static const String name = 'HomeRoute';
@@ -364,86 +406,4 @@ class AddScoreForClassRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AddScoreForClassRoute';
-}
-
-/// generated route for
-/// [TeacherPage]
-class TeacherRoute extends PageRouteInfo<TeacherRouteArgs> {
-  TeacherRoute({Key? key})
-      : super(
-          TeacherRoute.name,
-          path: 'teacher_page',
-          args: TeacherRouteArgs(key: key),
-        );
-
-  static const String name = 'TeacherRoute';
-}
-
-class TeacherRouteArgs {
-  const TeacherRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'TeacherRouteArgs{key: $key}';
-  }
-}
-
-/// generated route for
-/// [CoursePage]
-class CourseRoute extends PageRouteInfo<CourseRouteArgs> {
-  CourseRoute({Key? key})
-      : super(
-          CourseRoute.name,
-          path: 'course_page',
-          args: CourseRouteArgs(key: key),
-        );
-
-  static const String name = 'CourseRoute';
-}
-
-class CourseRouteArgs {
-  const CourseRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'CourseRouteArgs{key: $key}';
-  }
-}
-
-/// generated route for
-/// [ClassesPage]
-class ClassesRoute extends PageRouteInfo<ClassesRouteArgs> {
-  ClassesRoute({
-    Key? key,
-    required AppRouter appRouter,
-  }) : super(
-          ClassesRoute.name,
-          path: 'classes_page',
-          args: ClassesRouteArgs(
-            key: key,
-            appRouter: appRouter,
-          ),
-        );
-
-  static const String name = 'ClassesRoute';
-}
-
-class ClassesRouteArgs {
-  const ClassesRouteArgs({
-    this.key,
-    required this.appRouter,
-  });
-
-  final Key? key;
-
-  final AppRouter appRouter;
-
-  @override
-  String toString() {
-    return 'ClassesRouteArgs{key: $key, appRouter: $appRouter}';
-  }
 }

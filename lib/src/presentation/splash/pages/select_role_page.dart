@@ -23,54 +23,60 @@ class SelectRulePage extends StatelessWidget {
                 title: 'وظایف شما :',
                 titleHelper:
                     'با انتخاب هر یک از وظایف زیر شما به آن عنوان وارد اپلیکیشن میشوید',
-                pathString: 'انتخاب وظیفه   - ',
+                pathString: '',
               ),
               SizedBox(
                 width: 1.sw,
                 height: 0.69.sh,
                 child: Column(
                   children: [
-                    GridView.builder(
-                      shrinkWrap: true,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisExtent: 190.h,
-                        crossAxisSpacing: 20.w,
-                        mainAxisSpacing: 10.h,
+                    Expanded(
+                      flex: 4,
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisExtent: 190.h,
+                          crossAxisSpacing: 20.w,
+                          mainAxisSpacing: 10.h,
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20.w, vertical: 25.h),
+                        itemCount: GeneralConstants.roleCount.length,
+                        itemBuilder: (context, index) {
+                          return SelectRuleTileWidget(
+                            rule: GeneralConstants.roleCount[index],
+                          );
+                        },
                       ),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20.w, vertical: 25.h),
-                      itemCount: GeneralConstants.roleCount.length,
-                      itemBuilder: (context, index) {
-                        return SelectRuleTileWidget(
-                          rule: GeneralConstants.roleCount[index],
-                        );
-                      },
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: const Color(0xffe8ffe8),
-                          borderRadius: BorderRadius.circular(11.sp),
-                          boxShadow: [
-                            BoxShadow(
-                              color: const Color.fromARGB(65, 36, 36, 36),
-                              blurRadius: 4.sp,
-                              spreadRadius: 0,
-                            )
-                          ]),
-                      width: 330.w,
-                      height: 109.h,
-                      alignment: Alignment.center,
-                      child: SizedBox(
-                        width: 315,
-                        child: Text(
-                          'شما میتوانید بعد از انتخاب هر کدام داخل صفحه اصلی اپلیکیشن با کلیک بر روی گزینه اکانت و انتخاب گزینه دیگر وظایف به این صفحه بازگردید',
-                          textAlign: TextAlign.start,
-                          textDirection: TextDirection.rtl,
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            color: Colors.black,
-                            fontFamily: 'Ordibehesht',
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: const Color(0xffe8ffe8),
+                            borderRadius: BorderRadius.circular(11.sp),
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color.fromARGB(65, 36, 36, 36),
+                                blurRadius: 4.sp,
+                                spreadRadius: 0,
+                              )
+                            ]),
+                        width: 330.w,
+                        height: 109.h,
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          width: 315,
+                          child: Text(
+                            'شما میتوانید بعد از انتخاب هر کدام داخل صفحه اصلی اپلیکیشن با کلیک بر روی گزینه اکانت و انتخاب گزینه دیگر وظایف به این صفحه بازگردید',
+                            textAlign: TextAlign.start,
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: Colors.black,
+                              fontFamily: 'Ordibehesht',
+                            ),
                           ),
                         ),
                       ),

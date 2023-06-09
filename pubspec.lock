@@ -22,7 +22,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: c434716d62faa934f1e98a4e9115118613ac1785
+      resolved-ref: "842a9cdbd3510ae5846c6b84cab8d148b0ac3445"
       url: "https://github.com/hamidjalili59/api_service.git"
     source: git
     version: "1.0.0"
