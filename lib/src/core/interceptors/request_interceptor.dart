@@ -77,7 +77,8 @@ class RequestInterceptor extends Interceptor {
     appHelper.logMessage(
       'REQUEST[${options.method}] => PATH: ${options.path}\nRequestData[${options.data}]',
     );
-    options.sendTimeout = const Duration(seconds: 10);
+    options.sendTimeout = const Duration(seconds: 15);
+    options.receiveTimeout = const Duration(seconds: 10);
     options.baseUrl = '';
     String token = '';
     if (token.isNotEmpty) {

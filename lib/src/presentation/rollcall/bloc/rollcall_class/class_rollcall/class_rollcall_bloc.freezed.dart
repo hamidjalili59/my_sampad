@@ -292,21 +292,21 @@ abstract class _Idle implements ClassRollcallState {
 mixin _$ClassRollcallEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int studentIndex) setRollcalls,
+    required TResult Function(int studentIndex, bool isAbsent) setRollcalls,
     required TResult Function() submitRollcalls,
     required TResult Function() getStudents,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int studentIndex)? setRollcalls,
+    TResult? Function(int studentIndex, bool isAbsent)? setRollcalls,
     TResult? Function()? submitRollcalls,
     TResult? Function()? getStudents,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int studentIndex)? setRollcalls,
+    TResult Function(int studentIndex, bool isAbsent)? setRollcalls,
     TResult Function()? submitRollcalls,
     TResult Function()? getStudents,
     required TResult orElse(),
@@ -360,7 +360,7 @@ abstract class _$$_SetRollcallsCopyWith<$Res> {
           _$_SetRollcalls value, $Res Function(_$_SetRollcalls) then) =
       __$$_SetRollcallsCopyWithImpl<$Res>;
   @useResult
-  $Res call({int studentIndex});
+  $Res call({int studentIndex, bool isAbsent});
 }
 
 /// @nodoc
@@ -375,12 +375,17 @@ class __$$_SetRollcallsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? studentIndex = null,
+    Object? isAbsent = null,
   }) {
     return _then(_$_SetRollcalls(
       null == studentIndex
           ? _value.studentIndex
           : studentIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      null == isAbsent
+          ? _value.isAbsent
+          : isAbsent // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -388,14 +393,16 @@ class __$$_SetRollcallsCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SetRollcalls implements _SetRollcalls {
-  const _$_SetRollcalls(this.studentIndex);
+  const _$_SetRollcalls(this.studentIndex, this.isAbsent);
 
   @override
   final int studentIndex;
+  @override
+  final bool isAbsent;
 
   @override
   String toString() {
-    return 'ClassRollcallEvent.setRollcalls(studentIndex: $studentIndex)';
+    return 'ClassRollcallEvent.setRollcalls(studentIndex: $studentIndex, isAbsent: $isAbsent)';
   }
 
   @override
@@ -404,11 +411,13 @@ class _$_SetRollcalls implements _SetRollcalls {
         (other.runtimeType == runtimeType &&
             other is _$_SetRollcalls &&
             (identical(other.studentIndex, studentIndex) ||
-                other.studentIndex == studentIndex));
+                other.studentIndex == studentIndex) &&
+            (identical(other.isAbsent, isAbsent) ||
+                other.isAbsent == isAbsent));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, studentIndex);
+  int get hashCode => Object.hash(runtimeType, studentIndex, isAbsent);
 
   @JsonKey(ignore: true)
   @override
@@ -419,33 +428,33 @@ class _$_SetRollcalls implements _SetRollcalls {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int studentIndex) setRollcalls,
+    required TResult Function(int studentIndex, bool isAbsent) setRollcalls,
     required TResult Function() submitRollcalls,
     required TResult Function() getStudents,
   }) {
-    return setRollcalls(studentIndex);
+    return setRollcalls(studentIndex, isAbsent);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int studentIndex)? setRollcalls,
+    TResult? Function(int studentIndex, bool isAbsent)? setRollcalls,
     TResult? Function()? submitRollcalls,
     TResult? Function()? getStudents,
   }) {
-    return setRollcalls?.call(studentIndex);
+    return setRollcalls?.call(studentIndex, isAbsent);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int studentIndex)? setRollcalls,
+    TResult Function(int studentIndex, bool isAbsent)? setRollcalls,
     TResult Function()? submitRollcalls,
     TResult Function()? getStudents,
     required TResult orElse(),
   }) {
     if (setRollcalls != null) {
-      return setRollcalls(studentIndex);
+      return setRollcalls(studentIndex, isAbsent);
     }
     return orElse();
   }
@@ -486,9 +495,11 @@ class _$_SetRollcalls implements _SetRollcalls {
 }
 
 abstract class _SetRollcalls implements ClassRollcallEvent {
-  const factory _SetRollcalls(final int studentIndex) = _$_SetRollcalls;
+  const factory _SetRollcalls(final int studentIndex, final bool isAbsent) =
+      _$_SetRollcalls;
 
   int get studentIndex;
+  bool get isAbsent;
   @JsonKey(ignore: true)
   _$$_SetRollcallsCopyWith<_$_SetRollcalls> get copyWith =>
       throw _privateConstructorUsedError;
@@ -532,7 +543,7 @@ class _$_SubmitRollcalls implements _SubmitRollcalls {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int studentIndex) setRollcalls,
+    required TResult Function(int studentIndex, bool isAbsent) setRollcalls,
     required TResult Function() submitRollcalls,
     required TResult Function() getStudents,
   }) {
@@ -542,7 +553,7 @@ class _$_SubmitRollcalls implements _SubmitRollcalls {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int studentIndex)? setRollcalls,
+    TResult? Function(int studentIndex, bool isAbsent)? setRollcalls,
     TResult? Function()? submitRollcalls,
     TResult? Function()? getStudents,
   }) {
@@ -552,7 +563,7 @@ class _$_SubmitRollcalls implements _SubmitRollcalls {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int studentIndex)? setRollcalls,
+    TResult Function(int studentIndex, bool isAbsent)? setRollcalls,
     TResult Function()? submitRollcalls,
     TResult Function()? getStudents,
     required TResult orElse(),
@@ -640,7 +651,7 @@ class _$_GetStudents implements _GetStudents {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int studentIndex) setRollcalls,
+    required TResult Function(int studentIndex, bool isAbsent) setRollcalls,
     required TResult Function() submitRollcalls,
     required TResult Function() getStudents,
   }) {
@@ -650,7 +661,7 @@ class _$_GetStudents implements _GetStudents {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int studentIndex)? setRollcalls,
+    TResult? Function(int studentIndex, bool isAbsent)? setRollcalls,
     TResult? Function()? submitRollcalls,
     TResult? Function()? getStudents,
   }) {
@@ -660,7 +671,7 @@ class _$_GetStudents implements _GetStudents {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int studentIndex)? setRollcalls,
+    TResult Function(int studentIndex, bool isAbsent)? setRollcalls,
     TResult Function()? submitRollcalls,
     TResult Function()? getStudents,
     required TResult orElse(),

@@ -59,7 +59,7 @@ class _SplashPageState extends State<SplashPage> {
                     width: 0.95.sw,
                     height: 0.4.sh,
                     child: Image(
-                      image: AssetImage(PngAssets.schoolAppIcon),
+                      image: AssetImage(PngAssets.logo),
                       alignment: Alignment.center,
                       fit: BoxFit.fitWidth,
                       height: 0.4.sh,

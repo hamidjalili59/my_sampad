@@ -4,6 +4,7 @@ part of 'class_rollcall_bloc.dart';
 class ClassRollcallEvent with _$ClassRollcallEvent {
   const factory ClassRollcallEvent.setRollcalls(
     int studentIndex,
+    bool isAbsent,
   ) = _SetRollcalls;
   const factory ClassRollcallEvent.submitRollcalls() = _SubmitRollcalls;
   const factory ClassRollcallEvent.getStudents() = _GetStudents;
