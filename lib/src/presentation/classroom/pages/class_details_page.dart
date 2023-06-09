@@ -47,9 +47,19 @@ class ClassDetailsPage extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
-                              getIt
-                                  .get<AppRouter>()
-                                  .pushNamed('/class_student_page');
+                              if (index == 0) {
+                                getIt
+                                    .get<AppRouter>()
+                                    .pushNamed('/class_student_page');
+                              } else if (index == 1) {
+                                getIt
+                                    .get<AppRouter>()
+                                    .pushNamed('/class_student_page');
+                              } else {
+                                getIt
+                                    .get<AppRouter>()
+                                    .pushNamed('/class_student_page');
+                              }
                             },
                             child: Container(
                               decoration: BoxDecoration(

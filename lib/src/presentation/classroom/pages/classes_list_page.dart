@@ -26,11 +26,62 @@ class ClassesListPage extends StatelessWidget {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const AppbarSchoolWidget(
-                        title: 'کلاس ها : ',
-                        titleHelper:
-                            'با کلیک بر روی هر کلاس میتوانید گزینه های بیشتری برای کلاس را مشاهده کنید',
-                        pathString: ' -  کلاس‌ها'),
+                    AppbarSchoolWidget(
+                      title: 'کلاس ها : ',
+                      titleHelper:
+                          'با کلیک بر روی هر کلاس میتوانید گزینه های بیشتری برای کلاس را مشاهده کنید',
+                      pathString: ' -  کلاس‌ها',
+                      isWidget: true,
+                      widget: DropdownButton<String>(
+                        items: [
+                          DropdownMenuItem(
+                            alignment: Alignment.center,
+                            value: 'اضافه کردن',
+                            onTap: () {},
+                            child: Text(
+                              'اضافه کردن',
+                              style: TextStyle(
+                                  fontSize: 20.sp,
+                                  color: Colors.black,
+                                  fontFamily: 'Ordibehesht',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          DropdownMenuItem(
+                            alignment: Alignment.center,
+                            value: 'حذف',
+                            onTap: () {},
+                            child: Text(
+                              'حذف',
+                              style: TextStyle(
+                                  fontSize: 20.sp,
+                                  color: Colors.black,
+                                  fontFamily: 'Ordibehesht',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          DropdownMenuItem(
+                            alignment: Alignment.center,
+                            value: 'تغییر',
+                            onTap: () {},
+                            child: Text(
+                              'تغییر',
+                              style: TextStyle(
+                                  fontSize: 20.sp,
+                                  color: Colors.black,
+                                  fontFamily: 'Ordibehesht',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                        itemHeight: 50.h,
+                        onChanged: (value) {},
+                        icon: Icon(
+                          Icons.more_vert_rounded,
+                          size: 36.sp,
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       width: 1.sw,
                       height: 0.69.sh,
