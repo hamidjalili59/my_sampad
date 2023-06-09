@@ -63,7 +63,7 @@ class AppbarSchoolWidget extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 20.h),
+          SizedBox(height: 10.h),
           SizedBox(
               width: 0.72.sw,
               child: Text(
@@ -77,7 +77,7 @@ class AppbarSchoolWidget extends StatelessWidget {
               )),
           SizedBox(height: 3.h),
           SizedBox(
-              width: 0.72.sw,
+              width: 0.75.sw,
               child: Text(
                 titleHelper,
                 textAlign: TextAlign.start,
@@ -88,7 +88,7 @@ class AppbarSchoolWidget extends StatelessWidget {
                   fontSize: 14.sp,
                 ),
               )),
-          SizedBox(height: 5.h),
+          SizedBox(height: 3.h),
           SizedBox(
               width: 0.72.sw,
               child: Directionality(

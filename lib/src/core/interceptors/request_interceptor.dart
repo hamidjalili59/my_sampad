@@ -99,6 +99,17 @@ class RequestInterceptor extends Interceptor {
   @override
   Future<void> onError(
       DioException err, ErrorInterceptorHandler handler) async {
+    print('________________________________________________');
+    print(err.error.toString());
+    print('________________________________________________');
+    print(err.message.toString());
+    print('________________________________________________');
+    print(err.requestOptions.data.toString());
+    print('________________________________________________');
+    print(err.response?.data.toString() ?? '');
+    print('________________________________________________');
+    print(err.response.toString());
+    print('________________________________________________');
     appHelper.logMessage(
       'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}',
     );

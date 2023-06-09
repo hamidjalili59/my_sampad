@@ -279,7 +279,7 @@ class OtpHandshakeWidget extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: SizedBox(
-                        height: 55.h,
+                        height: 60.h,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -305,7 +305,7 @@ class OtpHandshakeWidget extends StatelessWidget {
                                 SizedBox(width: 15.w),
                                 SizedBox(
                                   width: 40.w,
-                                  height: 35.h,
+                                  height: 40.h,
                                   child: Text(
                                     '+98',
                                     textDirection: TextDirection.ltr,
@@ -320,9 +320,9 @@ class OtpHandshakeWidget extends StatelessWidget {
                                   ),
                                 ),
                                 CustomTextField(
-                                  width: 120.w,
+                                  width: 110.w,
                                   enabled: true,
-                                  heghit: 35.h,
+                                  heghit: 40.h,
                                   maxLength: 10,
                                   name: 'phone',
                                   labelText: '9123456789',
@@ -333,7 +333,7 @@ class OtpHandshakeWidget extends StatelessWidget {
                                       .copyWith(
                                         color: Colors.black,
                                         fontFamily: 'Ordibehesht',
-                                        fontSize: 32,
+                                        fontSize: 32.sp,
                                       ),
                                   labelStyle: Theme.of(context)
                                       .textTheme
@@ -341,7 +341,7 @@ class OtpHandshakeWidget extends StatelessWidget {
                                       .copyWith(
                                         color: Colors.black38,
                                         fontFamily: 'Ordibehesht',
-                                        fontSize: 32,
+                                        fontSize: 32.sp,
                                       ),
                                   controller: _numbercontroller,
                                   keyboardType: TextInputType.phone,
