@@ -78,9 +78,7 @@ class TeacherListPage extends StatelessWidget {
                           DropdownMenuItem(
                             alignment: Alignment.center,
                             value: 'حذف',
-                            onTap: () {
-                              print('حذف');
-                            },
+                            onTap: () {},
                             child: Text(
                               'حذف',
                               textDirection: TextDirection.rtl,
@@ -94,9 +92,7 @@ class TeacherListPage extends StatelessWidget {
                           DropdownMenuItem(
                             alignment: Alignment.center,
                             value: 'تغییر',
-                            onTap: () {
-                              print('تغییر');
-                            },
+                            onTap: () {},
                             child: Text(
                               'تغییر',
                               textDirection: TextDirection.rtl,

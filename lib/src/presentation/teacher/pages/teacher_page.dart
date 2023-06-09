@@ -116,7 +116,7 @@ class TeacherPage extends StatelessWidget {
       );
     } else {
       // return const TeacherClassWidget();
-      return SizedBox();
+      return const SizedBox();
     }
   }
 
