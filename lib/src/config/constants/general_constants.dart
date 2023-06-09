@@ -6,7 +6,7 @@ class GeneralConstants {
 
   static double defaultBorderRadius = 10;
   static int currentIndexPage = 0;
-  static int roleCount = 0;
+  static List<String> roleCount = [];
   static String defaultFontName = '';
   static String host = 'https://my-school.iran.liara.run/';
   static String firstAppbarItem = '';
