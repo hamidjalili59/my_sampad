@@ -459,7 +459,7 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.factory<_i104.HomeBloc>(
         () => _i104.HomeBloc(gh<_i56.LogoutAuthDataUseCase>()));
-    gh.lazySingleton<_i105.StudentBloc>(() => _i105.StudentBloc(
+    gh.factory<_i105.StudentBloc>(() => _i105.StudentBloc(
           gh<_i53.GetStudentUseCase>(),
           gh<_i9.AddStudentUseCase>(),
           gh<_i52.GetStudentParentUseCase>(),
