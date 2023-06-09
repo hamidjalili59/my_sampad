@@ -235,7 +235,6 @@ class ClassesCardWidget extends StatelessWidget {
                     } else {}
                   },
                   controller: _classNameController,
-                  initialValue: '',
                   width: 200.w,
                   heghit: 65.h,
                 ),

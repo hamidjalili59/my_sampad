@@ -1,9 +1,4 @@
-// ignore_for_file: depend_on_referenced_packages
-
 import 'dart:async';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_sampad/src/config/constants/general_constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,12 +8,9 @@ import 'package:my_sampad/src/config/utils/function_helper.dart';
 import 'package:my_sampad/src/features/auth/domain/failures/auth_failure.dart';
 import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_sampad/src/features/auth/domain/models/otp_handshake_response.dart';
-import 'package:my_sampad/src/features/teacher/domain/models/teacher_get_schools.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/features/auth/domain/use_cases/get_cached_auth_data_use_case.dart';
 import 'package:injectable/injectable.dart';
-import 'package:my_sampad/src/presentation/school/bloc/school/school_bloc.dart';
-import 'package:ndialog/ndialog.dart';
 
 part 'splash_bloc.freezed.dart';
 part 'splash_event.dart';
@@ -41,75 +33,6 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     super.onEvent(event);
   }
 
-  // Future<void> _showSchoolModal() async {
-  //   return await showModalBottomSheet<void>(
-  //     backgroundColor: Colors.transparent,
-  //     isDismissible: false,
-  //     context: appRoute.navigatorKey.currentContext!,
-  //     constraints: BoxConstraints(minHeight: 0.15.sh, maxHeight: 0.7.sh),
-  //     builder: (context) {
-  //       return Padding(
-  //         padding: EdgeInsets.symmetric(horizontal: 26.0.w),
-  //         child: Container(
-  //           decoration: BoxDecoration(
-  //               color: Colors.white54,
-  //               borderRadius: BorderRadius.circular(16.r)),
-  //           child: Padding(
-  //             padding: EdgeInsets.all(8.0.r),
-  //             child: Column(
-  //               children: [
-  //                 Flexible(
-  //                   flex: 1,
-  //                   child: Padding(
-  //                     padding: EdgeInsets.all(16.0.r),
-  //                     child: Container(
-  //                       alignment: Alignment.center,
-  //                       width: 0.5.sw,
-  //                       height: 55,
-  //                       decoration: BoxDecoration(
-  //                         color: Colors.white70,
-  //                         borderRadius: BorderRadius.circular(8.r),
-  //                       ),
-  //                       child: Text(
-  //                         'مدرسه های من',
-  //                         style: TextStyle(
-  //                             color: Colors.black,
-  //                             fontSize: 18.r,
-  //                             fontWeight: FontWeight.bold),
-  //                       ),
-  //                     ),
-  //                   ),
-  //                 ),
-  //                 Flexible(
-  //                   flex: 5,
-  //                   child: ListView.builder(
-  //                     itemCount: 4,
-  //                     itemExtent: 80.h,
-  //                     shrinkWrap: true,
-  //                     itemBuilder: (context, index) {
-  //                       return Padding(
-  //                         padding:
-  //                             EdgeInsets.only(bottom: index < 3 ? 8.0.h : 0),
-  //                         child: InkWell(
-  //                           onTap: () {
-  //                             GeneralConstants.userType = UserType.admin;
-  //                             appRoute.replaceNamed('/home_page');
-  //                           },
-  //                           child: SchoolsCardWidget(title: '1000$index'),
-  //                         ),
-  //                       );
-  //                     },
-  //                   ),
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
-
   FutureOr<void> _getClientData(
     _GetClientData event,
     Emitter<SplashState> emit,
@@ -130,187 +53,188 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     }
     try {
       if (GeneralConstants.roleCount > 1) {
-        GeneralConstants.roleCount = 0;
-        NDialog(
-          title: Center(
-            child: Text(
-              'ورود به عنوان',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 22.r,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          content: SizedBox(
-            width: 0.6.sw,
-            height: 0.35.sh,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                event.token.typeOfUser.contains('principal')
-                    ? InkWell(
-                        onTap: () {
-                          GeneralConstants.userType = UserType.admin;
-                          appRoute.replaceNamed('/home_page');
-                        },
-                        child: Container(
-                          width: 0.45.sw,
-                          height: 60.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16.r),
-                            color: GeneralConstants.mainColor,
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            'مدیر',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22.r,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      )
-                    : const SizedBox(),
-                event.token.typeOfUser.contains('teacher')
-                    ? InkWell(
-                        onTap: () async {
-                          appRoute.pop();
-                          GeneralConstants.userType = UserType.teacher;
+        // GeneralConstants.roleCount = 0;
+        appRoute.replaceNamed('/rulePage');
+        // NDialog(
+        //   title: Center(
+        //     child: Text(
+        //       'ورود به عنوان',
+        //       style: TextStyle(
+        //         color: Colors.black,
+        //         fontSize: 22.r,
+        //         fontWeight: FontWeight.bold,
+        //       ),
+        //     ),
+        //   ),
+        //   content: SizedBox(
+        //     width: 0.6.sw,
+        //     height: 0.35.sh,
+        //     child: Column(
+        //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //       children: [
+        //         event.token.typeOfUser.contains('principal')
+        //             ? InkWell(
+        //                 onTap: () {
+        //                   GeneralConstants.userType = UserType.admin;
+        //                   appRoute.replaceNamed('/home_page');
+        //                 },
+        //                 child: Container(
+        //                   width: 0.45.sw,
+        //                   height: 60.h,
+        //                   decoration: BoxDecoration(
+        //                     borderRadius: BorderRadius.circular(16.r),
+        //                     color: GeneralConstants.mainColor,
+        //                   ),
+        //                   alignment: Alignment.center,
+        //                   child: Text(
+        //                     'مدیر',
+        //                     style: TextStyle(
+        //                       color: Colors.white,
+        //                       fontSize: 22.r,
+        //                       fontWeight: FontWeight.bold,
+        //                     ),
+        //                   ),
+        //                 ),
+        //               )
+        //             : const SizedBox(),
+        //         event.token.typeOfUser.contains('teacher')
+        //             ? InkWell(
+        //                 onTap: () async {
+        //                   appRoute.pop();
+        //                   GeneralConstants.userType = UserType.teacher;
 
-                          if (GeneralConstants.userType == UserType.teacher) {
-                            return await NDialog(
-                              title: Center(
-                                child: Text(
-                                  'انتخاب مدرسه',
-                                  style: Theme.of(getIt
-                                          .get<AppRouter>()
-                                          .navigatorKey
-                                          .currentContext!)
-                                      .textTheme
-                                      .titleLarge!
-                                      .copyWith(color: Colors.black),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              content: BlocBuilder<SchoolBloc, SchoolState>(
-                                bloc: getIt.get<SchoolBloc>(),
-                                builder: (context, state) {
-                                  return SizedBox(
-                                    width: 0.7.sw,
-                                    height: 0.3.sh,
-                                    child: state.isLoading
-                                        ? const Center(
-                                            child: CircularProgressIndicator())
-                                        : ListView.builder(
-                                            itemCount: state.data.keys.length,
-                                            itemBuilder: (context, index) =>
-                                                InkWell(
-                                              onTap: () async {
-                                                TeacherGetSchools tempModel =
-                                                    TeacherGetSchools(
-                                                  int.tryParse(state.data.keys
-                                                          .toList()[index]) ??
-                                                      0,
-                                                  state.data.values
-                                                          .toList()[index]
-                                                      ['school_ID'],
-                                                  state.data.values
-                                                          .toList()[index]
-                                                      ['school_Name'],
-                                                );
-                                                getIt.registerSingleton<
-                                                        TeacherGetSchools>(
-                                                    tempModel);
-                                                appRoute
-                                                    .replaceNamed('/home_page');
-                                              },
-                                              child: Container(
-                                                height: 50.h,
-                                                width: 120.w,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          16.r),
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .primary,
-                                                ),
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  state.data.values
-                                                          .toList()[index]
-                                                      ['school_Name'],
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleLarge!
-                                                      .copyWith(
-                                                          color: Colors.white),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                  );
-                                },
-                              ),
-                            ).show(
-                              appRoute.navigatorKey.currentContext!,
-                              dismissable: false,
-                            );
-                          }
-                        },
-                        child: Container(
-                          width: 0.45.sw,
-                          height: 60.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16.r),
-                            color: GeneralConstants.mainColor,
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            'دبیر',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22.r,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      )
-                    : const SizedBox(),
-                event.token.typeOfUser.contains('parent')
-                    ? InkWell(
-                        onTap: () {
-                          GeneralConstants.userType = UserType.parent;
-                          appRoute.replaceNamed('/class_details_page');
-                        },
-                        child: Container(
-                          width: 0.45.sw,
-                          height: 60.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16.r),
-                            color: GeneralConstants.mainColor,
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            'والد',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 22.r,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      )
-                    : const SizedBox(),
-              ],
-            ),
-          ),
-        ).show(
-          getIt.get<AppRouter>().navigatorKey.currentContext!,
-          dismissable: false,
-        );
+        //                   if (GeneralConstants.userType == UserType.teacher) {
+        //                     return await NDialog(
+        //                       title: Center(
+        //                         child: Text(
+        //                           'انتخاب مدرسه',
+        //                           style: Theme.of(getIt
+        //                                   .get<AppRouter>()
+        //                                   .navigatorKey
+        //                                   .currentContext!)
+        //                               .textTheme
+        //                               .titleLarge!
+        //                               .copyWith(color: Colors.black),
+        //                           textAlign: TextAlign.center,
+        //                         ),
+        //                       ),
+        //                       content: BlocBuilder<SchoolBloc, SchoolState>(
+        //                         bloc: getIt.get<SchoolBloc>(),
+        //                         builder: (context, state) {
+        //                           return SizedBox(
+        //                             width: 0.7.sw,
+        //                             height: 0.3.sh,
+        //                             child: state.isLoading
+        //                                 ? const Center(
+        //                                     child: CircularProgressIndicator())
+        //                                 : ListView.builder(
+        //                                     itemCount: state.data.keys.length,
+        //                                     itemBuilder: (context, index) =>
+        //                                         InkWell(
+        //                                       onTap: () async {
+        //                                         TeacherGetSchools tempModel =
+        //                                             TeacherGetSchools(
+        //                                           int.tryParse(state.data.keys
+        //                                                   .toList()[index]) ??
+        //                                               0,
+        //                                           state.data.values
+        //                                                   .toList()[index]
+        //                                               ['school_ID'],
+        //                                           state.data.values
+        //                                                   .toList()[index]
+        //                                               ['school_Name'],
+        //                                         );
+        //                                         getIt.registerSingleton<
+        //                                                 TeacherGetSchools>(
+        //                                             tempModel);
+        //                                         appRoute
+        //                                             .replaceNamed('/home_page');
+        //                                       },
+        //                                       child: Container(
+        //                                         height: 50.h,
+        //                                         width: 120.w,
+        //                                         decoration: BoxDecoration(
+        //                                           borderRadius:
+        //                                               BorderRadius.circular(
+        //                                                   16.r),
+        //                                           color: Theme.of(context)
+        //                                               .colorScheme
+        //                                               .primary,
+        //                                         ),
+        //                                         alignment: Alignment.center,
+        //                                         child: Text(
+        //                                           state.data.values
+        //                                                   .toList()[index]
+        //                                               ['school_Name'],
+        //                                           style: Theme.of(context)
+        //                                               .textTheme
+        //                                               .titleLarge!
+        //                                               .copyWith(
+        //                                                   color: Colors.white),
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ),
+        //                           );
+        //                         },
+        //                       ),
+        //                     ).show(
+        //                       appRoute.navigatorKey.currentContext!,
+        //                       dismissable: false,
+        //                     );
+        //                   }
+        //                 },
+        //                 child: Container(
+        //                   width: 0.45.sw,
+        //                   height: 60.h,
+        //                   decoration: BoxDecoration(
+        //                     borderRadius: BorderRadius.circular(16.r),
+        //                     color: GeneralConstants.mainColor,
+        //                   ),
+        //                   alignment: Alignment.center,
+        //                   child: Text(
+        //                     'دبیر',
+        //                     style: TextStyle(
+        //                       color: Colors.white,
+        //                       fontSize: 22.r,
+        //                       fontWeight: FontWeight.bold,
+        //                     ),
+        //                   ),
+        //                 ),
+        //               )
+        //             : const SizedBox(),
+        //         event.token.typeOfUser.contains('parent')
+        //             ? InkWell(
+        //                 onTap: () {
+        //                   GeneralConstants.userType = UserType.parent;
+        //                   appRoute.replaceNamed('/class_details_page');
+        //                 },
+        //                 child: Container(
+        //                   width: 0.45.sw,
+        //                   height: 60.h,
+        //                   decoration: BoxDecoration(
+        //                     borderRadius: BorderRadius.circular(16.r),
+        //                     color: GeneralConstants.mainColor,
+        //                   ),
+        //                   alignment: Alignment.center,
+        //                   child: Text(
+        //                     'والد',
+        //                     style: TextStyle(
+        //                       color: Colors.white,
+        //                       fontSize: 22.r,
+        //                       fontWeight: FontWeight.bold,
+        //                     ),
+        //                   ),
+        //                 ),
+        //               )
+        //             : const SizedBox(),
+        //       ],
+        //     ),
+        //   ),
+        // ).show(
+        //   getIt.get<AppRouter>().navigatorKey.currentContext!,
+        //   dismissable: false,
+        // );
       } else {
         if (event.token.typeOfUser == 'principal') {
           GeneralConstants.userType = UserType.admin;

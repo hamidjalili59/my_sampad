@@ -4,6 +4,10 @@ import 'package:my_sampad/src/features/auth/data/data_sources/remote/auth_remote
 import 'package:my_sampad/src/features/auth/domain/failures/auth_failure.dart';
 import 'package:my_sampad/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_sampad/src/features/auth/domain/repositories/auth_repository.dart';
+import 'package:my_sampad/src/features/parent/domain/models/parent_model/parent.dart';
+import 'package:my_sampad/src/features/school/domain/models/principal.dart';
+import 'package:my_sampad/src/features/teacher/domain/models/teacher.dart';
+import 'package:my_sampad/src/injectable/injectable.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
   final AuthRemoteDataSource _remoteDS;
@@ -34,15 +38,27 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<AuthFailure, void>> cacheAuthData(
-      {required String token,
-      required String typeOfUser,
-      required double phoneNumber}) {
+  Future<Either<AuthFailure, void>> cacheAuthData({
+    required String token,
+    required String typeOfUser,
+    required double phoneNumber,
+    required Parent parent,
+    required Teacher teacher,
+    required Principal principal,
+    required int code,
+  }) {
     return _localDS
         .cacheData(
             fieldKey: tokenFieldKey,
             value: OtpHandshakeResponse(
-                token: token, typeOfUser: typeOfUser, phoneNumber: phoneNumber))
+              code: code,
+              token: token,
+              typeOfUser: typeOfUser,
+              parent: parent,
+              principal: principal,
+              teacher: teacher,
+              phoneNumber: getIt.get<double>(),
+            ))
         .then(
           (value) => value.fold(
             (l) => left<AuthFailure, void>(AuthFailure.database(l)),

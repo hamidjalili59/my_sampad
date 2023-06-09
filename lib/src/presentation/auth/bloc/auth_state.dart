@@ -18,5 +18,4 @@ class AuthState with _$AuthState {
     AuthFailure? failure,
     @Default('') String message,
   }) = _Failure;
-  
 }

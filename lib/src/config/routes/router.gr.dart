@@ -37,6 +37,12 @@ class _$AppRouter extends RootStackRouter {
         child: AuthPage(key: args.key),
       );
     },
+    SelectRuleRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SelectRulePage(),
+      );
+    },
     HomeRoute.name: (routeData) {
       final args =
           routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
@@ -79,24 +85,6 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const AddScoreForClassPage(),
-      );
-    },
-    Authentication.name: (routeData) {
-      final args = routeData.argsAs<AuthenticationArgs>();
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: UserAuthenticationPage(
-          key: args.key,
-          bloc: args.bloc,
-        ),
-      );
-    },
-    Verify_code.name: (routeData) {
-      final args = routeData.argsAs<Verify_codeArgs>(
-          orElse: () => const Verify_codeArgs());
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: VerificationCodePage(key: args.key),
       );
     },
     TeacherRoute.name: (routeData) {
@@ -146,18 +134,10 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           AuthRoute.name,
           path: '/auth',
-          children: [
-            RouteConfig(
-              Authentication.name,
-              path: 'user-authentication-page',
-              parent: AuthRoute.name,
-            ),
-            RouteConfig(
-              Verify_code.name,
-              path: 'verification-code-page',
-              parent: AuthRoute.name,
-            ),
-          ],
+        ),
+        RouteConfig(
+          SelectRuleRoute.name,
+          path: '/rulePage',
         ),
         RouteConfig(
           HomeRoute.name,
@@ -230,14 +210,11 @@ class IntroRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [AuthPage]
 class AuthRoute extends PageRouteInfo<AuthRouteArgs> {
-  AuthRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
+  AuthRoute({Key? key})
+      : super(
           AuthRoute.name,
           path: '/auth',
           args: AuthRouteArgs(key: key),
-          initialChildren: children,
         );
 
   static const String name = 'AuthRoute';
@@ -252,6 +229,18 @@ class AuthRouteArgs {
   String toString() {
     return 'AuthRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [SelectRulePage]
+class SelectRuleRoute extends PageRouteInfo<void> {
+  const SelectRuleRoute()
+      : super(
+          SelectRuleRoute.name,
+          path: '/rulePage',
+        );
+
+  static const String name = 'SelectRuleRoute';
 }
 
 /// generated route for
@@ -375,64 +364,6 @@ class AddScoreForClassRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AddScoreForClassRoute';
-}
-
-/// generated route for
-/// [UserAuthenticationPage]
-class Authentication extends PageRouteInfo<AuthenticationArgs> {
-  Authentication({
-    Key? key,
-    required AuthBloc bloc,
-  }) : super(
-          Authentication.name,
-          path: 'user-authentication-page',
-          args: AuthenticationArgs(
-            key: key,
-            bloc: bloc,
-          ),
-        );
-
-  static const String name = 'Authentication';
-}
-
-class AuthenticationArgs {
-  const AuthenticationArgs({
-    this.key,
-    required this.bloc,
-  });
-
-  final Key? key;
-
-  final AuthBloc bloc;
-
-  @override
-  String toString() {
-    return 'AuthenticationArgs{key: $key, bloc: $bloc}';
-  }
-}
-
-/// generated route for
-/// [VerificationCodePage]
-class Verify_code extends PageRouteInfo<Verify_codeArgs> {
-  Verify_code({Key? key})
-      : super(
-          Verify_code.name,
-          path: 'verification-code-page',
-          args: Verify_codeArgs(key: key),
-        );
-
-  static const String name = 'Verify_code';
-}
-
-class Verify_codeArgs {
-  const Verify_codeArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'Verify_codeArgs{key: $key}';
-  }
 }
 
 /// generated route for

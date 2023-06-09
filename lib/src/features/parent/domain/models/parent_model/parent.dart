@@ -13,11 +13,11 @@ part 'parent.g.dart';
   fromJson: true,
   equal: true,
 )
+@HiveType(typeId: 19)
 
 /// asd
 class Parent with _$Parent {
   ///adsasd
-  @HiveType(typeId: 19)
   factory Parent({
     // account email
     @HiveField(0) int? parentId,

@@ -13,6 +13,10 @@ class PngAssets {
   static String get schoolAppIcon => 'school_appicon'.png;
   static String get studentProfile => 'person'.studentPng;
   static String get teacherProfile => 'person'.teacherPng;
+  static String get student => 'student'.studentsPng;
+  static String get teacher => 'teacher'.teachersPng;
+  static String get parent => 'parent'.parentsPng;
+  static String get modir => 'modir'.headMasterPng;
 }
 
 extension on String {
@@ -20,4 +24,8 @@ extension on String {
   String get coursePng => 'assets/icons/course/$this.png';
   String get studentPng => 'assets/icons/student/$this.png';
   String get teacherPng => 'assets/icons/teacher/$this.png';
+  String get studentsPng => 'assets/icons/students/$this.png';
+  String get teachersPng => 'assets/icons/teachers/$this.png';
+  String get parentsPng => 'assets/icons/parents/$this.png';
+  String get headMasterPng => 'assets/icons/head_master/$this.png';
 }

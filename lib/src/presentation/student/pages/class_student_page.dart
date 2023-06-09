@@ -38,7 +38,7 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
     super.initState();
     if (GeneralConstants.userType == UserType.parent) {
       getIt.get<StudentBloc>().add(StudentEvent.getStudentsParent(
-          getIt.get<OtpHandshakeResponse>().phoneNumber));
+          getIt.get<OtpHandshakeResponse>().phoneNumber!));
     } else {
       getIt.get<StudentBloc>().add(
             StudentEvent.getStudents(

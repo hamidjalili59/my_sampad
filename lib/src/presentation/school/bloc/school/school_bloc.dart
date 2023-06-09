@@ -33,7 +33,7 @@ class SchoolBloc extends Bloc<SchoolEvent, SchoolState> {
     emit(state.copyWith(isLoading: true));
     await _getSchoolsUseCase
         .call(
-          param: tuple.Tuple1(getIt.get<OtpHandshakeResponse>().phoneNumber),
+          param: tuple.Tuple1(getIt.get<OtpHandshakeResponse>().phoneNumber!),
         )
         .then(
           (value) => value.fold(
