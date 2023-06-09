@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_sampad/src/config/routes/router.dart';
+import 'package:my_sampad/src/injectable/injectable.dart';
 
 class AppbarSchoolWidget extends StatelessWidget {
   const AppbarSchoolWidget({
@@ -43,12 +45,17 @@ class AppbarSchoolWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
-                  width: 90.w,
-                  child: Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    color: Colors.black,
-                    size: 30.sp,
+                InkWell(
+                  onTap: () {
+                    getIt.get<AppRouter>().pop();
+                  },
+                  child: SizedBox(
+                    width: 90.w,
+                    child: Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      color: Colors.black,
+                      size: 30.sp,
+                    ),
                   ),
                 ),
                 SizedBox(

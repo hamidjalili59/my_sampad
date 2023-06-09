@@ -8,8 +8,10 @@ import 'package:my_sampad/src/presentation/course/pages/course_list_page.dart';
 import 'package:my_sampad/src/presentation/home/pages/home_page.dart';
 // import 'package:my_sampad/src/presentation/intro/pages/intro_page.dart';
 import 'package:my_sampad/src/presentation/rollcall/pages/class_rollcall_page.dart';
+import 'package:my_sampad/src/presentation/rollcall/pages/single_student_rollcalls_page.dart';
 import 'package:my_sampad/src/presentation/school/pages/select_school_page.dart';
 import 'package:my_sampad/src/presentation/score/pages/add_score_for_class_page.dart';
+import 'package:my_sampad/src/presentation/score/pages/single_score_view_page.dart';
 import 'package:my_sampad/src/presentation/splash/pages/select_role_page.dart';
 import 'package:my_sampad/src/presentation/splash/pages/splash_page.dart';
 import 'package:my_sampad/src/presentation/student/pages/class_student_page.dart';
@@ -33,6 +35,8 @@ part 'router.gr.dart';
   AutoRoute(path: "/teacher", page: TeacherListPage),
   AutoRoute(path: "/course", page: CourseListPage),
   AutoRoute(path: "/home_page", page: HomePage),
+  AutoRoute(path: "/student_rollcall_view", page: SingleStudentRollcallsPage),
+  AutoRoute(path: "/student_score_view", page: SingleScoreViewPage),
   // class page
   AutoRoute(
     path: "/class_details_page",

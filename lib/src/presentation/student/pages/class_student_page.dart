@@ -7,6 +7,7 @@ import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_sampad/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
+import 'package:my_sampad/src/features/student/domain/models/student_model/student.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/splash/widgets/rule_tile_widget.dart';
@@ -160,27 +161,42 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                   horizontal: 20.w, vertical: 25.h),
                               itemCount: state.students.length,
                               itemBuilder: (context, index) {
-                                return Container(
-                                  width: 143.w,
-                                  height: 160.h,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius:
-                                          BorderRadius.circular(12.sp),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: const Color.fromARGB(
-                                              70, 55, 55, 55),
-                                          spreadRadius: 0,
-                                          blurRadius: 4.sp,
-                                        )
-                                      ]),
-                                  child: ImageInsideContainerWidget(
-                                    image: PngAssets.student,
-                                    offset: Offset(10.w, 10.h),
-                                    paddingContainer: 80.h,
-                                    title:
-                                        state.students[index].basicInfo!.name,
+                                return InkWell(
+                                  onTap: () {
+                                    if (getIt.isRegistered<Student>()) {
+                                      getIt.unregister<Student>();
+                                      getIt.registerSingleton<Student>(
+                                          state.students[index]);
+                                    } else {
+                                      getIt.registerSingleton<Student>(
+                                          state.students[index]);
+                                    }
+                                    getIt
+                                        .get<AppRouter>()
+                                        .pushNamed('/student_details_page');
+                                  },
+                                  child: Container(
+                                    width: 143.w,
+                                    height: 160.h,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(12.sp),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: const Color.fromARGB(
+                                                70, 55, 55, 55),
+                                            spreadRadius: 0,
+                                            blurRadius: 4.sp,
+                                          )
+                                        ]),
+                                    child: ImageInsideContainerWidget(
+                                      image: PngAssets.student,
+                                      offset: Offset(10.w, 10.h),
+                                      paddingContainer: 80.h,
+                                      title:
+                                          state.students[index].basicInfo!.name,
+                                    ),
                                   ),
                                 );
                               },
