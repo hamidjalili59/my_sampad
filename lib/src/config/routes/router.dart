@@ -17,6 +17,8 @@ import 'package:my_sampad/src/presentation/splash/pages/splash_page.dart';
 import 'package:my_sampad/src/presentation/student/pages/class_student_page.dart';
 import 'package:my_sampad/src/presentation/student/pages/student_details_page.dart';
 import 'package:my_sampad/src/presentation/teacher/pages/teacher_list_page.dart';
+import 'package:my_sampad/src/presentation/teacher/widget/teacher_class_card_widget.dart'
+    as teacher;
 
 part 'router.gr.dart';
 
@@ -26,7 +28,6 @@ part 'router.gr.dart';
     page: SplashPage,
     initial: true,
   ),
-  // AutoRoute(path: "/intro", page: IntroPage),
   AutoRoute(path: "/auth", page: AuthPage),
   AutoRoute(path: "/rulePage", page: SelectRulePage),
   AutoRoute(path: "/school_select_page", page: SelectSchoolPage),
@@ -38,7 +39,7 @@ part 'router.gr.dart';
   AutoRoute(path: "/student_rollcall_view", page: SingleStudentRollcallsPage),
   AutoRoute(path: "/student_score_view", page: SingleScoreViewPage),
   AutoRoute(path: "/exam_page", page: ExamPage),
-  AutoRoute(path: "/mediator_page", page: TeacherClassWidget),
+  AutoRoute(path: "/mediator_page", page: teacher.TeacherClassWidget),
   // class page
   AutoRoute(
     path: "/class_details_page",
