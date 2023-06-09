@@ -19,7 +19,7 @@ part 'student_state.dart';
 part 'student_event.dart';
 part 'student_bloc.freezed.dart';
 
-@injectable
+@LazySingleton()
 class StudentBloc extends Bloc<StudentEvent, StudentState> {
   final GetStudentUseCase _getStudentUseCase;
   final AddStudentUseCase _addStudentUseCase;

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_sampad/src/config/constants/general_constants.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
+import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 
 class SelectRuleTileWidget extends StatelessWidget {
@@ -15,13 +17,20 @@ class SelectRuleTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () async {
-        getIt.get<AppRouter>().pushNamed(rule == 'principal'
-            ? '/home_page'
-            : rule == 'teacher'
-                ? '/school_select_page'
-                : '/student');
-      },
+      onTap: rule == 'principal'
+          ? () {
+              GeneralConstants.userType = UserType.admin;
+              getIt.get<AppRouter>().pushNamed('/home_page');
+            }
+          : rule == 'teacher'
+              ? () {
+                  GeneralConstants.userType = UserType.teacher;
+                  getIt.get<AppRouter>().pushNamed('/school_select_page');
+                }
+              : () {
+                  GeneralConstants.userType = UserType.parent;
+                  getIt.get<AppRouter>().pushNamed('/student');
+                },
       child: Container(
         width: 165.w,
         decoration: BoxDecoration(

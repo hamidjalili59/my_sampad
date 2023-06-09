@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
+import 'package:my_sampad/src/config/routes/router.dart';
+import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/classroom/bloc/classroom_bloc.dart';
 import 'package:my_sampad/src/presentation/classroom/bloc/teacher_classroom/teacher_classroom_bloc.dart';
@@ -49,83 +51,103 @@ class TeacherClassesPage extends StatelessWidget {
                                     itemBuilder: (context, index) {
                                       return Padding(
                                         padding: EdgeInsets.only(top: 15.0.h),
-                                        child: Container(
-                                          width: 339.w,
-                                          height: 129.h,
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: const Color.fromARGB(
-                                                    70, 55, 55, 55),
-                                                offset: const Offset(1, 1),
-                                                blurRadius: 4.sp,
-                                                spreadRadius: 0,
-                                              )
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(12.sp),
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                flex: 5,
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    SizedBox(
-                                                      width: 110.w,
-                                                      height: 25.h,
-                                                      child: Align(
-                                                        alignment: Alignment
-                                                            .centerRight,
-                                                        child: Text(
-                                                          state.classes[index]
-                                                              .className,
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                            fontSize: 18.sp,
-                                                            color: Colors.black,
-                                                            fontFamily:
-                                                                'Ordibehesht',
+                                        child: InkWell(
+                                          onTap: () {
+                                            if (getIt
+                                                .isRegistered<Classroom>()) {
+                                              getIt.unregister<Classroom>();
+                                              getIt
+                                                  .registerSingleton<Classroom>(
+                                                      state.classes[index]);
+                                            } else {
+                                              getIt
+                                                  .registerSingleton<Classroom>(
+                                                      state.classes[index]);
+                                            }
+                                            getIt.get<AppRouter>().pushNamed(
+                                                '/class_details_page');
+                                          },
+                                          child: Container(
+                                            width: 339.w,
+                                            height: 129.h,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: const Color.fromARGB(
+                                                      70, 55, 55, 55),
+                                                  offset: const Offset(1, 1),
+                                                  blurRadius: 4.sp,
+                                                  spreadRadius: 0,
+                                                )
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(12.sp),
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  flex: 5,
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      SizedBox(
+                                                        width: 110.w,
+                                                        height: 25.h,
+                                                        child: Align(
+                                                          alignment: Alignment
+                                                              .centerRight,
+                                                          child: Text(
+                                                            state.classes[index]
+                                                                .className,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: TextStyle(
+                                                              fontSize: 18.sp,
+                                                              color:
+                                                                  Colors.black,
+                                                              fontFamily:
+                                                                  'Ordibehesht',
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    SizedBox(height: 5.h),
-                                                    SizedBox(
-                                                      width: 110.w,
-                                                      height: 25.h,
-                                                      child: Align(
-                                                        alignment: Alignment
-                                                            .centerRight,
-                                                        child: Text(
-                                                          state.classes[index]
-                                                              .courseName,
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                            fontSize: 18.sp,
-                                                            color: Colors.black,
-                                                            fontFamily:
-                                                                'Ordibehesht',
+                                                      SizedBox(height: 5.h),
+                                                      SizedBox(
+                                                        width: 110.w,
+                                                        height: 25.h,
+                                                        child: Align(
+                                                          alignment: Alignment
+                                                              .centerRight,
+                                                          child: Text(
+                                                            state.classes[index]
+                                                                .courseName,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: TextStyle(
+                                                              fontSize: 18.sp,
+                                                              color:
+                                                                  Colors.black,
+                                                              fontFamily:
+                                                                  'Ordibehesht',
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
-                                              Expanded(
-                                                  flex: 4,
-                                                  child: SizedBox(
-                                                    height: 96.h,
-                                                    child: Image.asset(
-                                                        PngAssets.classroom),
-                                                  )),
-                                            ],
+                                                Expanded(
+                                                    flex: 4,
+                                                    child: SizedBox(
+                                                      height: 96.h,
+                                                      child: Image.asset(
+                                                          PngAssets.classroom),
+                                                    )),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       );

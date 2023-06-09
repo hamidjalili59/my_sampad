@@ -7,8 +7,11 @@ class AppbarSchoolWidget extends StatelessWidget {
     required this.title,
     required this.titleHelper,
     required this.pathString,
+    this.icon = Icons.more_vert_rounded,
+    this.onPressed,
   });
-
+  final void Function()? onPressed;
+  final IconData icon;
   final String title;
   final String titleHelper;
   final String pathString;
@@ -59,6 +62,13 @@ class AppbarSchoolWidget extends StatelessWidget {
                 )),
                 SizedBox(
                   width: 90.sp,
+                  child: IconButton(
+                      onPressed: onPressed ?? () {},
+                      icon: Icon(
+                        icon,
+                        size: 36.sp,
+                        color: Colors.black,
+                      )),
                 ),
               ],
             ),
@@ -72,6 +82,7 @@ class AppbarSchoolWidget extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 style: TextStyle(
                   color: const Color(0xff868686),
+                  fontFamily: 'Ordibehesht',
                   fontSize: 18.sp,
                 ),
               )),

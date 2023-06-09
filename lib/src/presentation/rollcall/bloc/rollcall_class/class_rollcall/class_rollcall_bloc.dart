@@ -104,7 +104,7 @@ class ClassRollcallBloc extends Bloc<ClassRollcallEvent, ClassRollcallState> {
     List<Rollcall> tempRollcall = state.rollcalls.toList();
     tempRollcall[event.studentIndex] =
         tempRollcall[event.studentIndex].copyWith(
-      absent: !tempRollcall[event.studentIndex].absent,
+      absent: event.isAbsent,
     );
     emit(state.copyWith(rollcalls: tempRollcall));
   }
