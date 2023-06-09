@@ -5,8 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_sampad/src/config/constants/general_constants.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
+import 'package:my_sampad/src/presentation/classroom/bloc/teacher_classroom/teacher_classroom_bloc.dart';
 import 'package:my_sampad/src/presentation/classroom/widgets/classes_card_widget.dart';
-import 'package:my_sampad/src/presentation/school/bloc/teacher_classroom/teacher_classroom_bloc.dart';
 
 class TeacherHomePage extends StatelessWidget {
   const TeacherHomePage({super.key});

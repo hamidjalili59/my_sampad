@@ -1,123 +1,110 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_sampad/src/config/constants/general_constants.dart';
-import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
-import 'package:my_sampad/src/features/home/domain/models/appbar_page_type.dart';
-import 'package:my_sampad/src/injectable/injectable.dart';
-import 'package:my_sampad/src/presentation/classroom/bloc/classroom_bloc.dart';
-import 'package:my_sampad/src/presentation/classroom/pages/teacher_classes_page.dart';
-import 'package:my_sampad/src/presentation/course/bloc/course/course_bloc.dart';
-import 'package:my_sampad/src/presentation/course/pages/course_page.dart';
-import 'package:my_sampad/src/presentation/exam/bloc/exam/exam_bloc.dart';
-import 'package:my_sampad/src/presentation/home/bloc/home_bloc.dart';
-import 'package:my_sampad/src/presentation/home/widgets/home_appbar_widget.dart';
-import 'package:my_sampad/src/presentation/rollcall/bloc/rollcall_single/rollcall_bloc.dart';
-import 'package:my_sampad/src/presentation/school/bloc/teacher_classroom/teacher_classroom_bloc.dart';
-import 'package:my_sampad/src/presentation/score/bloc/score/score_bloc.dart';
-import 'package:my_sampad/src/presentation/score/bloc/score_board/score_board_bloc.dart';
-import 'package:my_sampad/src/presentation/student/bloc/student/student_bloc.dart';
-import 'package:my_sampad/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
-import 'package:my_sampad/src/presentation/teacher/bloc/teacher_detail/teacher_detail_bloc.dart';
-import 'package:my_sampad/src/presentation/teacher/pages/teacher_home_page.dart';
-import 'package:my_sampad/src/presentation/teacher/pages/teacher_page.dart';
+import 'package:my_sampad/src/config/constants/png_assets.dart';
+import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
+import 'package:my_sampad/src/presentation/splash/widgets/rule_tile_widget.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({super.key});
-  final int pagePosition = 0;
-  final HomeBloc _homeBloc = getIt.get<HomeBloc>();
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: GeneralConstants.backgroundColor,
-        body: MultiBlocProvider(
-          providers: [
-            BlocProvider<HomeBloc>(
-              create: (_) => _homeBloc,
-            ),
-            BlocProvider<TeacherDetailBloc>(
-              create: (_) => getIt.get<TeacherDetailBloc>(),
-            ),
-            BlocProvider<CourseBloc>(
-              create: (_) => getIt.get<CourseBloc>(),
-            ),
-            BlocProvider<TeacherBloc>(
-              create: (_) => getIt.get<TeacherBloc>(),
-            ),
-            BlocProvider<ClassroomBloc>(
-              create: (_) => getIt.get<ClassroomBloc>(),
-            ),
-            BlocProvider<StudentBloc>(
-              create: (_) => getIt.get<StudentBloc>(),
-            ),
-            BlocProvider<ScoreBoardBloc>(
-              create: (_) => getIt.get<ScoreBoardBloc>(),
-            ),
-            BlocProvider<RollcallBloc>(
-              create: (_) => getIt.get<RollcallBloc>(),
-            ),
-            BlocProvider<ExamBloc>(
-              create: (_) => getIt.get<ExamBloc>(),
-            ),
-            BlocProvider<ScoreBloc>(
-              create: (_) => getIt.get<ScoreBloc>(),
-            ),
-            BlocProvider<TeacherClassroomBloc>(
-              create: (_) => getIt.get<TeacherClassroomBloc>(),
-            ),
-          ],
-          child: SizedBox(
-            width: 1.sw,
-            height: 1.sh,
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: SizedBox(
-                    child: HomeCustomAppBar(
-                      bloc: _homeBloc,
-                      title: 'مدرسه من',
-                      buttonsList: GeneralConstants.userType == UserType.teacher
-                          ? const [
-                              AppbarPageType.teacherHome,
-                            ]
-                          : const [
-                              AppbarPageType.classroom,
-                              AppbarPageType.teacher,
-                              AppbarPageType.course,
-                            ],
+        body: SizedBox(
+          width: 1.sw,
+          height: 1.sh,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const AppbarSchoolWidget(
+                title: 'صفحه اصلی : ',
+                titleHelper:
+                    'شما میتوانید با انتخاب هر یک از گزینه های زیر به قابلیت های آن دسترسی پیدا کنید',
+                pathString: '',
+              ),
+              SizedBox(
+                width: 1.sw,
+                height: 0.69.sh,
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisExtent: 190.h,
+                          crossAxisSpacing: 20.w,
+                          mainAxisSpacing: 10.h,
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20.w, vertical: 25.h),
+                        itemCount: 3,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12.r),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: const Color.fromARGB(70, 55, 55, 55),
+                                  blurRadius: 4.sp,
+                                  spreadRadius: 0,
+                                  offset: const Offset(1, 2),
+                                )
+                              ],
+                            ),
+                            width: 165.w,
+                            height: 203.h,
+                            child: Column(
+                              children: [
+                                ImageInsideContainerWidget(
+                                    image: PngAssets.courseIcon,
+                                    offset: const Offset(0, 0),
+                                    paddingContainer: 50.h,
+                                    title: 'کلاس‌ها'),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ),
-                Expanded(
-                  flex: 12,
-                  child: BlocBuilder<HomeBloc, HomeState>(
-                      bloc: _homeBloc,
-                      builder: (context, state) {
-                        return state.maybeWhen(
-                          currentPageIndex: (pageState) {
-                            if (pageState == AppbarPageType.teacherHome) {
-                              return const TeacherHomePage();
-                            }
-                            if (pageState == AppbarPageType.classroom) {
-                              return const SizedBox(
-                                  child: TeacherClassesPage());
-                            } else if (pageState == AppbarPageType.teacher) {
-                              return SizedBox(child: TeacherPage());
-                            } else {
-                              return SizedBox(child: CoursePage());
-                            }
-                          },
-                          orElse: () => Container(
-                            color: Colors.red,
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: const Color(0xffe8ffe8),
+                            borderRadius: BorderRadius.circular(11.sp),
+                            boxShadow: [
+                              BoxShadow(
+                                color: const Color.fromARGB(65, 36, 36, 36),
+                                blurRadius: 4.sp,
+                                spreadRadius: 0,
+                              )
+                            ]),
+                        width: 330.w,
+                        height: 109.h,
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          width: 315,
+                          child: Text(
+                            'شما میتوانید بعد از انتخاب هر کدام داخل صفحه اصلی اپلیکیشن با کلیک بر روی گزینه اکانت و انتخاب گزینه دیگر وظایف به این صفحه بازگردید',
+                            textAlign: TextAlign.start,
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: Colors.black,
+                              fontFamily: 'Ordibehesht',
+                            ),
                           ),
-                        );
-                      }),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),

@@ -214,6 +214,8 @@ import 'package:my_sampad/src/injectable/module_injection/feature/teacher_featur
 import 'package:my_sampad/src/presentation/auth/bloc/auth_bloc.dart' as _i100;
 import 'package:my_sampad/src/presentation/classroom/bloc/classroom_bloc.dart'
     as _i101;
+import 'package:my_sampad/src/presentation/classroom/bloc/teacher_classroom/teacher_classroom_bloc.dart'
+    as _i88;
 import 'package:my_sampad/src/presentation/course/bloc/course/course_bloc.dart'
     as _i102;
 import 'package:my_sampad/src/presentation/exam/bloc/exam/exam_bloc.dart'
@@ -225,8 +227,6 @@ import 'package:my_sampad/src/presentation/rollcall/bloc/rollcall_single/rollcal
     as _i72;
 import 'package:my_sampad/src/presentation/school/bloc/school/school_bloc.dart'
     as _i76;
-import 'package:my_sampad/src/presentation/school/bloc/teacher_classroom/teacher_classroom_bloc.dart'
-    as _i88;
 import 'package:my_sampad/src/presentation/score/bloc/score/score_bloc.dart'
     as _i79;
 import 'package:my_sampad/src/presentation/score/bloc/score_board/score_board_bloc.dart'
