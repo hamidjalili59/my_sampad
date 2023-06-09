@@ -35,7 +35,7 @@ class AppbarSchoolWidget extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 90.h,
+            height: 80.h,
             width: 1.sw,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,7 +53,7 @@ class AppbarSchoolWidget extends StatelessWidget {
                   'مدرسه من',
                   style: TextStyle(
                     fontFamily: 'Ordibehesht',
-                    fontSize: 26.sp,
+                    fontSize: 28.sp,
                     color: Colors.black,
                   ),
                 )),
@@ -63,7 +63,7 @@ class AppbarSchoolWidget extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 10.h),
+          SizedBox(height: 5.h),
           SizedBox(
               width: 0.72.sw,
               child: Text(
@@ -72,7 +72,7 @@ class AppbarSchoolWidget extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 style: TextStyle(
                   color: const Color(0xff868686),
-                  fontSize: 14.sp,
+                  fontSize: 18.sp,
                 ),
               )),
           SizedBox(height: 3.h),
@@ -85,7 +85,7 @@ class AppbarSchoolWidget extends StatelessWidget {
                 style: TextStyle(
                   color: const Color(0xff868686),
                   fontFamily: 'Ordibehesht',
-                  fontSize: 14.sp,
+                  fontSize: 16.sp,
                 ),
               )),
           SizedBox(height: 3.h),

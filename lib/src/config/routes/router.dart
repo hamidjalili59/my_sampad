@@ -6,7 +6,7 @@ import 'package:my_sampad/src/presentation/classroom/pages/classes_list_page.dar
 import 'package:my_sampad/src/presentation/classroom/pages/teacher_classes_page.dart';
 import 'package:my_sampad/src/presentation/course/pages/course_list_page.dart';
 import 'package:my_sampad/src/presentation/home/pages/home_page.dart';
-import 'package:my_sampad/src/presentation/intro/pages/intro_page.dart';
+// import 'package:my_sampad/src/presentation/intro/pages/intro_page.dart';
 import 'package:my_sampad/src/presentation/rollcall/pages/class_rollcall_page.dart';
 import 'package:my_sampad/src/presentation/school/pages/select_school_page.dart';
 import 'package:my_sampad/src/presentation/score/pages/add_score_for_class_page.dart';
@@ -24,7 +24,7 @@ part 'router.gr.dart';
     page: SplashPage,
     initial: true,
   ),
-  AutoRoute(path: "/intro", page: IntroPage),
+  // AutoRoute(path: "/intro", page: IntroPage),
   AutoRoute(path: "/auth", page: AuthPage),
   AutoRoute(path: "/rulePage", page: SelectRulePage),
   AutoRoute(path: "/school_select_page", page: SelectSchoolPage),
@@ -32,10 +32,7 @@ part 'router.gr.dart';
   AutoRoute(path: "/teacher_classes", page: TeacherClassesPage),
   AutoRoute(path: "/teacher", page: TeacherListPage),
   AutoRoute(path: "/course", page: CourseListPage),
-  AutoRoute(
-    path: "/home_page",
-    page: HomePage,
-  ),
+  AutoRoute(path: "/home_page", page: HomePage),
   // class page
   AutoRoute(
     path: "/class_details_page",

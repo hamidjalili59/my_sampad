@@ -23,12 +23,6 @@ class _$AppRouter extends RootStackRouter {
         child: const SplashPage(),
       );
     },
-    IntroRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const IntroPage(),
-      );
-    },
     AuthRoute.name: (routeData) {
       final args =
           routeData.argsAs<AuthRouteArgs>(orElse: () => const AuthRouteArgs());
@@ -74,19 +68,15 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     HomeRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: HomePage(key: args.key),
+        child: const HomePage(),
       );
     },
     ClassDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<ClassDetailsRouteArgs>(
-          orElse: () => const ClassDetailsRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: ClassDetailsPage(key: args.key),
+        child: const ClassDetailsPage(),
       );
     },
     StudentDetailsRoute.name: (routeData) {
@@ -130,10 +120,6 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           SplashRoute.name,
           path: '/splash',
-        ),
-        RouteConfig(
-          IntroRoute.name,
-          path: '/intro',
         ),
         RouteConfig(
           AuthRoute.name,
@@ -200,18 +186,6 @@ class SplashRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SplashRoute';
-}
-
-/// generated route for
-/// [IntroPage]
-class IntroRoute extends PageRouteInfo<void> {
-  const IntroRoute()
-      : super(
-          IntroRoute.name,
-          path: '/intro',
-        );
-
-  static const String name = 'IntroRoute';
 }
 
 /// generated route for
@@ -312,50 +286,26 @@ class CourseListRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [HomePage]
-class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({Key? key})
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute()
       : super(
           HomeRoute.name,
           path: '/home_page',
-          args: HomeRouteArgs(key: key),
         );
 
   static const String name = 'HomeRoute';
 }
 
-class HomeRouteArgs {
-  const HomeRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'HomeRouteArgs{key: $key}';
-  }
-}
-
 /// generated route for
 /// [ClassDetailsPage]
-class ClassDetailsRoute extends PageRouteInfo<ClassDetailsRouteArgs> {
-  ClassDetailsRoute({Key? key})
+class ClassDetailsRoute extends PageRouteInfo<void> {
+  const ClassDetailsRoute()
       : super(
           ClassDetailsRoute.name,
           path: '/class_details_page',
-          args: ClassDetailsRouteArgs(key: key),
         );
 
   static const String name = 'ClassDetailsRoute';
-}
-
-class ClassDetailsRouteArgs {
-  const ClassDetailsRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'ClassDetailsRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for

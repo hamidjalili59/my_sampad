@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
@@ -14,9 +15,9 @@ class SelectRuleTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
+      onTap: () async {
         getIt.get<AppRouter>().pushNamed(rule == 'principal'
-            ? 'home_page'
+            ? '/home_page'
             : rule == 'teacher'
                 ? '/school_select_page'
                 : '/student');
@@ -56,12 +57,14 @@ class ImageInsideContainerWidget extends StatelessWidget {
   final Offset offset;
   final double paddingContainer;
   final String title;
+  final bool isSvg;
   const ImageInsideContainerWidget({
     super.key,
     required this.image,
     required this.offset,
     required this.paddingContainer,
     required this.title,
+    this.isSvg = false,
   });
 
   @override
@@ -102,7 +105,10 @@ class ImageInsideContainerWidget extends StatelessWidget {
             child: Transform.translate(
                 offset: offset,
                 child: SizedBox(
-                    width: 123.w, height: 123.h, child: Image.asset(image))),
+                  width: 123.w,
+                  height: 123.h,
+                  child: isSvg ? SvgPicture.asset(image) : Image.asset(image),
+                )),
           )
         ],
       ),

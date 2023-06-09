@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
+import 'package:my_sampad/src/config/constants/svg_assets.dart';
+import 'package:my_sampad/src/config/routes/router.dart';
+import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/splash/widgets/rule_tile_widget.dart';
 
@@ -42,31 +45,7 @@ class HomePage extends StatelessWidget {
                             horizontal: 20.w, vertical: 25.h),
                         itemCount: 3,
                         itemBuilder: (context, index) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(12.r),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color.fromARGB(70, 55, 55, 55),
-                                  blurRadius: 4.sp,
-                                  spreadRadius: 0,
-                                  offset: const Offset(1, 2),
-                                )
-                              ],
-                            ),
-                            width: 165.w,
-                            height: 203.h,
-                            child: Column(
-                              children: [
-                                ImageInsideContainerWidget(
-                                    image: PngAssets.courseIcon,
-                                    offset: const Offset(0, 0),
-                                    paddingContainer: 50.h,
-                                    title: 'کلاس‌ها'),
-                              ],
-                            ),
-                          );
+                          return HomePageItemWidget(index: index);
                         },
                       ),
                     ),
@@ -89,11 +68,11 @@ class HomePage extends StatelessWidget {
                         child: SizedBox(
                           width: 315,
                           child: Text(
-                            'شما میتوانید بعد از انتخاب هر کدام داخل صفحه اصلی اپلیکیشن با کلیک بر روی گزینه اکانت و انتخاب گزینه دیگر وظایف به این صفحه بازگردید',
+                            'شما میتوانید بعد از انتخاب هر گزینه تغییرات مربوطه را اجرا کنید',
                             textAlign: TextAlign.start,
                             textDirection: TextDirection.rtl,
                             style: TextStyle(
-                              fontSize: 14.sp,
+                              fontSize: 16.sp,
                               color: Colors.black,
                               fontFamily: 'Ordibehesht',
                             ),
@@ -106,6 +85,66 @@ class HomePage extends StatelessWidget {
               )
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class HomePageItemWidget extends StatelessWidget {
+  final int index;
+  const HomePageItemWidget({
+    super.key,
+    required this.index,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: index == 0
+          ? () {
+              getIt.get<AppRouter>().pushNamed('/classes');
+            }
+          : index == 1
+              ? () {}
+              : () {},
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12.r),
+          boxShadow: [
+            BoxShadow(
+              color: const Color.fromARGB(70, 55, 55, 55),
+              blurRadius: 4.sp,
+              spreadRadius: 0,
+              offset: const Offset(1, 2),
+            )
+          ],
+        ),
+        width: 165.w,
+        height: 203.h,
+        child: ImageInsideContainerWidget(
+          image: index == 0
+              ? PngAssets.classroom
+              : index == 1
+                  ? PngAssets.teacher
+                  : SvgAssets.course,
+          offset: index == 0
+              ? const Offset(10, 20)
+              : index == 1
+                  ? const Offset(10, 20)
+                  : const Offset(10, 5),
+          paddingContainer: index == 0
+              ? 70.h
+              : index == 1
+                  ? 50.h
+                  : 45.h,
+          isSvg: index == 0 || index == 1 ? false : true,
+          title: index == 0
+              ? 'کلاس‌ها'
+              : index == 1
+                  ? 'مدیریت دبیران'
+                  : 'مدیریت درس‌ها',
         ),
       ),
     );
