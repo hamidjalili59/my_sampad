@@ -73,6 +73,18 @@ class _$AppRouter extends RootStackRouter {
         child: const HomePage(),
       );
     },
+    SingleStudentRollcallsRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SingleStudentRollcallsPage(),
+      );
+    },
+    SingleScoreViewRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SingleScoreViewPage(),
+      );
+    },
     ClassDetailsRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -152,6 +164,14 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           HomeRoute.name,
           path: '/home_page',
+        ),
+        RouteConfig(
+          SingleStudentRollcallsRoute.name,
+          path: '/student_rollcall_view',
+        ),
+        RouteConfig(
+          SingleScoreViewRoute.name,
+          path: '/student_score_view',
         ),
         RouteConfig(
           ClassDetailsRoute.name,
@@ -294,6 +314,30 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
+}
+
+/// generated route for
+/// [SingleStudentRollcallsPage]
+class SingleStudentRollcallsRoute extends PageRouteInfo<void> {
+  const SingleStudentRollcallsRoute()
+      : super(
+          SingleStudentRollcallsRoute.name,
+          path: '/student_rollcall_view',
+        );
+
+  static const String name = 'SingleStudentRollcallsRoute';
+}
+
+/// generated route for
+/// [SingleScoreViewPage]
+class SingleScoreViewRoute extends PageRouteInfo<void> {
+  const SingleScoreViewRoute()
+      : super(
+          SingleScoreViewRoute.name,
+          path: '/student_score_view',
+        );
+
+  static const String name = 'SingleScoreViewRoute';
 }
 
 /// generated route for
