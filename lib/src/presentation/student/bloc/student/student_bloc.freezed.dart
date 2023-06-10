@@ -282,7 +282,7 @@ mixin _$StudentEvent {
     required TResult Function(int studentId) removeStudent,
     required TResult Function(double phoneNumber) getStudentsParent,
     required TResult Function(Student student) updateStudent,
-    required TResult Function() checkSMSCheckBox,
+    required TResult Function(bool status) checkSMSCheckBox,
     required TResult Function(Student student, String parentName) addStudent,
   }) =>
       throw _privateConstructorUsedError;
@@ -292,7 +292,7 @@ mixin _$StudentEvent {
     TResult? Function(int studentId)? removeStudent,
     TResult? Function(double phoneNumber)? getStudentsParent,
     TResult? Function(Student student)? updateStudent,
-    TResult? Function()? checkSMSCheckBox,
+    TResult? Function(bool status)? checkSMSCheckBox,
     TResult? Function(Student student, String parentName)? addStudent,
   }) =>
       throw _privateConstructorUsedError;
@@ -302,7 +302,7 @@ mixin _$StudentEvent {
     TResult Function(int studentId)? removeStudent,
     TResult Function(double phoneNumber)? getStudentsParent,
     TResult Function(Student student)? updateStudent,
-    TResult Function()? checkSMSCheckBox,
+    TResult Function(bool status)? checkSMSCheckBox,
     TResult Function(Student student, String parentName)? addStudent,
     required TResult orElse(),
   }) =>
@@ -426,7 +426,7 @@ class _$_GetStudents implements _GetStudents {
     required TResult Function(int studentId) removeStudent,
     required TResult Function(double phoneNumber) getStudentsParent,
     required TResult Function(Student student) updateStudent,
-    required TResult Function() checkSMSCheckBox,
+    required TResult Function(bool status) checkSMSCheckBox,
     required TResult Function(Student student, String parentName) addStudent,
   }) {
     return getStudents(classId);
@@ -439,7 +439,7 @@ class _$_GetStudents implements _GetStudents {
     TResult? Function(int studentId)? removeStudent,
     TResult? Function(double phoneNumber)? getStudentsParent,
     TResult? Function(Student student)? updateStudent,
-    TResult? Function()? checkSMSCheckBox,
+    TResult? Function(bool status)? checkSMSCheckBox,
     TResult? Function(Student student, String parentName)? addStudent,
   }) {
     return getStudents?.call(classId);
@@ -452,7 +452,7 @@ class _$_GetStudents implements _GetStudents {
     TResult Function(int studentId)? removeStudent,
     TResult Function(double phoneNumber)? getStudentsParent,
     TResult Function(Student student)? updateStudent,
-    TResult Function()? checkSMSCheckBox,
+    TResult Function(bool status)? checkSMSCheckBox,
     TResult Function(Student student, String parentName)? addStudent,
     required TResult orElse(),
   }) {
@@ -584,7 +584,7 @@ class _$_RemoveStudent implements _RemoveStudent {
     required TResult Function(int studentId) removeStudent,
     required TResult Function(double phoneNumber) getStudentsParent,
     required TResult Function(Student student) updateStudent,
-    required TResult Function() checkSMSCheckBox,
+    required TResult Function(bool status) checkSMSCheckBox,
     required TResult Function(Student student, String parentName) addStudent,
   }) {
     return removeStudent(studentId);
@@ -597,7 +597,7 @@ class _$_RemoveStudent implements _RemoveStudent {
     TResult? Function(int studentId)? removeStudent,
     TResult? Function(double phoneNumber)? getStudentsParent,
     TResult? Function(Student student)? updateStudent,
-    TResult? Function()? checkSMSCheckBox,
+    TResult? Function(bool status)? checkSMSCheckBox,
     TResult? Function(Student student, String parentName)? addStudent,
   }) {
     return removeStudent?.call(studentId);
@@ -610,7 +610,7 @@ class _$_RemoveStudent implements _RemoveStudent {
     TResult Function(int studentId)? removeStudent,
     TResult Function(double phoneNumber)? getStudentsParent,
     TResult Function(Student student)? updateStudent,
-    TResult Function()? checkSMSCheckBox,
+    TResult Function(bool status)? checkSMSCheckBox,
     TResult Function(Student student, String parentName)? addStudent,
     required TResult orElse(),
   }) {
@@ -743,7 +743,7 @@ class _$_GetStudentsParent implements _GetStudentsParent {
     required TResult Function(int studentId) removeStudent,
     required TResult Function(double phoneNumber) getStudentsParent,
     required TResult Function(Student student) updateStudent,
-    required TResult Function() checkSMSCheckBox,
+    required TResult Function(bool status) checkSMSCheckBox,
     required TResult Function(Student student, String parentName) addStudent,
   }) {
     return getStudentsParent(phoneNumber);
@@ -756,7 +756,7 @@ class _$_GetStudentsParent implements _GetStudentsParent {
     TResult? Function(int studentId)? removeStudent,
     TResult? Function(double phoneNumber)? getStudentsParent,
     TResult? Function(Student student)? updateStudent,
-    TResult? Function()? checkSMSCheckBox,
+    TResult? Function(bool status)? checkSMSCheckBox,
     TResult? Function(Student student, String parentName)? addStudent,
   }) {
     return getStudentsParent?.call(phoneNumber);
@@ -769,7 +769,7 @@ class _$_GetStudentsParent implements _GetStudentsParent {
     TResult Function(int studentId)? removeStudent,
     TResult Function(double phoneNumber)? getStudentsParent,
     TResult Function(Student student)? updateStudent,
-    TResult Function()? checkSMSCheckBox,
+    TResult Function(bool status)? checkSMSCheckBox,
     TResult Function(Student student, String parentName)? addStudent,
     required TResult orElse(),
   }) {
@@ -911,7 +911,7 @@ class _$_UpdateStudent implements _UpdateStudent {
     required TResult Function(int studentId) removeStudent,
     required TResult Function(double phoneNumber) getStudentsParent,
     required TResult Function(Student student) updateStudent,
-    required TResult Function() checkSMSCheckBox,
+    required TResult Function(bool status) checkSMSCheckBox,
     required TResult Function(Student student, String parentName) addStudent,
   }) {
     return updateStudent(student);
@@ -924,7 +924,7 @@ class _$_UpdateStudent implements _UpdateStudent {
     TResult? Function(int studentId)? removeStudent,
     TResult? Function(double phoneNumber)? getStudentsParent,
     TResult? Function(Student student)? updateStudent,
-    TResult? Function()? checkSMSCheckBox,
+    TResult? Function(bool status)? checkSMSCheckBox,
     TResult? Function(Student student, String parentName)? addStudent,
   }) {
     return updateStudent?.call(student);
@@ -937,7 +937,7 @@ class _$_UpdateStudent implements _UpdateStudent {
     TResult Function(int studentId)? removeStudent,
     TResult Function(double phoneNumber)? getStudentsParent,
     TResult Function(Student student)? updateStudent,
-    TResult Function()? checkSMSCheckBox,
+    TResult Function(bool status)? checkSMSCheckBox,
     TResult Function(Student student, String parentName)? addStudent,
     required TResult orElse(),
   }) {
@@ -1005,6 +1005,8 @@ abstract class _$$_ChackSMSCheckBoxCopyWith<$Res> {
   factory _$$_ChackSMSCheckBoxCopyWith(
           _$_ChackSMSCheckBox value, $Res Function(_$_ChackSMSCheckBox) then) =
       __$$_ChackSMSCheckBoxCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool status});
 }
 
 /// @nodoc
@@ -1014,26 +1016,50 @@ class __$$_ChackSMSCheckBoxCopyWithImpl<$Res>
   __$$_ChackSMSCheckBoxCopyWithImpl(
       _$_ChackSMSCheckBox _value, $Res Function(_$_ChackSMSCheckBox) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+  }) {
+    return _then(_$_ChackSMSCheckBox(
+      null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_ChackSMSCheckBox implements _ChackSMSCheckBox {
-  const _$_ChackSMSCheckBox();
+  const _$_ChackSMSCheckBox(this.status);
+
+  @override
+  final bool status;
 
   @override
   String toString() {
-    return 'StudentEvent.checkSMSCheckBox()';
+    return 'StudentEvent.checkSMSCheckBox(status: $status)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ChackSMSCheckBox);
+        (other.runtimeType == runtimeType &&
+            other is _$_ChackSMSCheckBox &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, status);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChackSMSCheckBoxCopyWith<_$_ChackSMSCheckBox> get copyWith =>
+      __$$_ChackSMSCheckBoxCopyWithImpl<_$_ChackSMSCheckBox>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1042,10 +1068,10 @@ class _$_ChackSMSCheckBox implements _ChackSMSCheckBox {
     required TResult Function(int studentId) removeStudent,
     required TResult Function(double phoneNumber) getStudentsParent,
     required TResult Function(Student student) updateStudent,
-    required TResult Function() checkSMSCheckBox,
+    required TResult Function(bool status) checkSMSCheckBox,
     required TResult Function(Student student, String parentName) addStudent,
   }) {
-    return checkSMSCheckBox();
+    return checkSMSCheckBox(status);
   }
 
   @override
@@ -1055,10 +1081,10 @@ class _$_ChackSMSCheckBox implements _ChackSMSCheckBox {
     TResult? Function(int studentId)? removeStudent,
     TResult? Function(double phoneNumber)? getStudentsParent,
     TResult? Function(Student student)? updateStudent,
-    TResult? Function()? checkSMSCheckBox,
+    TResult? Function(bool status)? checkSMSCheckBox,
     TResult? Function(Student student, String parentName)? addStudent,
   }) {
-    return checkSMSCheckBox?.call();
+    return checkSMSCheckBox?.call(status);
   }
 
   @override
@@ -1068,12 +1094,12 @@ class _$_ChackSMSCheckBox implements _ChackSMSCheckBox {
     TResult Function(int studentId)? removeStudent,
     TResult Function(double phoneNumber)? getStudentsParent,
     TResult Function(Student student)? updateStudent,
-    TResult Function()? checkSMSCheckBox,
+    TResult Function(bool status)? checkSMSCheckBox,
     TResult Function(Student student, String parentName)? addStudent,
     required TResult orElse(),
   }) {
     if (checkSMSCheckBox != null) {
-      return checkSMSCheckBox();
+      return checkSMSCheckBox(status);
     }
     return orElse();
   }
@@ -1123,7 +1149,12 @@ class _$_ChackSMSCheckBox implements _ChackSMSCheckBox {
 }
 
 abstract class _ChackSMSCheckBox implements StudentEvent {
-  const factory _ChackSMSCheckBox() = _$_ChackSMSCheckBox;
+  const factory _ChackSMSCheckBox(final bool status) = _$_ChackSMSCheckBox;
+
+  bool get status;
+  @JsonKey(ignore: true)
+  _$$_ChackSMSCheckBoxCopyWith<_$_ChackSMSCheckBox> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1213,7 +1244,7 @@ class _$_AddStudent implements _AddStudent {
     required TResult Function(int studentId) removeStudent,
     required TResult Function(double phoneNumber) getStudentsParent,
     required TResult Function(Student student) updateStudent,
-    required TResult Function() checkSMSCheckBox,
+    required TResult Function(bool status) checkSMSCheckBox,
     required TResult Function(Student student, String parentName) addStudent,
   }) {
     return addStudent(student, parentName);
@@ -1226,7 +1257,7 @@ class _$_AddStudent implements _AddStudent {
     TResult? Function(int studentId)? removeStudent,
     TResult? Function(double phoneNumber)? getStudentsParent,
     TResult? Function(Student student)? updateStudent,
-    TResult? Function()? checkSMSCheckBox,
+    TResult? Function(bool status)? checkSMSCheckBox,
     TResult? Function(Student student, String parentName)? addStudent,
   }) {
     return addStudent?.call(student, parentName);
@@ -1239,7 +1270,7 @@ class _$_AddStudent implements _AddStudent {
     TResult Function(int studentId)? removeStudent,
     TResult Function(double phoneNumber)? getStudentsParent,
     TResult Function(Student student)? updateStudent,
-    TResult Function()? checkSMSCheckBox,
+    TResult Function(bool status)? checkSMSCheckBox,
     TResult Function(Student student, String parentName)? addStudent,
     required TResult orElse(),
   }) {

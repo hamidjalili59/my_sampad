@@ -13,7 +13,7 @@ class StudentEvent with _$StudentEvent {
   const factory StudentEvent.updateStudent(
     Student student,
   ) = _UpdateStudent;
-  const factory StudentEvent.checkSMSCheckBox() = _ChackSMSCheckBox;
+  const factory StudentEvent.checkSMSCheckBox(bool status) = _ChackSMSCheckBox;
   const factory StudentEvent.addStudent(
     Student student,
     String parentName,

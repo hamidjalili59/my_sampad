@@ -48,7 +48,7 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
             'class_ID': student.classId,
             'parent_Name': parentName,
             'school_ID': getIt.get<Classroom>().schoolId,
-            'SendSMS': sendSms,
+            'sendSMS': sendSms,
           });
 
   @override
@@ -79,6 +79,7 @@ class StudentRemoteDataSourceImpl implements StudentRemoteDataSource {
             'class_ID': student.classId,
             'name': student.basicInfo!.name,
             'phoneNumber': student.basicInfo!.phoneNumber,
+            'sendSMS': student.sendSMS,
           });
 
   @override

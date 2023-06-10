@@ -12,6 +12,8 @@ import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/splash/widgets/rule_tile_widget.dart';
 import 'package:my_sampad/src/presentation/student/bloc/student/student_bloc.dart';
+import 'package:my_sampad/src/presentation/student/widgets/add_student_dialog_widget.dart';
+import 'package:ndialog/ndialog.dart';
 
 class ClassStudentPage extends StatefulWidget {
   const ClassStudentPage({
@@ -24,14 +26,8 @@ class ClassStudentPage extends StatefulWidget {
 
 class _ClassStudentPageState extends State<ClassStudentPage> {
   final StudentBloc bloc = getIt.get<StudentBloc>();
-  // final TextEditingController _controllerExamDescription =
-  //     TextEditingController(text: '');
-  // final TextEditingController _studentNameController =
-  //     TextEditingController(text: '');
-  // final TextEditingController _studentParentController =
-  //     TextEditingController(text: '');
-  // final TextEditingController _phonenumberController =
-  //     TextEditingController(text: '');
+  bool editMode = false;
+  bool deleteMode = false;
   @override
   void initState() {
     super.initState();
@@ -45,15 +41,6 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
         ),
       );
     }
-  }
-
-  @override
-  void dispose() {
-    // _controllerExamDescription.dispose();
-    // _studentNameController.dispose();
-    // _studentParentController.dispose();
-    // _phonenumberController.dispose();
-    super.dispose();
   }
 
   @override
@@ -126,7 +113,46 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                     ),
                   ),
                 )
-              : null,
+              : GeneralConstants.userType == UserType.admin
+                  ? Align(
+                      alignment: Alignment.bottomCenter,
+                      child: InkWell(
+                        onTap: () async {
+                          await NDialog(
+                            dialogStyle: DialogStyle(
+                              // borderRadius: BorderRadius.circular(12.sp),
+                              contentPadding: EdgeInsets.zero,
+                            ),
+                            content: AddStudentDialog(),
+                          ).show(context);
+                        },
+                        child: Container(
+                          width: 140.w,
+                          height: 60.h,
+                          decoration: BoxDecoration(
+                              color: const Color(0xffe8ffe8),
+                              borderRadius: BorderRadius.circular(12.sp),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: const Color.fromARGB(70, 55, 55, 55),
+                                    spreadRadius: 0,
+                                    blurRadius: 4.sp,
+                                    offset: const Offset(1, 1))
+                              ]),
+                          alignment: Alignment.center,
+                          child: Text(
+                            'اضافه کردن دانش‌آموز',
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontSize: 16.sp,
+                                color: Colors.black,
+                                fontFamily: 'Ordibehesht',
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    )
+                  : null,
           body: SizedBox(
             width: 1.sw,
             height: 1.sh,
@@ -148,21 +174,27 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                               items: [
                                 DropdownMenuItem(
                                   alignment: Alignment.center,
-                                  value: 'افزودن',
-                                  onTap: () {},
-                                  child: Text(
-                                    'افزودن',
-                                    style: TextStyle(
-                                        fontSize: 20.sp,
-                                        color: Colors.black,
-                                        fontFamily: 'Ordibehesht',
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                DropdownMenuItem(
-                                  alignment: Alignment.center,
                                   value: 'حذف',
-                                  onTap: () {},
+                                  onTap: () {
+                                    getIt.get<AppRouter>().pop();
+                                    setState(() {
+                                      deleteMode = true;
+                                    });
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            backgroundColor:
+                                                const Color(0xffe8ffe8),
+                                            content: Text(
+                                              'دانش‌آموز مورد نظر را برای حذف انتخاب کنید',
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  fontSize: 18.sp,
+                                                  color: Colors.black,
+                                                  fontFamily: 'Ordibehesht',
+                                                  fontWeight: FontWeight.bold),
+                                            )));
+                                  },
                                   child: Text(
                                     'حذف',
                                     style: TextStyle(
@@ -175,7 +207,26 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                 DropdownMenuItem(
                                   alignment: Alignment.center,
                                   value: 'تغییر',
-                                  onTap: () {},
+                                  onTap: () async {
+                                    getIt.get<AppRouter>().pop();
+                                    setState(() {
+                                      editMode = true;
+                                    });
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(
+                                            backgroundColor:
+                                                const Color(0xffe8ffe8),
+                                            content: Text(
+                                              'دانش‌آموز مورد نظر را برای تغییر انتخاب کنید',
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  fontSize: 18.sp,
+                                                  color: Colors.black,
+                                                  fontFamily: 'Ordibehesht',
+                                                  fontWeight: FontWeight.bold),
+                                            )));
+                                  },
                                   child: Text(
                                     'تغییر',
                                     style: TextStyle(
@@ -213,20 +264,162 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                   horizontal: 20.w, vertical: 25.h),
                               itemCount: state.students.length,
                               itemBuilder: (context, index) {
+                                if (state.isLoading) {
+                                  return const Center(
+                                      child: CircularProgressIndicator());
+                                }
                                 return InkWell(
-                                  onTap: () {
-                                    if (getIt.isRegistered<Student>()) {
-                                      getIt.unregister<Student>();
-                                      getIt.registerSingleton<Student>(
-                                          state.students[index]);
-                                    } else {
-                                      getIt.registerSingleton<Student>(
-                                          state.students[index]);
-                                    }
-                                    getIt
-                                        .get<AppRouter>()
-                                        .pushNamed('/student_details_page');
-                                  },
+                                  onTap: editMode
+                                      ? () async {
+                                          setState(() {
+                                            editMode = false;
+                                          });
+                                          await NDialog(
+                                            dialogStyle: DialogStyle(
+                                              contentPadding: EdgeInsets.zero,
+                                            ),
+                                            content: AddStudentDialog(
+                                              isEditing: true,
+                                              student: state.students[index],
+                                            ),
+                                          ).show(context);
+                                        }
+                                      : deleteMode
+                                          ? () async {
+                                              setState(() {
+                                                deleteMode = false;
+                                              });
+                                              await NDialog(
+                                                dialogStyle: DialogStyle(
+                                                  contentPadding:
+                                                      EdgeInsets.zero,
+                                                ),
+                                                title: SizedBox(
+                                                  height: 50.h,
+                                                  child: Text(
+                                                    'آیا از حذف ${state.students[index].basicInfo!.name} اطمینان دارید',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        fontSize: 20.sp,
+                                                        color: Colors.black,
+                                                        fontFamily:
+                                                            'Ordibehesht',
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                content: SizedBox(
+                                                  width: 120.w,
+                                                  height: 50.h,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      InkWell(
+                                                        onTap: () {
+                                                          getIt
+                                                              .get<AppRouter>()
+                                                              .pop();
+                                                        },
+                                                        child: Container(
+                                                          width: 120.w,
+                                                          height: 45.h,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.sp),
+                                                          ),
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            'خیر',
+                                                            textDirection:
+                                                                TextDirection
+                                                                    .rtl,
+                                                            style: TextStyle(
+                                                                fontSize: 20.sp,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontFamily:
+                                                                    'Ordibehesht',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          getIt
+                                                              .get<
+                                                                  StudentBloc>()
+                                                              .add(
+                                                                StudentEvent
+                                                                    .removeStudent(
+                                                                  state
+                                                                      .students[
+                                                                          index]
+                                                                      .studentId,
+                                                                ),
+                                                              );
+                                                          getIt
+                                                              .get<AppRouter>()
+                                                              .pop();
+                                                        },
+                                                        child: Container(
+                                                          width: 120.w,
+                                                          height: 45.h,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.sp),
+                                                          ),
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            'بله',
+                                                            textDirection:
+                                                                TextDirection
+                                                                    .rtl,
+                                                            style: TextStyle(
+                                                                fontSize: 20.sp,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontFamily:
+                                                                    'Ordibehesht',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              ).show(context);
+                                            }
+                                          : () async {
+                                              if (getIt
+                                                  .isRegistered<Student>()) {
+                                                getIt.unregister<Student>();
+                                                getIt
+                                                    .registerSingleton<Student>(
+                                                        state.students[index]);
+                                              } else {
+                                                getIt
+                                                    .registerSingleton<Student>(
+                                                        state.students[index]);
+                                              }
+                                              getIt.get<AppRouter>().pushNamed(
+                                                  '/student_details_page');
+                                            },
                                   child: Container(
                                     width: 143.w,
                                     height: 160.h,
