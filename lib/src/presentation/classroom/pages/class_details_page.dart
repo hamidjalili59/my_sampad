@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_sampad/src/config/constants/general_constants.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
 import 'package:my_sampad/src/config/constants/svg_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
+import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/splash/widgets/rule_tile_widget.dart';
@@ -67,7 +69,8 @@ class ClassDetailsPage extends StatelessWidget {
                         ),
                         padding: EdgeInsets.symmetric(
                             horizontal: 20.w, vertical: 25.h),
-                        itemCount: 3,
+                        itemCount:
+                            GeneralConstants.userType == UserType.admin ? 3 : 2,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () {
@@ -75,7 +78,8 @@ class ClassDetailsPage extends StatelessWidget {
                                 getIt
                                     .get<AppRouter>()
                                     .pushNamed('/class_student_page');
-                              } else if (index == 1) {
+                              } else if (index == 1 &&
+                                  GeneralConstants.userType == UserType.admin) {
                                 getIt
                                     .get<AppRouter>()
                                     .pushNamed('/mediator_page');
@@ -101,23 +105,36 @@ class ClassDetailsPage extends StatelessWidget {
                               child: ImageInsideContainerWidget(
                                 image: index == 0
                                     ? PngAssets.student
-                                    : index == 1
+                                    : index == 1 &&
+                                            GeneralConstants.userType ==
+                                                UserType.admin
                                         ? PngAssets.teacher
                                         : SvgAssets.course,
                                 offset: index == 0
                                     ? const Offset(10, 0)
-                                    : index == 1
+                                    : index == 1 &&
+                                            GeneralConstants.userType ==
+                                                UserType.admin
                                         ? const Offset(10, 20)
                                         : const Offset(10, 5),
                                 paddingContainer: index == 0
                                     ? 70.h
-                                    : index == 1
+                                    : index == 1 &&
+                                            GeneralConstants.userType ==
+                                                UserType.admin
                                         ? 50.h
                                         : 45.h,
-                                isSvg: index == 0 || index == 1 ? false : true,
+                                isSvg: index == 0 ||
+                                        index == 1 &&
+                                            GeneralConstants.userType ==
+                                                UserType.admin
+                                    ? false
+                                    : true,
                                 title: index == 0
                                     ? 'دانش‌آموزان'
-                                    : index == 1
+                                    : index == 1 &&
+                                            GeneralConstants.userType ==
+                                                UserType.admin
                                         ? 'دبیران کلاس'
                                         : 'امتحانات کلاس',
                               ),

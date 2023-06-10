@@ -38,92 +38,96 @@ class SelectSchoolPage extends StatelessWidget {
                     SizedBox(
                       width: 1.sw,
                       height: 0.69.sh,
-                      child: state.data.isEmpty
-                          ? SizedBox(
-                              width: 1.sw,
-                              height: 0.5.sh,
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      width: 0.95.sw,
-                                      height: 0.5.sh,
-                                      child: Padding(
-                                        padding: EdgeInsets.all(54.0.r),
-                                        child: SvgPicture.asset(
-                                          SvgAssets.empty,
+                      child: state.isLoading
+                          ? const Center(child: CircularProgressIndicator())
+                          : state.data.isEmpty
+                              ? SizedBox(
+                                  width: 1.sw,
+                                  height: 0.5.sh,
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          width: 0.95.sw,
+                                          height: 0.5.sh,
+                                          child: Padding(
+                                            padding: EdgeInsets.all(54.0.r),
+                                            child: SvgPicture.asset(
+                                              SvgAssets.empty,
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                    Text(
-                                      'شما مدرسه ای ندارد',
-                                      textDirection: TextDirection.rtl,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w800,
-                                          fontFamily: 'Ordibehesht',
-                                          fontSize: 22.r),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )
-                          : Column(
-                              children: [
-                                Expanded(
-                                  flex: 4,
-                                  child: state.isLoading
-                                      ? const Center(
-                                          child: CircularProgressIndicator(),
+                                        Text(
+                                          'شما مدرسه ای ندارد',
+                                          textDirection: TextDirection.rtl,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w800,
+                                              fontFamily: 'Ordibehesht',
+                                              fontSize: 22.r),
                                         )
-                                      : ListView.builder(
-                                          shrinkWrap: true,
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 12.w, vertical: 20.h),
-                                          itemCount: state.data.keys.length,
-                                          itemBuilder: (context, index) {
-                                            return SelectSchoolTileWidget(
-                                              bloc: getIt.get<SchoolBloc>(),
-                                              index: index,
-                                            );
-                                          },
-                                        ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: const Color(0xffe8ffe8),
-                                        borderRadius:
-                                            BorderRadius.circular(11.sp),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: const Color.fromARGB(
-                                                65, 36, 36, 36),
-                                            blurRadius: 4.sp,
-                                            spreadRadius: 0,
-                                          )
-                                        ]),
-                                    width: 330.w,
-                                    height: 109.h,
-                                    alignment: Alignment.center,
-                                    child: SizedBox(
-                                      width: 315,
-                                      child: Text(
-                                        'شما میتوانید بعد از انتخاب هر کدام داخل صفحه اصلی با فشردن کلید بازگشت به این صفحه بازگردید',
-                                        textAlign: TextAlign.start,
-                                        textDirection: TextDirection.rtl,
-                                        style: TextStyle(
-                                          fontSize: 14.sp,
-                                          color: Colors.black,
-                                          fontFamily: 'Ordibehesht',
-                                        ),
-                                      ),
+                                      ],
                                     ),
                                   ),
                                 )
-                              ],
-                            ),
+                              : Column(
+                                  children: [
+                                    Expanded(
+                                      flex: 4,
+                                      child: state.isLoading
+                                          ? const Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            )
+                                          : ListView.builder(
+                                              shrinkWrap: true,
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 12.w,
+                                                  vertical: 20.h),
+                                              itemCount: state.data.keys.length,
+                                              itemBuilder: (context, index) {
+                                                return SelectSchoolTileWidget(
+                                                  bloc: getIt.get<SchoolBloc>(),
+                                                  index: index,
+                                                );
+                                              },
+                                            ),
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xffe8ffe8),
+                                            borderRadius:
+                                                BorderRadius.circular(11.sp),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: const Color.fromARGB(
+                                                    65, 36, 36, 36),
+                                                blurRadius: 4.sp,
+                                                spreadRadius: 0,
+                                              )
+                                            ]),
+                                        width: 330.w,
+                                        height: 109.h,
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: 315,
+                                          child: Text(
+                                            'شما میتوانید بعد از انتخاب هر کدام داخل صفحه اصلی با فشردن کلید بازگشت به این صفحه بازگردید',
+                                            textAlign: TextAlign.start,
+                                            textDirection: TextDirection.rtl,
+                                            style: TextStyle(
+                                              fontSize: 14.sp,
+                                              color: Colors.black,
+                                              fontFamily: 'Ordibehesht',
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
                     )
                   ],
                 );

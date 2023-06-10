@@ -175,7 +175,7 @@ class _ExamPageState extends State<ExamPage> {
                           ),
                         ),
                         Text(
-                          'امتحانی وجود ندارد\nبرای اضافه کردن بر روی + بزنید',
+                          'امتحانی وجود ندارد',
                           textDirection: TextDirection.rtl,
                           textAlign: TextAlign.center,
                           style: TextStyle(

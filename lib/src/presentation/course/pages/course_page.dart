@@ -89,7 +89,7 @@ class CoursePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'امتحانی وجود ندارد\nبرای اضافه کردن بر روی + بزنید',
+                          'امتحانی وجود ندارد',
                           textDirection: TextDirection.rtl,
                           textAlign: TextAlign.center,
                           style: TextStyle(

@@ -39,7 +39,7 @@ class CustomCardExamWidget extends StatelessWidget {
                         minHeight: 0.05.sh,
                         minWidth: 0.85.sw),
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 243, 243, 234),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                       borderRadius: BorderRadius.circular(12.r),
                       boxShadow: const [
                         BoxShadow(
