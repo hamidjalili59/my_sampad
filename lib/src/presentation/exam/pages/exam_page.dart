@@ -8,6 +8,7 @@ import 'package:my_sampad/src/config/constants/general_constants.dart';
 import 'package:my_sampad/src/config/constants/svg_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
+import 'package:my_sampad/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_sampad/src/features/exam/domain/models/exam_model.dart';
 import 'package:my_sampad/src/features/teacher/domain/models/teacher_get_schools.dart';
@@ -41,6 +42,9 @@ class _ExamPageState extends State<ExamPage> {
     _controllerExamDescription.dispose();
     super.dispose();
   }
+
+  bool editMode = false;
+  bool deleteMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -113,12 +117,32 @@ class _ExamPageState extends State<ExamPage> {
                                     DropdownMenuItem(
                                       alignment: Alignment.center,
                                       value: 'حذف',
-                                      onTap: () {},
+                                      onTap: () {
+                                        getIt.get<AppRouter>().pop();
+                                        setState(() {
+                                          deleteMode = true;
+                                        });
+
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                                backgroundColor:
+                                                    const Color(0xffe8ffe8),
+                                                content: Text(
+                                                  'امتحان مورد نظر را برای حذف انتخاب کنید',
+                                                  textDirection:
+                                                      TextDirection.rtl,
+                                                  style: TextStyle(
+                                                      fontSize: 18.sp,
+                                                      color: Colors.black,
+                                                      fontFamily: 'Ordibehesht',
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )));
+                                      },
                                       child: Text(
                                         'حذف',
-                                        textDirection: TextDirection.rtl,
                                         style: TextStyle(
-                                            fontSize: 24.sp,
+                                            fontSize: 20.sp,
                                             color: Colors.black,
                                             fontFamily: 'Ordibehesht',
                                             fontWeight: FontWeight.bold),
@@ -127,12 +151,32 @@ class _ExamPageState extends State<ExamPage> {
                                     DropdownMenuItem(
                                       alignment: Alignment.center,
                                       value: 'تغییر',
-                                      onTap: () {},
+                                      onTap: () async {
+                                        getIt.get<AppRouter>().pop();
+                                        setState(() {
+                                          editMode = true;
+                                        });
+
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                                backgroundColor:
+                                                    const Color(0xffe8ffe8),
+                                                content: Text(
+                                                  'امتحان مورد نظر را برای تغییر انتخاب کنید',
+                                                  textDirection:
+                                                      TextDirection.rtl,
+                                                  style: TextStyle(
+                                                      fontSize: 18.sp,
+                                                      color: Colors.black,
+                                                      fontFamily: 'Ordibehesht',
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )));
+                                      },
                                       child: Text(
                                         'تغییر',
-                                        textDirection: TextDirection.rtl,
                                         style: TextStyle(
-                                            fontSize: 24.sp,
+                                            fontSize: 20.sp,
                                             color: Colors.black,
                                             fontFamily: 'Ordibehesht',
                                             fontWeight: FontWeight.bold),
@@ -146,14 +190,154 @@ class _ExamPageState extends State<ExamPage> {
                                   ),
                                 ),
                         ),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: examState.exams.length,
-                          itemBuilder: (context, index) {
-                            return CustomCardExamWidget(
-                              exam: examState.exams[index],
-                            );
-                          },
+                        SizedBox(
+                          height: 0.69.sh,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: examState.exams.length,
+                            padding: EdgeInsets.only(bottom: 64.h),
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: editMode
+                                    ? () async {
+                                        setState(() {
+                                          editMode = false;
+                                        });
+                                        await NDialog(
+                                          dialogStyle: DialogStyle(
+                                            contentPadding: EdgeInsets.zero,
+                                          ),
+                                          content: ExamDialogWidget(
+                                            isEditing: true,
+                                            exam: examState.exams[index],
+                                          ),
+                                        ).show(context);
+                                      }
+                                    : deleteMode
+                                        ? () async {
+                                            setState(() {
+                                              deleteMode = false;
+                                            });
+                                            await NDialog(
+                                              dialogStyle: DialogStyle(
+                                                contentPadding: EdgeInsets.zero,
+                                              ),
+                                              title: SizedBox(
+                                                height: 50.h,
+                                                child: Text(
+                                                  'آیا از حذف این امتحان اطمینان دارید',
+                                                  textAlign: TextAlign.center,
+                                                  textDirection:
+                                                      TextDirection.rtl,
+                                                  style: TextStyle(
+                                                      fontSize: 20.sp,
+                                                      color: Colors.black,
+                                                      fontFamily: 'Ordibehesht',
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                              content: SizedBox(
+                                                width: 120.w,
+                                                height: 50.h,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () {
+                                                        getIt
+                                                            .get<AppRouter>()
+                                                            .pop();
+                                                      },
+                                                      child: Container(
+                                                        width: 120.w,
+                                                        height: 45.h,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10.sp),
+                                                        ),
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Text(
+                                                          'خیر',
+                                                          textDirection:
+                                                              TextDirection.rtl,
+                                                          style: TextStyle(
+                                                              fontSize: 20.sp,
+                                                              color:
+                                                                  Colors.black,
+                                                              fontFamily:
+                                                                  'Ordibehesht',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        getIt
+                                                            .get<ExamBloc>()
+                                                            .add(
+                                                              ExamEvent
+                                                                  .removeExam(
+                                                                examState
+                                                                    .exams[
+                                                                        index]
+                                                                    .examId,
+                                                              ),
+                                                            );
+                                                        getIt
+                                                            .get<AppRouter>()
+                                                            .pop();
+                                                      },
+                                                      child: Container(
+                                                        width: 120.w,
+                                                        height: 45.h,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.white,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10.sp),
+                                                        ),
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Text(
+                                                          'بله',
+                                                          textDirection:
+                                                              TextDirection.rtl,
+                                                          style: TextStyle(
+                                                              fontSize: 20.sp,
+                                                              color:
+                                                                  Colors.black,
+                                                              fontFamily:
+                                                                  'Ordibehesht',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ).show(context);
+                                          }
+                                        : () {},
+                                child: CustomCardExamWidget(
+                                  exam: examState.exams[index],
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ));
@@ -175,7 +359,7 @@ class _ExamPageState extends State<ExamPage> {
                           ),
                         ),
                         Text(
-                          'امتحانی وجود ندارد\nبرای اضافه کردن بر روی + بزنید',
+                          'امتحانی وجود ندارد',
                           textDirection: TextDirection.rtl,
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -195,68 +379,59 @@ class _ExamPageState extends State<ExamPage> {
     );
   }
 
-  // ignore: unused_element
-  _addExamDialogMethod() {
-    final GlobalKey<FormBuilderState> formKey = GlobalKey<FormBuilderState>();
+  _addExamDialogMethod({bool isEditing = false}) {
     var appRputer = getIt.get<AppRouter>();
     NDialog(
       dialogStyle: DialogStyle(
           titlePadding: EdgeInsets.symmetric(horizontal: 0.r, vertical: 0.r),
-          backgroundColor: GeneralConstants.backgroundColor,
+          backgroundColor: Colors.white,
           contentPadding: EdgeInsets.symmetric(horizontal: 8.r, vertical: 3.r)),
-      title: Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.zero,
-        decoration: BoxDecoration(
-            color: GeneralConstants.mainColor,
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(12.r),
-                bottomRight: Radius.circular(12.r))),
-        height: 50.h,
-        child: Text(
-          'افزودن امتحان',
-          style: TextStyle(
-              color: Colors.white, fontSize: 16.r, fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
+      content: ExamDialogWidget(isEditing: isEditing),
+    ).show(appRputer.navigatorKey.currentContext!);
+  }
+}
+
+class ExamDialogWidget extends StatelessWidget {
+  final bool isEditing;
+  final Exam? exam;
+  ExamDialogWidget({
+    super.key,
+    required this.isEditing,
+    this.exam,
+  });
+
+  final TextEditingController _controller = TextEditingController(text: '');
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
+
+  @override
+  Widget build(BuildContext context) {
+    if (exam != null) {
+      _controller.value = TextEditingValue(text: exam!.examDescription);
+    }
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minWidth: 210.w,
+        minHeight: 150.h,
       ),
-      content: ConstrainedBox(
-        constraints: BoxConstraints(
-          minHeight: 0.1.sh,
-          minWidth: 0.75.sw,
-          maxHeight: 0.8.sh,
-          maxWidth: 0.8.sw,
-        ),
-        child: FormBuilder(
-          key: formKey,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            height: 85.h,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(height: 10.h),
-                CustomTextField(
-                  name: 'exam_description',
-                  labelText: 'توضیحات امتحان',
-                  validator: FormBuilderValidators.compose([
-                    FormBuilderValidators.required(
-                        errorText: 'انتخاب توضیح برای ساخت امتحان اجباری است'),
-                    FormBuilderValidators.maxLength(
-                      200,
-                      errorText:
-                          'لطفا توضیحاتی که انتخاب میکنید کمتر از 200 حرف داشته باشد',
-                    ),
-                    FormBuilderValidators.minLength(
-                      5,
-                      errorText:
-                          'لطفا توضیحاتی که انتخاب میکنید بیشتر از 5 حرف داشته باشد',
-                    ),
-                  ]),
-                  controller: _controllerExamDescription,
-                  width: 200.w,
-                  heghit: 65.h,
-                  keyboardType: TextInputType.text,
+                Text(
+                  isEditing ? 'تغییر امتحان' : 'اضافه کردن امتحان',
+                  textAlign: TextAlign.center,
+                  textDirection: TextDirection.rtl,
+                  maxLines: null,
+                  style: TextStyle(
+                    fontSize: 20.sp,
+                    color: Colors.black,
+                    fontFamily: 'Ordibehesht',
+                  ),
                 ),
-                SizedBox(height: 15.h),
                 InkWell(
                   onTap: () {
                     if (getIt.get<ExamBloc>().state.isLoading) {
@@ -264,8 +439,9 @@ class _ExamPageState extends State<ExamPage> {
                     }
                     Exam tempExam = Exam(
                       classId: getIt.get<Classroom>().classID,
-                      examDescription: _controllerExamDescription.text,
-                      teacherId: getIt.get<TeacherGetSchools>().teacherId,
+                      examDescription: _controller.text,
+                      teacherId:
+                          getIt.get<OtpHandshakeResponse>().teacher.teacherId,
                       teacherName: getIt
                           .get<TeacherBloc>()
                           .state
@@ -277,34 +453,99 @@ class _ExamPageState extends State<ExamPage> {
                           )
                           .basicInfo!
                           .name,
+                      examId: exam != null ? exam!.examId : 0,
+                      isDone: exam != null ? exam!.isDone : false,
                     );
-                    getIt.get<ExamBloc>().add(ExamEvent.acceptExams(tempExam));
+                    if (isEditing) {
+                      getIt.get<ExamBloc>().add(ExamEvent.updateExam(tempExam));
+                    } else {
+                      getIt.get<ExamBloc>().add(ExamEvent.acceptExam(tempExam));
+                    }
+                    getIt.get<AppRouter>().pop();
                   },
                   child: Container(
-                    decoration: BoxDecoration(
-                      color: GeneralConstants.mainColor,
-                      borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                    ),
-                    width: 0.45.sw,
+                    width: 70.w,
                     height: 40.h,
-                    alignment: Alignment.center,
-                    child: Text(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.sp),
+                        color: const Color(0xffE8FFE8)),
+                    child: Center(
+                        child: Text(
                       'تایید',
-                      style: TextStyle(
-                        fontSize: 16.r,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                      ),
                       textAlign: TextAlign.center,
-                    ),
+                      textDirection: TextDirection.rtl,
+                      maxLines: null,
+                      style: TextStyle(
+                        fontSize: 20.sp,
+                        color: Colors.black,
+                        fontFamily: 'Ordibehesht',
+                      ),
+                    )),
                   ),
-                ),
-                SizedBox(height: 10.h),
+                )
               ],
             ),
           ),
-        ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 10.h),
+            child: FormBuilder(
+              key: _formKey,
+              child: CustomTextField(
+                islabel: true,
+                onSubmitted: (text) {
+                  if (getIt.get<ExamBloc>().state.isLoading) {
+                    return;
+                  }
+                  Exam tempExam = Exam(
+                    classId: getIt.get<Classroom>().classID,
+                    examDescription: _controller.text,
+                    teacherId:
+                        getIt.get<OtpHandshakeResponse>().teacher.teacherId,
+                    teacherName: getIt
+                        .get<TeacherBloc>()
+                        .state
+                        .teachers
+                        .firstWhere(
+                          (element) =>
+                              element.teacherId ==
+                              getIt.get<TeacherGetSchools>().teacherId,
+                        )
+                        .basicInfo!
+                        .name,
+                    examId: exam != null ? exam!.examId : 0,
+                    isDone: exam != null ? exam!.isDone : false,
+                  );
+                  if (isEditing) {
+                    getIt.get<ExamBloc>().add(ExamEvent.updateExam(tempExam));
+                  } else {
+                    getIt.get<ExamBloc>().add(ExamEvent.acceptExam(tempExam));
+                  }
+                  getIt.get<AppRouter>().pop();
+                },
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.required(
+                      errorText: 'توضیحات اجباری است'),
+                  FormBuilderValidators.maxLength(
+                    200,
+                    errorText: 'کمتر از 200 حرف داشته باشد',
+                  ),
+                  FormBuilderValidators.minLength(
+                    5,
+                    errorText: 'بیشتر از 5 حرف داشته باشد',
+                  ),
+                ]),
+                width: 180.w,
+                name: 'exam',
+                isdynamicSize: true,
+                heghit: 50.h,
+                controller: _controller,
+                keyboardType: TextInputType.text,
+                labelText: 'توضیحات امتحان',
+              ),
+            ),
+          )
+        ],
       ),
-    ).show(appRputer.navigatorKey.currentContext!);
+    );
   }
 }

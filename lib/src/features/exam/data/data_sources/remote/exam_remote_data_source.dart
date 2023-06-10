@@ -21,9 +21,7 @@ abstract class ExamRemoteDataSource {
       {required int examId});
 
   Future<Either<DioException, Response<Map<String, dynamic>>>> updateExam({
-    required int examId,
-    required bool isDone,
-    required String examDescription,
+    required Exam exam,
   });
 }
 
@@ -60,19 +58,21 @@ class ExamRemoteDataSourceImpl implements ExamRemoteDataSource {
   @override
   Future<Either<DioException, Response<Map<String, dynamic>>>> removeExam(
       {required int examId}) {
-    return apiService.deleteMethod(GeneralConstants.host, body: {
-      'exam_id': examId,
-    });
+    return apiService.deleteMethod(
+        GeneralConstants.host + ExamEndpoints.deleteLink + examId.toString());
   }
 
   @override
-  Future<Either<DioException, Response<Map<String, dynamic>>>> updateExam(
-          {required int examId,
-          required bool isDone,
-          required String examDescription}) =>
-      apiService.putMethod<Map<String, dynamic>>(GeneralConstants.host, body: {
-        'exam_id': examId,
-        'isDone': isDone,
-        'exam_description': examDescription,
-      });
+  Future<Either<DioException, Response<Map<String, dynamic>>>> updateExam({
+    required Exam exam,
+  }) =>
+      apiService.putMethod<Map<String, dynamic>>(
+          GeneralConstants.host +
+              ExamEndpoints.editLink +
+              exam.examId.toString(),
+          body: {
+            "done": exam.isDone,
+            "exam_Describtion": exam.examDescription,
+            "teacher_ID": exam.teacherId,
+          });
 }

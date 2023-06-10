@@ -2,6 +2,7 @@ class PngAssets {
   const PngAssets._();
 
   static String get logo => 'logo'.png;
+  static String get employee => 'employee'.png;
   static String get schoolIcon => 'school_icon'.png;
   static String get student => 'student'.studentsPng;
   static String get teacher => 'teacher'.teachersPng;

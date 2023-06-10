@@ -19,6 +19,45 @@ class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      floatingActionButton: InkWell(
+        onTap: () {
+          if (bloc.state.isLoading) {
+            return;
+          }
+          bloc.add(const ScoreBoardEvent.acceptScores());
+        },
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            width: 120.w,
+            height: 50.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.sp),
+              color: const Color(0xffe8ffe8),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xff6A6A6A).withAlpha(70),
+                  blurRadius: 3.sp,
+                  spreadRadius: 0,
+                  offset: const Offset(1, 2),
+                )
+              ],
+            ),
+            child: Center(
+              child: Text(
+                'ثبت نمره',
+                textAlign: TextAlign.center,
+                textDirection: TextDirection.rtl,
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  color: Colors.black,
+                  fontFamily: 'Ordibehesht',
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
       body: SizedBox(
         width: 1.sw,
         height: 1.sh,
@@ -29,19 +68,15 @@ class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
             builder: (context, scoreBoardState) {
               return Column(
                 children: [
-                  AppbarSchoolWidget(
-                      title: 'ثبت نمرات : ',
-                      titleHelper:
-                          'شما میتوانید روبه‌روی هر دانش آموز نمره مربوط به آنرا وارد کنید و دکمه ثبت نمره را بفشارید',
-                      pathString:
-                          'شهید بهشتی  --  کلاس‌ها -- ریاضی 2 -- ثبت نمرات',
-                      icon: Icons.check_rounded,
-                      onPressed: () {
-                        if (scoreBoardState.isLoading) {
-                          return;
-                        }
-                        bloc.add(const ScoreBoardEvent.acceptScores());
-                      }),
+                  const AppbarSchoolWidget(
+                    title: 'ثبت نمرات : ',
+                    titleHelper:
+                        'شما میتوانید روبه‌روی هر دانش آموز نمره مربوط به آنرا وارد کنید و دکمه ثبت نمره را بفشارید',
+                    pathString:
+                        'شهید بهشتی  --  کلاس‌ها -- ریاضی 2 -- ثبت نمرات',
+                    isWidget: true,
+                    widget: null,
+                  ),
                   scoreBoardState.isLoading
                       ? const Center(
                           child: CircularProgressIndicator(),
@@ -145,188 +180,5 @@ class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
         ),
       ),
     ));
-    // return SafeArea(
-    //   child: Scaffold(
-    //     body: Center(
-    //       child: Stack(
-    //         children: [
-    //           Positioned.fill(
-    //             child: Padding(
-    //               padding: EdgeInsets.only(top: 70.0.h),
-    //               child: SizedBox(
-    //                 width: 1.sw,
-    //                 height: 0.9.sh,
-    //                 child: Directionality(
-    //                   textDirection: TextDirection.rtl,
-    //                   child: BlocBuilder<ScoreBoardBloc, ScoreBoardState>(
-    //                     bloc: bloc,
-    //                     builder: (context, scoreBoardState) {
-    //                       if (scoreBoardState.isLoading) {
-    //                         return const Center(
-    //                           child: CircularProgressIndicator(),
-    //                         );
-    //                       }
-    //                       return SingleChildScrollView(
-    //                         child: DataTable(
-    //                           headingRowHeight: 70.h,
-    //                           headingTextStyle: TextStyle(
-    //                               fontSize: 10.r, color: Colors.black),
-    //                           border: TableBorder.all(
-    //                               color: Colors.black54,
-    //                               borderRadius: BorderRadius.circular(8.r),
-    //                               width: 1.w),
-    //                           horizontalMargin: 0,
-    //                           checkboxHorizontalMargin: 0,
-    //                           columns: <DataColumn>[
-    //                             DataColumn(
-    //                               onSort: (index, isfelan) {},
-    //                               label: Flexible(
-    //                                 flex: 4,
-    //                                 child: Center(
-    //                                   child: Text(
-    //                                     'نام و نام‌خانوادگی',
-    //                                     textAlign: TextAlign.center,
-    //                                     style: TextStyle(
-    //                                       fontWeight: FontWeight.w900,
-    //                                       fontSize: 16.r,
-    //                                     ),
-    //                                   ),
-    //                                 ),
-    //                               ),
-    //                             ),
-    //                             DataColumn(
-    //                               onSort: (index, isfelan) {},
-    //                               label: Flexible(
-    //                                 flex: 1,
-    //                                 child: Center(
-    //                                   child: Text('نمره',
-    //                                       textAlign: TextAlign.center,
-    //                                       style: TextStyle(
-    //                                           fontWeight: FontWeight.w900,
-    //                                           fontSize: 16.r)),
-    //                                 ),
-    //                               ),
-    //                             ),
-    //                           ],
-    //                           rows: List.generate(
-    //                             scoreBoardState.students.length,
-    //                             (index) => DataRow(cells: [
-    //                               DataCell(
-    //                                 SizedBox(
-    //                                   width: 0.64.sw,
-    //                                   child: Center(
-    //                                     child: Text(
-    //                                         scoreBoardState.students[index]
-    //                                             .basicInfo!.name,
-    //                                         textAlign: TextAlign.center,
-    //                                         style: TextStyle(
-    //                                             fontWeight: FontWeight.w600,
-    //                                             fontSize: 16.r)),
-    //                                   ),
-    //                                 ),
-    //                               ),
-    //                               DataCell(
-    //                                 SizedBox(
-    //                                   width: 0.35.sw,
-    //                                   child: TextFormField(
-    //                                     controller: scoreBoardState
-    //                                         .scoresNumeric[index],
-    //                                     expands: true,
-    //                                     maxLength: 4,
-    //                                     keyboardType: TextInputType.number,
-    //                                     decoration: const InputDecoration(
-    //                                         border: OutlineInputBorder(),
-    //                                         contentPadding: EdgeInsets.zero,
-    //                                         counterText: '',
-    //                                         counterStyle:
-    //                                             TextStyle(fontSize: 0)),
-    //                                     textAlign: TextAlign.center,
-    //                                     maxLines: null,
-    //                                     minLines: null,
-    //                                   ),
-    //                                 ),
-    //                               )
-    //                             ]),
-    //                           ),
-    //                           columnSpacing: 0,
-    //                         ),
-    //                       );
-    //                     },
-    //                   ),
-    //                 ),
-    //               ),
-    //             ),
-    //           ),
-    //           Positioned.fill(
-    //               child: Align(
-    //             alignment: Alignment.topCenter,
-    //             child: Container(
-    //               width: 0.95.sw,
-    //               height: 70.h,
-    //               alignment: Alignment.center,
-    //               decoration: BoxDecoration(
-    //                 color: const Color.fromARGB(221, 17, 11, 46),
-    //                 borderRadius: BorderRadius.only(
-    //                   bottomLeft: Radius.circular(
-    //                     16.r,
-    //                   ),
-    //                   bottomRight: Radius.circular(
-    //                     16.r,
-    //                   ),
-    //                 ),
-    //               ),
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    //                 children: [
-    //                   InkWell(
-    //                     onTap: () {
-    //                       getIt.get<AppRouter>().pop();
-    //                     },
-    //                     child: SizedBox(
-    //                       width: 60.w,
-    //                       height: 60.w,
-    //                       child: Icon(
-    //                         Icons.arrow_back_ios_new,
-    //                         color: Colors.white,
-    //                         size: 26.r,
-    //                       ),
-    //                     ),
-    //                   ),
-    //                   Padding(
-    //                     padding: EdgeInsets.symmetric(vertical: 8.w),
-    //                     child: Text(
-    //                       'ثبت نمرات',
-    //                       style: TextStyle(
-    //                           fontSize: 22.r,
-    //                           color: Colors.white,
-    //                           fontWeight: FontWeight.w900),
-    //                       textAlign: TextAlign.center,
-    //                       textDirection: TextDirection.rtl,
-    //                     ),
-    //                   ),
-    //                   InkWell(
-    //                     onTap: () {
-    //                       if (bloc.state.isLoading) {
-    //                         return;
-    //                       }
-    //                       bloc.add(const ScoreBoardEvent.acceptScores());
-    //                     },
-    //                     child: SizedBox(
-    //                       width: 60.w,
-    //                       height: 40.w,
-    //                       child: Image.asset(
-    //                         PngAssets.checkIcon,
-    //                       ),
-    //                     ),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-    //           )),
-    //         ],
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }

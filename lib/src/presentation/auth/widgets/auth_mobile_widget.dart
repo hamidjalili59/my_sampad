@@ -321,6 +321,7 @@ class OtpHandshakeWidget extends StatelessWidget {
                                   ),
                                 ),
                                 CustomTextField(
+                                  islabel: false,
                                   width: 110.w,
                                   enabled: true,
                                   heghit: 40.h,

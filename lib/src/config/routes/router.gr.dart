@@ -91,10 +91,10 @@ class _$AppRouter extends RootStackRouter {
         child: const ExamPage(),
       );
     },
-    TeacherClassWidget.name: (routeData) {
+    TeacherClassListWidget.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: teacher.TeacherClassWidget(),
+        child: teacher.TeacherClassListWidget(),
       );
     },
     ClassDetailsRoute.name: (routeData) {
@@ -190,7 +190,7 @@ class _$AppRouter extends RootStackRouter {
           path: '/exam_page',
         ),
         RouteConfig(
-          TeacherClassWidget.name,
+          TeacherClassListWidget.name,
           path: '/mediator_page',
         ),
         RouteConfig(
@@ -373,15 +373,15 @@ class ExamRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [TeacherClassWidget]
-class TeacherClassWidget extends PageRouteInfo<void> {
-  const TeacherClassWidget()
+/// [TeacherClassListWidget]
+class TeacherClassListWidget extends PageRouteInfo<void> {
+  const TeacherClassListWidget()
       : super(
-          TeacherClassWidget.name,
+          TeacherClassListWidget.name,
           path: '/mediator_page',
         );
 
-  static const String name = 'TeacherClassWidget';
+  static const String name = 'TeacherClassListWidget';
 }
 
 /// generated route for

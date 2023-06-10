@@ -39,7 +39,7 @@ part 'router.gr.dart';
   AutoRoute(path: "/student_rollcall_view", page: SingleStudentRollcallsPage),
   AutoRoute(path: "/student_score_view", page: SingleScoreViewPage),
   AutoRoute(path: "/exam_page", page: ExamPage),
-  AutoRoute(path: "/mediator_page", page: teacher.TeacherClassWidget),
+  AutoRoute(path: "/mediator_page", page: teacher.TeacherClassListWidget),
   // class page
   AutoRoute(
     path: "/class_details_page",

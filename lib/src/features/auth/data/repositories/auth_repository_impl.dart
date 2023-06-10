@@ -90,4 +90,25 @@ class AuthRepositoryImpl extends AuthRepository {
           ),
         );
   }
+
+  @override
+  Future<Either<AuthFailure, OtpHandshakeResponse>> getAccountData(
+      {required double phoneNumber}) {
+    return _remoteDS.getAccountData(phoneNumber: phoneNumber).then((response) {
+      return response.fold(
+        (l) => left<AuthFailure, OtpHandshakeResponse>(AuthFailure.api(l)),
+        (r) {
+          try {
+            r.data!['phoneNumber'] = phoneNumber;
+            return right<AuthFailure, OtpHandshakeResponse>(
+              OtpHandshakeResponse.fromJson(r.data ?? {}),
+            );
+          } catch (e) {
+            return left<AuthFailure, OtpHandshakeResponse>(
+                const AuthFailure.nullParam());
+          }
+        },
+      );
+    });
+  }
 }

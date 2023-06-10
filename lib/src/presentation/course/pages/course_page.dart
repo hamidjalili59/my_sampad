@@ -89,7 +89,7 @@ class CoursePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'امتحانی وجود ندارد\nبرای اضافه کردن بر روی + بزنید',
+                          'امتحانی وجود ندارد',
                           textDirection: TextDirection.rtl,
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -152,6 +152,7 @@ class CoursePage extends StatelessWidget {
               children: [
                 SizedBox(height: 10.h),
                 CustomTextField(
+                  islabel: true,
                   name: 'course_name',
                   keyboardType: TextInputType.name,
                   labelText: 'نام درس',

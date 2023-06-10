@@ -64,6 +64,7 @@ class TeacherDialogWidget extends StatelessWidget {
                     child: Column(
                       children: [
                         CustomTextField(
+                          islabel: true,
                           width: 200.w,
                           name: 'teacher_name',
                           heghit: 50.h,
@@ -93,6 +94,7 @@ class TeacherDialogWidget extends StatelessWidget {
                           keyboardType: TextInputType.name,
                         ),
                         CustomTextField(
+                          islabel: true,
                           width: 200.w,
                           name: 'phone_number',
                           heghit: 50.h,

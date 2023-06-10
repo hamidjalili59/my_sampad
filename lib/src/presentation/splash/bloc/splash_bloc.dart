@@ -8,6 +8,8 @@ import 'package:my_sampad/src/config/utils/function_helper.dart';
 import 'package:my_sampad/src/features/auth/domain/failures/auth_failure.dart';
 import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_sampad/src/features/auth/domain/models/otp_handshake_response.dart';
+import 'package:my_sampad/src/features/auth/domain/use_cases/get_account_data_use_case.dart';
+import 'package:my_sampad/src/features/core/models/tuple.dart' as tuple;
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/features/auth/domain/use_cases/get_cached_auth_data_use_case.dart';
 import 'package:injectable/injectable.dart';
@@ -19,11 +21,14 @@ part 'splash_state.dart';
 @lazySingleton
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
   final GetCachedAuthDataUseCase _getCachedAuthDataUseCase;
+  final GetAccountDataUseCase _getAccountDataUseCase;
   final AppRouter appRoute = getIt.get<AppRouter>();
   SplashBloc(
     this._getCachedAuthDataUseCase,
+    this._getAccountDataUseCase,
   ) : super(const _LoadInProgress()) {
     on<_GetClientData>(_getClientData);
+    on<_GetAccountData>(_getAccountData);
     on<_TokenIsExist>(_jwtIsExist);
     add(const SplashEvent.tokenIsExist());
   }
@@ -96,10 +101,10 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
             appRoute.pushNamed('/auth');
             return emit(const _Failure(failure: AuthFailure.nullParam()));
           }
-          emit(_JwtExist(r));
           if (!getIt.isRegistered<OtpHandshakeResponse>()) {
             getIt.registerSingleton<OtpHandshakeResponse>(r);
           }
+          add(const _GetAccountData());
         },
       );
     } catch (e) {
@@ -110,5 +115,27 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       );
       emit(_Failure(message: e.toString()));
     }
+  }
+
+  FutureOr<void> _getAccountData(
+      _GetAccountData event, Emitter<SplashState> emit) async {
+    await _getAccountDataUseCase
+        .call(
+            param: tuple.Tuple1(
+                getIt.get<OtpHandshakeResponse>().phoneNumber ?? 0))
+        .then((value) => value.fold(
+              (l) {
+                emit(_Failure(failure: l));
+              },
+              (r) {
+                emit(_JwtExist(r));
+                if (getIt.isRegistered<OtpHandshakeResponse>()) {
+                  getIt.unregister<OtpHandshakeResponse>();
+                  getIt.registerSingleton<OtpHandshakeResponse>(r);
+                } else {
+                  getIt.registerSingleton<OtpHandshakeResponse>(r);
+                }
+              },
+            ));
   }
 }

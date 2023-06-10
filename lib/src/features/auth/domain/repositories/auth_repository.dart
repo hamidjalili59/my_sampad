@@ -12,6 +12,9 @@ abstract class AuthRepository {
   //
   Future<Either<AuthFailure, void>> logout();
   //
+  Future<Either<AuthFailure, OtpHandshakeResponse>> getAccountData(
+      {required double phoneNumber});
+  //
 
   //
   Future<Either<AuthFailure, void>> cacheAuthData({

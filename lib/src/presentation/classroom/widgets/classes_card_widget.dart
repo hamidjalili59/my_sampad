@@ -200,6 +200,7 @@ class ClassesCardWidget extends StatelessWidget {
               children: [
                 SizedBox(height: 10.h),
                 CustomTextField(
+                  islabel: true,
                   key: formKey,
                   name: 'class_name',
                   labelText: 'نام کلاس',

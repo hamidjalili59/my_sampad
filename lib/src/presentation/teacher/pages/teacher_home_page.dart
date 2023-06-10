@@ -62,7 +62,7 @@ class TeacherHomePage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'کلاسی وجود ندارد\nبرای اضافه کردن بر روی + بزنید',
+                            'کلاسی وجود ندارد',
                             textDirection: TextDirection.rtl,
                             textAlign: TextAlign.center,
                             style: TextStyle(

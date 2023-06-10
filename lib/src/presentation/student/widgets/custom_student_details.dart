@@ -184,6 +184,7 @@ class _CustomClassDetailButtonWidgetState
                   ),
                 ),
                 CustomTextField(
+                  islabel: true,
                   haveIcon: true,
                   sIcon: Icons.person_rounded,
                   name: 'student_name',
@@ -209,6 +210,7 @@ class _CustomClassDetailButtonWidgetState
                 ),
                 SizedBox(height: 5.h),
                 CustomTextField(
+                  islabel: true,
                   haveIcon: true,
                   sIcon: Icons.phone_rounded,
                   name: 'phone',
