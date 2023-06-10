@@ -12,9 +12,17 @@ import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.
 import 'package:my_sampad/src/presentation/course/bloc/course/course_bloc.dart';
 import 'package:ndialog/ndialog.dart';
 
-class CourseListPage extends StatelessWidget {
-  CourseListPage({super.key});
-  final TextEditingController _courseName = TextEditingController(text: '');
+class CourseListPage extends StatefulWidget {
+  const CourseListPage({super.key});
+
+  @override
+  State<CourseListPage> createState() => _CourseListPageState();
+}
+
+class _CourseListPageState extends State<CourseListPage> {
+  bool editMode = false;
+
+  bool deleteMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +36,14 @@ class CourseListPage extends StatelessWidget {
                 dialogStyle: DialogStyle(
                   borderRadius: BorderRadius.circular(12.sp),
                 ),
-                content: AddCourseDialogWidget(courseName: _courseName),
+                content: AddCourseDialogWidget(),
               ).show(context);
             },
             child: Container(
               width: 130.w,
               height: 60.h,
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: const Color(0xffe8ffe8),
                   borderRadius: BorderRadius.circular(12.sp),
                   boxShadow: [
                     BoxShadow(
@@ -65,9 +73,6 @@ class CourseListPage extends StatelessWidget {
             child: BlocBuilder<CourseBloc, CourseState>(
               bloc: getIt.get<CourseBloc>(),
               builder: (context, state) {
-                if (state.isLoading) {
-                  return const Center(child: CircularProgressIndicator());
-                }
                 return Column(
                   children: [
                     AppbarSchoolWidget(
@@ -81,12 +86,29 @@ class CourseListPage extends StatelessWidget {
                           DropdownMenuItem(
                             alignment: Alignment.center,
                             value: 'حذف',
-                            onTap: () {},
+                            onTap: () {
+                              getIt.get<AppRouter>().pop();
+                              setState(() {
+                                deleteMode = true;
+                              });
+
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                      backgroundColor: const Color(0xffe8ffe8),
+                                      content: Text(
+                                        'درس مورد نظر را برای حذف انتخاب کنید',
+                                        textDirection: TextDirection.rtl,
+                                        style: TextStyle(
+                                            fontSize: 18.sp,
+                                            color: Colors.black,
+                                            fontFamily: 'Ordibehesht',
+                                            fontWeight: FontWeight.bold),
+                                      )));
+                            },
                             child: Text(
                               'حذف',
-                              textDirection: TextDirection.rtl,
                               style: TextStyle(
-                                  fontSize: 24.sp,
+                                  fontSize: 20.sp,
                                   color: Colors.black,
                                   fontFamily: 'Ordibehesht',
                                   fontWeight: FontWeight.bold),
@@ -95,12 +117,29 @@ class CourseListPage extends StatelessWidget {
                           DropdownMenuItem(
                             alignment: Alignment.center,
                             value: 'تغییر',
-                            onTap: () {},
+                            onTap: () async {
+                              getIt.get<AppRouter>().pop();
+                              setState(() {
+                                editMode = true;
+                              });
+
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                      backgroundColor: const Color(0xffe8ffe8),
+                                      content: Text(
+                                        'درس مورد نظر را برای تغییر انتخاب کنید',
+                                        textDirection: TextDirection.rtl,
+                                        style: TextStyle(
+                                            fontSize: 18.sp,
+                                            color: Colors.black,
+                                            fontFamily: 'Ordibehesht',
+                                            fontWeight: FontWeight.bold),
+                                      )));
+                            },
                             child: Text(
                               'تغییر',
-                              textDirection: TextDirection.rtl,
                               style: TextStyle(
-                                  fontSize: 24.sp,
+                                  fontSize: 20.sp,
                                   color: Colors.black,
                                   fontFamily: 'Ordibehesht',
                                   fontWeight: FontWeight.bold),
@@ -128,35 +167,161 @@ class CourseListPage extends StatelessWidget {
                           mainAxisSpacing: 10.h,
                         ),
                         itemBuilder: (context, index) {
-                          return Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(12.sp),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color:
-                                          const Color.fromARGB(70, 55, 55, 55),
-                                      spreadRadius: 0,
-                                      blurRadius: 4.sp,
-                                      offset: const Offset(1, 1))
-                                ]),
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                    width: 150.w,
-                                    height: 160.h,
-                                    child: Image.asset(PngAssets.course)),
-                                SizedBox(height: 20.h),
-                                Text(
-                                  'درس ${state.courses[index].courseName}',
-                                  textDirection: TextDirection.rtl,
-                                  style: TextStyle(
-                                      fontSize: 26.sp,
-                                      color: Colors.black,
-                                      fontFamily: 'Ordibehesht',
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
+                          if (state.isLoading) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+                          return InkWell(
+                            onTap: editMode
+                                ? () async {
+                                    setState(() {
+                                      editMode = false;
+                                    });
+                                    await NDialog(
+                                      dialogStyle: DialogStyle(
+                                        contentPadding: EdgeInsets.zero,
+                                      ),
+                                      content: AddCourseDialogWidget(
+                                        isEditing: true,
+                                        courseName:
+                                            state.courses[index].courseName,
+                                        course: state.courses[index],
+                                      ),
+                                    ).show(context);
+                                  }
+                                : deleteMode
+                                    ? () async {
+                                        setState(() {
+                                          deleteMode = false;
+                                        });
+                                        await NDialog(
+                                          dialogStyle: DialogStyle(
+                                            contentPadding: EdgeInsets.zero,
+                                          ),
+                                          title: SizedBox(
+                                            height: 50.h,
+                                            child: Text(
+                                              'آیا از حذف ${state.courses[index].courseName} اطمینان دارید',
+                                              textAlign: TextAlign.center,
+                                              textDirection: TextDirection.rtl,
+                                              style: TextStyle(
+                                                  fontSize: 20.sp,
+                                                  color: Colors.black,
+                                                  fontFamily: 'Ordibehesht',
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                          content: SizedBox(
+                                            width: 120.w,
+                                            height: 50.h,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                InkWell(
+                                                  onTap: () {
+                                                    getIt
+                                                        .get<AppRouter>()
+                                                        .pop();
+                                                  },
+                                                  child: Container(
+                                                    width: 120.w,
+                                                    height: 45.h,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.sp),
+                                                    ),
+                                                    alignment: Alignment.center,
+                                                    child: Text(
+                                                      'خیر',
+                                                      textDirection:
+                                                          TextDirection.rtl,
+                                                      style: TextStyle(
+                                                          fontSize: 20.sp,
+                                                          color: Colors.black,
+                                                          fontFamily:
+                                                              'Ordibehesht',
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ),
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    getIt.get<CourseBloc>().add(
+                                                          CourseEvent
+                                                              .removeCourse(
+                                                            state.courses[index]
+                                                                .courseId,
+                                                          ),
+                                                        );
+                                                    getIt
+                                                        .get<AppRouter>()
+                                                        .pop();
+                                                  },
+                                                  child: Container(
+                                                    width: 120.w,
+                                                    height: 45.h,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.sp),
+                                                    ),
+                                                    alignment: Alignment.center,
+                                                    child: Text(
+                                                      'بله',
+                                                      textDirection:
+                                                          TextDirection.rtl,
+                                                      style: TextStyle(
+                                                          fontSize: 20.sp,
+                                                          color: Colors.black,
+                                                          fontFamily:
+                                                              'Ordibehesht',
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ).show(context);
+                                      }
+                                    : () {},
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12.sp),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: const Color.fromARGB(
+                                            70, 55, 55, 55),
+                                        spreadRadius: 0,
+                                        blurRadius: 4.sp,
+                                        offset: const Offset(1, 1))
+                                  ]),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                      width: 150.w,
+                                      height: 160.h,
+                                      child: Image.asset(PngAssets.course)),
+                                  SizedBox(height: 20.h),
+                                  Text(
+                                    'درس ${state.courses[index].courseName}',
+                                    textDirection: TextDirection.rtl,
+                                    style: TextStyle(
+                                        fontSize: 26.sp,
+                                        color: Colors.black,
+                                        fontFamily: 'Ordibehesht',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         },
@@ -174,17 +339,22 @@ class CourseListPage extends StatelessWidget {
 }
 
 class AddCourseDialogWidget extends StatelessWidget {
+  final bool isEditing;
   AddCourseDialogWidget({
     super.key,
-    required TextEditingController courseName,
+    this.courseName = '',
     this.course,
-  }) : _courseName = courseName;
+    this.isEditing = false,
+  });
   final Course? course;
-  final TextEditingController _courseName;
+  final String courseName;
+  final TextEditingController _courseNameController =
+      TextEditingController(text: '');
 
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
   @override
   Widget build(BuildContext context) {
+    _courseNameController.value = TextEditingValue(text: courseName);
     return SizedBox(
       width: 210.w,
       height: 95.h,
@@ -192,14 +362,17 @@ class AddCourseDialogWidget extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.centerRight,
-            child: Text(
-              'اضافه کردن درس',
-              textDirection: TextDirection.rtl,
-              style: TextStyle(
-                  fontSize: 22.sp,
-                  color: Colors.black,
-                  fontFamily: 'Ordibehesht',
-                  fontWeight: FontWeight.bold),
+            child: Padding(
+              padding: EdgeInsets.only(right: isEditing ? 8.0.w : 0),
+              child: Text(
+                isEditing ? 'تغییر اسم' : 'اضافه کردن درس',
+                textDirection: TextDirection.rtl,
+                style: TextStyle(
+                    fontSize: 22.sp,
+                    color: Colors.black,
+                    fontFamily: 'Ordibehesht',
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ),
           SizedBox(
@@ -219,7 +392,7 @@ class AddCourseDialogWidget extends StatelessWidget {
                         color: Colors.black45,
                         fontFamily: 'Ordibehesht',
                         fontWeight: FontWeight.bold),
-                    controller: _courseName,
+                    controller: _courseNameController,
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(
                           errorText: 'انتخاب اسم اجباری است'),
@@ -234,20 +407,21 @@ class AddCourseDialogWidget extends StatelessWidget {
                     ]),
                     onSubmitted: (value) {
                       if (_formKey.currentState?.validate() ?? false) {
-                        // if (false) {
-                        //   getIt.get<CourseBloc>().add(
-                        //         CourseEvent.updateCourse(
-                        //           course!.copyWith(courseName: _courseName.text),
-                        //         ),
-                        //       );
-                        // } else {
-                        getIt.get<CourseBloc>().add(
-                              CourseEvent.addCourse(
-                                _courseName.text,
-                              ),
-                            );
-                        // }
-                        _courseName.clear();
+                        if (isEditing) {
+                          getIt.get<CourseBloc>().add(
+                                CourseEvent.updateCourse(
+                                  course!.copyWith(
+                                      courseName: _courseNameController.text),
+                                ),
+                              );
+                        } else {
+                          getIt.get<CourseBloc>().add(
+                                CourseEvent.addCourse(
+                                  _courseNameController.text,
+                                ),
+                              );
+                        }
+                        _courseNameController.clear();
                         Navigator.pop(getIt
                             .get<AppRouter>()
                             .navigatorKey
@@ -261,20 +435,21 @@ class AddCourseDialogWidget extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     if (_formKey.currentState?.validate() ?? false) {
-                      // if (false) {
-                      //   getIt.get<CourseBloc>().add(
-                      //         CourseEvent.updateCourse(
-                      //           course!.copyWith(courseName: _courseName.text),
-                      //         ),
-                      //       );
-                      // } else {
-                      getIt.get<CourseBloc>().add(
-                            CourseEvent.addCourse(
-                              _courseName.text,
-                            ),
-                          );
-                      // }
-                      _courseName.clear();
+                      if (isEditing) {
+                        getIt.get<CourseBloc>().add(
+                              CourseEvent.updateCourse(
+                                course!.copyWith(
+                                    courseName: _courseNameController.text),
+                              ),
+                            );
+                      } else {
+                        getIt.get<CourseBloc>().add(
+                              CourseEvent.addCourse(
+                                _courseNameController.text,
+                              ),
+                            );
+                      }
+                      _courseNameController.clear();
                       Navigator.pop(
                           getIt.get<AppRouter>().navigatorKey.currentContext!);
                     } else {}
