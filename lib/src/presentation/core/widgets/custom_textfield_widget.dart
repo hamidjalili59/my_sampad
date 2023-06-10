@@ -47,26 +47,29 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isdynamicSize) {
-      return ConstrainedBox(
-        constraints: BoxConstraints(
-            minHeight: heghit, minWidth: width, maxWidth: width + 1),
-        child: MainTextField(
-            isLabley: islabel,
-            keyboardType: keyboardType,
-            enabled: enabled,
-            style: style,
-            maxLength: null,
-            expand: false,
-            haveIcon: haveIcon,
-            sIcon: sIcon,
-            labelText: labelText,
-            labelStyle: labelStyle,
-            haveBorder: haveBorder,
-            onSubmitted: onSubmitted,
-            controller: controller,
-            name: name,
-            validator: validator,
-            onChange: onChange),
+      return Directionality(
+        textDirection: TextDirection.rtl,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+              minHeight: heghit, minWidth: width, maxWidth: width + 1),
+          child: MainTextField(
+              isLabley: islabel,
+              keyboardType: keyboardType,
+              enabled: enabled,
+              style: style,
+              maxLength: null,
+              expand: false,
+              haveIcon: haveIcon,
+              sIcon: sIcon,
+              labelText: labelText,
+              labelStyle: labelStyle,
+              haveBorder: haveBorder,
+              onSubmitted: onSubmitted,
+              controller: controller,
+              name: name,
+              validator: validator,
+              onChange: onChange),
+        ),
       );
     } else {
       return SizedBox(

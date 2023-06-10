@@ -419,78 +419,8 @@ class ExamDialogWidget extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(
-            height: 85.h,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  isEditing ? 'تغییر امتحان' : 'اضافه کردن امتحان',
-                  textAlign: TextAlign.center,
-                  textDirection: TextDirection.rtl,
-                  maxLines: null,
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    color: Colors.black,
-                    fontFamily: 'Ordibehesht',
-                  ),
-                ),
-                InkWell(
-                  onTap: () {
-                    if (getIt.get<ExamBloc>().state.isLoading) {
-                      return;
-                    }
-                    Exam tempExam = Exam(
-                      classId: getIt.get<Classroom>().classID,
-                      examDescription: _controller.text,
-                      teacherId:
-                          getIt.get<OtpHandshakeResponse>().teacher.teacherId,
-                      teacherName: getIt
-                          .get<TeacherBloc>()
-                          .state
-                          .teachers
-                          .firstWhere(
-                            (element) =>
-                                element.teacherId ==
-                                getIt.get<TeacherGetSchools>().teacherId,
-                          )
-                          .basicInfo!
-                          .name,
-                      examId: exam != null ? exam!.examId : 0,
-                      isDone: exam != null ? exam!.isDone : false,
-                    );
-                    if (isEditing) {
-                      getIt.get<ExamBloc>().add(ExamEvent.updateExam(tempExam));
-                    } else {
-                      getIt.get<ExamBloc>().add(ExamEvent.acceptExam(tempExam));
-                    }
-                    getIt.get<AppRouter>().pop();
-                  },
-                  child: Container(
-                    width: 70.w,
-                    height: 40.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.sp),
-                        color: const Color(0xffE8FFE8)),
-                    child: Center(
-                        child: Text(
-                      'تایید',
-                      textAlign: TextAlign.center,
-                      textDirection: TextDirection.rtl,
-                      maxLines: null,
-                      style: TextStyle(
-                        fontSize: 20.sp,
-                        color: Colors.black,
-                        fontFamily: 'Ordibehesht',
-                      ),
-                    )),
-                  ),
-                )
-              ],
-            ),
-          ),
           Padding(
-            padding: EdgeInsets.only(bottom: 10.h),
+            padding: EdgeInsets.only(top: 20.h),
             child: FormBuilder(
               key: _formKey,
               child: CustomTextField(
@@ -546,7 +476,77 @@ class ExamDialogWidget extends StatelessWidget {
                 labelText: 'توضیحات امتحان',
               ),
             ),
-          )
+          ),
+          SizedBox(
+            height: 85.h,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InkWell(
+                  onTap: () {
+                    if (getIt.get<ExamBloc>().state.isLoading) {
+                      return;
+                    }
+                    Exam tempExam = Exam(
+                      classId: getIt.get<Classroom>().classID,
+                      examDescription: _controller.text,
+                      teacherId:
+                          getIt.get<OtpHandshakeResponse>().teacher.teacherId,
+                      teacherName: getIt
+                          .get<TeacherBloc>()
+                          .state
+                          .teachers
+                          .firstWhere(
+                            (element) =>
+                                element.teacherId ==
+                                getIt.get<TeacherGetSchools>().teacherId,
+                          )
+                          .basicInfo!
+                          .name,
+                      examId: exam != null ? exam!.examId : 0,
+                      isDone: exam != null ? exam!.isDone : false,
+                    );
+                    if (isEditing) {
+                      getIt.get<ExamBloc>().add(ExamEvent.updateExam(tempExam));
+                    } else {
+                      getIt.get<ExamBloc>().add(ExamEvent.acceptExam(tempExam));
+                    }
+                    getIt.get<AppRouter>().pop();
+                  },
+                  child: Container(
+                    width: 70.w,
+                    height: 40.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.sp),
+                        color: const Color(0xffE8FFE8)),
+                    child: Center(
+                        child: Text(
+                      'افزودن',
+                      textAlign: TextAlign.center,
+                      textDirection: TextDirection.rtl,
+                      maxLines: null,
+                      style: TextStyle(
+                        fontSize: 20.sp,
+                        color: Colors.black,
+                        fontFamily: 'Ordibehesht',
+                      ),
+                    )),
+                  ),
+                ),
+                Text(
+                  isEditing ? 'تغییر امتحان' : 'اضافه کردن امتحان',
+                  textAlign: TextAlign.center,
+                  textDirection: TextDirection.rtl,
+                  maxLines: null,
+                  style: TextStyle(
+                    fontSize: 20.sp,
+                    color: Colors.black,
+                    fontFamily: 'Ordibehesht',
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

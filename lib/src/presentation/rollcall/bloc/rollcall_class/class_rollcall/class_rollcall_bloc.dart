@@ -41,9 +41,11 @@ class ClassRollcallBloc extends Bloc<ClassRollcallEvent, ClassRollcallState> {
   FutureOr<void> _onSubmitRollcalls(
       _SubmitRollcalls event, Emitter<ClassRollcallState> emit) async {
     emit(state.copyWith(isLoading: true));
+    List<Rollcall> tempList = state.rollcalls.toList();
     await _addRollCallUsecase
         .call(
-          param: tuple.Tuple1<List<Rollcall>>(state.rollcalls),
+          param: tuple.Tuple1<List<Rollcall>>(
+              tempList.where((element) => element.absent == true).toList()),
         )
         .then((value) => value.fold(
               (l) {
