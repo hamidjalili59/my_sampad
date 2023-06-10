@@ -5,10 +5,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_sampad/src/config/constants/general_constants.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
-import 'package:my_sampad/src/config/utils/function_helper.dart';
 import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_sampad/src/features/mediator_tc/domain/models/mediator.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
+import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/course/bloc/course/course_bloc.dart';
 import 'package:my_sampad/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
 import 'package:my_sampad/src/presentation/teacher/bloc/teacher_detail/teacher_detail_bloc.dart';
@@ -20,140 +20,215 @@ class TeacherClassWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     getIt.get<TeacherDetailBloc>().add(const TeacherDetailEvent.getMediators());
-    return Scaffold(
-      floatingActionButton: GeneralConstants.userType == UserType.admin
-          ? FloatingActionButton.extended(
-              icon: Icon(
-                Icons.add_circle,
-                color: Colors.white,
-                size: 26.r,
-              ),
-              onPressed: () {
-                NDialog(
-                  dialogStyle: DialogStyle(),
-                  title: const Text(
-                    'اضافه کردن درس و دبیر',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: GeneralConstants.userType == UserType.admin
+            ? InkWell(
+                onTap: () {
+                  NDialog(
+                    dialogStyle: DialogStyle(),
+                    title: Text(
+                      'اضافه کردن درس و دبیر',
+                      textDirection: TextDirection.rtl,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 22.sp,
+                          color: Colors.black,
+                          fontFamily: 'Ordibehesht',
+                          fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  content: const AddMediatorDialogWidget(),
-                  actions: [
-                    MaterialButton(
-                        onPressed: () {
-                          getIt.get<AppRouter>().pop();
+                    content: const AddMediatorDialogWidget(),
+                    actions: [
+                      MaterialButton(
+                          onPressed: () {
+                            getIt.get<AppRouter>().pop();
+                          },
+                          color: const Color(0xffe8ffe8),
+                          child: Text(
+                            'لغو',
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontSize: 22.sp,
+                                color: Colors.black,
+                                fontFamily: 'Ordibehesht',
+                                fontWeight: FontWeight.bold),
+                          )),
+                      BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
+                        bloc: getIt.get<TeacherDetailBloc>(),
+                        builder: (context, teacherState) {
+                          return MaterialButton(
+                            onPressed: teacherState.isLoading
+                                ? () {}
+                                : () {
+                                    if (teacherState.isLoading) {
+                                      return;
+                                    }
+                                    getIt.get<TeacherDetailBloc>().add(
+                                          const TeacherDetailEvent
+                                              .acceptTeacher(),
+                                        );
+                                  },
+                            color: const Color(0xffe8ffe8),
+                            child: teacherState.isLoading
+                                ? const Center(
+                                    child: CircularProgressIndicator())
+                                : Text(
+                                    'تایید',
+                                    textDirection: TextDirection.rtl,
+                                    style: TextStyle(
+                                        fontSize: 22.sp,
+                                        color: Colors.black,
+                                        fontFamily: 'Ordibehesht',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                          );
                         },
-                        color: GeneralConstants.mainColor,
-                        child: Text(
-                          'لغو',
-                          style: TextStyle(
-                              fontSize: 16.r,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700),
-                        )),
-                    BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
-                      bloc: getIt.get<TeacherDetailBloc>(),
-                      builder: (context, teacherState) {
-                        return MaterialButton(
-                          onPressed: teacherState.isLoading
-                              ? () {}
-                              : () {
-                                  if (teacherState.isLoading) {
-                                    return;
-                                  }
-                                  getIt.get<TeacherDetailBloc>().add(
-                                        const TeacherDetailEvent
-                                            .acceptTeacher(),
-                                      );
-                                },
-                          color: GeneralConstants.mainColor,
-                          child: teacherState.isLoading
-                              ? const Center(child: CircularProgressIndicator())
-                              : Text(
-                                  'تایید',
-                                  style: TextStyle(
-                                      fontSize: 16.r,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700),
-                                ),
-                        );
-                      },
-                    ),
-                  ],
-                ).show(context, dismissable: false);
-              },
-              label: Text(
-                'افزودن‌ درس و دبیر',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.r,
-                    fontWeight: FontWeight.w700),
-              ),
-              backgroundColor: GeneralConstants.mainColor)
-          : null,
-      body: BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
-        bloc: getIt.get<TeacherDetailBloc>(),
-        builder: (context, mediatorState) {
-          if (mediatorState.isLoading) {
-            return Center(
-              child: SizedBox(
-                  width: 55.w,
-                  height: 55.w,
-                  child: const CircularProgressIndicator()),
-            );
-          } else {
-            if (mediatorState.mediators.isNotEmpty) {
-              return SizedBox(
-                width: 1.sw,
-                height: 1.sh,
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16.r,
-                    mainAxisSpacing: 16.r,
-                    mainAxisExtent: 0.3.sh,
+                      ),
+                    ],
+                  ).show(context, dismissable: false);
+                },
+                child: Container(
+                  width: 150.w,
+                  height: 50.h,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: const Color(0xffe8ffe8),
+                      borderRadius: BorderRadius.circular(12.sp),
+                      boxShadow: [
+                        BoxShadow(
+                            offset: const Offset(0, 1),
+                            blurRadius: 2.sp,
+                            spreadRadius: 0,
+                            color: const Color.fromARGB(70, 36, 36, 36))
+                      ]),
+                  child: Text(
+                    'افزودن‌ درس و دبیر',
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                        fontSize: 22.sp,
+                        color: Colors.black,
+                        fontFamily: 'Ordibehesht',
+                        fontWeight: FontWeight.bold),
                   ),
-                  itemCount: mediatorState.mediators.length,
-                  padding: EdgeInsets.only(top: 16.h, right: 12.w, left: 12.w),
-                  itemBuilder: (context, index) {
-                    return TeacherClassTileCardWidget(
-                      mediator: mediatorState.mediators[index],
-                    );
-                  },
+                ))
+            : null,
+        body: Column(
+          children: [
+            AppbarSchoolWidget(
+              title: 'دبیران کلاس',
+              titleHelper:
+                  'در این صفحه میتوانید دبیران این کلاس را مشاهده کنید',
+              pathString: '',
+              isWidget: true,
+              widget: DropdownButton<String>(
+                items: [
+                  DropdownMenuItem(
+                    alignment: Alignment.center,
+                    value: 'حذف',
+                    onTap: () {},
+                    child: Text(
+                      'حذف',
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                          fontSize: 24.sp,
+                          color: Colors.black,
+                          fontFamily: 'Ordibehesht',
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  DropdownMenuItem(
+                    alignment: Alignment.center,
+                    value: 'تغییر',
+                    onTap: () {},
+                    child: Text(
+                      'تغییر',
+                      textDirection: TextDirection.rtl,
+                      style: TextStyle(
+                          fontSize: 24.sp,
+                          color: Colors.black,
+                          fontFamily: 'Ordibehesht',
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+                onChanged: (value) {},
+                icon: Icon(
+                  Icons.more_vert_rounded,
+                  size: 36.sp,
                 ),
-              );
-            } else {
-              return SizedBox(
-                width: 1.sw,
-                height: 0.8.sh,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: 0.95.sw,
-                        height: 0.5.sh,
-                        child: Padding(
-                          padding: EdgeInsets.all(54.0.r),
-                          child: SvgPicture.asset(
-                            'assets/empty.svg',
+              ),
+            ),
+            SizedBox(
+              height: 0.69.sh,
+              child: BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
+                bloc: getIt.get<TeacherDetailBloc>(),
+                builder: (context, mediatorState) {
+                  if (mediatorState.isLoading) {
+                    return Center(
+                      child: SizedBox(
+                          width: 55.w,
+                          height: 55.w,
+                          child: const CircularProgressIndicator()),
+                    );
+                  } else {
+                    if (mediatorState.mediators.isNotEmpty) {
+                      return SizedBox(
+                        width: 1.sw,
+                        height: 1.sh,
+                        child: GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 16.r,
+                            mainAxisSpacing: 16.r,
+                            mainAxisExtent: 0.3.sh,
+                          ),
+                          itemCount: mediatorState.mediators.length,
+                          padding: EdgeInsets.only(
+                              top: 16.h, right: 12.w, left: 12.w),
+                          itemBuilder: (context, index) {
+                            return TeacherClassTileCardWidget(
+                              mediator: mediatorState.mediators[index],
+                            );
+                          },
+                        ),
+                      );
+                    } else {
+                      return SizedBox(
+                        width: 1.sw,
+                        height: 0.8.sh,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                width: 0.95.sw,
+                                height: 0.5.sh,
+                                child: Padding(
+                                  padding: EdgeInsets.all(54.0.r),
+                                  child: SvgPicture.asset(
+                                    'assets/empty.svg',
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                'دبیری برای این کلاس وجود ندارد\nبرای اضافه کردن بر روی + بزنید',
+                                textDirection: TextDirection.rtl,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 18.r),
+                              )
+                            ],
                           ),
                         ),
-                      ),
-                      Text(
-                        'دبیری برای این کلاس وجود ندارد\nبرای اضافه کردن بر روی + بزنید',
-                        textDirection: TextDirection.rtl,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w800, fontSize: 18.r),
-                      )
-                    ],
-                  ),
-                ),
-              );
-            }
-          }
-        },
+                      );
+                    }
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -189,7 +264,7 @@ class AddMediatorDialogWidget extends StatelessWidget {
                               itemCount: teacherState.teachers.length,
                               itemBuilder: (context, index) {
                                 return SizedBox(
-                                  height: 35.h,
+                                  height: 60.h,
                                   width: 150.w,
                                   child: Row(
                                     mainAxisAlignment:
@@ -213,11 +288,12 @@ class AddMediatorDialogWidget extends StatelessWidget {
                                             teacherState.teachers[index]
                                                 .basicInfo!.name,
                                             textAlign: TextAlign.center,
+                                            textDirection: TextDirection.rtl,
                                             style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 14.r,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                                fontSize: 18.sp,
+                                                color: Colors.black,
+                                                fontFamily: 'Ordibehesht',
+                                                fontWeight: FontWeight.bold),
                                           ),
                                         ),
                                       ),
@@ -247,7 +323,7 @@ class AddMediatorDialogWidget extends StatelessWidget {
                                 return InkWell(
                                   onTap: () {},
                                   child: SizedBox(
-                                    height: 35.h,
+                                    height: 60.h,
                                     width: 100.w,
                                     child: Row(
                                       mainAxisAlignment:
@@ -271,11 +347,12 @@ class AddMediatorDialogWidget extends StatelessWidget {
                                               courseState
                                                   .courses[index].courseName,
                                               textAlign: TextAlign.center,
+                                              textDirection: TextDirection.rtl,
                                               style: TextStyle(
-                                                color: Colors.black87,
-                                                fontSize: 14.r,
-                                                fontWeight: FontWeight.w600,
-                                              ),
+                                                  fontSize: 18.sp,
+                                                  color: Colors.black,
+                                                  fontFamily: 'Ordibehesht',
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                           ),
                                         ),
@@ -323,33 +400,13 @@ class TeacherClassTileCardWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          GeneralConstants.userType == UserType.admin
-              ? Align(
-                  alignment: Alignment.topRight,
-                  child: InkWell(
-                    onTap: () => FunctionHelper().removeDialog(
-                      'دبیر کلاس',
-                      () => getIt.get<TeacherDetailBloc>().add(
-                            TeacherDetailEvent.removeMediator(
-                                mediator.mediatorId),
-                          ),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 16.0.w, vertical: 8.h),
-                      child: Icon(Icons.close, size: 26.r),
-                    ),
-                  ),
-                )
-              : const SizedBox(),
           Flexible(
             flex: 9,
             child: CircleAvatar(
               backgroundColor: Colors.transparent,
               radius: 64.r,
               child: Image.asset(
-                PngAssets.teacherProfile,
-                color: Colors.black87,
+                PngAssets.teacher,
               ),
             ),
           ),
