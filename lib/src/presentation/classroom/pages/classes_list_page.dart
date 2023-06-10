@@ -36,10 +36,10 @@ class ClassesListPage extends StatelessWidget {
                         items: [
                           DropdownMenuItem(
                             alignment: Alignment.center,
-                            value: 'اضافه کردن',
+                            value: 'افزودن',
                             onTap: () {},
                             child: Text(
-                              'اضافه کردن',
+                              'افزودن',
                               style: TextStyle(
                                   fontSize: 20.sp,
                                   color: Colors.black,

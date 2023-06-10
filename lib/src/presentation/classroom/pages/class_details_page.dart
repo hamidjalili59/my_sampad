@@ -54,11 +54,9 @@ class ClassDetailsPage extends StatelessWidget {
                               } else if (index == 1) {
                                 getIt
                                     .get<AppRouter>()
-                                    .pushNamed('/class_student_page');
+                                    .pushNamed('/mediator_page');
                               } else {
-                                getIt
-                                    .get<AppRouter>()
-                                    .pushNamed('/class_student_page');
+                                getIt.get<AppRouter>().pushNamed('/exam_page');
                               }
                             },
                             child: Container(

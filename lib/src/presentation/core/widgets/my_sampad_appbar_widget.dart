@@ -74,7 +74,7 @@ class AppbarSchoolWidget extends StatelessWidget {
                 )),
                 const Spacer(),
                 SizedBox(
-                  width: 120.w,
+                  width: 100.w,
                   child: isWidget
                       ? widget
                       : IconButton(
