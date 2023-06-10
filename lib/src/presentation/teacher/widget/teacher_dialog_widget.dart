@@ -4,47 +4,40 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
-import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_sampad/src/features/core/models/basic_info_model.dart';
-import 'package:my_sampad/src/features/student/domain/models/student_model/student.dart';
+import 'package:my_sampad/src/features/teacher/domain/models/teacher.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/custom_textfield_widget.dart';
-import 'package:my_sampad/src/presentation/student/bloc/student/student_bloc.dart';
+import 'package:my_sampad/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
 
-// ignore: must_be_immutable
-class AddStudentDialog extends StatelessWidget {
-  final Student? student;
-  final String parentname;
+class TeacherDialogWidget extends StatelessWidget {
+  final Teacher? teacher;
   final bool isEditing;
-  AddStudentDialog({
+  TeacherDialogWidget({
     super.key,
-    this.parentname = '',
-    this.student,
+    this.teacher,
     this.isEditing = false,
   });
 
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();
 
-  final TextEditingController _studentName = TextEditingController(text: '');
-
-  final TextEditingController _parentName = TextEditingController(text: '');
+  final TextEditingController _teacherName = TextEditingController(text: '');
 
   final TextEditingController _phone = TextEditingController(text: '');
 
-  bool sendSms = false;
   @override
   Widget build(BuildContext context) {
-    if (isEditing && student != null) {
-      _studentName.value = TextEditingValue(text: student!.basicInfo!.name);
+    if (isEditing && teacher != null) {
+      _teacherName.value = TextEditingValue(text: teacher!.basicInfo!.name);
       _phone.value =
-          TextEditingValue(text: '0${student!.basicInfo!.phoneNumber.toInt()}');
+          TextEditingValue(text: '0${teacher!.basicInfo!.phoneNumber.toInt()}');
     }
-    return BlocBuilder<StudentBloc, StudentState>(
-      bloc: getIt.get<StudentBloc>(),
+    return BlocBuilder<TeacherBloc, TeacherState>(
+      bloc: getIt.get<TeacherBloc>(),
       builder: (context, state) {
         return SizedBox(
           width: 210.w,
-          height: 275.h,
+          height: 230.h,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -53,7 +46,7 @@ class AddStudentDialog extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(right: 18.w),
                   child: Text(
-                    isEditing ? 'تغییر دانش‌آموز' : 'اضافه کردن دانش‌آموز',
+                    isEditing ? 'تغییر دبیر' : 'اضافه کردن دبیر',
                     textDirection: TextDirection.rtl,
                     style: TextStyle(
                         fontSize: 22.sp,
@@ -72,16 +65,16 @@ class AddStudentDialog extends StatelessWidget {
                       children: [
                         CustomTextField(
                           width: 200.w,
-                          name: 'student_name',
+                          name: 'teacher_name',
                           heghit: 50.h,
                           haveIcon: false,
-                          labelText: 'اسم‌دانش‌آموز',
+                          labelText: 'اسم‌دبیر',
                           labelStyle: TextStyle(
                               fontSize: 18.sp,
                               color: Colors.black45,
                               fontFamily: 'Ordibehesht',
                               fontWeight: FontWeight.bold),
-                          controller: _studentName,
+                          controller: _teacherName,
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.required(
                                 errorText: 'انتخاب اسم اجباری است'),
@@ -99,38 +92,6 @@ class AddStudentDialog extends StatelessWidget {
                           },
                           keyboardType: TextInputType.name,
                         ),
-                        isEditing
-                            ? const SizedBox()
-                            : CustomTextField(
-                                width: 200.w,
-                                name: 'parent_name',
-                                heghit: 50.h,
-                                haveIcon: false,
-                                labelText: 'اسم‌والد',
-                                labelStyle: TextStyle(
-                                    fontSize: 18.sp,
-                                    color: Colors.black45,
-                                    fontFamily: 'Ordibehesht',
-                                    fontWeight: FontWeight.bold),
-                                controller: _parentName,
-                                validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(
-                                      errorText: 'انتخاب اسم اجباری است'),
-                                  FormBuilderValidators.maxLength(
-                                    30,
-                                    errorText: 'کمتر از 30 حرف داشته باشد',
-                                  ),
-                                  FormBuilderValidators.minLength(
-                                    3,
-                                    errorText: 'بیشتر از 3 حرف داشته باشد',
-                                  ),
-                                ]),
-                                onSubmitted: (value) {
-                                  if (_formKey.currentState?.validate() ??
-                                      false) {}
-                                },
-                                keyboardType: TextInputType.name,
-                              ),
                         CustomTextField(
                           width: 200.w,
                           name: 'phone_number',
@@ -161,38 +122,19 @@ class AddStudentDialog extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 200.w,
-                height: 60.h,
-                child: Row(
-                  children: [
-                    Checkbox(
-                        value: sendSms,
-                        onChanged: (value) {
-                          sendSms = value ?? false;
-
-                          getIt
-                              .get<StudentBloc>()
-                              .add(StudentEvent.checkSMSCheckBox(sendSms));
-                        }),
-                    Text(
-                      'ارسال پیامک',
-                      style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Colors.black45,
-                          fontFamily: 'Ordibehesht',
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const Spacer(),
-                    InkWell(
+                  width: 200.w,
+                  height: 60.h,
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: InkWell(
                       onTap: () {
                         if (_formKey.currentState?.validate() ?? false) {
                           if (isEditing) {
-                            getIt.get<StudentBloc>().add(
-                                  StudentEvent.updateStudent(
-                                    student!.copyWith(
-                                      sendSMS: sendSms,
+                            getIt.get<TeacherBloc>().add(
+                                  TeacherEvent.updateTeacher(
+                                    teacher!.copyWith(
                                       basicInfo: BasicInfoModel(
-                                          name: _studentName.text,
+                                          name: _teacherName.text,
                                           phoneNumber:
                                               double.tryParse(_phone.text) ??
                                                   0),
@@ -200,22 +142,19 @@ class AddStudentDialog extends StatelessWidget {
                                   ),
                                 );
                           } else {
-                            getIt.get<StudentBloc>().add(
-                                  StudentEvent.addStudent(
-                                    Student(
+                            getIt.get<TeacherBloc>().add(
+                                  TeacherEvent.addTeacher(
+                                    Teacher(
                                       basicInfo: BasicInfoModel(
-                                          name: _studentName.text,
+                                          name: _teacherName.text,
                                           phoneNumber:
                                               double.tryParse(_phone.text) ??
                                                   0),
-                                      classId: getIt.get<Classroom>().classID,
-                                      sendSMS: sendSms,
                                     ),
-                                    _parentName.text,
                                   ),
                                 );
                           }
-                          _studentName.clear();
+                          _teacherName.clear();
                           Navigator.pop(getIt
                               .get<AppRouter>()
                               .navigatorKey
@@ -240,10 +179,8 @@ class AddStudentDialog extends StatelessWidget {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                    )
-                  ],
-                ),
-              )
+                    ),
+                  ))
             ],
           ),
         );
