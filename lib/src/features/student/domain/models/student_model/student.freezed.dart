@@ -26,8 +26,11 @@ mixin _$Student {
   int get studentId => throw _privateConstructorUsedError; // account password
   @HiveField(1, defaultValue: 0)
   @JsonKey(name: 'class_ID')
-  int get classId => throw _privateConstructorUsedError; // basic Information
-  @HiveField(2)
+  int get classId => throw _privateConstructorUsedError; // account password
+  @HiveField(2, defaultValue: false)
+  @JsonKey(name: 'sendSMS')
+  bool get sendSMS => throw _privateConstructorUsedError; // basic Information
+  @HiveField(3)
   @JsonKey(name: 'basic_Info')
   BasicInfoModel? get basicInfo => throw _privateConstructorUsedError;
 
@@ -48,7 +51,10 @@ abstract class $StudentCopyWith<$Res> {
       @HiveField(1, defaultValue: 0)
       @JsonKey(name: 'class_ID')
           int classId,
-      @HiveField(2)
+      @HiveField(2, defaultValue: false)
+      @JsonKey(name: 'sendSMS')
+          bool sendSMS,
+      @HiveField(3)
       @JsonKey(name: 'basic_Info')
           BasicInfoModel? basicInfo});
 }
@@ -68,6 +74,7 @@ class _$StudentCopyWithImpl<$Res, $Val extends Student>
   $Res call({
     Object? studentId = null,
     Object? classId = null,
+    Object? sendSMS = null,
     Object? basicInfo = freezed,
   }) {
     return _then(_value.copyWith(
@@ -79,6 +86,10 @@ class _$StudentCopyWithImpl<$Res, $Val extends Student>
           ? _value.classId
           : classId // ignore: cast_nullable_to_non_nullable
               as int,
+      sendSMS: null == sendSMS
+          ? _value.sendSMS
+          : sendSMS // ignore: cast_nullable_to_non_nullable
+              as bool,
       basicInfo: freezed == basicInfo
           ? _value.basicInfo
           : basicInfo // ignore: cast_nullable_to_non_nullable
@@ -101,7 +112,10 @@ abstract class _$$_StudentCopyWith<$Res> implements $StudentCopyWith<$Res> {
       @HiveField(1, defaultValue: 0)
       @JsonKey(name: 'class_ID')
           int classId,
-      @HiveField(2)
+      @HiveField(2, defaultValue: false)
+      @JsonKey(name: 'sendSMS')
+          bool sendSMS,
+      @HiveField(3)
       @JsonKey(name: 'basic_Info')
           BasicInfoModel? basicInfo});
 }
@@ -118,6 +132,7 @@ class __$$_StudentCopyWithImpl<$Res>
   $Res call({
     Object? studentId = null,
     Object? classId = null,
+    Object? sendSMS = null,
     Object? basicInfo = freezed,
   }) {
     return _then(_$_Student(
@@ -129,6 +144,10 @@ class __$$_StudentCopyWithImpl<$Res>
           ? _value.classId
           : classId // ignore: cast_nullable_to_non_nullable
               as int,
+      sendSMS: null == sendSMS
+          ? _value.sendSMS
+          : sendSMS // ignore: cast_nullable_to_non_nullable
+              as bool,
       basicInfo: freezed == basicInfo
           ? _value.basicInfo
           : basicInfo // ignore: cast_nullable_to_non_nullable
@@ -148,7 +167,10 @@ class _$_Student implements _Student {
       @HiveField(1, defaultValue: 0)
       @JsonKey(name: 'class_ID')
           this.classId = 0,
-      @HiveField(2)
+      @HiveField(2, defaultValue: false)
+      @JsonKey(name: 'sendSMS')
+          this.sendSMS = false,
+      @HiveField(3)
       @JsonKey(name: 'basic_Info')
           this.basicInfo});
 
@@ -165,15 +187,20 @@ class _$_Student implements _Student {
   @HiveField(1, defaultValue: 0)
   @JsonKey(name: 'class_ID')
   final int classId;
+// account password
+  @override
+  @HiveField(2, defaultValue: false)
+  @JsonKey(name: 'sendSMS')
+  final bool sendSMS;
 // basic Information
   @override
-  @HiveField(2)
+  @HiveField(3)
   @JsonKey(name: 'basic_Info')
   final BasicInfoModel? basicInfo;
 
   @override
   String toString() {
-    return 'Student(studentId: $studentId, classId: $classId, basicInfo: $basicInfo)';
+    return 'Student(studentId: $studentId, classId: $classId, sendSMS: $sendSMS, basicInfo: $basicInfo)';
   }
 
   @override
@@ -184,13 +211,15 @@ class _$_Student implements _Student {
             (identical(other.studentId, studentId) ||
                 other.studentId == studentId) &&
             (identical(other.classId, classId) || other.classId == classId) &&
+            (identical(other.sendSMS, sendSMS) || other.sendSMS == sendSMS) &&
             (identical(other.basicInfo, basicInfo) ||
                 other.basicInfo == basicInfo));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, studentId, classId, basicInfo);
+  int get hashCode =>
+      Object.hash(runtimeType, studentId, classId, sendSMS, basicInfo);
 
   @JsonKey(ignore: true)
   @override
@@ -214,7 +243,10 @@ abstract class _Student implements Student {
       @HiveField(1, defaultValue: 0)
       @JsonKey(name: 'class_ID')
           final int classId,
-      @HiveField(2)
+      @HiveField(2, defaultValue: false)
+      @JsonKey(name: 'sendSMS')
+          final bool sendSMS,
+      @HiveField(3)
       @JsonKey(name: 'basic_Info')
           final BasicInfoModel? basicInfo}) = _$_Student;
 
@@ -228,8 +260,12 @@ abstract class _Student implements Student {
   @HiveField(1, defaultValue: 0)
   @JsonKey(name: 'class_ID')
   int get classId;
+  @override // account password
+  @HiveField(2, defaultValue: false)
+  @JsonKey(name: 'sendSMS')
+  bool get sendSMS;
   @override // basic Information
-  @HiveField(2)
+  @HiveField(3)
   @JsonKey(name: 'basic_Info')
   BasicInfoModel? get basicInfo;
   @override

@@ -96,7 +96,7 @@ class _$AppRouter extends RootStackRouter {
     TeacherClassWidget.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const teacher.TeacherClassWidget(),
+        child: teacher.TeacherClassWidget(),
       );
     },
     ClassDetailsRoute.name: (routeData) {

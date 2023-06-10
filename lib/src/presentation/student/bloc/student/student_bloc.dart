@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -74,7 +73,7 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
             param: tuple.Tuple3<Student, String, bool>(
           event.student,
           event.parentName,
-          state.smsChackBox,
+          event.student.sendSMS,
         ))
         .then(
           (value) => value.fold(
@@ -88,8 +87,6 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
             },
           ),
         );
-
-    getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
   }
 
   FutureOr<void> _onAddStudentParent(
@@ -134,8 +131,6 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
             },
           ),
         );
-
-    getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
   }
 
   FutureOr<void> _onRemoveStudent(
@@ -158,17 +153,15 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
               },
             ),
           );
-
-      getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
     } catch (e) {
       emit(StudentState.idle(isLoading: false, students: state.students));
 
-      getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
+      getIt.get<AppRouter>().pop();
     }
   }
 
   FutureOr<void> _onCheckSMSCheckBox(
       _ChackSMSCheckBox event, Emitter<StudentState> emit) {
-    emit(state.copyWith(smsChackBox: !state.smsChackBox));
+    emit(state.copyWith(smsChackBox: event.status));
   }
 }

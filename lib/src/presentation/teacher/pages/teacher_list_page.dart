@@ -29,10 +29,10 @@ class TeacherListPage extends StatelessWidget {
               ).show(context);
             },
             child: Container(
-              width: 130.w,
+              width: 140.w,
               height: 60.h,
               decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: const Color(0xffe8ffe8),
                   borderRadius: BorderRadius.circular(12.sp),
                   boxShadow: [
                     BoxShadow(
@@ -147,8 +147,9 @@ class TeacherListPage extends StatelessWidget {
                                 Text(
                                   'استاد ${state.teachers[index].basicInfo!.name}',
                                   textDirection: TextDirection.rtl,
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      fontSize: 24.sp,
+                                      fontSize: 22.sp,
                                       color: Colors.black,
                                       fontFamily: 'Ordibehesht',
                                       fontWeight: FontWeight.bold),

@@ -30,9 +30,14 @@ class Student with _$Student {
     @JsonKey(name: 'class_ID')
     @Default(0)
     int classId,
+    // account password
+    @HiveField(2, defaultValue: false)
+    @JsonKey(name: 'sendSMS')
+    @Default(false)
+    bool sendSMS,
 
     // basic Information
-    @HiveField(2) @JsonKey(name: 'basic_Info') BasicInfoModel? basicInfo,
+    @HiveField(3) @JsonKey(name: 'basic_Info') BasicInfoModel? basicInfo,
   }) = _Student;
 
   ///das

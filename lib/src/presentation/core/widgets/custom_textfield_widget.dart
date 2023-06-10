@@ -89,11 +89,15 @@ class CustomTextField extends StatelessWidget {
               )
             : InputDecoration(
                 contentPadding: EdgeInsets.only(bottom: 3.h),
-                floatingLabelAlignment: FloatingLabelAlignment.center,
+                floatingLabelAlignment: FloatingLabelAlignment.start,
                 alignLabelWithHint: true,
-                hintTextDirection: TextDirection.rtl,
-                hintText: labelText,
-                hintStyle: labelStyle,
+                // hintTextDirection: TextDirection.rtl,
+                // hintText: labelText,
+                // hintStyle: labelStyle,
+
+                label: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Text(labelText ?? '', style: labelStyle)),
                 border: InputBorder.none,
                 counterText: '',
                 disabledBorder: haveBorder
