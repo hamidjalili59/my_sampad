@@ -53,97 +53,134 @@ class _SingleStudentRollcallsPageState
                         titleHelper:
                             'هر یک از کاشی های زیر حاوی اطلاعات روز و ساعت کلاس هر غیبت این دانش‌آموز است',
                         pathString:
-                            'شهید بهشتی  --  کلاس‌ها -- ریاضی 2  -- حمید جلیلی نسب -- غیبت‌ها',
+                            'شهید بهشتی  --  کلاس‌ها -- ریاضی 2 -- غیبت‌ها',
                         isWidget: true,
                         widget: null),
                     SizedBox(
                       height: 0.69.sh,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        padding: EdgeInsets.only(top: 10.h),
-                        itemCount: rollcallState.rollcalls.length,
-                        itemBuilder: (context, index) {
-                          String tarikh = intl.DateFormat('MM/dd/yyyy HH:mm:ss')
-                              .parse(rollcallState
-                                  .rollcalls[(index + 1) ~/ 2].date)
-                              .toFancyString();
-
-                          String zang =
-                              ' زنگ ${rollcallState.rollcalls.map((e) => e.classTime).toList()[(index) ~/ 2] == 1 ? 'اول' : rollcallState.rollcalls.map((e) => e.classTime).toList()[(index) ~/ 2] == 2 ? 'دوم' : rollcallState.rollcalls.map((e) => e.classTime).toList()[(index) ~/ 2] == 3 ? 'سوم' : rollcallState.rollcalls.map((e) => e.classTime).toList()[(index) ~/ 2] == 4 ? 'چهارم' : rollcallState.rollcalls.map((e) => e.classTime).toList()[(index) ~/ 2]}';
-                          //
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12.sp),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: const Color.fromARGB(
-                                            70, 55, 55, 55),
-                                        spreadRadius: 0,
-                                        blurRadius: 4.sp,
-                                        offset: const Offset(1, 1))
-                                  ]),
-                              width: 341.w,
-                              height: 100.h,
-                              child: Stack(
-                                children: [
-                                  Positioned(
-                                      right: 0,
-                                      child: Container(
-                                        width: 200.w,
-                                        height: 35.h,
-                                        decoration: BoxDecoration(
-                                            color: Colors.redAccent,
-                                            borderRadius: BorderRadius.only(
-                                                topRight:
-                                                    Radius.circular(12.sp))),
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          'غیبت غیر موجه',
-                                          style: TextStyle(
-                                              fontSize: 18.sp,
-                                              color: Colors.white,
-                                              fontFamily: 'Ordibehesht',
-                                              fontWeight: FontWeight.bold),
+                      child: rollcallState.rollcalls.isEmpty
+                          ? SizedBox(
+                              width: 1.sw,
+                              height: 0.65.sh,
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      width: 0.95.sw,
+                                      height: 0.5.sh,
+                                      child: Padding(
+                                        padding: EdgeInsets.all(54.0.r),
+                                        child: SvgPicture.asset(
+                                          SvgAssets.empty,
                                         ),
-                                      )),
-                                  Positioned(
-                                      bottom: 10.h,
-                                      left: 20.w,
-                                      right: 20.w,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Expanded(
-                                            flex: 5,
-                                            child: Text(
-                                              tarikh + zang,
-                                              style: TextStyle(
-                                                  fontSize: 20.sp,
-                                                  color: Colors.black,
-                                                  fontFamily: 'Ordibehesht',
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 2,
-                                            child: SizedBox(
-                                                width: 60.w,
-                                                height: 60.w,
-                                                child: SvgPicture.asset(
-                                                    SvgAssets.absent)),
-                                          ),
-                                        ],
-                                      )),
-                                ],
+                                      ),
+                                    ),
+                                    Text(
+                                      'اطلاعاتی وجود ندارد',
+                                      textDirection: TextDirection.rtl,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 18.r),
+                                    )
+                                  ],
+                                ),
                               ),
+                            )
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              padding: EdgeInsets.only(top: 10.h),
+                              itemCount: rollcallState.rollcalls.length,
+                              itemBuilder: (context, index) {
+                                String tarikh =
+                                    intl.DateFormat('MM/dd/yyyy HH:mm:ss')
+                                        .parse(rollcallState
+                                            .rollcalls[(index + 1) ~/ 2].date)
+                                        .toFancyString();
+
+                                String zang =
+                                    ' زنگ ${rollcallState.rollcalls.map((e) => e.classTime).toList()[(index) ~/ 2] == 1 ? 'اول' : rollcallState.rollcalls.map((e) => e.classTime).toList()[(index) ~/ 2] == 2 ? 'دوم' : rollcallState.rollcalls.map((e) => e.classTime).toList()[(index) ~/ 2] == 3 ? 'سوم' : rollcallState.rollcalls.map((e) => e.classTime).toList()[(index) ~/ 2] == 4 ? 'چهارم' : rollcallState.rollcalls.map((e) => e.classTime).toList()[(index) ~/ 2]}';
+                                //
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(12.sp),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: const Color.fromARGB(
+                                                  70, 55, 55, 55),
+                                              spreadRadius: 0,
+                                              blurRadius: 4.sp,
+                                              offset: const Offset(1, 1))
+                                        ]),
+                                    width: 341.w,
+                                    height: 100.h,
+                                    child: Stack(
+                                      children: [
+                                        Positioned(
+                                            right: 0,
+                                            child: Container(
+                                              width: 200.w,
+                                              height: 35.h,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.redAccent,
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  12.sp))),
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                'غیبت غیر موجه',
+                                                style: TextStyle(
+                                                    fontSize: 18.sp,
+                                                    color: Colors.white,
+                                                    fontFamily: 'Ordibehesht',
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            )),
+                                        Positioned(
+                                            bottom: 10.h,
+                                            left: 20.w,
+                                            right: 20.w,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Expanded(
+                                                  flex: 5,
+                                                  child: Text(
+                                                    tarikh + zang,
+                                                    style: TextStyle(
+                                                        fontSize: 20.sp,
+                                                        color: Colors.black,
+                                                        fontFamily:
+                                                            'Ordibehesht',
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 2,
+                                                  child: SizedBox(
+                                                      width: 60.w,
+                                                      height: 60.w,
+                                                      child: SvgPicture.asset(
+                                                          SvgAssets.absent)),
+                                                ),
+                                              ],
+                                            )),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
-                          );
-                        },
-                      ),
                     ),
                   ],
                 ),

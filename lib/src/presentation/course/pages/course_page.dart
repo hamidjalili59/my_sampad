@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:my_sampad/src/config/constants/general_constants.dart';
+import 'package:my_sampad/src/config/constants/svg_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/config/utils/function_helper.dart';
 import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
@@ -83,7 +84,7 @@ class CoursePage extends StatelessWidget {
                           child: Padding(
                             padding: EdgeInsets.all(54.0.r),
                             child: SvgPicture.asset(
-                              'assets/empty.svg',
+                              SvgAssets.empty,
                             ),
                           ),
                         ),
@@ -92,7 +93,9 @@ class CoursePage extends StatelessWidget {
                           textDirection: TextDirection.rtl,
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontWeight: FontWeight.w800, fontSize: 18.r),
+                              fontWeight: FontWeight.w800,
+                              fontFamily: 'Ordibehesht',
+                              fontSize: 22.r),
                         )
                       ],
                     ),

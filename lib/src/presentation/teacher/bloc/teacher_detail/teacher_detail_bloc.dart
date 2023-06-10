@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/config/utils/function_helper.dart';
 import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_sampad/src/features/course/domain/models/course_model/course.dart';
@@ -107,8 +106,6 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
             },
           ),
         );
-
-    getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
   }
 
   FutureOr<void> _onGetMediators(
@@ -156,25 +153,9 @@ class TeacherDetailBloc extends Bloc<TeacherDetailEvent, TeacherDetailState> {
               },
             ),
           );
-
-      getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
     } catch (e) {
       emit(TeacherDetailState.idle(
           isLoading: false, mediators: state.mediators));
-
-      getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
     }
   }
-
-  // FutureOr<void> _onGetTeacherClassFromSchool(_GetTeacherClassFromSchool event,
-  //     Emitter<TeacherDetailState> emit) async {
-  //   await _getTeacherClassroomUseCase
-  //       .call(
-  //         param: tuple.Tuple2(
-  //           getIt.get<TeacherGetSchools>().schoolId,
-  //           getIt.get<TeacherGetSchools>().teacherId,
-  //         ),
-  //       )
-  //       .then((value) => null);
-  // }
 }

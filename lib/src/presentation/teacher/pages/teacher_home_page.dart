@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_sampad/src/config/constants/general_constants.dart';
+import 'package:my_sampad/src/config/constants/svg_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/classroom/bloc/teacher_classroom/teacher_classroom_bloc.dart';
@@ -56,7 +57,7 @@ class TeacherHomePage extends StatelessWidget {
                             child: Padding(
                               padding: EdgeInsets.all(54.0.r),
                               child: SvgPicture.asset(
-                                'assets/empty.svg',
+                                SvgAssets.empty,
                               ),
                             ),
                           ),
@@ -65,7 +66,9 @@ class TeacherHomePage extends StatelessWidget {
                             textDirection: TextDirection.rtl,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontWeight: FontWeight.w800, fontSize: 18.r),
+                                fontWeight: FontWeight.w800,
+                                fontFamily: 'Ordibehesht',
+                                fontSize: 22.r),
                           )
                         ],
                       ),

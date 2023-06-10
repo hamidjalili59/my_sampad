@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_sampad/src/config/constants/general_constants.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
+import 'package:my_sampad/src/config/constants/svg_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_sampad/src/features/mediator_tc/domain/models/mediator.dart';
@@ -14,8 +15,15 @@ import 'package:my_sampad/src/presentation/teacher/bloc/teacher/teacher_bloc.dar
 import 'package:my_sampad/src/presentation/teacher/bloc/teacher_detail/teacher_detail_bloc.dart';
 import 'package:ndialog/ndialog.dart';
 
-class TeacherClassWidget extends StatelessWidget {
+class TeacherClassWidget extends StatefulWidget {
   const TeacherClassWidget({super.key});
+
+  @override
+  State<TeacherClassWidget> createState() => _TeacherClassWidgetState();
+}
+
+class _TeacherClassWidgetState extends State<TeacherClassWidget> {
+  bool deleteMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +75,7 @@ class TeacherClassWidget extends StatelessWidget {
                                           const TeacherDetailEvent
                                               .acceptTeacher(),
                                         );
+                                    getIt.get<AppRouter>().pop();
                                   },
                             color: const Color(0xffe8ffe8),
                             child: teacherState.isLoading
@@ -127,26 +136,28 @@ class TeacherClassWidget extends StatelessWidget {
                         DropdownMenuItem(
                           alignment: Alignment.center,
                           value: 'حذف',
-                          onTap: () {},
+                          onTap: () {
+                            getIt.get<AppRouter>().pop();
+                            setState(() {
+                              deleteMode = true;
+                            });
+
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                backgroundColor: const Color(0xffe8ffe8),
+                                content: Text(
+                                  'دبیر مورد نظر را برای حذف انتخاب کنید',
+                                  textDirection: TextDirection.rtl,
+                                  style: TextStyle(
+                                      fontSize: 18.sp,
+                                      color: Colors.black,
+                                      fontFamily: 'Ordibehesht',
+                                      fontWeight: FontWeight.bold),
+                                )));
+                          },
                           child: Text(
                             'حذف',
-                            textDirection: TextDirection.rtl,
                             style: TextStyle(
-                                fontSize: 24.sp,
-                                color: Colors.black,
-                                fontFamily: 'Ordibehesht',
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        DropdownMenuItem(
-                          alignment: Alignment.center,
-                          value: 'تغییر',
-                          onTap: () {},
-                          child: Text(
-                            'تغییر',
-                            textDirection: TextDirection.rtl,
-                            style: TextStyle(
-                                fontSize: 24.sp,
+                                fontSize: 20.sp,
                                 color: Colors.black,
                                 fontFamily: 'Ordibehesht',
                                 fontWeight: FontWeight.bold),
@@ -189,8 +200,111 @@ class TeacherClassWidget extends StatelessWidget {
                           padding: EdgeInsets.only(
                               top: 16.h, right: 12.w, left: 12.w),
                           itemBuilder: (context, index) {
-                            return TeacherClassTileCardWidget(
-                              mediator: mediatorState.mediators[index],
+                            return InkWell(
+                              onTap: deleteMode
+                                  ? () async {
+                                      setState(() {
+                                        deleteMode = false;
+                                      });
+                                      await NDialog(
+                                        dialogStyle: DialogStyle(
+                                          contentPadding: EdgeInsets.zero,
+                                        ),
+                                        title: SizedBox(
+                                          height: 50.h,
+                                          child: Text(
+                                            'آیا از حذف ${mediatorState.mediators[index].basicInfo!.name} اطمینان دارید',
+                                            textAlign: TextAlign.center,
+                                            textDirection: TextDirection.rtl,
+                                            style: TextStyle(
+                                                fontSize: 20.sp,
+                                                color: Colors.black,
+                                                fontFamily: 'Ordibehesht',
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        content: SizedBox(
+                                          width: 120.w,
+                                          height: 50.h,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              InkWell(
+                                                onTap: () {
+                                                  getIt.get<AppRouter>().pop();
+                                                },
+                                                child: Container(
+                                                  width: 120.w,
+                                                  height: 45.h,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.sp),
+                                                  ),
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    'خیر',
+                                                    textDirection:
+                                                        TextDirection.rtl,
+                                                    style: TextStyle(
+                                                        fontSize: 20.sp,
+                                                        color: Colors.black,
+                                                        fontFamily:
+                                                            'Ordibehesht',
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  getIt
+                                                      .get<TeacherDetailBloc>()
+                                                      .add(
+                                                        TeacherDetailEvent
+                                                            .removeMediator(
+                                                          mediatorState
+                                                              .mediators[index]
+                                                              .mediatorId,
+                                                        ),
+                                                      );
+                                                  getIt.get<AppRouter>().pop();
+                                                },
+                                                child: Container(
+                                                  width: 120.w,
+                                                  height: 45.h,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.sp),
+                                                  ),
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    'بله',
+                                                    textDirection:
+                                                        TextDirection.rtl,
+                                                    style: TextStyle(
+                                                        fontSize: 20.sp,
+                                                        color: Colors.black,
+                                                        fontFamily:
+                                                            'Ordibehesht',
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ).show(context);
+                                    }
+                                  : () {},
+                              child: TeacherClassTileCardWidget(
+                                mediator: mediatorState.mediators[index],
+                              ),
                             );
                           },
                         ),
@@ -208,17 +322,18 @@ class TeacherClassWidget extends StatelessWidget {
                                 child: Padding(
                                   padding: EdgeInsets.all(54.0.r),
                                   child: SvgPicture.asset(
-                                    'assets/empty.svg',
+                                    SvgAssets.empty,
                                   ),
                                 ),
                               ),
                               Text(
-                                'دبیری برای این کلاس وجود ندارد\nبرای اضافه کردن بر روی + بزنید',
+                                'دبیری برای این کلاس وجود ندارد',
                                 textDirection: TextDirection.rtl,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w800,
-                                    fontSize: 18.r),
+                                    fontFamily: 'Ordibehesht',
+                                    fontSize: 22.r),
                               )
                             ],
                           ),
