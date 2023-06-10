@@ -71,6 +71,7 @@ class AddStudentDialog extends StatelessWidget {
                     child: Column(
                       children: [
                         CustomTextField(
+                          islabel: true,
                           width: 200.w,
                           name: 'student_name',
                           heghit: 50.h,
@@ -102,6 +103,7 @@ class AddStudentDialog extends StatelessWidget {
                         isEditing
                             ? const SizedBox()
                             : CustomTextField(
+                                islabel: true,
                                 width: 200.w,
                                 name: 'parent_name',
                                 heghit: 50.h,
@@ -132,6 +134,7 @@ class AddStudentDialog extends StatelessWidget {
                                 keyboardType: TextInputType.name,
                               ),
                         CustomTextField(
+                          islabel: true,
                           width: 200.w,
                           name: 'phone_number',
                           heghit: 50.h,

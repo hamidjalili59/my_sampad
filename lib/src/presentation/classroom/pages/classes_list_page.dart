@@ -481,6 +481,7 @@ class ClassroomDialogWidget extends StatelessWidget {
                 FormBuilder(
                   key: _formKey,
                   child: CustomTextField(
+                    islabel: true,
                     width: 130.w,
                     name: 'class',
                     heghit: 40.h,

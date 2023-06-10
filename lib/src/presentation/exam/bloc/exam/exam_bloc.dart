@@ -14,6 +14,7 @@ import 'package:my_sampad/src/features/exam/domain/models/exam_model.dart';
 import 'package:my_sampad/src/features/exam/domain/use_cases/add_exam_use_case.dart';
 import 'package:my_sampad/src/features/exam/domain/use_cases/get_exams_use_case.dart';
 import 'package:my_sampad/src/features/exam/domain/use_cases/remove_exam_use_case.dart';
+import 'package:my_sampad/src/features/exam/domain/use_cases/update_exam_use_case.dart';
 import 'package:my_sampad/src/features/teacher/domain/models/teacher_get_schools.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
@@ -26,13 +27,15 @@ part 'exam_bloc.freezed.dart';
 class ExamBloc extends Bloc<ExamEvent, ExamState> {
   final GetExamsUseCase _getExamsUseCase;
   final AddExamUseCase _addExamsUseCase;
+  final UpdateExamUseCase _updateExamsUseCase;
   final RemoveExamUseCase _removeExamsUseCase;
-  ExamBloc(
-      this._getExamsUseCase, this._addExamsUseCase, this._removeExamsUseCase)
+  ExamBloc(this._getExamsUseCase, this._addExamsUseCase,
+      this._removeExamsUseCase, this._updateExamsUseCase)
       : super(const ExamState.idle(isLoading: true)) {
     on<_GetExams>(_onGetExams);
     on<_RemoveExam>(_onRemoveExam);
-    on<_AcceptExams>(_onAcceptExams);
+    on<_AcceptExam>(_onAcceptExam);
+    on<_UpdateExam>(_onUpdateExam);
   }
 
   FutureOr<void> _onGetExams(_GetExams event, Emitter<ExamState> emit) async {
@@ -53,8 +56,8 @@ class ExamBloc extends Bloc<ExamEvent, ExamState> {
         );
   }
 
-  FutureOr<void> _onAcceptExams(
-      _AcceptExams event, Emitter<ExamState> emit) async {
+  FutureOr<void> _onAcceptExam(
+      _AcceptExam event, Emitter<ExamState> emit) async {
     emit(state.copyWith(isLoading: true));
     await _addExamsUseCase.call(param: tuple.Tuple1(event.exam)).then(
           (value) => value.fold(
@@ -83,7 +86,6 @@ class ExamBloc extends Bloc<ExamEvent, ExamState> {
             (r) {
               List<Exam> tempList = state.exams.toList();
               tempList.add(r.exam);
-              getIt.get<AppRouter>().pop();
               emit(state.copyWith(isLoading: false, exams: tempList));
             },
           ),
@@ -97,22 +99,59 @@ class ExamBloc extends Bloc<ExamEvent, ExamState> {
       await _removeExamsUseCase
           .call(param: tuple.Tuple1<int>(event.examId))
           .then(
-            (value) => value.fold(
-              (l) => emit(ExamState.idle(isLoading: false, exams: state.exams)),
-              (r) {
-                List<Exam> tempList = state.exams.toList();
-                tempList.removeAt(tempList
-                    .map((e) => e.examId)
-                    .toList()
-                    .indexOf(event.examId));
-                emit(ExamState.idle(isLoading: false, exams: tempList));
-              },
-            ),
+        (value) {
+          return value.fold(
+            (l) => emit(ExamState.idle(isLoading: false, exams: state.exams)),
+            (r) {
+              List<Exam> tempList = state.exams.toList();
+              tempList.removeAt(tempList
+                  .indexWhere((element) => element.examId == r.exam.examId));
+              emit(state.copyWith(isLoading: true, exams: tempList));
+              emit(state.copyWith(isLoading: false, exams: tempList));
+            },
           );
-      getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
+        },
+      );
     } catch (e) {
       emit(ExamState.idle(isLoading: false, exams: state.exams));
-      getIt.get<AppRouter>().popUntilRouteWithName('ClassDetailsRoute');
     }
+  }
+
+  FutureOr<void> _onUpdateExam(
+      _UpdateExam event, Emitter<ExamState> emit) async {
+    emit(state.copyWith(isLoading: true));
+    await _updateExamsUseCase.call(param: tuple.Tuple1(event.exam)).then(
+          (value) => value.fold(
+            (l) {
+              emit(state.copyWith(isLoading: false));
+              ScaffoldMessenger.of(
+                      getIt.get<AppRouter>().navigatorKey.currentContext!)
+                  .showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(
+                    'عملیات با شکست مواجه شد',
+                    textDirection: TextDirection.rtl,
+                    style: Theme.of(
+                            getIt.get<AppRouter>().navigatorKey.currentContext!)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(
+                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w800),
+                  ),
+                ),
+              );
+            },
+            (r) {
+              List<Exam> tempList = state.exams.toList();
+
+              tempList[tempList.indexWhere(
+                  (element) => element.examId == r.exam.examId)] = r.exam;
+              emit(state.copyWith(isLoading: false, exams: tempList));
+            },
+          ),
+        );
   }
 }

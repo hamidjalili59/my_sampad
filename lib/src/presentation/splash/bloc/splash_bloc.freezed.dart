@@ -18,18 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SplashEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() getAccountData,
     required TResult Function(OtpHandshakeResponse token) getClientData,
     required TResult Function() tokenIsExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getAccountData,
     TResult? Function(OtpHandshakeResponse token)? getClientData,
     TResult? Function()? tokenIsExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getAccountData,
     TResult Function(OtpHandshakeResponse token)? getClientData,
     TResult Function()? tokenIsExist,
     required TResult orElse(),
@@ -37,18 +40,21 @@ mixin _$SplashEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_GetAccountData value) getAccountData,
     required TResult Function(_GetClientData value) getClientData,
     required TResult Function(_TokenIsExist value) tokenIsExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAccountData value)? getAccountData,
     TResult? Function(_GetClientData value)? getClientData,
     TResult? Function(_TokenIsExist value)? tokenIsExist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAccountData value)? getAccountData,
     TResult Function(_GetClientData value)? getClientData,
     TResult Function(_TokenIsExist value)? tokenIsExist,
     required TResult orElse(),
@@ -72,6 +78,114 @@ class _$SplashEventCopyWithImpl<$Res, $Val extends SplashEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_GetAccountDataCopyWith<$Res> {
+  factory _$$_GetAccountDataCopyWith(
+          _$_GetAccountData value, $Res Function(_$_GetAccountData) then) =
+      __$$_GetAccountDataCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_GetAccountDataCopyWithImpl<$Res>
+    extends _$SplashEventCopyWithImpl<$Res, _$_GetAccountData>
+    implements _$$_GetAccountDataCopyWith<$Res> {
+  __$$_GetAccountDataCopyWithImpl(
+      _$_GetAccountData _value, $Res Function(_$_GetAccountData) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_GetAccountData implements _GetAccountData {
+  const _$_GetAccountData();
+
+  @override
+  String toString() {
+    return 'SplashEvent.getAccountData()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_GetAccountData);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getAccountData,
+    required TResult Function(OtpHandshakeResponse token) getClientData,
+    required TResult Function() tokenIsExist,
+  }) {
+    return getAccountData();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getAccountData,
+    TResult? Function(OtpHandshakeResponse token)? getClientData,
+    TResult? Function()? tokenIsExist,
+  }) {
+    return getAccountData?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getAccountData,
+    TResult Function(OtpHandshakeResponse token)? getClientData,
+    TResult Function()? tokenIsExist,
+    required TResult orElse(),
+  }) {
+    if (getAccountData != null) {
+      return getAccountData();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetAccountData value) getAccountData,
+    required TResult Function(_GetClientData value) getClientData,
+    required TResult Function(_TokenIsExist value) tokenIsExist,
+  }) {
+    return getAccountData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAccountData value)? getAccountData,
+    TResult? Function(_GetClientData value)? getClientData,
+    TResult? Function(_TokenIsExist value)? tokenIsExist,
+  }) {
+    return getAccountData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAccountData value)? getAccountData,
+    TResult Function(_GetClientData value)? getClientData,
+    TResult Function(_TokenIsExist value)? tokenIsExist,
+    required TResult orElse(),
+  }) {
+    if (getAccountData != null) {
+      return getAccountData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetAccountData implements SplashEvent {
+  const factory _GetAccountData() = _$_GetAccountData;
 }
 
 /// @nodoc
@@ -138,6 +252,7 @@ class _$_GetClientData implements _GetClientData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() getAccountData,
     required TResult Function(OtpHandshakeResponse token) getClientData,
     required TResult Function() tokenIsExist,
   }) {
@@ -147,6 +262,7 @@ class _$_GetClientData implements _GetClientData {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getAccountData,
     TResult? Function(OtpHandshakeResponse token)? getClientData,
     TResult? Function()? tokenIsExist,
   }) {
@@ -156,6 +272,7 @@ class _$_GetClientData implements _GetClientData {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getAccountData,
     TResult Function(OtpHandshakeResponse token)? getClientData,
     TResult Function()? tokenIsExist,
     required TResult orElse(),
@@ -169,6 +286,7 @@ class _$_GetClientData implements _GetClientData {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_GetAccountData value) getAccountData,
     required TResult Function(_GetClientData value) getClientData,
     required TResult Function(_TokenIsExist value) tokenIsExist,
   }) {
@@ -178,6 +296,7 @@ class _$_GetClientData implements _GetClientData {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAccountData value)? getAccountData,
     TResult? Function(_GetClientData value)? getClientData,
     TResult? Function(_TokenIsExist value)? tokenIsExist,
   }) {
@@ -187,6 +306,7 @@ class _$_GetClientData implements _GetClientData {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAccountData value)? getAccountData,
     TResult Function(_GetClientData value)? getClientData,
     TResult Function(_TokenIsExist value)? tokenIsExist,
     required TResult orElse(),
@@ -246,6 +366,7 @@ class _$_TokenIsExist implements _TokenIsExist {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() getAccountData,
     required TResult Function(OtpHandshakeResponse token) getClientData,
     required TResult Function() tokenIsExist,
   }) {
@@ -255,6 +376,7 @@ class _$_TokenIsExist implements _TokenIsExist {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? getAccountData,
     TResult? Function(OtpHandshakeResponse token)? getClientData,
     TResult? Function()? tokenIsExist,
   }) {
@@ -264,6 +386,7 @@ class _$_TokenIsExist implements _TokenIsExist {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getAccountData,
     TResult Function(OtpHandshakeResponse token)? getClientData,
     TResult Function()? tokenIsExist,
     required TResult orElse(),
@@ -277,6 +400,7 @@ class _$_TokenIsExist implements _TokenIsExist {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_GetAccountData value) getAccountData,
     required TResult Function(_GetClientData value) getClientData,
     required TResult Function(_TokenIsExist value) tokenIsExist,
   }) {
@@ -286,6 +410,7 @@ class _$_TokenIsExist implements _TokenIsExist {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAccountData value)? getAccountData,
     TResult? Function(_GetClientData value)? getClientData,
     TResult? Function(_TokenIsExist value)? tokenIsExist,
   }) {
@@ -295,6 +420,7 @@ class _$_TokenIsExist implements _TokenIsExist {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAccountData value)? getAccountData,
     TResult Function(_GetClientData value)? getClientData,
     TResult Function(_TokenIsExist value)? tokenIsExist,
     required TResult orElse(),

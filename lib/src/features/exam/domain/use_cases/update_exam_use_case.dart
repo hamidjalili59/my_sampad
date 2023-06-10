@@ -5,21 +5,18 @@ import 'package:my_sampad/src/features/exam/domain/failure/exam_failure.dart';
 import 'package:my_sampad/src/features/exam/domain/models/exam_success_response.dart';
 import 'package:my_sampad/src/features/exam/domain/repositories/exam_repository.dart';
 
+import '../models/exam_model.dart';
+
 class UpdateExamUseCase
-    implements
-        UseCase<ExamFailure, ExamSuccessResponse,
-            tuple.Tuple3<String, int, bool>> {
+    implements UseCase<ExamFailure, ExamSuccessResponse, tuple.Tuple1<Exam>> {
   const UpdateExamUseCase(this.repo);
 
   final ExamRepository repo;
 
   @override
   Future<Either<ExamFailure, ExamSuccessResponse>> call(
-          {tuple.Tuple3<String, int, bool>? param}) =>
+          {tuple.Tuple1<Exam>? param}) =>
       (param == null)
           ? Future.value(left(const ExamFailure.nullParam()))
-          : repo.updateExam(
-              examDescription: param.value1,
-              examId: param.value2,
-              isDone: param.value3);
+          : repo.updateExam(exam: param.value1);
 }

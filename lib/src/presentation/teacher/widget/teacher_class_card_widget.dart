@@ -15,14 +15,14 @@ import 'package:my_sampad/src/presentation/teacher/bloc/teacher/teacher_bloc.dar
 import 'package:my_sampad/src/presentation/teacher/bloc/teacher_detail/teacher_detail_bloc.dart';
 import 'package:ndialog/ndialog.dart';
 
-class TeacherClassWidget extends StatefulWidget {
-  const TeacherClassWidget({super.key});
+class TeacherClassListWidget extends StatefulWidget {
+  const TeacherClassListWidget({super.key});
 
   @override
-  State<TeacherClassWidget> createState() => _TeacherClassWidgetState();
+  State<TeacherClassListWidget> createState() => _TeacherClassListWidgetState();
 }
 
-class _TeacherClassWidgetState extends State<TeacherClassWidget> {
+class _TeacherClassListWidgetState extends State<TeacherClassListWidget> {
   bool deleteMode = false;
 
   @override

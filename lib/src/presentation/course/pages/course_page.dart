@@ -152,6 +152,7 @@ class CoursePage extends StatelessWidget {
               children: [
                 SizedBox(height: 10.h),
                 CustomTextField(
+                  islabel: true,
                   name: 'course_name',
                   keyboardType: TextInputType.name,
                   labelText: 'نام درس',

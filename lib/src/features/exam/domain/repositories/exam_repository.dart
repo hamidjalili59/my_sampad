@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:my_sampad/src/features/exam/domain/failure/exam_failure.dart';
 import 'package:my_sampad/src/features/exam/domain/models/exam_get_response.dart';
 import 'package:my_sampad/src/features/exam/domain/models/exam_model.dart';
+import 'package:my_sampad/src/features/exam/domain/models/exam_remove_response.dart';
 import 'package:my_sampad/src/features/exam/domain/models/exam_success_response.dart';
 
 abstract class ExamRepository {
@@ -10,12 +11,10 @@ abstract class ExamRepository {
       {required Exam exam});
   //
   Future<Either<ExamFailure, ExamSuccessResponse>> updateExam({
-    required int examId,
-    required String examDescription,
-    required bool isDone,
+    required Exam exam,
   });
   //
-  Future<Either<ExamFailure, ExamSuccessResponse>> removeExam({
+  Future<Either<ExamFailure, ExamRemoveResponse>> removeExam({
     required int examId,
   });
   //

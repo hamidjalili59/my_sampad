@@ -3,6 +3,7 @@ import 'package:my_sampad/src/features/exam/data/data_sources/local/exam_local_d
 import 'package:my_sampad/src/features/exam/data/data_sources/remote/exam_remote_data_source.dart';
 import 'package:my_sampad/src/features/exam/domain/failure/exam_failure.dart';
 import 'package:my_sampad/src/features/exam/domain/models/exam_model.dart';
+import 'package:my_sampad/src/features/exam/domain/models/exam_remove_response.dart';
 import 'package:my_sampad/src/features/exam/domain/models/exam_success_response.dart';
 import 'package:my_sampad/src/features/exam/domain/repositories/exam_repository.dart';
 import 'package:my_sampad/src/features/core/models/base_response.dart';
@@ -86,23 +87,23 @@ class ExamRepositoryImpl extends ExamRepository {
   }
 
   @override
-  Future<Either<ExamFailure, ExamSuccessResponse>> removeExam(
+  Future<Either<ExamFailure, ExamRemoveResponse>> removeExam(
       {required int examId}) {
     return _remoteDS.removeExam(examId: examId).then(
           (value) => value.fold(
-            (l) => left<ExamFailure, ExamSuccessResponse>(
+            (l) => left<ExamFailure, ExamRemoveResponse>(
               ExamFailure.api(l),
             ),
             (r) async {
               try {
-                final removeExamFromServer = ExamSuccessResponse.fromJson(
+                final removeExamFromServer = ExamRemoveResponse.fromJson(
                   BaseResponse.fromJson(r.data ?? {}).payload,
                 );
-                return right<ExamFailure, ExamSuccessResponse>(
+                return right<ExamFailure, ExamRemoveResponse>(
                   removeExamFromServer,
                 );
               } catch (e) {
-                return left<ExamFailure, ExamSuccessResponse>(
+                return left<ExamFailure, ExamRemoveResponse>(
                     const ExamFailure.nullParam());
               }
             },
@@ -112,13 +113,8 @@ class ExamRepositoryImpl extends ExamRepository {
 
   @override
   Future<Either<ExamFailure, ExamSuccessResponse>> updateExam(
-      {required String examDescription,
-      required int examId,
-      required bool isDone}) {
-    return _remoteDS
-        .updateExam(
-            examId: examId, examDescription: examDescription, isDone: isDone)
-        .then(
+      {required Exam exam}) {
+    return _remoteDS.updateExam(exam: exam).then(
           (value) => value.fold(
             (l) => left<ExamFailure, ExamSuccessResponse>(
               ExamFailure.api(l),
