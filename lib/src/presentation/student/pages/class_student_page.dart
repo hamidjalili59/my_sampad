@@ -299,6 +299,8 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                                   child: Text(
                                                     'آیا از حذف ${state.students[index].basicInfo!.name} اطمینان دارید',
                                                     textAlign: TextAlign.center,
+                                                    textDirection:
+                                                        TextDirection.rtl,
                                                     style: TextStyle(
                                                         fontSize: 20.sp,
                                                         color: Colors.black,
@@ -456,72 +458,6 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class TeacherStudentPageFloatingWidget extends StatelessWidget {
-  const TeacherStudentPageFloatingWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: const [
-          BoxShadow(color: Colors.black12, blurRadius: 1, spreadRadius: 1),
-        ],
-      ),
-      width: 180.w,
-      height: 50.h,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 1,
-            child: InkWell(
-              onTap: () {
-                getIt.get<AppRouter>().pushNamed('/class_rollcalls_page');
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    color: GeneralConstants.mainColor,
-                    borderRadius: BorderRadius.circular(16.r)),
-                alignment: Alignment.center,
-                child: Text(
-                  'حضورغیاب',
-                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                      color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: InkWell(
-              onTap: () {
-                getIt.get<AppRouter>().pushNamed('/add_score_for_class_page');
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16.r)),
-                alignment: Alignment.center,
-                child: Text(
-                  'ثبت نمرات',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

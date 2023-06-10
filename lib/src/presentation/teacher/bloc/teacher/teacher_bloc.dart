@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/config/utils/function_helper.dart';
 import 'package:my_sampad/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_sampad/src/features/core/models/tuple.dart' as tuple;
@@ -78,7 +77,6 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
             },
           ),
         );
-    getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
   }
 
   FutureOr<void> _onUpdateTeacher(
@@ -106,7 +104,6 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
             },
           ),
         );
-    getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
   }
 
   FutureOr<void> _onRemoveTeacher(
@@ -129,10 +126,8 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
               },
             ),
           );
-      getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
     } catch (e) {
       emit(TeacherState.idle(isLoading: false, teachers: state.teachers));
-      getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
     }
   }
 }

@@ -42,61 +42,6 @@ class StudentDetailsPage extends StatelessWidget {
         ),
       ),
     ));
-    // bloc.add(const HomeEvent.changePages(AppbarPageType.score));
-    // return SafeArea(
-    //   child: Scaffold(
-    //     backgroundColor: GeneralConstants.backgroundColor,
-    //     body: BlocProvider(
-    //       create: (_) => bloc,
-    //       child: BlocBuilder<HomeBloc, HomeState>(
-    //         builder: (context, state) {
-    //           return Column(
-    //             children: [
-    //               Expanded(
-    //                   flex: 3,
-    //                   child: HomeCustomAppBar(
-    //                     bloc: bloc,
-    //                     title: getIt.get<Student>().basicInfo!.name,
-    //                     buttonsList:
-    //                         GeneralConstants.userType == UserType.parent
-    //                             ? const [
-    //                                 AppbarPageType.score,
-    //                                 AppbarPageType.rollcall,
-    //                                 AppbarPageType.exams,
-    //                               ]
-    //                             : const [
-    //                                 AppbarPageType.score,
-    //                                 AppbarPageType.rollcall,
-    //                               ],
-    //                   )),
-    //               Expanded(
-    //                 flex: 12,
-    //                 child: BlocBuilder<HomeBloc, HomeState>(
-    //                   bloc: bloc,
-    //                   builder: (context, state) {
-    //                     return state.maybeWhen(
-    //                       orElse: () => const SizedBox(),
-    //                       currentPageIndex: (pageState) {
-    //                         if (pageState == AppbarPageType.score) {
-    //                           return const SingleScoreViewPage();
-    //                         } else if (pageState == AppbarPageType.rollcall) {
-    //                           return const SizedBox(
-    //                               child: SingleStudentRollcallsPage());
-    //                         } else {
-    //                           return const SizedBox(child: ExamPage());
-    //                         }
-    //                       },
-    //                     );
-    //                   },
-    //                 ),
-    //               ),
-    //             ],
-    //           );
-    //         },
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 }
 
