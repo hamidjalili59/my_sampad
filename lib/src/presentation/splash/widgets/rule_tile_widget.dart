@@ -27,10 +27,12 @@ class SelectRuleTileWidget extends StatelessWidget {
                   GeneralConstants.userType = UserType.teacher;
                   getIt.get<AppRouter>().pushNamed('/school_select_page');
                 }
-              : () {
-                  GeneralConstants.userType = UserType.parent;
-                  getIt.get<AppRouter>().pushNamed('/class_student_page');
-                },
+              : rule == 'parent'
+                  ? () {
+                      GeneralConstants.userType = UserType.parent;
+                      getIt.get<AppRouter>().pushNamed('/class_student_page');
+                    }
+                  : () {},
       child: Container(
         width: 165.w,
         decoration: BoxDecoration(
@@ -50,11 +52,13 @@ class SelectRuleTileWidget extends StatelessWidget {
               ? PngAssets.modir
               : rule == 'teacher'
                   ? PngAssets.teacher
-                  : PngAssets.parent,
+                  : rule == 'parent'
+                      ? PngAssets.parent
+                      : PngAssets.employee,
           offset: Offset(10.w, 10.h),
           paddingContainer: 80.h,
           title:
-              'ورود به عنوان ${rule == 'principal' ? 'مدیر' : rule == 'teacher' ? 'دبیر' : 'والد'}',
+              'ورود به عنوان ${rule == 'principal' ? 'مدیر' : rule == 'teacher' ? 'دبیر' : rule == 'parent' ? 'والد' : 'معاون'}',
         ),
       ),
     );

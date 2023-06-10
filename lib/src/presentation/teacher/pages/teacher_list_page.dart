@@ -74,7 +74,7 @@ class _TeacherListPageState extends State<TeacherListPage> {
                       title: 'مدیریت دبیران',
                       titleHelper:
                           'در این صفحه می‌توانید دبیران را حذف یا اضافه یا پاک کنید',
-                      pathString: 'صفحه اصلی -- مدیریت دبیران',
+                      pathString: 'صفحه‌اصلی > مدیریت دبیران',
                       isWidget: true,
                       widget: DropdownButton<String>(
                         items: [

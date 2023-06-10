@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
+import 'package:my_sampad/src/features/student/domain/models/student_model/student.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/rollcall/pages/class_rollcall_page.dart';
@@ -68,12 +70,12 @@ class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
             builder: (context, scoreBoardState) {
               return Column(
                 children: [
-                  const AppbarSchoolWidget(
+                  AppbarSchoolWidget(
                     title: 'ثبت نمرات : ',
                     titleHelper:
                         'شما میتوانید روبه‌روی هر دانش آموز نمره مربوط به آنرا وارد کنید و دکمه ثبت نمره را بفشارید',
                     pathString:
-                        'شهید بهشتی  --  کلاس‌ها -- ریاضی 2 -- ثبت نمرات',
+                        'کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name} > ثبت نمره',
                     isWidget: true,
                     widget: null,
                   ),

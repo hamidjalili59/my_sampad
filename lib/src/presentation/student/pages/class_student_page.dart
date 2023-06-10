@@ -166,7 +166,12 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                       title: 'دانش‌آموزان : ',
                       titleHelper:
                           'با کلیک بر روی هر دانش‌آموز میتوانید سابقه غیبت ها و نمرات وی را مشاهده کنید',
-                      pathString: 'شهید بهشتی  --  کلاس‌ها -- ریاضی 2',
+                      pathString: GeneralConstants.userType == UserType.admin ||
+                              GeneralConstants.userType == UserType.deputy
+                          ? 'صفحه‌اصلی > کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان'
+                          : GeneralConstants.userType == UserType.parent
+                              ? 'دانش‌آموزان'
+                              : 'کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان',
                       isWidget: true,
                       widget: GeneralConstants.userType != UserType.admin
                           ? null

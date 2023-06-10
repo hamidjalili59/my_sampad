@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
 import 'package:my_sampad/src/config/constants/svg_assets.dart';
+import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
+import 'package:my_sampad/src/features/student/domain/models/student_model/student.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/rollcall/bloc/rollcall_class/class_rollcall/class_rollcall_bloc.dart';
@@ -33,7 +35,7 @@ class ClassRollCallPage extends StatelessWidget {
                     titleHelper:
                         'با کشیدن صفحه به راست و چپ بین دانش آموزان جابه‌‌جا شوید و حضور غیاب کنید',
                     pathString:
-                        'شهید بهشتی  --  کلاس‌ها -- ریاضی 2  -- حضور غیاب',
+                        'کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name} > حضور غیاب',
                     icon: Icons.check_rounded,
                     onPressed: () {
                       if (state.isLoading) {

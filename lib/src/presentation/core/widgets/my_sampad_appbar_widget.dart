@@ -116,7 +116,7 @@ class AppbarSchoolWidget extends StatelessWidget {
               )),
           const Spacer(),
           SizedBox(
-              width: 0.72.sw,
+              width: 0.85.sw,
               child: Directionality(
                 textDirection: TextDirection.rtl,
                 child: SingleChildScrollView(
@@ -124,12 +124,12 @@ class AppbarSchoolWidget extends StatelessWidget {
                   child: Text(
                     pathString,
                     maxLines: 1,
-                    textAlign: TextAlign.start,
+                    textAlign: TextAlign.center,
+                    textDirection: TextDirection.rtl,
                     style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'Ordibehesht',
-                      fontSize: 18.sp,
-                    ),
+                        color: Colors.black,
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w700),
                   ),
                 ),
               )),

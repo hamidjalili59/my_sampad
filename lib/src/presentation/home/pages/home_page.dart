@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_sampad/src/config/constants/general_constants.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
 import 'package:my_sampad/src/config/constants/svg_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
+import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/splash/widgets/rule_tile_widget.dart';
@@ -24,7 +26,7 @@ class HomePage extends StatelessWidget {
                   title: 'صفحه اصلی : ',
                   titleHelper:
                       'شما میتوانید با انتخاب هر یک از گزینه های زیر به قابلیت های آن دسترسی پیدا کنید',
-                  pathString: '',
+                  pathString: 'صفحه‌اصلی >',
                   isWidget: true,
                   widget: null),
               SizedBox(
@@ -44,7 +46,9 @@ class HomePage extends StatelessWidget {
                         ),
                         padding: EdgeInsets.symmetric(
                             horizontal: 20.w, vertical: 25.h),
-                        itemCount: 3,
+                        itemCount: GeneralConstants.userType == UserType.deputy
+                            ? 3
+                            : 4,
                         itemBuilder: (context, index) {
                           return HomePageItemWidget(index: index);
                         },
@@ -110,9 +114,11 @@ class HomePageItemWidget extends StatelessWidget {
               ? () {
                   getIt.get<AppRouter>().pushNamed('/teacher');
                 }
-              : () {
-                  getIt.get<AppRouter>().pushNamed('/course');
-                },
+              : index == 2
+                  ? () {
+                      getIt.get<AppRouter>().pushNamed('/course');
+                    }
+                  : () {},
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -132,24 +138,32 @@ class HomePageItemWidget extends StatelessWidget {
           image: index == 0
               ? PngAssets.classroom
               : index == 1
-                  ? PngAssets.teacher
-                  : SvgAssets.course,
+                  ? SvgAssets.course
+                  : index == 2
+                      ? PngAssets.teacher
+                      : PngAssets.employee,
           offset: index == 0
               ? const Offset(10, 20)
               : index == 1
-                  ? const Offset(10, 20)
-                  : const Offset(10, 5),
+                  ? const Offset(10, 5)
+                  : index == 2
+                      ? const Offset(10, 20)
+                      : const Offset(10, 20),
           paddingContainer: index == 0
               ? 70.h
               : index == 1
-                  ? 50.h
-                  : 45.h,
-          isSvg: index == 0 || index == 1 ? false : true,
+                  ? 45.h
+                  : index == 2
+                      ? 50.h
+                      : 40.h,
+          isSvg: index == 0 || index == 2 || index == 3 ? false : true,
           title: index == 0
               ? 'کلاس‌ها'
               : index == 1
-                  ? 'مدیریت دبیران'
-                  : 'مدیریت درس‌ها',
+                  ? 'مدیریت درس‌ها'
+                  : index == 2
+                      ? 'مدیریت دبیران'
+                      : 'مدیریت معاونت',
         ),
       ),
     );

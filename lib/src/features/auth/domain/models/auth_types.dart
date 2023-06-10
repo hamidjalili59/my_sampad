@@ -1,1 +1,1 @@
-enum UserType { admin, teacher, parent }
+enum UserType { admin, teacher, parent, deputy }

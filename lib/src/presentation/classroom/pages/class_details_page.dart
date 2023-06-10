@@ -5,6 +5,7 @@ import 'package:my_sampad/src/config/constants/png_assets.dart';
 import 'package:my_sampad/src/config/constants/svg_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
+import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/splash/widgets/rule_tile_widget.dart';
@@ -26,7 +27,10 @@ class ClassDetailsPage extends StatelessWidget {
                 title: 'صفحه اصلی : ',
                 titleHelper:
                     'شما میتوانید با انتخاب هر یک از گزینه های زیر به قابلیت های آن دسترسی پیدا کنید',
-                pathString: '',
+                pathString: GeneralConstants.userType == UserType.admin ||
+                        GeneralConstants.userType == UserType.deputy
+                    ? 'صفحه‌اصلی > کلاس‌ها > ${getIt.get<Classroom>().className}'
+                    : 'مدارس > کلاس‌ها > ${getIt.get<Classroom>().className}',
                 isWidget: true,
                 widget: DropdownButton<String>(
                   items: [
