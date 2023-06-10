@@ -36,7 +36,7 @@ class _CourseListPageState extends State<CourseListPage> {
                 dialogStyle: DialogStyle(
                   borderRadius: BorderRadius.circular(12.sp),
                 ),
-                content: AddCourseDialogWidget(),
+                content: CourseDialogWidget(),
               ).show(context);
             },
             child: Container(
@@ -181,7 +181,7 @@ class _CourseListPageState extends State<CourseListPage> {
                                       dialogStyle: DialogStyle(
                                         contentPadding: EdgeInsets.zero,
                                       ),
-                                      content: AddCourseDialogWidget(
+                                      content: CourseDialogWidget(
                                         isEditing: true,
                                         courseName:
                                             state.courses[index].courseName,
@@ -338,9 +338,9 @@ class _CourseListPageState extends State<CourseListPage> {
   }
 }
 
-class AddCourseDialogWidget extends StatelessWidget {
+class CourseDialogWidget extends StatelessWidget {
   final bool isEditing;
-  AddCourseDialogWidget({
+  CourseDialogWidget({
     super.key,
     this.courseName = '',
     this.course,

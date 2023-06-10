@@ -14,6 +14,8 @@ import 'package:my_sampad/src/features/core/models/tuple.dart' as tuple;
 import 'package:my_sampad/src/config/utils/function_helper.dart';
 import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
+import 'package:my_sampad/src/presentation/classroom/pages/classes_list_page.dart';
+import 'package:ndialog/ndialog.dart';
 
 part 'classroom_state.dart';
 part 'classroom_event.dart';
@@ -33,6 +35,7 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
     this._updateClassroomUseCase,
     this._removeClassroomUseCase,
   ) : super(const ClassroomState.idle()) {
+    on<_ShowDialog>(_onShowDialog);
     on<_GetClasses>(_onGetClasses);
     on<_GetTeacherClasses>(_onGetTeacherClasses);
     on<_CreateClasses>(_onCreateClasses);
@@ -174,8 +177,6 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
             },
           ),
         );
-
-    getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
   }
 
   FutureOr<void> _onRemoveClass(
@@ -198,12 +199,15 @@ class ClassroomBloc extends Bloc<ClassroomEvent, ClassroomState> {
               },
             ),
           );
-
-      getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
     } catch (e) {
       emit(ClassroomState.idle(isLoading: false, classes: state.classes));
-
-      getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
     }
+  }
+
+  FutureOr<void> _onShowDialog(
+      _ShowDialog event, Emitter<ClassroomState> emit) async {
+    await NDialog(
+      content: ClassroomDialogWidget(),
+    ).show(getIt.get<AppRouter>().navigatorKey.currentContext!);
   }
 }

@@ -339,6 +339,7 @@ mixin _$ClassroomEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
     required TResult Function() getClasses,
+    required TResult Function() showDialog,
     required TResult Function(Classroom classroom) updateClass,
     required TResult Function(int teacherId) getTeacherClasses,
     required TResult Function(int classId) removeClass,
@@ -349,6 +350,7 @@ mixin _$ClassroomEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
     TResult? Function()? getClasses,
+    TResult? Function()? showDialog,
     TResult? Function(Classroom classroom)? updateClass,
     TResult? Function(int teacherId)? getTeacherClasses,
     TResult? Function(int classId)? removeClass,
@@ -359,6 +361,7 @@ mixin _$ClassroomEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
     TResult Function()? getClasses,
+    TResult Function()? showDialog,
     TResult Function(Classroom classroom)? updateClass,
     TResult Function(int teacherId)? getTeacherClasses,
     TResult Function(int classId)? removeClass,
@@ -370,6 +373,7 @@ mixin _$ClassroomEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
     required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_ShowDialog value) showDialog,
     required TResult Function(_UpdateClass value) updateClass,
     required TResult Function(_GetTeacherClasses value) getTeacherClasses,
     required TResult Function(_RemoveClass value) removeClass,
@@ -380,6 +384,7 @@ mixin _$ClassroomEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
     TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_ShowDialog value)? showDialog,
     TResult? Function(_UpdateClass value)? updateClass,
     TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult? Function(_RemoveClass value)? removeClass,
@@ -390,6 +395,7 @@ mixin _$ClassroomEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
     TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_ShowDialog value)? showDialog,
     TResult Function(_UpdateClass value)? updateClass,
     TResult Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult Function(_RemoveClass value)? removeClass,
@@ -484,6 +490,7 @@ class _$_ChangePages implements _ChangePages {
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
     required TResult Function() getClasses,
+    required TResult Function() showDialog,
     required TResult Function(Classroom classroom) updateClass,
     required TResult Function(int teacherId) getTeacherClasses,
     required TResult Function(int classId) removeClass,
@@ -497,6 +504,7 @@ class _$_ChangePages implements _ChangePages {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
     TResult? Function()? getClasses,
+    TResult? Function()? showDialog,
     TResult? Function(Classroom classroom)? updateClass,
     TResult? Function(int teacherId)? getTeacherClasses,
     TResult? Function(int classId)? removeClass,
@@ -510,6 +518,7 @@ class _$_ChangePages implements _ChangePages {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
     TResult Function()? getClasses,
+    TResult Function()? showDialog,
     TResult Function(Classroom classroom)? updateClass,
     TResult Function(int teacherId)? getTeacherClasses,
     TResult Function(int classId)? removeClass,
@@ -527,6 +536,7 @@ class _$_ChangePages implements _ChangePages {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
     required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_ShowDialog value) showDialog,
     required TResult Function(_UpdateClass value) updateClass,
     required TResult Function(_GetTeacherClasses value) getTeacherClasses,
     required TResult Function(_RemoveClass value) removeClass,
@@ -540,6 +550,7 @@ class _$_ChangePages implements _ChangePages {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
     TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_ShowDialog value)? showDialog,
     TResult? Function(_UpdateClass value)? updateClass,
     TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult? Function(_RemoveClass value)? removeClass,
@@ -553,6 +564,7 @@ class _$_ChangePages implements _ChangePages {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
     TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_ShowDialog value)? showDialog,
     TResult Function(_UpdateClass value)? updateClass,
     TResult Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult Function(_RemoveClass value)? removeClass,
@@ -615,6 +627,7 @@ class _$_GetClasses implements _GetClasses {
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
     required TResult Function() getClasses,
+    required TResult Function() showDialog,
     required TResult Function(Classroom classroom) updateClass,
     required TResult Function(int teacherId) getTeacherClasses,
     required TResult Function(int classId) removeClass,
@@ -628,6 +641,7 @@ class _$_GetClasses implements _GetClasses {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
     TResult? Function()? getClasses,
+    TResult? Function()? showDialog,
     TResult? Function(Classroom classroom)? updateClass,
     TResult? Function(int teacherId)? getTeacherClasses,
     TResult? Function(int classId)? removeClass,
@@ -641,6 +655,7 @@ class _$_GetClasses implements _GetClasses {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
     TResult Function()? getClasses,
+    TResult Function()? showDialog,
     TResult Function(Classroom classroom)? updateClass,
     TResult Function(int teacherId)? getTeacherClasses,
     TResult Function(int classId)? removeClass,
@@ -658,6 +673,7 @@ class _$_GetClasses implements _GetClasses {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
     required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_ShowDialog value) showDialog,
     required TResult Function(_UpdateClass value) updateClass,
     required TResult Function(_GetTeacherClasses value) getTeacherClasses,
     required TResult Function(_RemoveClass value) removeClass,
@@ -671,6 +687,7 @@ class _$_GetClasses implements _GetClasses {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
     TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_ShowDialog value)? showDialog,
     TResult? Function(_UpdateClass value)? updateClass,
     TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult? Function(_RemoveClass value)? removeClass,
@@ -684,6 +701,7 @@ class _$_GetClasses implements _GetClasses {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
     TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_ShowDialog value)? showDialog,
     TResult Function(_UpdateClass value)? updateClass,
     TResult Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult Function(_RemoveClass value)? removeClass,
@@ -699,6 +717,138 @@ class _$_GetClasses implements _GetClasses {
 
 abstract class _GetClasses implements ClassroomEvent {
   const factory _GetClasses() = _$_GetClasses;
+}
+
+/// @nodoc
+abstract class _$$_ShowDialogCopyWith<$Res> {
+  factory _$$_ShowDialogCopyWith(
+          _$_ShowDialog value, $Res Function(_$_ShowDialog) then) =
+      __$$_ShowDialogCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ShowDialogCopyWithImpl<$Res>
+    extends _$ClassroomEventCopyWithImpl<$Res, _$_ShowDialog>
+    implements _$$_ShowDialogCopyWith<$Res> {
+  __$$_ShowDialogCopyWithImpl(
+      _$_ShowDialog _value, $Res Function(_$_ShowDialog) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ShowDialog implements _ShowDialog {
+  const _$_ShowDialog();
+
+  @override
+  String toString() {
+    return 'ClassroomEvent.showDialog()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ShowDialog);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String indexName) changePages,
+    required TResult Function() getClasses,
+    required TResult Function() showDialog,
+    required TResult Function(Classroom classroom) updateClass,
+    required TResult Function(int teacherId) getTeacherClasses,
+    required TResult Function(int classId) removeClass,
+    required TResult Function(String className) createClasses,
+  }) {
+    return showDialog();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String indexName)? changePages,
+    TResult? Function()? getClasses,
+    TResult? Function()? showDialog,
+    TResult? Function(Classroom classroom)? updateClass,
+    TResult? Function(int teacherId)? getTeacherClasses,
+    TResult? Function(int classId)? removeClass,
+    TResult? Function(String className)? createClasses,
+  }) {
+    return showDialog?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String indexName)? changePages,
+    TResult Function()? getClasses,
+    TResult Function()? showDialog,
+    TResult Function(Classroom classroom)? updateClass,
+    TResult Function(int teacherId)? getTeacherClasses,
+    TResult Function(int classId)? removeClass,
+    TResult Function(String className)? createClasses,
+    required TResult orElse(),
+  }) {
+    if (showDialog != null) {
+      return showDialog();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangePages value) changePages,
+    required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_ShowDialog value) showDialog,
+    required TResult Function(_UpdateClass value) updateClass,
+    required TResult Function(_GetTeacherClasses value) getTeacherClasses,
+    required TResult Function(_RemoveClass value) removeClass,
+    required TResult Function(_CreateClasses value) createClasses,
+  }) {
+    return showDialog(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChangePages value)? changePages,
+    TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_ShowDialog value)? showDialog,
+    TResult? Function(_UpdateClass value)? updateClass,
+    TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
+    TResult? Function(_RemoveClass value)? removeClass,
+    TResult? Function(_CreateClasses value)? createClasses,
+  }) {
+    return showDialog?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangePages value)? changePages,
+    TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_ShowDialog value)? showDialog,
+    TResult Function(_UpdateClass value)? updateClass,
+    TResult Function(_GetTeacherClasses value)? getTeacherClasses,
+    TResult Function(_RemoveClass value)? removeClass,
+    TResult Function(_CreateClasses value)? createClasses,
+    required TResult orElse(),
+  }) {
+    if (showDialog != null) {
+      return showDialog(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShowDialog implements ClassroomEvent {
+  const factory _ShowDialog() = _$_ShowDialog;
 }
 
 /// @nodoc
@@ -778,6 +928,7 @@ class _$_UpdateClass implements _UpdateClass {
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
     required TResult Function() getClasses,
+    required TResult Function() showDialog,
     required TResult Function(Classroom classroom) updateClass,
     required TResult Function(int teacherId) getTeacherClasses,
     required TResult Function(int classId) removeClass,
@@ -791,6 +942,7 @@ class _$_UpdateClass implements _UpdateClass {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
     TResult? Function()? getClasses,
+    TResult? Function()? showDialog,
     TResult? Function(Classroom classroom)? updateClass,
     TResult? Function(int teacherId)? getTeacherClasses,
     TResult? Function(int classId)? removeClass,
@@ -804,6 +956,7 @@ class _$_UpdateClass implements _UpdateClass {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
     TResult Function()? getClasses,
+    TResult Function()? showDialog,
     TResult Function(Classroom classroom)? updateClass,
     TResult Function(int teacherId)? getTeacherClasses,
     TResult Function(int classId)? removeClass,
@@ -821,6 +974,7 @@ class _$_UpdateClass implements _UpdateClass {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
     required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_ShowDialog value) showDialog,
     required TResult Function(_UpdateClass value) updateClass,
     required TResult Function(_GetTeacherClasses value) getTeacherClasses,
     required TResult Function(_RemoveClass value) removeClass,
@@ -834,6 +988,7 @@ class _$_UpdateClass implements _UpdateClass {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
     TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_ShowDialog value)? showDialog,
     TResult? Function(_UpdateClass value)? updateClass,
     TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult? Function(_RemoveClass value)? removeClass,
@@ -847,6 +1002,7 @@ class _$_UpdateClass implements _UpdateClass {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
     TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_ShowDialog value)? showDialog,
     TResult Function(_UpdateClass value)? updateClass,
     TResult Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult Function(_RemoveClass value)? removeClass,
@@ -937,6 +1093,7 @@ class _$_GetTeacherClasses implements _GetTeacherClasses {
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
     required TResult Function() getClasses,
+    required TResult Function() showDialog,
     required TResult Function(Classroom classroom) updateClass,
     required TResult Function(int teacherId) getTeacherClasses,
     required TResult Function(int classId) removeClass,
@@ -950,6 +1107,7 @@ class _$_GetTeacherClasses implements _GetTeacherClasses {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
     TResult? Function()? getClasses,
+    TResult? Function()? showDialog,
     TResult? Function(Classroom classroom)? updateClass,
     TResult? Function(int teacherId)? getTeacherClasses,
     TResult? Function(int classId)? removeClass,
@@ -963,6 +1121,7 @@ class _$_GetTeacherClasses implements _GetTeacherClasses {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
     TResult Function()? getClasses,
+    TResult Function()? showDialog,
     TResult Function(Classroom classroom)? updateClass,
     TResult Function(int teacherId)? getTeacherClasses,
     TResult Function(int classId)? removeClass,
@@ -980,6 +1139,7 @@ class _$_GetTeacherClasses implements _GetTeacherClasses {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
     required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_ShowDialog value) showDialog,
     required TResult Function(_UpdateClass value) updateClass,
     required TResult Function(_GetTeacherClasses value) getTeacherClasses,
     required TResult Function(_RemoveClass value) removeClass,
@@ -993,6 +1153,7 @@ class _$_GetTeacherClasses implements _GetTeacherClasses {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
     TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_ShowDialog value)? showDialog,
     TResult? Function(_UpdateClass value)? updateClass,
     TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult? Function(_RemoveClass value)? removeClass,
@@ -1006,6 +1167,7 @@ class _$_GetTeacherClasses implements _GetTeacherClasses {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
     TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_ShowDialog value)? showDialog,
     TResult Function(_UpdateClass value)? updateClass,
     TResult Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult Function(_RemoveClass value)? removeClass,
@@ -1094,6 +1256,7 @@ class _$_RemoveClass implements _RemoveClass {
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
     required TResult Function() getClasses,
+    required TResult Function() showDialog,
     required TResult Function(Classroom classroom) updateClass,
     required TResult Function(int teacherId) getTeacherClasses,
     required TResult Function(int classId) removeClass,
@@ -1107,6 +1270,7 @@ class _$_RemoveClass implements _RemoveClass {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
     TResult? Function()? getClasses,
+    TResult? Function()? showDialog,
     TResult? Function(Classroom classroom)? updateClass,
     TResult? Function(int teacherId)? getTeacherClasses,
     TResult? Function(int classId)? removeClass,
@@ -1120,6 +1284,7 @@ class _$_RemoveClass implements _RemoveClass {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
     TResult Function()? getClasses,
+    TResult Function()? showDialog,
     TResult Function(Classroom classroom)? updateClass,
     TResult Function(int teacherId)? getTeacherClasses,
     TResult Function(int classId)? removeClass,
@@ -1137,6 +1302,7 @@ class _$_RemoveClass implements _RemoveClass {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
     required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_ShowDialog value) showDialog,
     required TResult Function(_UpdateClass value) updateClass,
     required TResult Function(_GetTeacherClasses value) getTeacherClasses,
     required TResult Function(_RemoveClass value) removeClass,
@@ -1150,6 +1316,7 @@ class _$_RemoveClass implements _RemoveClass {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
     TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_ShowDialog value)? showDialog,
     TResult? Function(_UpdateClass value)? updateClass,
     TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult? Function(_RemoveClass value)? removeClass,
@@ -1163,6 +1330,7 @@ class _$_RemoveClass implements _RemoveClass {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
     TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_ShowDialog value)? showDialog,
     TResult Function(_UpdateClass value)? updateClass,
     TResult Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult Function(_RemoveClass value)? removeClass,
@@ -1252,6 +1420,7 @@ class _$_CreateClasses implements _CreateClasses {
   TResult when<TResult extends Object?>({
     required TResult Function(String indexName) changePages,
     required TResult Function() getClasses,
+    required TResult Function() showDialog,
     required TResult Function(Classroom classroom) updateClass,
     required TResult Function(int teacherId) getTeacherClasses,
     required TResult Function(int classId) removeClass,
@@ -1265,6 +1434,7 @@ class _$_CreateClasses implements _CreateClasses {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String indexName)? changePages,
     TResult? Function()? getClasses,
+    TResult? Function()? showDialog,
     TResult? Function(Classroom classroom)? updateClass,
     TResult? Function(int teacherId)? getTeacherClasses,
     TResult? Function(int classId)? removeClass,
@@ -1278,6 +1448,7 @@ class _$_CreateClasses implements _CreateClasses {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String indexName)? changePages,
     TResult Function()? getClasses,
+    TResult Function()? showDialog,
     TResult Function(Classroom classroom)? updateClass,
     TResult Function(int teacherId)? getTeacherClasses,
     TResult Function(int classId)? removeClass,
@@ -1295,6 +1466,7 @@ class _$_CreateClasses implements _CreateClasses {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePages value) changePages,
     required TResult Function(_GetClasses value) getClasses,
+    required TResult Function(_ShowDialog value) showDialog,
     required TResult Function(_UpdateClass value) updateClass,
     required TResult Function(_GetTeacherClasses value) getTeacherClasses,
     required TResult Function(_RemoveClass value) removeClass,
@@ -1308,6 +1480,7 @@ class _$_CreateClasses implements _CreateClasses {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChangePages value)? changePages,
     TResult? Function(_GetClasses value)? getClasses,
+    TResult? Function(_ShowDialog value)? showDialog,
     TResult? Function(_UpdateClass value)? updateClass,
     TResult? Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult? Function(_RemoveClass value)? removeClass,
@@ -1321,6 +1494,7 @@ class _$_CreateClasses implements _CreateClasses {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePages value)? changePages,
     TResult Function(_GetClasses value)? getClasses,
+    TResult Function(_ShowDialog value)? showDialog,
     TResult Function(_UpdateClass value)? updateClass,
     TResult Function(_GetTeacherClasses value)? getTeacherClasses,
     TResult Function(_RemoveClass value)? removeClass,

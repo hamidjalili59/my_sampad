@@ -62,11 +62,9 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     CourseListRoute.name: (routeData) {
-      final args = routeData.argsAs<CourseListRouteArgs>(
-          orElse: () => const CourseListRouteArgs());
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: CourseListPage(key: args.key),
+        child: const CourseListPage(),
       );
     },
     HomeRoute.name: (routeData) {
@@ -316,26 +314,14 @@ class TeacherListRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CourseListPage]
-class CourseListRoute extends PageRouteInfo<CourseListRouteArgs> {
-  CourseListRoute({Key? key})
+class CourseListRoute extends PageRouteInfo<void> {
+  const CourseListRoute()
       : super(
           CourseListRoute.name,
           path: '/course',
-          args: CourseListRouteArgs(key: key),
         );
 
   static const String name = 'CourseListRoute';
-}
-
-class CourseListRouteArgs {
-  const CourseListRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'CourseListRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for

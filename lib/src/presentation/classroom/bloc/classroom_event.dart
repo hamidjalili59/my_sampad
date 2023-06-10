@@ -6,6 +6,7 @@ class ClassroomEvent with _$ClassroomEvent {
     String indexName,
   ) = _ChangePages;
   const factory ClassroomEvent.getClasses() = _GetClasses;
+  const factory ClassroomEvent.showDialog() = _ShowDialog;
   const factory ClassroomEvent.updateClass(Classroom classroom) = _UpdateClass;
   const factory ClassroomEvent.getTeacherClasses(int teacherId) =
       _GetTeacherClasses;
