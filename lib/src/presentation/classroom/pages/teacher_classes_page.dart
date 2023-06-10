@@ -31,7 +31,9 @@ class TeacherClassesPage extends StatelessWidget {
                         title: 'کلاس ها : ',
                         titleHelper:
                             'با کلیک بر روی هر کلاس میتوانید گزینه های بیشتری برای کلاس را مشاهده کنید',
-                        pathString: 'دبیر  -  کلاس‌ها'),
+                        pathString: 'دبیر  -  کلاس‌ها',
+                        isWidget: true,
+                        widget: null),
                     SizedBox(
                       width: 1.sw,
                       height: 0.69.sh,

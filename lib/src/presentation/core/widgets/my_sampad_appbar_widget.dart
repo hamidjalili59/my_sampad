@@ -114,7 +114,7 @@ class AppbarSchoolWidget extends StatelessWidget {
                   fontSize: 16.sp,
                 ),
               )),
-          SizedBox(height: 3.h),
+          const Spacer(),
           SizedBox(
               width: 0.72.sw,
               child: Directionality(
@@ -133,6 +133,7 @@ class AppbarSchoolWidget extends StatelessWidget {
                   ),
                 ),
               )),
+          const Spacer(),
         ],
       ),
     );

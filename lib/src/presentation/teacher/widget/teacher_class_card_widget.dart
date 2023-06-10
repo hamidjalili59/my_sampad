@@ -120,43 +120,45 @@ class TeacherClassWidget extends StatelessWidget {
                   'در این صفحه میتوانید دبیران این کلاس را مشاهده کنید',
               pathString: '',
               isWidget: true,
-              widget: DropdownButton<String>(
-                items: [
-                  DropdownMenuItem(
-                    alignment: Alignment.center,
-                    value: 'حذف',
-                    onTap: () {},
-                    child: Text(
-                      'حذف',
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(
-                          fontSize: 24.sp,
-                          color: Colors.black,
-                          fontFamily: 'Ordibehesht',
-                          fontWeight: FontWeight.bold),
+              widget: GeneralConstants.userType != UserType.admin
+                  ? null
+                  : DropdownButton<String>(
+                      items: [
+                        DropdownMenuItem(
+                          alignment: Alignment.center,
+                          value: 'حذف',
+                          onTap: () {},
+                          child: Text(
+                            'حذف',
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontSize: 24.sp,
+                                color: Colors.black,
+                                fontFamily: 'Ordibehesht',
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        DropdownMenuItem(
+                          alignment: Alignment.center,
+                          value: 'تغییر',
+                          onTap: () {},
+                          child: Text(
+                            'تغییر',
+                            textDirection: TextDirection.rtl,
+                            style: TextStyle(
+                                fontSize: 24.sp,
+                                color: Colors.black,
+                                fontFamily: 'Ordibehesht',
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                      onChanged: (value) {},
+                      icon: Icon(
+                        Icons.more_vert_rounded,
+                        size: 36.sp,
+                      ),
                     ),
-                  ),
-                  DropdownMenuItem(
-                    alignment: Alignment.center,
-                    value: 'تغییر',
-                    onTap: () {},
-                    child: Text(
-                      'تغییر',
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(
-                          fontSize: 24.sp,
-                          color: Colors.black,
-                          fontFamily: 'Ordibehesht',
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-                onChanged: (value) {},
-                icon: Icon(
-                  Icons.more_vert_rounded,
-                  size: 36.sp,
-                ),
-              ),
             ),
             SizedBox(
               height: 0.69.sh,

@@ -30,7 +30,9 @@ class SelectSchoolPage extends StatelessWidget {
                         title: 'مدارس شما',
                         titleHelper:
                             'لطفا مدرسه ای که قصد ورود به آنرا دارید انتخاب کنید',
-                        pathString: 'دبیر  -'),
+                        pathString: 'دبیر  -',
+                        isWidget: true,
+                        widget: null),
                     SizedBox(
                       width: 1.sw,
                       height: 0.69.sh,

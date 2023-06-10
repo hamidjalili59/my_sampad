@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_sampad/src/config/constants/general_constants.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
+import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/classroom/bloc/classroom_bloc.dart';
@@ -32,55 +34,57 @@ class ClassesListPage extends StatelessWidget {
                           'با کلیک بر روی هر کلاس میتوانید گزینه های بیشتری برای کلاس را مشاهده کنید',
                       pathString: ' -  کلاس‌ها',
                       isWidget: true,
-                      widget: DropdownButton<String>(
-                        items: [
-                          DropdownMenuItem(
-                            alignment: Alignment.center,
-                            value: 'افزودن',
-                            onTap: () {},
-                            child: Text(
-                              'افزودن',
-                              style: TextStyle(
-                                  fontSize: 20.sp,
-                                  color: Colors.black,
-                                  fontFamily: 'Ordibehesht',
-                                  fontWeight: FontWeight.bold),
+                      widget: GeneralConstants.userType != UserType.admin
+                          ? null
+                          : DropdownButton<String>(
+                              items: [
+                                DropdownMenuItem(
+                                  alignment: Alignment.center,
+                                  value: 'افزودن',
+                                  onTap: () {},
+                                  child: Text(
+                                    'افزودن',
+                                    style: TextStyle(
+                                        fontSize: 20.sp,
+                                        color: Colors.black,
+                                        fontFamily: 'Ordibehesht',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  alignment: Alignment.center,
+                                  value: 'حذف',
+                                  onTap: () {},
+                                  child: Text(
+                                    'حذف',
+                                    style: TextStyle(
+                                        fontSize: 20.sp,
+                                        color: Colors.black,
+                                        fontFamily: 'Ordibehesht',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  alignment: Alignment.center,
+                                  value: 'تغییر',
+                                  onTap: () {},
+                                  child: Text(
+                                    'تغییر',
+                                    style: TextStyle(
+                                        fontSize: 20.sp,
+                                        color: Colors.black,
+                                        fontFamily: 'Ordibehesht',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                              itemHeight: 50.h,
+                              onChanged: (value) {},
+                              icon: Icon(
+                                Icons.more_vert_rounded,
+                                size: 36.sp,
+                              ),
                             ),
-                          ),
-                          DropdownMenuItem(
-                            alignment: Alignment.center,
-                            value: 'حذف',
-                            onTap: () {},
-                            child: Text(
-                              'حذف',
-                              style: TextStyle(
-                                  fontSize: 20.sp,
-                                  color: Colors.black,
-                                  fontFamily: 'Ordibehesht',
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          DropdownMenuItem(
-                            alignment: Alignment.center,
-                            value: 'تغییر',
-                            onTap: () {},
-                            child: Text(
-                              'تغییر',
-                              style: TextStyle(
-                                  fontSize: 20.sp,
-                                  color: Colors.black,
-                                  fontFamily: 'Ordibehesht',
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
-                        itemHeight: 50.h,
-                        onChanged: (value) {},
-                        icon: Icon(
-                          Icons.more_vert_rounded,
-                          size: 36.sp,
-                        ),
-                      ),
                     ),
                     SizedBox(
                       width: 1.sw,

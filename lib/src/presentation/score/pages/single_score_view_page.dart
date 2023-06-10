@@ -54,12 +54,13 @@ class _SingleScoreViewPageState extends State<SingleScoreViewPage> {
                 child: Column(
                   children: [
                     const AppbarSchoolWidget(
-                      title: 'نمرات دانش آموز : ',
-                      titleHelper:
-                          'هر یک از کاشی های زیر حاوی اطلاعات روز و ساعت کلاس هر نمره ثبت شده این دانش‌آموز است',
-                      pathString:
-                          'شهید بهشتی  --  کلاس‌ها -- ریاضی 2  -- حمید جلیلی نسب -- نمرات',
-                    ),
+                        title: 'نمرات دانش آموز : ',
+                        titleHelper:
+                            'هر یک از کاشی های زیر حاوی اطلاعات روز و ساعت کلاس هر نمره ثبت شده این دانش‌آموز است',
+                        pathString:
+                            'شهید بهشتی  --  کلاس‌ها -- ریاضی 2  -- حمید جلیلی نسب -- نمرات',
+                        isWidget: true,
+                        widget: null),
                     SizedBox(
                       height: 0.69.sh,
                       child: ListView.builder(

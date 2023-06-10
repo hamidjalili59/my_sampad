@@ -20,11 +20,35 @@ class ClassDetailsPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const AppbarSchoolWidget(
+              AppbarSchoolWidget(
                 title: 'صفحه اصلی : ',
                 titleHelper:
                     'شما میتوانید با انتخاب هر یک از گزینه های زیر به قابلیت های آن دسترسی پیدا کنید',
                 pathString: '',
+                isWidget: true,
+                widget: DropdownButton<String>(
+                  items: [
+                    DropdownMenuItem(
+                      alignment: Alignment.center,
+                      value: 'logout',
+                      onTap: () {},
+                      child: Text(
+                        'logout',
+                        style: TextStyle(
+                            fontSize: 20.sp,
+                            color: Colors.black,
+                            fontFamily: 'Ordibehesht',
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                  itemHeight: 50.h,
+                  onChanged: (value) {},
+                  icon: Icon(
+                    Icons.more_vert_rounded,
+                    size: 36.sp,
+                  ),
+                ),
               ),
               SizedBox(
                 width: 1.sw,
