@@ -25,7 +25,9 @@ class StudentDetailsPage extends StatelessWidget {
                 titleHelper:
                     'کدام یک از اطلاعات دانش آموز را نیاز دارید کلیک کنید روی آن',
                 pathString:
-                    'شهید بهشتی  --  کلاس‌ها -- ریاضی 2  -- حمید جلیلی نسب'),
+                    'شهید بهشتی  --  کلاس‌ها -- ریاضی 2  -- حمید جلیلی نسب',
+                isWidget: true,
+                widget: null),
             SizedBox(
               width: 1.sw,
               height: 0.7.sh,

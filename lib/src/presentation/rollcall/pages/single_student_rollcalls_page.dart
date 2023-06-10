@@ -49,12 +49,13 @@ class _SingleStudentRollcallsPageState
                 child: Column(
                   children: [
                     const AppbarSchoolWidget(
-                      title: 'غیبت‌های دانش آموز : ',
-                      titleHelper:
-                          'هر یک از کاشی های زیر حاوی اطلاعات روز و ساعت کلاس هر غیبت این دانش‌آموز است',
-                      pathString:
-                          'شهید بهشتی  --  کلاس‌ها -- ریاضی 2  -- حمید جلیلی نسب -- غیبت‌ها',
-                    ),
+                        title: 'غیبت‌های دانش آموز : ',
+                        titleHelper:
+                            'هر یک از کاشی های زیر حاوی اطلاعات روز و ساعت کلاس هر غیبت این دانش‌آموز است',
+                        pathString:
+                            'شهید بهشتی  --  کلاس‌ها -- ریاضی 2  -- حمید جلیلی نسب -- غیبت‌ها',
+                        isWidget: true,
+                        widget: null),
                     SizedBox(
                       height: 0.69.sh,
                       child: ListView.builder(

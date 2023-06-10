@@ -136,11 +136,63 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const AppbarSchoolWidget(
+                    AppbarSchoolWidget(
                       title: 'دانش‌آموزان : ',
                       titleHelper:
                           'با کلیک بر روی هر دانش‌آموز میتوانید سابقه غیبت ها و نمرات وی را مشاهده کنید',
                       pathString: 'شهید بهشتی  --  کلاس‌ها -- ریاضی 2',
+                      isWidget: true,
+                      widget: GeneralConstants.userType != UserType.admin
+                          ? null
+                          : DropdownButton<String>(
+                              items: [
+                                DropdownMenuItem(
+                                  alignment: Alignment.center,
+                                  value: 'افزودن',
+                                  onTap: () {},
+                                  child: Text(
+                                    'افزودن',
+                                    style: TextStyle(
+                                        fontSize: 20.sp,
+                                        color: Colors.black,
+                                        fontFamily: 'Ordibehesht',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  alignment: Alignment.center,
+                                  value: 'حذف',
+                                  onTap: () {},
+                                  child: Text(
+                                    'حذف',
+                                    style: TextStyle(
+                                        fontSize: 20.sp,
+                                        color: Colors.black,
+                                        fontFamily: 'Ordibehesht',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                DropdownMenuItem(
+                                  alignment: Alignment.center,
+                                  value: 'تغییر',
+                                  onTap: () {},
+                                  child: Text(
+                                    'تغییر',
+                                    style: TextStyle(
+                                        fontSize: 20.sp,
+                                        color: Colors.black,
+                                        fontFamily: 'Ordibehesht',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ],
+                              itemHeight: 50.h,
+                              onChanged: (value) {},
+                              icon: Icon(
+                                Icons.more_vert_rounded,
+                                size: 36.sp,
+                              ),
+                            ),
                     ),
                     SizedBox(
                       width: 1.sw,

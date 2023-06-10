@@ -20,11 +20,12 @@ class SelectRulePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const AppbarSchoolWidget(
-                title: 'وظایف شما :',
-                titleHelper:
-                    'با انتخاب هر یک از وظایف زیر شما به آن عنوان وارد اپلیکیشن میشوید',
-                pathString: '',
-              ),
+                  title: 'وظایف شما :',
+                  titleHelper:
+                      'با انتخاب هر یک از وظایف زیر شما به آن عنوان وارد اپلیکیشن میشوید',
+                  pathString: '',
+                  isWidget: true,
+                  widget: null),
               SizedBox(
                 width: 1.sw,
                 height: 0.69.sh,

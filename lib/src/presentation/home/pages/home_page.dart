@@ -21,11 +21,12 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const AppbarSchoolWidget(
-                title: 'صفحه اصلی : ',
-                titleHelper:
-                    'شما میتوانید با انتخاب هر یک از گزینه های زیر به قابلیت های آن دسترسی پیدا کنید',
-                pathString: '',
-              ),
+                  title: 'صفحه اصلی : ',
+                  titleHelper:
+                      'شما میتوانید با انتخاب هر یک از گزینه های زیر به قابلیت های آن دسترسی پیدا کنید',
+                  pathString: '',
+                  isWidget: true,
+                  widget: null),
               SizedBox(
                 width: 1.sw,
                 height: 0.69.sh,
