@@ -79,7 +79,7 @@ class _CourseListPageState extends State<CourseListPage> {
                       title: 'مدیریت درس‌ها',
                       titleHelper:
                           'در این صفحه می‌توانید درس‌ها را حذف یا اضافه یا پاک کنید',
-                      pathString: 'صفحه اصلی -- مدیریت درس‌ها',
+                      pathString: 'صفحه‌اصلی > مدیریت‌درس‌ها',
                       isWidget: true,
                       widget: DropdownButton<String>(
                         items: [

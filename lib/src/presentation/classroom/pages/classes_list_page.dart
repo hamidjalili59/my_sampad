@@ -44,7 +44,7 @@ class _ClassesListPageState extends State<ClassesListPage> {
                       title: 'کلاس ها : ',
                       titleHelper:
                           'با کلیک بر روی هر کلاس میتوانید گزینه های بیشتری برای کلاس را مشاهده کنید',
-                      pathString: ' -  کلاس‌ها',
+                      pathString: 'صفحه‌اصلی > کلاس‌ها',
                       isWidget: true,
                       widget: GeneralConstants.userType != UserType.admin
                           ? null

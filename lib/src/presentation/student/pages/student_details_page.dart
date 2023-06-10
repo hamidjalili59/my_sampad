@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_sampad/src/config/constants/general_constants.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
+import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
+import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
+import 'package:my_sampad/src/features/student/domain/models/student_model/student.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/home/bloc/home_bloc.dart';
@@ -20,11 +24,16 @@ class StudentDetailsPage extends StatelessWidget {
         height: 1.sh,
         child: Column(
           children: [
-            const AppbarSchoolWidget(
+            AppbarSchoolWidget(
                 title: 'اطلاعات دانش آموز : ',
                 titleHelper:
                     'کدام یک از اطلاعات دانش آموز را نیاز دارید کلیک کنید روی آن',
-                pathString: 'شهید بهشتی  --  کلاس‌ها -- ریاضی 2',
+                pathString: GeneralConstants.userType == UserType.admin ||
+                        GeneralConstants.userType == UserType.deputy
+                    ? 'صفحه‌اصلی > کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name}'
+                    : GeneralConstants.userType == UserType.parent
+                        ? 'دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name}'
+                        : 'کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name}',
                 isWidget: true,
                 widget: null),
             SizedBox(

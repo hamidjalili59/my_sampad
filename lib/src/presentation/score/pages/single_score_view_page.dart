@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_sampad/src/config/constants/general_constants.dart';
 import 'package:my_sampad/src/config/constants/svg_assets.dart';
+import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
+import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_sampad/src/features/student/domain/models/student_model/student.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
@@ -53,12 +56,17 @@ class _SingleScoreViewPageState extends State<SingleScoreViewPage> {
                 height: 1.sh,
                 child: Column(
                   children: [
-                    const AppbarSchoolWidget(
+                    AppbarSchoolWidget(
                         title: 'نمرات دانش آموز : ',
                         titleHelper:
                             'هر یک از کاشی های زیر حاوی اطلاعات روز و ساعت کلاس هر نمره ثبت شده این دانش‌آموز است',
-                        pathString:
-                            'شهید بهشتی  --  کلاس‌ها -- ریاضی 2 -- نمرات',
+                        pathString: GeneralConstants.userType ==
+                                    UserType.admin ||
+                                GeneralConstants.userType == UserType.deputy
+                            ? 'صفحه‌اصلی > کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name} > نمرات'
+                            : GeneralConstants.userType == UserType.parent
+                                ? 'دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name} > نمرات'
+                                : 'کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name} > نمرات',
                         isWidget: true,
                         widget: null),
                     SizedBox(

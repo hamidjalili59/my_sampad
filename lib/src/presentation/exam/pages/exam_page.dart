@@ -107,8 +107,11 @@ class _ExamPageState extends State<ExamPage> {
                           title: 'امتحانات کلاس',
                           titleHelper:
                               'میتوانید در زیر لیستی از امتحانات با توضیح آنها مشاهده کنید',
-                          pathString:
-                              'شهید بهشتی  -- کلاس‌ها  --  کلاس ریاضی 2 -- امتحانات',
+                          pathString: GeneralConstants.userType ==
+                                      UserType.admin ||
+                                  GeneralConstants.userType == UserType.deputy
+                              ? 'صفحه‌اصلی > کلاس‌ها > ${getIt.get<Classroom>().className} > امتحانات'
+                              : 'کلاس‌ها > ${getIt.get<Classroom>().className} > امتحانات',
                           isWidget: true,
                           widget: GeneralConstants.userType != UserType.teacher
                               ? null
