@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_sampad/src/features/course/domain/models/course_model/course.dart';
 import 'package:my_sampad/src/features/core/models/tuple.dart' as tuple;
@@ -81,13 +80,11 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
                 CourseState.idle(isLoading: false, courses: state.courses)),
             (r) {
               add(CourseEvent.getCourses(
-                int.parse(getIt.get<OtpHandshakeResponse>().token),
+                getIt.get<OtpHandshakeResponse>().principal.schoolId,
               ));
             },
           ),
         );
-
-    getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
   }
 
   FutureOr<void> _onRemoveCourse(
@@ -110,12 +107,8 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
               },
             ),
           );
-
-      getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
     } catch (e) {
       emit(CourseState.idle(isLoading: false, courses: state.courses));
-
-      getIt.get<AppRouter>().popUntilRouteWithName('HomeRoute');
     }
   }
 }
