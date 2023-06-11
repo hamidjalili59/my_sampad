@@ -6,6 +6,7 @@ import 'package:my_sampad/src/config/constants/svg_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/features/auth/domain/models/auth_types.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
+import 'package:my_sampad/src/presentation/auth/bloc/auth_bloc.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/splash/widgets/rule_tile_widget.dart';
 
@@ -22,13 +23,43 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const AppbarSchoolWidget(
-                  title: 'صفحه اصلی : ',
-                  titleHelper:
-                      'شما میتوانید با انتخاب هر یک از گزینه های زیر به قابلیت های آن دسترسی پیدا کنید',
-                  pathString: 'صفحه‌اصلی >',
-                  isWidget: true,
-                  widget: null),
+              AppbarSchoolWidget(
+                title: 'صفحه اصلی : ',
+                titleHelper:
+                    'شما میتوانید با انتخاب هر یک از گزینه های زیر به قابلیت های آن دسترسی پیدا کنید',
+                pathString: 'صفحه‌اصلی >',
+                isWidget: true,
+                widget: DropdownButton<String>(
+                  underline: const SizedBox(),
+                  items: [
+                    DropdownMenuItem(
+                      alignment: Alignment.center,
+                      value: 'logout',
+                      onTap: () async {
+                        getIt.get<AppRouter>().pop();
+                        getIt.get<AuthBloc>().add(const AuthEvent.logout());
+                      },
+                      child: Text(
+                        'خروج از حساب',
+                        style: TextStyle(
+                            fontSize: 16.sp,
+                            color: Colors.black,
+                            fontFamily: 'Ordibehesht',
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                  selectedItemBuilder: (context) {
+                    return [Container(width: 40.w)];
+                  },
+                  itemHeight: 50.h,
+                  onChanged: (value) {},
+                  icon: Icon(
+                    Icons.more_vert_rounded,
+                    size: 36.sp,
+                  ),
+                ),
+              ),
               SizedBox(
                 width: 1.sw,
                 height: 0.69.sh,
@@ -112,11 +143,11 @@ class HomePageItemWidget extends StatelessWidget {
             }
           : index == 1
               ? () {
-                  getIt.get<AppRouter>().pushNamed('/teacher');
+                  getIt.get<AppRouter>().pushNamed('/course');
                 }
               : index == 2
                   ? () {
-                      getIt.get<AppRouter>().pushNamed('/course');
+                      getIt.get<AppRouter>().pushNamed('/teacher');
                     }
                   : () {},
       child: Container(

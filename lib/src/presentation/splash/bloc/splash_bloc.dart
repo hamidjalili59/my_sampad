@@ -43,6 +43,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     Emitter<SplashState> emit,
   ) async {
     GeneralConstants.jwt = event.token.token;
+    GeneralConstants.roleCount.clear();
     emit(const _LoadInProgress());
     if (event.token.typeOfUser.contains('parent')) {
       GeneralConstants.isParent = true;
@@ -59,18 +60,27 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
       GeneralConstants.roleCount.add('principal');
       GeneralConstants.roleCount = GeneralConstants.roleCount.toSet().toList();
     }
+    if (event.token.typeOfUser.contains('deputy')) {
+      GeneralConstants.isDeputy = true;
+      GeneralConstants.roleCount.add('deputy');
+      GeneralConstants.roleCount = GeneralConstants.roleCount.toSet().toList();
+    }
     try {
       if (GeneralConstants.roleCount.length > 1) {
         appRoute.replaceNamed('/rulePage');
       } else {
         if (event.token.typeOfUser == 'principal') {
           GeneralConstants.userType = UserType.admin;
-          appRoute.replaceNamed('/home_page');
+          getIt.get<AppRouter>().pushNamed('/home_page');
         } else if (event.token.typeOfUser == 'teacher') {
           GeneralConstants.userType = UserType.teacher;
-        } else {
+          getIt.get<AppRouter>().pushNamed('/school_select_page');
+        } else if (event.token.typeOfUser == 'parent') {
           GeneralConstants.userType = UserType.parent;
-          appRoute.replaceNamed('/class_details_page');
+          getIt.get<AppRouter>().pushNamed('/class_student_page');
+        } else {
+          GeneralConstants.userType = UserType.deputy;
+          getIt.get<AppRouter>().pushNamed('/home_page');
         }
       }
     } catch (e) {

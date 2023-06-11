@@ -77,6 +77,10 @@ class _TeacherListPageState extends State<TeacherListPage> {
                       pathString: 'صفحه‌اصلی > مدیریت دبیران',
                       isWidget: true,
                       widget: DropdownButton<String>(
+                        underline: const SizedBox(),
+                        selectedItemBuilder: (context) {
+                          return [Container(width: 40.w)];
+                        },
                         items: [
                           DropdownMenuItem(
                             alignment: Alignment.center,

@@ -32,7 +32,10 @@ class SelectRuleTileWidget extends StatelessWidget {
                       GeneralConstants.userType = UserType.parent;
                       getIt.get<AppRouter>().pushNamed('/class_student_page');
                     }
-                  : () {},
+                  : () {
+                      GeneralConstants.userType = UserType.deputy;
+                      getIt.get<AppRouter>().pushNamed('/home_page');
+                    },
       child: Container(
         width: 165.w,
         decoration: BoxDecoration(

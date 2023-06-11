@@ -7,6 +7,7 @@ import 'package:my_sampad/src/config/constants/svg_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/features/teacher/domain/models/teacher_get_schools.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
+import 'package:my_sampad/src/presentation/auth/bloc/auth_bloc.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/school/bloc/school/school_bloc.dart';
 
@@ -28,13 +29,45 @@ class SelectSchoolPage extends StatelessWidget {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const AppbarSchoolWidget(
-                        title: 'مدارس شما',
-                        titleHelper:
-                            'لطفا مدرسه ای که قصد ورود به آنرا دارید انتخاب کنید',
-                        pathString: 'مدارس >',
-                        isWidget: true,
-                        widget: null),
+                    AppbarSchoolWidget(
+                      title: 'مدارس شما',
+                      titleHelper:
+                          'لطفا مدرسه ای که قصد ورود به آنرا دارید انتخاب کنید',
+                      pathString: 'مدارس >',
+                      isWidget: true,
+                      widget: DropdownButton<String>(
+                        underline: const SizedBox(),
+                        items: [
+                          DropdownMenuItem(
+                            alignment: Alignment.center,
+                            value: 'logout',
+                            onTap: () async {
+                              getIt.get<AppRouter>().pop();
+                              getIt
+                                  .get<AuthBloc>()
+                                  .add(const AuthEvent.logout());
+                            },
+                            child: Text(
+                              'خروج از حساب',
+                              style: TextStyle(
+                                  fontSize: 16.sp,
+                                  color: Colors.black,
+                                  fontFamily: 'Ordibehesht',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                        selectedItemBuilder: (context) {
+                          return [Container(width: 40.w)];
+                        },
+                        itemHeight: 50.h,
+                        onChanged: (value) {},
+                        icon: Icon(
+                          Icons.more_vert_rounded,
+                          size: 36.sp,
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       width: 1.sw,
                       height: 0.69.sh,

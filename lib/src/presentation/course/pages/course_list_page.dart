@@ -82,6 +82,10 @@ class _CourseListPageState extends State<CourseListPage> {
                       pathString: 'صفحه‌اصلی > مدیریت‌درس‌ها',
                       isWidget: true,
                       widget: DropdownButton<String>(
+                        underline: const SizedBox(),
+                        selectedItemBuilder: (context) {
+                          return [Container(width: 40.w)];
+                        },
                         items: [
                           DropdownMenuItem(
                             alignment: Alignment.center,

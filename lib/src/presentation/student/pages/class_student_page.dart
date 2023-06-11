@@ -9,6 +9,7 @@ import 'package:my_sampad/src/features/auth/domain/models/otp_handshake_response
 import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_sampad/src/features/student/domain/models/student_model/student.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
+import 'package:my_sampad/src/presentation/auth/bloc/auth_bloc.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/splash/widgets/rule_tile_widget.dart';
 import 'package:my_sampad/src/presentation/student/bloc/student/student_bloc.dart';
@@ -49,106 +50,101 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
       create: (_) => bloc,
       child: SafeArea(
         child: Scaffold(
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
           floatingActionButton: GeneralConstants.userType == UserType.teacher
-              ? Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    width: 300.w,
-                    height: 55.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16.sp),
-                        color: const Color(0xffe8ffe8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0xff6a6a6a).withAlpha(70),
-                            offset: const Offset(1, 2),
-                            spreadRadius: 0,
-                            blurRadius: 5.sp,
-                          )
-                        ]),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
-                            flex: 1,
-                            child: InkWell(
-                              onTap: () {
-                                getIt
-                                    .get<AppRouter>()
-                                    .pushNamed('/add_score_for_class_page');
-                              },
-                              child: Container(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    'ثبت‌‍‌‌نمره',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: 'Ordibehesht',
-                                      fontSize: 16.sp,
-                                    ),
-                                  )),
-                            )),
-                        const VerticalDivider(),
-                        Expanded(
-                            flex: 1,
-                            child: InkWell(
-                              onTap: () {
-                                getIt
-                                    .get<AppRouter>()
-                                    .pushNamed('/class_rollcalls_page');
-                              },
-                              child: Container(
+              ? Container(
+                  width: 300.w,
+                  height: 55.h,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.sp),
+                      color: const Color(0xffe8ffe8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xff6a6a6a).withAlpha(70),
+                          offset: const Offset(1, 2),
+                          spreadRadius: 0,
+                          blurRadius: 5.sp,
+                        )
+                      ]),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: InkWell(
+                            onTap: () {
+                              getIt
+                                  .get<AppRouter>()
+                                  .pushNamed('/add_score_for_class_page');
+                            },
+                            child: Container(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  'حضورغیاب',
+                                  'ثبت‌‍‌‌نمره',
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'Ordibehesht',
                                     fontSize: 16.sp,
                                   ),
+                                )),
+                          )),
+                      const VerticalDivider(),
+                      Expanded(
+                          flex: 1,
+                          child: InkWell(
+                            onTap: () {
+                              getIt
+                                  .get<AppRouter>()
+                                  .pushNamed('/class_rollcalls_page');
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: Text(
+                                'حضورغیاب',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'Ordibehesht',
+                                  fontSize: 16.sp,
                                 ),
                               ),
-                            )),
-                      ],
-                    ),
+                            ),
+                          )),
+                    ],
                   ),
                 )
               : GeneralConstants.userType == UserType.admin
-                  ? Align(
-                      alignment: Alignment.bottomCenter,
-                      child: InkWell(
-                        onTap: () async {
-                          await NDialog(
-                            dialogStyle: DialogStyle(
-                              // borderRadius: BorderRadius.circular(12.sp),
-                              contentPadding: EdgeInsets.zero,
-                            ),
-                            content: AddStudentDialog(),
-                          ).show(context);
-                        },
-                        child: Container(
-                          width: 140.w,
-                          height: 60.h,
-                          decoration: BoxDecoration(
-                              color: const Color(0xffe8ffe8),
-                              borderRadius: BorderRadius.circular(12.sp),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: const Color.fromARGB(70, 55, 55, 55),
-                                    spreadRadius: 0,
-                                    blurRadius: 4.sp,
-                                    offset: const Offset(1, 1))
-                              ]),
-                          alignment: Alignment.center,
-                          child: Text(
-                            'اضافه کردن دانش‌آموز',
-                            textDirection: TextDirection.rtl,
-                            style: TextStyle(
-                                fontSize: 16.sp,
-                                color: Colors.black,
-                                fontFamily: 'Ordibehesht',
-                                fontWeight: FontWeight.bold),
+                  ? InkWell(
+                      onTap: () async {
+                        await NDialog(
+                          dialogStyle: DialogStyle(
+                            contentPadding: EdgeInsets.zero,
                           ),
+                          content: AddStudentDialog(),
+                        ).show(context);
+                      },
+                      child: Container(
+                        width: 140.w,
+                        height: 60.h,
+                        decoration: BoxDecoration(
+                            color: const Color(0xffe8ffe8),
+                            borderRadius: BorderRadius.circular(12.sp),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: const Color.fromARGB(70, 55, 55, 55),
+                                  spreadRadius: 0,
+                                  blurRadius: 4.sp,
+                                  offset: const Offset(1, 1))
+                            ]),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'اضافه کردن دانش‌آموز',
+                          textDirection: TextDirection.rtl,
+                          style: TextStyle(
+                              fontSize: 16.sp,
+                              color: Colors.black,
+                              fontFamily: 'Ordibehesht',
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     )
@@ -173,9 +169,12 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                               ? 'دانش‌آموزان'
                               : 'کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان',
                       isWidget: true,
-                      widget: GeneralConstants.userType != UserType.admin
-                          ? null
-                          : DropdownButton<String>(
+                      widget: GeneralConstants.userType == UserType.admin
+                          ? DropdownButton<String>(
+                              underline: const SizedBox(),
+                              selectedItemBuilder: (context) {
+                                return [Container(width: 40.w)];
+                              },
                               items: [
                                 DropdownMenuItem(
                                   alignment: Alignment.center,
@@ -248,7 +247,41 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                 Icons.more_vert_rounded,
                                 size: 36.sp,
                               ),
-                            ),
+                            )
+                          : GeneralConstants.userType == UserType.parent
+                              ? DropdownButton<String>(
+                                  underline: const SizedBox(),
+                                  items: [
+                                    DropdownMenuItem(
+                                      alignment: Alignment.center,
+                                      value: 'logout',
+                                      onTap: () async {
+                                        getIt.get<AppRouter>().pop();
+                                        getIt
+                                            .get<AuthBloc>()
+                                            .add(const AuthEvent.logout());
+                                      },
+                                      child: Text(
+                                        'خروج از حساب',
+                                        style: TextStyle(
+                                            fontSize: 16.sp,
+                                            color: Colors.black,
+                                            fontFamily: 'Ordibehesht',
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
+                                  selectedItemBuilder: (context) {
+                                    return [Container(width: 40.w)];
+                                  },
+                                  itemHeight: 50.h,
+                                  onChanged: (value) {},
+                                  icon: Icon(
+                                    Icons.more_vert_rounded,
+                                    size: 36.sp,
+                                  ),
+                                )
+                              : null,
                     ),
                     SizedBox(
                       width: 1.sw,

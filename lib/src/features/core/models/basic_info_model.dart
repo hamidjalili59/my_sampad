@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 
 part 'basic_info_model.g.dart';

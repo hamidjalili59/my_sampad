@@ -15,6 +15,7 @@ import 'package:my_sampad/src/features/exam/domain/use_cases/add_exam_use_case.d
 import 'package:my_sampad/src/features/exam/domain/use_cases/get_exams_use_case.dart';
 import 'package:my_sampad/src/features/exam/domain/use_cases/remove_exam_use_case.dart';
 import 'package:my_sampad/src/features/exam/domain/use_cases/update_exam_use_case.dart';
+import 'package:my_sampad/src/features/student/domain/models/student_model/student.dart';
 import 'package:my_sampad/src/features/teacher/domain/models/teacher_get_schools.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
@@ -47,7 +48,12 @@ class ExamBloc extends Bloc<ExamEvent, ExamState> {
     }
     emit(ExamState.idle(isLoading: true, exams: state.exams));
     await _getExamsUseCase
-        .call(param: tuple.Tuple1(getIt.get<Classroom>().classID))
+        .call(
+            param: tuple.Tuple1(
+          GeneralConstants.userType == UserType.parent
+              ? getIt.get<Student>().classId
+              : getIt.get<Classroom>().classID,
+        ))
         .then(
           (value) => value.fold(
             (l) => emit(ExamState.idle(isLoading: false, exams: state.exams)),

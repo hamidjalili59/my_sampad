@@ -24,6 +24,7 @@ class AppbarSchoolWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(getIt.get<AppRouter>().current.name);
     return Container(
       width: 1.sw,
       height: 200.h,

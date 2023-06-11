@@ -1,4 +1,6 @@
 // ignore: depend_on_referenced_packages
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:async';
 
@@ -61,6 +63,24 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await Future.delayed(const Duration(seconds: 2));
       handshakeResult.fold(
         (l) {
+          ScaffoldMessenger.of(
+                  getIt.get<AppRouter>().navigatorKey.currentContext!)
+              .showSnackBar(
+            SnackBar(
+              backgroundColor: const Color.fromARGB(255, 255, 232, 232),
+              content: Directionality(
+                textDirection: TextDirection.rtl,
+                child: Text(
+                  'مشکلی در ورود وجود دارد شماره شما ثبت نشده است',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14.sp,
+                    fontFamily: 'Ordibehesht',
+                  ),
+                ),
+              ),
+            ),
+          );
           emit(_Failure(failure: l));
           emit(const _Idle());
         },

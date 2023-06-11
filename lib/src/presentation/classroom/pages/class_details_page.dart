@@ -32,29 +32,7 @@ class ClassDetailsPage extends StatelessWidget {
                     ? 'صفحه‌اصلی > کلاس‌ها > ${getIt.get<Classroom>().className}'
                     : 'مدارس > کلاس‌ها > ${getIt.get<Classroom>().className}',
                 isWidget: true,
-                widget: DropdownButton<String>(
-                  items: [
-                    DropdownMenuItem(
-                      alignment: Alignment.center,
-                      value: 'logout',
-                      onTap: () {},
-                      child: Text(
-                        'logout',
-                        style: TextStyle(
-                            fontSize: 20.sp,
-                            color: Colors.black,
-                            fontFamily: 'Ordibehesht',
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                  itemHeight: 50.h,
-                  onChanged: (value) {},
-                  icon: Icon(
-                    Icons.more_vert_rounded,
-                    size: 36.sp,
-                  ),
-                ),
+                widget: null,
               ),
               SizedBox(
                 width: 1.sw,

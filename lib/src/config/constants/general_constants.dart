@@ -14,6 +14,7 @@ class GeneralConstants {
   static bool isParent = false;
   static bool isTeacher = false;
   static bool isAdmin = false;
+  static bool isDeputy = false;
   static UserType userType = UserType.admin;
   static bool didStartSetup = false;
 

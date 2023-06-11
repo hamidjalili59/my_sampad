@@ -8,6 +8,8 @@ import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/classroom/bloc/classroom_bloc.dart';
 import 'package:my_sampad/src/presentation/classroom/bloc/teacher_classroom/teacher_classroom_bloc.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
+import 'package:ndialog/ndialog.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class TeacherClassesPage extends StatelessWidget {
   const TeacherClassesPage({super.key});
@@ -27,20 +29,48 @@ class TeacherClassesPage extends StatelessWidget {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const AppbarSchoolWidget(
+                    AppbarSchoolWidget(
                         title: 'کلاس ها : ',
                         titleHelper:
                             'با کلیک بر روی هر کلاس میتوانید گزینه های بیشتری برای کلاس را مشاهده کنید',
                         pathString: 'مدارس >  کلاس‌ها',
                         isWidget: true,
-                        widget: null),
+                        widget: InkWell(
+                          onTap: () async {
+                            await NDialog(
+                              dialogStyle:
+                                  DialogStyle(contentPadding: EdgeInsets.zero),
+                              content: SizedBox(
+                                width: 285.w,
+                                height: 285.w,
+                                child: Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(16.0.sp),
+                                    child: QrImageView(
+                                      data: 'teacher_hamidjalili 5060708090',
+                                      padding: EdgeInsets.zero,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ).show(context);
+                          },
+                          child: SizedBox(
+                            width: 80.w,
+                            height: 70.h,
+                            child: Icon(
+                              Icons.qr_code_scanner_rounded,
+                              size: 38.sp,
+                            ),
+                          ),
+                        )),
                     SizedBox(
                       width: 1.sw,
                       height: 0.69.sh,
                       child: Column(
                         children: [
                           Expanded(
-                            flex: 4,
+                            flex: 8,
                             child: state.isLoading
                                 ? const Center(
                                     child: CircularProgressIndicator(),
@@ -157,7 +187,7 @@ class TeacherClassesPage extends StatelessWidget {
                                   ),
                           ),
                           Expanded(
-                            flex: 1,
+                            flex: 2,
                             child: Container(
                               decoration: BoxDecoration(
                                   color: const Color(0xffe8ffe8),
@@ -171,12 +201,12 @@ class TeacherClassesPage extends StatelessWidget {
                                     )
                                   ]),
                               width: 330.w,
-                              height: 109.h,
+                              height: 130.h,
                               alignment: Alignment.center,
                               child: SizedBox(
                                 width: 315,
                                 child: Text(
-                                  'شما میتوانید بعد از انتخاب هر کدام داخل صفحه اصلی با فشردن کلید بازگشت به این صفحه بازگردید',
+                                  'شما میتوانید بعد از انتخاب هر کدام داخل صفحه اصلی با فشردن کلید بازگشت به این صفحه بازگردید\nگزینه  Qr-Code  بالا جهت حضور و غیاب دبیران محترم استفاده میشود',
                                   textAlign: TextAlign.start,
                                   textDirection: TextDirection.rtl,
                                   style: TextStyle(

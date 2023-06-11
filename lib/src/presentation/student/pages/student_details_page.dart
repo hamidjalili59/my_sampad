@@ -39,11 +39,17 @@ class StudentDetailsPage extends StatelessWidget {
             SizedBox(
               width: 1.sw,
               height: 0.7.sh,
-              child: const Column(
-                children: [
-                  StudentDetailCardWidget(title: 'نمرات'),
-                  StudentDetailCardWidget(title: 'غیبت‌ها'),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const StudentDetailCardWidget(title: 'نمرات'),
+                    const StudentDetailCardWidget(title: 'غیبت‌ها'),
+                    GeneralConstants.userType == UserType.parent
+                        ? const StudentDetailCardWidget(title: 'امتحانات')
+                        : const SizedBox(),
+                    SizedBox(height: 50.h)
+                  ],
+                ),
               ),
             )
           ],
@@ -68,8 +74,10 @@ class StudentDetailCardWidget extends StatelessWidget {
         onTap: () {
           if (title == 'غیبت‌ها') {
             getIt.get<AppRouter>().pushNamed('/student_rollcall_view');
-          } else {
+          } else if (title == 'نمرات') {
             getIt.get<AppRouter>().pushNamed('/student_score_view');
+          } else {
+            getIt.get<AppRouter>().pushNamed('/exam_page');
           }
         },
         child: Container(
@@ -119,10 +127,16 @@ class StudentDetailCardWidget extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 150.sp, fontWeight: FontWeight.bold),
                         )
-                      : Padding(
-                          padding: EdgeInsets.only(top: 16.0.h),
-                          child: Icon(Icons.checklist_sharp, size: 180.sp),
-                        ),
+                      : title == 'غیبت‌ها'
+                          ? Padding(
+                              padding: EdgeInsets.only(top: 16.0.h),
+                              child: Icon(Icons.checklist_sharp, size: 180.sp),
+                            )
+                          : Padding(
+                              padding: EdgeInsets.only(top: 16.0.h),
+                              child:
+                                  Icon(Icons.menu_book_rounded, size: 180.sp),
+                            ),
                 ),
               )
             ],
