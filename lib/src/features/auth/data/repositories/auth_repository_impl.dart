@@ -4,6 +4,7 @@ import 'package:my_sampad/src/features/auth/data/data_sources/remote/auth_remote
 import 'package:my_sampad/src/features/auth/domain/failures/auth_failure.dart';
 import 'package:my_sampad/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_sampad/src/features/auth/domain/repositories/auth_repository.dart';
+import 'package:my_sampad/src/features/deputy/domain/models/deputy_model/deputy.dart';
 import 'package:my_sampad/src/features/parent/domain/models/parent_model/parent.dart';
 import 'package:my_sampad/src/features/school/domain/models/principal.dart';
 import 'package:my_sampad/src/features/teacher/domain/models/teacher.dart';
@@ -49,6 +50,7 @@ class AuthRepositoryImpl extends AuthRepository {
     required String typeOfUser,
     required double phoneNumber,
     required Parent parent,
+    required Deputy deputy,
     required Teacher teacher,
     required Principal principal,
     required int code,
@@ -63,6 +65,7 @@ class AuthRepositoryImpl extends AuthRepository {
               parent: parent,
               principal: principal,
               teacher: teacher,
+              deputy: deputy,
               phoneNumber: getIt.get<double>(),
             ))
         .then(

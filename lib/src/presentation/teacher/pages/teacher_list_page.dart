@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
 import 'package:my_sampad/src/config/constants/svg_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
+import 'package:my_sampad/src/features/teacher/domain/models/teacher.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/teacher/bloc/teacher/teacher_bloc.dart';
@@ -341,7 +342,22 @@ class _TeacherListPageState extends State<TeacherListPage> {
                                                 ),
                                               ).show(context);
                                             }
-                                          : () {},
+                                          : () {
+                                              if (getIt
+                                                  .isRegistered<Teacher>()) {
+                                                getIt.unregister<Teacher>();
+                                                getIt
+                                                    .registerSingleton<Teacher>(
+                                                        state.teachers[index]);
+                                              } else {
+                                                getIt
+                                                    .registerSingleton<Teacher>(
+                                                        state.teachers[index]);
+                                              }
+
+                                              getIt.get<AppRouter>().pushNamed(
+                                                  '/teacher_rollcall_list');
+                                            },
                                   child: Container(
                                     decoration: BoxDecoration(
                                         color: Colors.white,

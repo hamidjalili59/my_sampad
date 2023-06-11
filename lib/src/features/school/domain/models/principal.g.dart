@@ -8,7 +8,7 @@ part of 'principal.dart';
 
 class PrincipalAdapter extends TypeAdapter<Principal> {
   @override
-  final int typeId = 40;
+  final int typeId = 32;
 
   @override
   Principal read(BinaryReader reader) {

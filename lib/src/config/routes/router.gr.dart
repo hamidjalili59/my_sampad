@@ -103,6 +103,18 @@ class _$AppRouter extends RootStackRouter {
         child: const TeacherClassListPage(),
       );
     },
+    TeacherRollcallRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const TeacherRollcallPage(),
+      );
+    },
+    TeacherRollcallListRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const TeacherRollcallListPage(),
+      );
+    },
     ClassDetailsRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -202,6 +214,14 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           TeacherClassListRoute.name,
           path: '/mediator_page',
+        ),
+        RouteConfig(
+          TeacherRollcallRoute.name,
+          path: '/teacher_rollcall',
+        ),
+        RouteConfig(
+          TeacherRollcallListRoute.name,
+          path: '/teacher_rollcall_list',
         ),
         RouteConfig(
           ClassDetailsRoute.name,
@@ -404,6 +424,30 @@ class TeacherClassListRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'TeacherClassListRoute';
+}
+
+/// generated route for
+/// [TeacherRollcallPage]
+class TeacherRollcallRoute extends PageRouteInfo<void> {
+  const TeacherRollcallRoute()
+      : super(
+          TeacherRollcallRoute.name,
+          path: '/teacher_rollcall',
+        );
+
+  static const String name = 'TeacherRollcallRoute';
+}
+
+/// generated route for
+/// [TeacherRollcallListPage]
+class TeacherRollcallListRoute extends PageRouteInfo<void> {
+  const TeacherRollcallListRoute()
+      : super(
+          TeacherRollcallListRoute.name,
+          path: '/teacher_rollcall_list',
+        );
+
+  static const String name = 'TeacherRollcallListRoute';
 }
 
 /// generated route for

@@ -5,7 +5,7 @@ import 'course_model/course.dart';
 
 part 'course_success_response.g.dart';
 
-@HiveType(typeId: 11)
+@HiveType(typeId: 12)
 @JsonSerializable()
 class CourseSuccessResponse {
   @HiveField(0)

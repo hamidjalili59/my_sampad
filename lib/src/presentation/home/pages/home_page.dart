@@ -78,8 +78,8 @@ class HomePage extends StatelessWidget {
                         padding: EdgeInsets.symmetric(
                             horizontal: 20.w, vertical: 25.h),
                         itemCount: GeneralConstants.userType == UserType.deputy
-                            ? 3
-                            : 4,
+                            ? 4
+                            : 5,
                         itemBuilder: (context, index) {
                           return HomePageItemWidget(index: index);
                         },
@@ -149,9 +149,13 @@ class HomePageItemWidget extends StatelessWidget {
                   ? () {
                       getIt.get<AppRouter>().pushNamed('/teacher');
                     }
-                  : () {
-                      getIt.get<AppRouter>().pushNamed('/deputy_page');
-                    },
+                  : index == 3
+                      ? () {
+                          getIt.get<AppRouter>().pushNamed('/teacher_rollcall');
+                        }
+                      : () {
+                          getIt.get<AppRouter>().pushNamed('/deputy_page');
+                        },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -174,29 +178,39 @@ class HomePageItemWidget extends StatelessWidget {
                   ? SvgAssets.course
                   : index == 2
                       ? PngAssets.teacher
-                      : PngAssets.employee,
+                      : index == 3
+                          ? PngAssets.rollcall
+                          : PngAssets.employee,
           offset: index == 0
               ? const Offset(10, 20)
               : index == 1
                   ? const Offset(10, 5)
                   : index == 2
                       ? const Offset(10, 20)
-                      : const Offset(10, 20),
+                      : index == 3
+                          ? const Offset(10, 20)
+                          : const Offset(10, 20),
           paddingContainer: index == 0
               ? 70.h
               : index == 1
                   ? 45.h
                   : index == 2
                       ? 50.h
-                      : 40.h,
-          isSvg: index == 0 || index == 2 || index == 3 ? false : true,
+                      : index == 3
+                          ? 40.h
+                          : 40.h,
+          isSvg: index == 0 || index == 2 || index == 3 || index == 4
+              ? false
+              : true,
           title: index == 0
               ? 'کلاس‌ها'
               : index == 1
                   ? 'مدیریت درس‌ها'
                   : index == 2
                       ? 'مدیریت دبیران'
-                      : 'مدیریت معاونت',
+                      : index == 3
+                          ? 'ثبت‌حضور‌اساتید'
+                          : 'مدیریت معاونت',
         ),
       ),
     );

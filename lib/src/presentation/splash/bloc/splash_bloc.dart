@@ -30,7 +30,7 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
     on<_GetClientData>(_getClientData);
     on<_GetAccountData>(_getAccountData);
     on<_TokenIsExist>(_jwtIsExist);
-    add(const SplashEvent.tokenIsExist());
+    // add(const SplashEvent.tokenIsExist());
   }
   @override
   void onEvent(SplashEvent event) {
@@ -107,12 +107,8 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
           emit(_Failure(failure: l));
         },
         (r) {
-          if (r == null) {
-            appRoute.pushNamed('/auth');
-            return emit(const _Failure(failure: AuthFailure.nullParam()));
-          }
           if (!getIt.isRegistered<OtpHandshakeResponse>()) {
-            getIt.registerSingleton<OtpHandshakeResponse>(r);
+            getIt.registerSingleton<OtpHandshakeResponse>(r!);
           }
           add(const _GetAccountData());
         },

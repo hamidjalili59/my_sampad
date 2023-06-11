@@ -8,7 +8,7 @@ part of 'score_get_response.dart';
 
 class ScoreGetResponseAdapter extends TypeAdapter<ScoreGetResponse> {
   @override
-  final int typeId = 25;
+  final int typeId = 34;
 
   @override
   ScoreGetResponse read(BinaryReader reader) {

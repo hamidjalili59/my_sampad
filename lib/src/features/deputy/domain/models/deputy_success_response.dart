@@ -4,7 +4,7 @@ import 'package:my_sampad/src/features/deputy/domain/models/deputy_model/deputy.
 
 part 'deputy_success_response.g.dart';
 
-@HiveType(typeId: 18)
+@HiveType(typeId: 15)
 @JsonSerializable()
 class DeputySuccessResponse {
   @HiveField(0)

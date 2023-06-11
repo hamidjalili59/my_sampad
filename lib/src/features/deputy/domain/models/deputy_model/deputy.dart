@@ -6,6 +6,7 @@ import 'package:hive/hive.dart';
 part 'deputy.freezed.dart';
 part 'deputy.g.dart';
 
+@HiveType(typeId: 16)
 @Freezed(
   makeCollectionsUnmodifiable: false,
   copyWith: true,
@@ -13,7 +14,6 @@ part 'deputy.g.dart';
   fromJson: true,
   equal: true,
 )
-@HiveType(typeId: 19)
 
 /// asd
 class Deputy with _$Deputy {

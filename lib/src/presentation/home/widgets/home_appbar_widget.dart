@@ -43,7 +43,7 @@ class HomeCustomAppBar extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  title != 'مدرسه من'
+                  title != 'سمپاد من'
                       ? InkWell(
                           onTap: () {
                             appRouter.pop();

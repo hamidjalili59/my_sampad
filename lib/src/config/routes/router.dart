@@ -10,6 +10,8 @@ import 'package:my_sampad/src/presentation/exam/pages/exam_page.dart';
 import 'package:my_sampad/src/presentation/home/pages/home_page.dart';
 import 'package:my_sampad/src/presentation/rollcall/pages/class_rollcall_page.dart';
 import 'package:my_sampad/src/presentation/rollcall/pages/single_student_rollcalls_page.dart';
+import 'package:my_sampad/src/presentation/rollcall/pages/teacher_rollcall_list_page.dart';
+import 'package:my_sampad/src/presentation/rollcall/pages/teacher_rollcall_page.dart';
 import 'package:my_sampad/src/presentation/school/pages/select_school_page.dart';
 import 'package:my_sampad/src/presentation/score/pages/add_score_for_class_page.dart';
 import 'package:my_sampad/src/presentation/score/pages/single_score_view_page.dart';
@@ -41,6 +43,8 @@ part 'router.gr.dart';
   AutoRoute(path: "/exam_page", page: ExamPage),
   AutoRoute(path: "/deputy_page", page: DeputyListPage),
   AutoRoute(path: "/mediator_page", page: TeacherClassListPage),
+  AutoRoute(path: "/teacher_rollcall", page: TeacherRollcallPage),
+  AutoRoute(path: "/teacher_rollcall_list", page: TeacherRollcallListPage),
   // class page
   AutoRoute(
     path: "/class_details_page",

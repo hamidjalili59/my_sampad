@@ -8,7 +8,7 @@ part of 'parent.dart';
 
 class ParentAdapter extends TypeAdapter<Parent> {
   @override
-  final int typeId = 19;
+  final int typeId = 27;
 
   @override
   Parent read(BinaryReader reader) {

@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 part 'teacher.freezed.dart';
 part 'teacher.g.dart';
 
-@HiveType(typeId: 35)
+@HiveType(typeId: 46)
 @Freezed(
   copyWith: true,
   equal: true,

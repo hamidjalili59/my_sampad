@@ -150,7 +150,7 @@ class DeputyDialogWidget extends StatelessWidget {
                                     Deputy(
                                       schoolId: getIt
                                           .get<OtpHandshakeResponse>()
-                                          .principal
+                                          .principal!
                                           .schoolId,
                                       basicInfo: BasicInfoModel(
                                           name: _deputyName.text,

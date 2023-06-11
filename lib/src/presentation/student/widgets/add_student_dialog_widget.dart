@@ -31,9 +31,13 @@ class AddStudentDialog extends StatelessWidget {
 
   final TextEditingController _phone = TextEditingController(text: '');
 
-  bool sendSms = false;
   @override
   Widget build(BuildContext context) {
+    if (getIt.get<StudentBloc>().state.smsChackBox != student!.sendSMS) {
+      getIt
+          .get<StudentBloc>()
+          .add(StudentEvent.checkSMSCheckBox(student!.sendSMS));
+    }
     if (isEditing && student != null) {
       _studentName.value = TextEditingValue(text: student!.basicInfo!.name);
       _phone.value =
@@ -169,13 +173,11 @@ class AddStudentDialog extends StatelessWidget {
                 child: Row(
                   children: [
                     Checkbox(
-                        value: sendSms,
+                        value: getIt.get<StudentBloc>().state.smsChackBox,
                         onChanged: (value) {
-                          sendSms = value ?? false;
-
-                          getIt
-                              .get<StudentBloc>()
-                              .add(StudentEvent.checkSMSCheckBox(sendSms));
+                          // sendSms = value ?? false;
+                          getIt.get<StudentBloc>().add(
+                              StudentEvent.checkSMSCheckBox(value ?? false));
                         }),
                     Text(
                       'ارسال پیامک',
@@ -193,7 +195,10 @@ class AddStudentDialog extends StatelessWidget {
                             getIt.get<StudentBloc>().add(
                                   StudentEvent.updateStudent(
                                     student!.copyWith(
-                                      sendSMS: sendSms,
+                                      sendSMS: getIt
+                                          .get<StudentBloc>()
+                                          .state
+                                          .smsChackBox,
                                       basicInfo: BasicInfoModel(
                                           name: _studentName.text,
                                           phoneNumber:
@@ -212,7 +217,10 @@ class AddStudentDialog extends StatelessWidget {
                                               double.tryParse(_phone.text) ??
                                                   0),
                                       classId: getIt.get<Classroom>().classID,
-                                      sendSMS: sendSms,
+                                      sendSMS: getIt
+                                          .get<StudentBloc>()
+                                          .state
+                                          .smsChackBox,
                                     ),
                                     _parentName.text,
                                   ),

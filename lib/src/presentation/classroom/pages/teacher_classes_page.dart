@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
+import 'package:my_sampad/src/features/auth/domain/models/otp_handshake_response.dart';
 import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/classroom/bloc/classroom_bloc.dart';
@@ -37,6 +40,17 @@ class TeacherClassesPage extends StatelessWidget {
                         isWidget: true,
                         widget: InkWell(
                           onTap: () async {
+                            String teacherRollcallData = jsonEncode({
+                              'mobile_ID': getIt
+                                  .get<OtpHandshakeResponse>()
+                                  .teacher!
+                                  .teacherId,
+                              'numberPhone': getIt
+                                  .get<OtpHandshakeResponse>()
+                                  .teacher!
+                                  .basicInfo!
+                                  .phoneNumber,
+                            });
                             await NDialog(
                               dialogStyle:
                                   DialogStyle(contentPadding: EdgeInsets.zero),
@@ -47,7 +61,7 @@ class TeacherClassesPage extends StatelessWidget {
                                   child: Padding(
                                     padding: EdgeInsets.all(16.0.sp),
                                     child: QrImageView(
-                                      data: 'teacher_hamidjalili 5060708090',
+                                      data: teacherRollcallData,
                                       padding: EdgeInsets.zero,
                                     ),
                                   ),

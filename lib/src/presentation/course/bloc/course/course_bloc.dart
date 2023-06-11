@@ -80,7 +80,7 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
                 CourseState.idle(isLoading: false, courses: state.courses)),
             (r) {
               add(CourseEvent.getCourses(
-                getIt.get<OtpHandshakeResponse>().principal.schoolId,
+                getIt.get<OtpHandshakeResponse>().principal!.schoolId,
               ));
             },
           ),

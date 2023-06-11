@@ -13,7 +13,7 @@ part 'parent.g.dart';
   fromJson: true,
   equal: true,
 )
-@HiveType(typeId: 19)
+@HiveType(typeId: 27)
 
 /// asd
 class Parent with _$Parent {

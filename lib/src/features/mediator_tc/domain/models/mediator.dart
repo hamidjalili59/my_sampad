@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 part 'mediator.freezed.dart';
 part 'mediator.g.dart';
 
-@HiveType(typeId: 36)
+@HiveType(typeId: 24)
 @Freezed(
   copyWith: true,
   equal: true,

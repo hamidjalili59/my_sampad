@@ -8,7 +8,7 @@ part of 'deputy_success_response.dart';
 
 class DeputySuccessResponseAdapter extends TypeAdapter<DeputySuccessResponse> {
   @override
-  final int typeId = 18;
+  final int typeId = 15;
 
   @override
   DeputySuccessResponse read(BinaryReader reader) {

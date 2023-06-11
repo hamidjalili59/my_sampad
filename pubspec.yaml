@@ -40,6 +40,7 @@ dependencies:
   ndialog: ^4.2.0
   persian_datetimepickers: ^1.0.3+2
   pinput: ^2.2.31
+  qr_code_scanner: ^1.0.1
   qr_flutter: ^4.1.0
   rename: ^2.0.1
 

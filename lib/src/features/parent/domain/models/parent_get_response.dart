@@ -6,7 +6,7 @@ import 'parent_model/parent.dart';
 
 part 'parent_get_response.g.dart';
 
-@HiveType(typeId: 17)
+@HiveType(typeId: 25)
 @JsonSerializable()
 class ParentGetResponse {
   @HiveField(0)

@@ -158,7 +158,7 @@ class __$$_StudentCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 31)
+@HiveType(typeId: 41)
 class _$_Student implements _Student {
   _$_Student(
       {@HiveField(0, defaultValue: 0)

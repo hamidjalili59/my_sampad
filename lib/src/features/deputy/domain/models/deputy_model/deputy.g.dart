@@ -8,7 +8,7 @@ part of 'deputy.dart';
 
 class DeputyAdapter extends TypeAdapter<Deputy> {
   @override
-  final int typeId = 19;
+  final int typeId = 16;
 
   @override
   Deputy read(BinaryReader reader) {

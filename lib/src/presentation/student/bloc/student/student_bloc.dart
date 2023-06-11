@@ -162,6 +162,14 @@ class StudentBloc extends Bloc<StudentEvent, StudentState> {
 
   FutureOr<void> _onCheckSMSCheckBox(
       _ChackSMSCheckBox event, Emitter<StudentState> emit) {
+    // List<Student> tempList = state.students.toList();
+    // Student tempStudent = tempList[
+    //         tempList.map((e) => e.studentId).toList().indexOf(event.studentId)]
+    //     .copyWith(sendSMS: event.status);
+    // tempList[tempList
+    //     .map((e) => e.studentId)
+    //     .toList()
+    //     .indexOf(event.studentId)] = tempStudent;
     emit(state.copyWith(smsChackBox: event.status));
   }
 }

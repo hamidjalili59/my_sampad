@@ -9,7 +9,7 @@ part of 'classroom_model.dart';
 _$_Classroom _$$_ClassroomFromJson(Map<String, dynamic> json) => _$_Classroom(
       classID: json['class_ID'] as int? ?? 0,
       schoolId: json['school_ID'] as int? ?? 0,
-      className: json['class_Name'] as String? ?? 'مدرسه من',
+      className: json['class_Name'] as String? ?? 'سمپاد من',
       courseName: json['course_Name'] as String? ?? '',
     );
 

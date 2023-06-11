@@ -65,7 +65,7 @@ class AppbarSchoolWidget extends StatelessWidget {
                 const Spacer(),
                 SizedBox(
                     child: Text(
-                  'مدرسه من',
+                  'سمپاد من',
                   style: TextStyle(
                     fontFamily: 'Ordibehesht',
                     fontSize: 28.sp,

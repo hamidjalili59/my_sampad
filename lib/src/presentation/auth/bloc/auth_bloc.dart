@@ -14,7 +14,9 @@ import 'package:my_sampad/src/features/auth/domain/models/otp_verify_response.da
 import 'package:my_sampad/src/features/auth/domain/use_cases/cache_auth_data_use_case.dart';
 import 'package:my_sampad/src/features/auth/domain/use_cases/logout_auth_use_case.dart';
 import 'package:my_sampad/src/features/auth/domain/use_cases/otp_handshake_use_case.dart';
+import 'package:my_sampad/src/features/core/models/basic_info_model.dart';
 import 'package:my_sampad/src/features/core/models/tuple.dart' as tuple;
+import 'package:my_sampad/src/features/deputy/domain/models/deputy_model/deputy.dart';
 import 'package:my_sampad/src/features/parent/domain/models/parent_model/parent.dart';
 import 'package:my_sampad/src/features/school/domain/models/principal.dart';
 import 'package:my_sampad/src/features/teacher/domain/models/teacher.dart';
@@ -120,15 +122,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(const AuthState.idle(isLoading: true));
     try {
       final cacheResult = await _cacheAuthDataUseCase(
-        param: tuple.Tuple7<String, String, int, Parent, Teacher, Principal,
-            double>(
+        param: tuple.Tuple8<String, String, int, Parent, Teacher, Principal,
+            Deputy, double>(
           event.token.token,
           event.token.typeOfUser,
           event.token.code,
-          event.token.parent,
-          event.token.teacher,
-          event.token.principal,
-          event.token.phoneNumber!,
+          event.token.parent ?? Parent(),
+          event.token.teacher ?? const Teacher(),
+          event.token.principal ??
+              Principal(
+                  schoolId: 0,
+                  basicInfo: BasicInfoModel(name: '', phoneNumber: 0)),
+          event.token.deputy ?? Deputy(),
+          event.token.phoneNumber ?? 0,
         ),
       );
       cacheResult.fold(
