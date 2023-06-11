@@ -47,11 +47,11 @@ class DeputySuccessResponseAdapter extends TypeAdapter<DeputySuccessResponse> {
 DeputySuccessResponse _$DeputySuccessResponseFromJson(
         Map<String, dynamic> json) =>
     DeputySuccessResponse(
-      deputy: Deputy.fromJson(json['deputy'] as Map<String, dynamic>),
+      deputy: Deputy.fromJson(json['Deputy'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$DeputySuccessResponseToJson(
         DeputySuccessResponse instance) =>
     <String, dynamic>{
-      'deputy': instance.deputy,
+      'Deputy': instance.deputy,
     };

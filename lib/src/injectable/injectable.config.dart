@@ -216,23 +216,23 @@ import 'package:my_sampad/src/injectable/module_injection/feature/classroom_feat
 import 'package:my_sampad/src/injectable/module_injection/feature/course_feature_module.dart'
     as _i120;
 import 'package:my_sampad/src/injectable/module_injection/feature/deputy_feature_module.dart'
-    as _i129;
-import 'package:my_sampad/src/injectable/module_injection/feature/exam_feature_module.dart'
     as _i121;
-import 'package:my_sampad/src/injectable/module_injection/feature/mediator_feature_module.dart'
+import 'package:my_sampad/src/injectable/module_injection/feature/exam_feature_module.dart'
     as _i122;
-import 'package:my_sampad/src/injectable/module_injection/feature/parent_feature_module.dart'
+import 'package:my_sampad/src/injectable/module_injection/feature/mediator_feature_module.dart'
     as _i123;
-import 'package:my_sampad/src/injectable/module_injection/feature/rollcall_feature_module.dart'
+import 'package:my_sampad/src/injectable/module_injection/feature/parent_feature_module.dart'
     as _i124;
-import 'package:my_sampad/src/injectable/module_injection/feature/school_feature_module.dart'
+import 'package:my_sampad/src/injectable/module_injection/feature/rollcall_feature_module.dart'
     as _i125;
-import 'package:my_sampad/src/injectable/module_injection/feature/score_feature_module.dart'
+import 'package:my_sampad/src/injectable/module_injection/feature/school_feature_module.dart'
     as _i126;
-import 'package:my_sampad/src/injectable/module_injection/feature/student_feature_module.dart'
+import 'package:my_sampad/src/injectable/module_injection/feature/score_feature_module.dart'
     as _i127;
-import 'package:my_sampad/src/injectable/module_injection/feature/teacher_feature_module.dart'
+import 'package:my_sampad/src/injectable/module_injection/feature/student_feature_module.dart'
     as _i128;
+import 'package:my_sampad/src/injectable/module_injection/feature/teacher_feature_module.dart'
+    as _i129;
 import 'package:my_sampad/src/presentation/auth/bloc/auth_bloc.dart' as _i110;
 import 'package:my_sampad/src/presentation/classroom/bloc/classroom_bloc.dart'
     as _i111;
@@ -533,20 +533,20 @@ class _$ClassroomFeatureModule extends _i119.ClassroomFeatureModule {}
 
 class _$CourseFeatureModule extends _i120.CourseFeatureModule {}
 
-class _$ExamFeatureModule extends _i121.ExamFeatureModule {}
+class _$DeputyFeatureModule extends _i121.DeputyFeatureModule {}
 
-class _$MediatorFeatureModule extends _i122.MediatorFeatureModule {}
+class _$ExamFeatureModule extends _i122.ExamFeatureModule {}
 
-class _$ParentFeatureModule extends _i123.ParentFeatureModule {}
+class _$MediatorFeatureModule extends _i123.MediatorFeatureModule {}
 
-class _$RollcallFeatureModule extends _i124.RollcallFeatureModule {}
+class _$ParentFeatureModule extends _i124.ParentFeatureModule {}
 
-class _$SchoolFeatureModule extends _i125.SchoolFeatureModule {}
+class _$RollcallFeatureModule extends _i125.RollcallFeatureModule {}
 
-class _$ScoreFeatureModule extends _i126.ScoreFeatureModule {}
+class _$SchoolFeatureModule extends _i126.SchoolFeatureModule {}
 
-class _$StudentFeatureModule extends _i127.StudentFeatureModule {}
+class _$ScoreFeatureModule extends _i127.ScoreFeatureModule {}
 
-class _$TeacherFeatureModule extends _i128.TeacherFeatureModule {}
+class _$StudentFeatureModule extends _i128.StudentFeatureModule {}
 
-class _$DeputyFeatureModule extends _i129.DeputyFeatureModule {}
+class _$TeacherFeatureModule extends _i129.TeacherFeatureModule {}

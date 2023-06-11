@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_sampad/src/config/constants/png_assets.dart';
+import 'package:my_sampad/src/config/constants/svg_assets.dart';
 import 'package:my_sampad/src/config/routes/router.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
@@ -155,178 +157,228 @@ class _TeacherListPageState extends State<TeacherListPage> {
                     SizedBox(
                       width: 1.sw,
                       height: 0.69.sh,
-                      child: GridView.builder(
-                        shrinkWrap: true,
-                        itemCount: state.teachers.length,
-                        padding: EdgeInsets.all(16.r),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisExtent: 260.h,
-                          crossAxisSpacing: 15.w,
-                          mainAxisSpacing: 10.h,
-                        ),
-                        itemBuilder: (context, index) {
-                          if (state.isLoading) {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          }
-                          return InkWell(
-                            onTap: editMode
-                                ? () async {
-                                    setState(() {
-                                      editMode = false;
-                                    });
-                                    await NDialog(
-                                      dialogStyle: DialogStyle(
-                                        contentPadding: EdgeInsets.zero,
-                                      ),
-                                      content: TeacherDialogWidget(
-                                        isEditing: true,
-                                        teacher: state.teachers[index],
-                                      ),
-                                    ).show(context);
-                                  }
-                                : deleteMode
-                                    ? () async {
-                                        setState(() {
-                                          deleteMode = false;
-                                        });
-                                        await NDialog(
-                                          dialogStyle: DialogStyle(
-                                            contentPadding: EdgeInsets.zero,
-                                          ),
-                                          title: SizedBox(
-                                            height: 50.h,
-                                            child: Text(
-                                              'آیا از حذف ${state.teachers[index].basicInfo!.name} اطمینان دارید',
-                                              textAlign: TextAlign.center,
-                                              textDirection: TextDirection.rtl,
-                                              style: TextStyle(
-                                                  fontSize: 20.sp,
-                                                  color: Colors.black,
-                                                  fontFamily: 'Ordibehesht',
-                                                  fontWeight: FontWeight.bold),
+                      child: state.isLoading
+                          ? const Center(child: CircularProgressIndicator())
+                          : GridView.builder(
+                              shrinkWrap: true,
+                              itemCount: state.teachers.length,
+                              padding: EdgeInsets.all(16.r),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisExtent: 260.h,
+                                crossAxisSpacing: 15.w,
+                                mainAxisSpacing: 10.h,
+                              ),
+                              itemBuilder: (context, index) {
+                                if (state.teachers.isEmpty) {
+                                  return SizedBox(
+                                    width: 1.sw,
+                                    height: 0.8.sh,
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            width: 0.95.sw,
+                                            height: 0.5.sh,
+                                            child: Padding(
+                                              padding: EdgeInsets.all(54.0.r),
+                                              child: SvgPicture.asset(
+                                                SvgAssets.empty,
+                                              ),
                                             ),
                                           ),
-                                          content: SizedBox(
-                                            width: 120.w,
-                                            height: 50.h,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                InkWell(
-                                                  onTap: () {
-                                                    getIt
-                                                        .get<AppRouter>()
-                                                        .pop();
-                                                  },
-                                                  child: Container(
-                                                    width: 120.w,
-                                                    height: 45.h,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.sp),
-                                                    ),
-                                                    alignment: Alignment.center,
-                                                    child: Text(
-                                                      'خیر',
-                                                      textDirection:
-                                                          TextDirection.rtl,
-                                                      style: TextStyle(
-                                                          fontSize: 20.sp,
-                                                          color: Colors.black,
-                                                          fontFamily:
-                                                              'Ordibehesht',
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
+                                          Text(
+                                            'دبیری برای این کلاس وجود ندارد',
+                                            textDirection: TextDirection.rtl,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w800,
+                                                fontFamily: 'Ordibehesht',
+                                                fontSize: 22.r),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }
+                                return InkWell(
+                                  onTap: editMode
+                                      ? () async {
+                                          setState(() {
+                                            editMode = false;
+                                          });
+                                          await NDialog(
+                                            dialogStyle: DialogStyle(
+                                              contentPadding: EdgeInsets.zero,
+                                            ),
+                                            content: TeacherDialogWidget(
+                                              isEditing: true,
+                                              teacher: state.teachers[index],
+                                            ),
+                                          ).show(context);
+                                        }
+                                      : deleteMode
+                                          ? () async {
+                                              setState(() {
+                                                deleteMode = false;
+                                              });
+                                              await NDialog(
+                                                dialogStyle: DialogStyle(
+                                                  contentPadding:
+                                                      EdgeInsets.zero,
+                                                ),
+                                                title: SizedBox(
+                                                  height: 50.h,
+                                                  child: Text(
+                                                    'آیا از حذف ${state.teachers[index].basicInfo!.name} اطمینان دارید',
+                                                    textAlign: TextAlign.center,
+                                                    textDirection:
+                                                        TextDirection.rtl,
+                                                    style: TextStyle(
+                                                        fontSize: 20.sp,
+                                                        color: Colors.black,
+                                                        fontFamily:
+                                                            'Ordibehesht',
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                                   ),
                                                 ),
-                                                InkWell(
-                                                  onTap: () {
-                                                    getIt
-                                                        .get<TeacherBloc>()
-                                                        .add(
-                                                          TeacherEvent
-                                                              .removeTeacher(
-                                                            state
-                                                                .teachers[index]
-                                                                .teacherId,
+                                                content: SizedBox(
+                                                  width: 120.w,
+                                                  height: 50.h,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      InkWell(
+                                                        onTap: () {
+                                                          getIt
+                                                              .get<AppRouter>()
+                                                              .pop();
+                                                        },
+                                                        child: Container(
+                                                          width: 120.w,
+                                                          height: 45.h,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.sp),
                                                           ),
-                                                        );
-                                                    getIt
-                                                        .get<AppRouter>()
-                                                        .pop();
-                                                  },
-                                                  child: Container(
-                                                    width: 120.w,
-                                                    height: 45.h,
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.sp),
-                                                    ),
-                                                    alignment: Alignment.center,
-                                                    child: Text(
-                                                      'بله',
-                                                      textDirection:
-                                                          TextDirection.rtl,
-                                                      style: TextStyle(
-                                                          fontSize: 20.sp,
-                                                          color: Colors.black,
-                                                          fontFamily:
-                                                              'Ordibehesht',
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            'خیر',
+                                                            textDirection:
+                                                                TextDirection
+                                                                    .rtl,
+                                                            style: TextStyle(
+                                                                fontSize: 20.sp,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontFamily:
+                                                                    'Ordibehesht',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          getIt
+                                                              .get<
+                                                                  TeacherBloc>()
+                                                              .add(
+                                                                TeacherEvent
+                                                                    .removeTeacher(
+                                                                  state
+                                                                      .teachers[
+                                                                          index]
+                                                                      .teacherId,
+                                                                ),
+                                                              );
+                                                          getIt
+                                                              .get<AppRouter>()
+                                                              .pop();
+                                                        },
+                                                        child: Container(
+                                                          width: 120.w,
+                                                          height: 45.h,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.sp),
+                                                          ),
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            'بله',
+                                                            textDirection:
+                                                                TextDirection
+                                                                    .rtl,
+                                                            style: TextStyle(
+                                                                fontSize: 20.sp,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontFamily:
+                                                                    'Ordibehesht',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
                                                   ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ).show(context);
-                                      }
-                                    : () {},
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12.sp),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: const Color.fromARGB(
-                                            70, 55, 55, 55),
-                                        spreadRadius: 0,
-                                        blurRadius: 4.sp,
-                                        offset: const Offset(1, 1))
-                                  ]),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                      width: 150.w,
-                                      height: 160.h,
-                                      child: Image.asset(PngAssets.teacher)),
-                                  SizedBox(height: 20.h),
-                                  Text(
-                                    'استاد ${state.teachers[index].basicInfo!.name}',
-                                    textDirection: TextDirection.rtl,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        fontSize: 22.sp,
-                                        color: Colors.black,
-                                        fontFamily: 'Ordibehesht',
-                                        fontWeight: FontWeight.bold),
+                                                ),
+                                              ).show(context);
+                                            }
+                                          : () {},
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(12.sp),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: const Color.fromARGB(
+                                                  70, 55, 55, 55),
+                                              spreadRadius: 0,
+                                              blurRadius: 4.sp,
+                                              offset: const Offset(1, 1))
+                                        ]),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                            width: 150.w,
+                                            height: 160.h,
+                                            child:
+                                                Image.asset(PngAssets.teacher)),
+                                        SizedBox(height: 20.h),
+                                        Text(
+                                          'استاد ${state.teachers[index].basicInfo!.name}',
+                                          textDirection: TextDirection.rtl,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 22.sp,
+                                              color: Colors.black,
+                                              fontFamily: 'Ordibehesht',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ],
-                              ),
+                                );
+                              },
                             ),
-                          );
-                        },
-                      ),
                     ),
                   ],
                 );

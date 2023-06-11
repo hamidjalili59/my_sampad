@@ -40,15 +40,15 @@ class DeputyAdapter extends TypeAdapter<Deputy> {
 // **************************************************************************
 
 _$_Deputy _$$_DeputyFromJson(Map<String, dynamic> json) => _$_Deputy(
-      deputyId: json['deputyId'] as int? ?? 0,
-      schoolId: json['schoolId'] as int? ?? 0,
-      basicInfo: json['basicInfo'] == null
+      deputyId: json['deputy_ID'] as int? ?? 0,
+      schoolId: json['school_ID'] as int? ?? 0,
+      basicInfo: json['basic_Info'] == null
           ? null
-          : BasicInfoModel.fromJson(json['basicInfo'] as Map<String, dynamic>),
+          : BasicInfoModel.fromJson(json['basic_Info'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_DeputyToJson(_$_Deputy instance) => <String, dynamic>{
-      'deputyId': instance.deputyId,
-      'schoolId': instance.schoolId,
-      'basicInfo': instance.basicInfo,
+      'deputy_ID': instance.deputyId,
+      'school_ID': instance.schoolId,
+      'basic_Info': instance.basicInfo,
     };

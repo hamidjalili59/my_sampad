@@ -7,14 +7,11 @@ import 'package:my_sampad/src/features/deputy/domain/models/deputy_success_respo
 abstract class DeputyRepository {
   //
   Future<Either<DeputyFailure, DeputySuccessResponse>> updateDeputy({
-    required int schoolId,
-    required int deputyId,
-    required String name,
-    required double phoneNumber,
+    required Deputy deputy,
   });
   //
   Future<Either<DeputyFailure, DeputyGetResponse>> getDeputy({
-    required int deputyId,
+    required int schoolId,
   });
   //
   Future<Either<DeputyFailure, DeputySuccessResponse>> addDeputy({
@@ -26,7 +23,7 @@ abstract class DeputyRepository {
   });
   //
   Future<Either<DeputyFailure, void>> cacheDeputysData({
-    required Deputy deputy,
+    required List<Deputy> deputy,
   });
   //
   Future<Either<DeputyFailure, DeputyGetResponse>> getCachedDeputyData();

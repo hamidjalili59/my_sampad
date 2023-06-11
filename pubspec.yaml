@@ -18,6 +18,7 @@ dependencies:
   database_service:
     git:
       url: https://github.com/hamidjalili59/database_service.git
+  device_info_plus: ^9.0.2
   dio: ^5.2.0
   flutter:
     sdk: flutter

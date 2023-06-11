@@ -149,7 +149,9 @@ class HomePageItemWidget extends StatelessWidget {
                   ? () {
                       getIt.get<AppRouter>().pushNamed('/teacher');
                     }
-                  : () {},
+                  : () {
+                      getIt.get<AppRouter>().pushNamed('/deputy_page');
+                    },
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,

@@ -17,7 +17,7 @@ class DeputyGetResponseAdapter extends TypeAdapter<DeputyGetResponse> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return DeputyGetResponse(
-      deputys: fields[0] as Deputy,
+      deputys: fields[0] == null ? [] : (fields[0] as List).cast<Deputy>(),
     );
   }
 
@@ -46,10 +46,13 @@ class DeputyGetResponseAdapter extends TypeAdapter<DeputyGetResponse> {
 
 DeputyGetResponse _$DeputyGetResponseFromJson(Map<String, dynamic> json) =>
     DeputyGetResponse(
-      deputys: Deputy.fromJson(json['deputys'] as Map<String, dynamic>),
+      deputys: (json['Deputys'] as List<dynamic>?)
+              ?.map((e) => Deputy.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$DeputyGetResponseToJson(DeputyGetResponse instance) =>
     <String, dynamic>{
-      'deputys': instance.deputys,
+      'Deputys': instance.deputys,
     };

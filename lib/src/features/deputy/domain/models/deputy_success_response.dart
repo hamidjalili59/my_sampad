@@ -8,6 +8,7 @@ part 'deputy_success_response.g.dart';
 @JsonSerializable()
 class DeputySuccessResponse {
   @HiveField(0)
+  @JsonKey(name: 'Deputy')
   final Deputy deputy;
 
   DeputySuccessResponse({required this.deputy});

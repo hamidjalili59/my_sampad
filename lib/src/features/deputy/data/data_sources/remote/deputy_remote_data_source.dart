@@ -7,7 +7,7 @@ import 'package:my_sampad/src/features/deputy/domain/models/deputy_model/deputy.
 
 abstract class DeputyRemoteDataSource {
   Future<Either<DioException, Response<Map<String, dynamic>>>> getDeputy(
-      {required int deputyId});
+      {required int schoolId});
 
   Future<Either<DioException, Response<Map<String, dynamic>>>> addDeputy(
       {required Deputy deputy});
@@ -16,10 +16,7 @@ abstract class DeputyRemoteDataSource {
       {required int deputyId});
 
   Future<Either<DioException, Response<Map<String, dynamic>>>> updateDeputy({
-    required int schoolId,
-    required int deputyId,
-    required String name,
-    required double phoneNumber,
+    required Deputy deputy,
   });
 }
 
@@ -31,9 +28,9 @@ class DeputyRemoteDataSourceImpl implements DeputyRemoteDataSource {
 
   @override
   Future<Either<DioException, Response<Map<String, dynamic>>>> getDeputy(
-      {required int deputyId}) {
+      {required int schoolId}) {
     return apiService.getMethod(
-      GeneralConstants.host,
+      GeneralConstants.host + DeputyEndpoints.getLink + schoolId.toString(),
     );
   }
 
@@ -47,29 +44,26 @@ class DeputyRemoteDataSourceImpl implements DeputyRemoteDataSource {
 
   @override
   Future<Either<DioException, Response<Map<String, dynamic>>>> updateDeputy({
-    required int schoolId,
-    required int deputyId,
-    required String name,
-    required double phoneNumber,
+    required Deputy deputy,
   }) =>
       apiService.putMethod<Map<String, dynamic>>(
-          GeneralConstants.host + DeputyEndpoints.editLink,
-          body: {
-            'deputy_id': deputyId,
-            'school_id': schoolId,
-            'name': name,
-            'phone_number': phoneNumber,
-          });
+        GeneralConstants.host +
+            DeputyEndpoints.editLink +
+            deputy.deputyId.toString(),
+        body: {
+          "name": deputy.basicInfo!.name,
+          "phoneNumber": deputy.basicInfo!.phoneNumber
+        },
+      );
 
   @override
   Future<Either<DioException, Response<Map<String, dynamic>>>> addDeputy(
           {required Deputy deputy}) =>
-      apiService.putMethod<Map<String, dynamic>>(
+      apiService.postMethod<Map<String, dynamic>>(
           GeneralConstants.host + DeputyEndpoints.addLink,
           body: {
-            'deputy_id': '',
-            'school_id': '',
-            'name': '',
-            'phone_number': '',
+            "name": deputy.basicInfo!.name,
+            "phoneNumber": deputy.basicInfo!.phoneNumber,
+            "school_ID": deputy.schoolId,
           });
 }
