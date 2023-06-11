@@ -4,7 +4,7 @@ import 'package:my_sampad/src/features/classroom/domain/models/classroom_model.d
 
 part 'classroom_success_response.g.dart';
 
-@HiveType(typeId: 5)
+@HiveType(typeId: 6)
 @JsonSerializable()
 class ClassroomSuccessResponse {
   @HiveField(0)

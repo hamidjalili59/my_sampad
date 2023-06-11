@@ -8,7 +8,7 @@ part of 'mediator.dart';
 
 class MediatorAdapter extends TypeAdapter<Mediator> {
   @override
-  final int typeId = 36;
+  final int typeId = 24;
 
   @override
   Mediator read(BinaryReader reader) {

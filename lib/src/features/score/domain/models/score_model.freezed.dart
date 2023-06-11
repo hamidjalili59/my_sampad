@@ -215,7 +215,7 @@ class __$$_ScoreCopyWithImpl<$Res> extends _$ScoreCopyWithImpl<$Res, _$_Score>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 26)
+@HiveType(typeId: 35)
 class _$_Score implements _Score {
   _$_Score(
       {@HiveField(0, defaultValue: 0)

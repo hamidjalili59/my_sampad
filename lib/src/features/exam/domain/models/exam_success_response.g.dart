@@ -8,7 +8,7 @@ part of 'exam_success_response.dart';
 
 class ExamSuccessResponseAdapter extends TypeAdapter<ExamSuccessResponse> {
   @override
-  final int typeId = 16;
+  final int typeId = 21;
 
   @override
   ExamSuccessResponse read(BinaryReader reader) {

@@ -27,7 +27,7 @@ mixin _$Classroom {
   @HiveField(1, defaultValue: 0)
   @JsonKey(name: 'school_ID')
   int get schoolId => throw _privateConstructorUsedError; // account email
-  @HiveField(2, defaultValue: 'مدرسه من')
+  @HiveField(2, defaultValue: 'سمپاد من')
   @JsonKey(name: 'class_Name')
   String get className => throw _privateConstructorUsedError;
   @HiveField(3, defaultValue: '')
@@ -52,7 +52,7 @@ abstract class $ClassroomCopyWith<$Res> {
       @HiveField(1, defaultValue: 0)
       @JsonKey(name: 'school_ID')
           int schoolId,
-      @HiveField(2, defaultValue: 'مدرسه من')
+      @HiveField(2, defaultValue: 'سمپاد من')
       @JsonKey(name: 'class_Name')
           String className,
       @HiveField(3, defaultValue: '')
@@ -113,7 +113,7 @@ abstract class _$$_ClassroomCopyWith<$Res> implements $ClassroomCopyWith<$Res> {
       @HiveField(1, defaultValue: 0)
       @JsonKey(name: 'school_ID')
           int schoolId,
-      @HiveField(2, defaultValue: 'مدرسه من')
+      @HiveField(2, defaultValue: 'سمپاد من')
       @JsonKey(name: 'class_Name')
           String className,
       @HiveField(3, defaultValue: '')
@@ -169,9 +169,9 @@ class _$_Classroom implements _Classroom {
       @HiveField(1, defaultValue: 0)
       @JsonKey(name: 'school_ID')
           this.schoolId = 0,
-      @HiveField(2, defaultValue: 'مدرسه من')
+      @HiveField(2, defaultValue: 'سمپاد من')
       @JsonKey(name: 'class_Name')
-          this.className = 'مدرسه من',
+          this.className = 'سمپاد من',
       @HiveField(3, defaultValue: '')
       @JsonKey(name: 'course_Name')
           this.courseName = ''});
@@ -191,7 +191,7 @@ class _$_Classroom implements _Classroom {
   final int schoolId;
 // account email
   @override
-  @HiveField(2, defaultValue: 'مدرسه من')
+  @HiveField(2, defaultValue: 'سمپاد من')
   @JsonKey(name: 'class_Name')
   final String className;
   @override
@@ -245,7 +245,7 @@ abstract class _Classroom implements Classroom {
       @HiveField(1, defaultValue: 0)
       @JsonKey(name: 'school_ID')
           final int schoolId,
-      @HiveField(2, defaultValue: 'مدرسه من')
+      @HiveField(2, defaultValue: 'سمپاد من')
       @JsonKey(name: 'class_Name')
           final String className,
       @HiveField(3, defaultValue: '')
@@ -264,7 +264,7 @@ abstract class _Classroom implements Classroom {
   @JsonKey(name: 'school_ID')
   int get schoolId;
   @override // account email
-  @HiveField(2, defaultValue: 'مدرسه من')
+  @HiveField(2, defaultValue: 'سمپاد من')
   @JsonKey(name: 'class_Name')
   String get className;
   @override

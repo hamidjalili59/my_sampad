@@ -5,7 +5,7 @@ import 'deputy_model/deputy.dart';
 
 part 'deputy_get_response.g.dart';
 
-@HiveType(typeId: 17)
+@HiveType(typeId: 14)
 @JsonSerializable()
 class DeputyGetResponse {
   @HiveField(0, defaultValue: [])

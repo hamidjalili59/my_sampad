@@ -15,38 +15,38 @@ part 'score_model.g.dart';
 /// asd
 class Score with _$Score {
   ///adsasd
-  @HiveType(typeId: 26)
+  @HiveType(typeId: 35)
   factory Score({
     // account email
     @HiveField(0, defaultValue: 0)
     @JsonKey(name: 'grade_ID')
     @Default(0)
-        int gradeId,
+    int gradeId,
     //
     @HiveField(1, defaultValue: 0)
     @JsonKey(name: 'class_ID')
     @Default(0)
-        int classId,
+    int classId,
     // basic Information
     @HiveField(2, defaultValue: '')
     @JsonKey(name: 'teacher_Name')
     @Default('')
-        String teacherName,
+    String teacherName,
     // basic Information
     @HiveField(3, defaultValue: '')
     @JsonKey(name: 'course_Name')
     @Default('')
-        String courseName,
+    String courseName,
     // basic Information
     @HiveField(4, defaultValue: 0.0)
     @JsonKey(name: 'grade')
     @Default(0.0)
-        double grade,
+    double grade,
     // basic Information
     @HiveField(5, defaultValue: 0)
     @JsonKey(name: 'student_ID')
     @Default(0)
-        int studentId,
+    int studentId,
     @HiveField(6) @JsonKey(name: 'created_Date') DateTime? createdDate,
   }) = _Score;
 

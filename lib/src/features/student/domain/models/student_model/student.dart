@@ -17,7 +17,7 @@ part 'student.g.dart';
 /// asd
 class Student with _$Student {
   ///adsasd
-  @HiveType(typeId: 31)
+  @HiveType(typeId: 41)
   factory Student({
     // account email
     @HiveField(0, defaultValue: 0)

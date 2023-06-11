@@ -9,7 +9,7 @@ part of 'student_success_response.dart';
 class StudentSuccessResponseAdapter
     extends TypeAdapter<StudentSuccessResponse> {
   @override
-  final int typeId = 30;
+  final int typeId = 40;
 
   @override
   StudentSuccessResponse read(BinaryReader reader) {

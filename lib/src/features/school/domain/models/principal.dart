@@ -4,7 +4,7 @@ import 'package:my_sampad/src/features/core/models/basic_info_model.dart';
 
 part 'principal.g.dart';
 
-@HiveType(typeId: 40)
+@HiveType(typeId: 32)
 @JsonSerializable()
 class Principal {
   @HiveField(0)

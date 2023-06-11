@@ -15,12 +15,12 @@ part 'student_get_response.g.dart';
 )
 class StudentGetResponse with _$StudentGetResponse {
   ///adsasd
-  @HiveType(typeId: 29)
+  @HiveType(typeId: 38)
   factory StudentGetResponse({
     @HiveField(0, defaultValue: [])
     @JsonKey(name: 'Students')
     @Default([])
-        List<Student> students,
+    List<Student> students,
   }) = _StudentGetResponse;
 
   ///das

@@ -19,18 +19,19 @@ class OtpHandshakeResponseAdapter extends TypeAdapter<OtpHandshakeResponse> {
     return OtpHandshakeResponse(
       token: fields[0] as String,
       typeOfUser: fields[1] as String,
-      teacher: fields[2] as Teacher,
-      parent: fields[3] as Parent,
-      principal: fields[4] as Principal,
-      code: fields[5] as int,
-      phoneNumber: fields[6] == null ? 0 : fields[6] as double?,
+      teacher: fields[2] as Teacher?,
+      parent: fields[3] as Parent?,
+      principal: fields[4] as Principal?,
+      deputy: fields[5] as Deputy?,
+      code: fields[6] as int,
+      phoneNumber: fields[7] == null ? 0 : fields[7] as double?,
     );
   }
 
   @override
   void write(BinaryWriter writer, OtpHandshakeResponse obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.token)
       ..writeByte(1)
@@ -42,8 +43,10 @@ class OtpHandshakeResponseAdapter extends TypeAdapter<OtpHandshakeResponse> {
       ..writeByte(4)
       ..write(obj.principal)
       ..writeByte(5)
-      ..write(obj.code)
+      ..write(obj.deputy)
       ..writeByte(6)
+      ..write(obj.code)
+      ..writeByte(7)
       ..write(obj.phoneNumber);
   }
 
@@ -67,9 +70,18 @@ OtpHandshakeResponse _$OtpHandshakeResponseFromJson(
     OtpHandshakeResponse(
       token: json['token'] as String,
       typeOfUser: json['typeOfUser'] as String,
-      teacher: Teacher.fromJson(json['teacher'] as Map<String, dynamic>),
-      parent: Parent.fromJson(json['parent'] as Map<String, dynamic>),
-      principal: Principal.fromJson(json['principal'] as Map<String, dynamic>),
+      teacher: json['teacher'] == null
+          ? null
+          : Teacher.fromJson(json['teacher'] as Map<String, dynamic>),
+      parent: json['parent'] == null
+          ? null
+          : Parent.fromJson(json['parent'] as Map<String, dynamic>),
+      principal: json['principal'] == null
+          ? null
+          : Principal.fromJson(json['principal'] as Map<String, dynamic>),
+      deputy: json['deputy'] == null
+          ? null
+          : Deputy.fromJson(json['deputy'] as Map<String, dynamic>),
       code: json['code'] as int,
       phoneNumber: (json['phoneNumber'] as num?)?.toDouble() ?? 0,
     );
@@ -82,6 +94,7 @@ Map<String, dynamic> _$OtpHandshakeResponseToJson(
       'teacher': instance.teacher,
       'parent': instance.parent,
       'principal': instance.principal,
+      'deputy': instance.deputy,
       'code': instance.code,
       'phoneNumber': instance.phoneNumber,
     };

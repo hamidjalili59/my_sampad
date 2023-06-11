@@ -4,7 +4,7 @@ import 'package:my_sampad/src/features/score/domain/models/score_model.dart';
 
 part 'score_success_response.g.dart';
 
-@HiveType(typeId: 28)
+@HiveType(typeId: 37)
 @JsonSerializable()
 class ScoreSuccessResponse {
   @HiveField(0)

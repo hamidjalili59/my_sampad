@@ -28,9 +28,9 @@ class Classroom with _$Classroom {
     @Default(0)
     int schoolId,
     // account email
-    @HiveField(2, defaultValue: 'مدرسه من')
+    @HiveField(2, defaultValue: 'سمپاد من')
     @JsonKey(name: 'class_Name')
-    @Default('مدرسه من')
+    @Default('سمپاد من')
     String className,
     @HiveField(3, defaultValue: '')
     @JsonKey(name: 'course_Name')

@@ -113,7 +113,8 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                     ],
                   ),
                 )
-              : GeneralConstants.userType == UserType.admin
+              : GeneralConstants.userType == UserType.admin ||
+                      GeneralConstants.userType == UserType.deputy
                   ? InkWell(
                       onTap: () async {
                         await NDialog(
@@ -169,7 +170,8 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                               ? 'دانش‌آموزان'
                               : 'کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان',
                       isWidget: true,
-                      widget: GeneralConstants.userType == UserType.admin
+                      widget: GeneralConstants.userType == UserType.admin ||
+                              GeneralConstants.userType == UserType.deputy
                           ? DropdownButton<String>(
                               underline: const SizedBox(),
                               selectedItemBuilder: (context) {

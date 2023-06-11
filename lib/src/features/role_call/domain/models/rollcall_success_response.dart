@@ -5,7 +5,7 @@ import 'package:my_sampad/src/features/role_call/domain/models/rollcall_model.da
 
 part 'rollcall_success_response.g.dart';
 
-@HiveType(typeId: 24)
+@HiveType(typeId: 31)
 @JsonSerializable()
 class RollcallSuccessResponse {
   @HiveField(0)

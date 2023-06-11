@@ -103,7 +103,7 @@ class CustomCardExamWidget extends StatelessWidget {
                                 exam.teacherId ==
                                     getIt
                                         .get<OtpHandshakeResponse>()
-                                        .teacher
+                                        .teacher!
                                         .teacherId
                             ? InkWell(
                                 onTap: () async {

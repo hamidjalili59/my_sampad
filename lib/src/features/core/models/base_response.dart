@@ -1,10 +1,9 @@
 import 'package:hive/hive.dart';
-// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 
 part 'base_response.g.dart';
 
-@HiveType(typeId: 6)
+@HiveType(typeId: 7)
 @JsonSerializable()
 class BaseResponse {
   @HiveField(0)

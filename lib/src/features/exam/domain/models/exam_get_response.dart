@@ -4,7 +4,7 @@ import 'package:my_sampad/src/features/exam/domain/models/exam_model.dart';
 
 part 'exam_get_response.g.dart';
 
-@HiveType(typeId: 13)
+@HiveType(typeId: 17)
 @JsonSerializable()
 class ExamGetResponse {
   @HiveField(0)

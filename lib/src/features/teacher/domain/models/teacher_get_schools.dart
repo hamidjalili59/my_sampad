@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'teacher_get_schools.g.dart';
 
-@HiveType(typeId: 34)
+@HiveType(typeId: 44)
 @JsonSerializable()
 class TeacherGetSchools {
   @HiveField(0)

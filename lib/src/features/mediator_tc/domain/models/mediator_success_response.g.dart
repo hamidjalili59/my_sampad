@@ -9,7 +9,7 @@ part of 'mediator_success_response.dart';
 class MediatorSuccessResponseAdapter
     extends TypeAdapter<MediatorSuccessResponse> {
   @override
-  final int typeId = 37;
+  final int typeId = 23;
 
   @override
   MediatorSuccessResponse read(BinaryReader reader) {

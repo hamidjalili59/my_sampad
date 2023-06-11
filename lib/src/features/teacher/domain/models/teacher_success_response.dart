@@ -5,7 +5,7 @@ import 'package:my_sampad/src/features/teacher/domain/models/teacher.dart';
 
 part 'teacher_success_response.g.dart';
 
-@HiveType(typeId: 34)
+@HiveType(typeId: 45)
 @JsonSerializable()
 class TeacherSuccessResponse {
   @HiveField(0)

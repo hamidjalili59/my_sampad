@@ -104,7 +104,7 @@ class __$$_StudentGetResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-@HiveType(typeId: 29)
+@HiveType(typeId: 38)
 class _$_StudentGetResponse implements _StudentGetResponse {
   _$_StudentGetResponse(
       {@HiveField(0, defaultValue: [])

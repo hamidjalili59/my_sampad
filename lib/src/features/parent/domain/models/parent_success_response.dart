@@ -5,7 +5,7 @@ import 'package:my_sampad/src/features/parent/domain/models/parent_model/parent.
 
 part 'parent_success_response.g.dart';
 
-@HiveType(typeId: 18)
+@HiveType(typeId: 26)
 @JsonSerializable()
 class ParentSuccessResponse {
   @HiveField(0)

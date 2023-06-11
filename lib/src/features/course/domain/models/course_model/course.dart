@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 part 'course.freezed.dart';
 part 'course.g.dart';
 
-@HiveType(typeId: 12)
+@HiveType(typeId: 13)
 @Freezed(
   copyWith: true,
   equal: true,
@@ -18,15 +18,15 @@ class Course with _$Course {
     @HiveField(0, defaultValue: 0)
     @JsonKey(name: 'course_ID')
     @Default(0)
-        int courseId,
+    int courseId,
     @HiveField(1, defaultValue: '')
     @JsonKey(name: 'course_Name')
     @Default('')
-        String courseName,
+    String courseName,
     @HiveField(2, defaultValue: 0)
     @JsonKey(name: 'school_ID')
     @Default(0)
-        int schoolID,
+    int schoolID,
   }) = _Course;
   factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
 }

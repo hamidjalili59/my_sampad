@@ -434,7 +434,7 @@ class ExamDialogWidget extends StatelessWidget {
                         : getIt.get<Classroom>().classID,
                     examDescription: _controller.text,
                     teacherId:
-                        getIt.get<OtpHandshakeResponse>().teacher.teacherId,
+                        getIt.get<OtpHandshakeResponse>().teacher!.teacherId,
                     teacherName: getIt
                         .get<TeacherBloc>()
                         .state
@@ -483,6 +483,10 @@ class ExamDialogWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                SizedBox(
+                  width: 70.w,
+                  height: 40.h,
+                ),
                 InkWell(
                   onTap: () {
                     if (getIt.get<ExamBloc>().state.isLoading) {
@@ -494,7 +498,7 @@ class ExamDialogWidget extends StatelessWidget {
                           : getIt.get<Classroom>().classID,
                       examDescription: _controller.text,
                       teacherId:
-                          getIt.get<OtpHandshakeResponse>().teacher.teacherId,
+                          getIt.get<OtpHandshakeResponse>().teacher!.teacherId,
                       teacherName: getIt
                           .get<TeacherBloc>()
                           .state
@@ -517,14 +521,14 @@ class ExamDialogWidget extends StatelessWidget {
                     getIt.get<AppRouter>().pop();
                   },
                   child: Container(
-                    width: 70.w,
+                    width: 130.w,
                     height: 40.h,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.sp),
                         color: const Color(0xffE8FFE8)),
-                    child: Center(
-                        child: Text(
-                      'افزودن',
+                    alignment: Alignment.center,
+                    child: Text(
+                      isEditing ? 'تغییر امتحان' : 'اضافه کردن امتحان',
                       textAlign: TextAlign.center,
                       textDirection: TextDirection.rtl,
                       maxLines: null,
@@ -533,18 +537,7 @@ class ExamDialogWidget extends StatelessWidget {
                         color: Colors.black,
                         fontFamily: 'Ordibehesht',
                       ),
-                    )),
-                  ),
-                ),
-                Text(
-                  isEditing ? 'تغییر امتحان' : 'اضافه کردن امتحان',
-                  textAlign: TextAlign.center,
-                  textDirection: TextDirection.rtl,
-                  maxLines: null,
-                  style: TextStyle(
-                    fontSize: 20.sp,
-                    color: Colors.black,
-                    fontFamily: 'Ordibehesht',
+                    ),
                   ),
                 ),
               ],

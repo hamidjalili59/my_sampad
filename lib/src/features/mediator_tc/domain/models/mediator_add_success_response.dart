@@ -4,7 +4,7 @@ import 'package:my_sampad/src/features/mediator_tc/domain/models/mediator.dart';
 
 part 'mediator_add_success_response.g.dart';
 
-@HiveType(typeId: 38)
+@HiveType(typeId: 22)
 @JsonSerializable()
 class MediatorAddSuccessResponse {
   @HiveField(0)
