@@ -17,7 +17,7 @@ class DeputyRepositoryImpl extends DeputyRepository {
 
   @override
   Future<Either<DeputyFailure, void>> cacheDeputysData(
-      {required Deputy deputy}) {
+      {required List<Deputy> deputy}) {
     return _localDS.cacheData(fieldKey: 'deputy', value: deputy).then(
           (value) => value.fold(
             (l) => left<DeputyFailure, void>(DeputyFailure.database(l)),
@@ -33,15 +33,15 @@ class DeputyRepositoryImpl extends DeputyRepository {
             (l) => left<DeputyFailure, DeputyGetResponse>(
                 DeputyFailure.database(l)),
             (r) => right<DeputyFailure, DeputyGetResponse>(
-                DeputyGetResponse(deputys: r ?? Deputy())),
+                DeputyGetResponse(deputys: r ?? [])),
           ),
         );
   }
 
   @override
   Future<Either<DeputyFailure, DeputyGetResponse>> getDeputy(
-      {required int deputyId}) {
-    return _remoteDS.getDeputy(deputyId: deputyId).then(
+      {required int schoolId}) {
+    return _remoteDS.getDeputy(schoolId: schoolId).then(
           (value) => value.fold(
             (l) => left<DeputyFailure, DeputyGetResponse>(
               DeputyFailure.api(l),
@@ -49,7 +49,7 @@ class DeputyRepositoryImpl extends DeputyRepository {
             (r) async {
               try {
                 final deputysDataFromServer = DeputyGetResponse.fromJson(
-                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                  BaseResponse.fromJson(r.data ?? {}).payload,
                 );
                 return right<DeputyFailure, DeputyGetResponse>(
                   deputysDataFromServer,
@@ -65,19 +65,9 @@ class DeputyRepositoryImpl extends DeputyRepository {
 
   @override
   Future<Either<DeputyFailure, DeputySuccessResponse>> updateDeputy({
-    required int schoolId,
-    required int deputyId,
-    required String name,
-    required double phoneNumber,
+    required Deputy deputy,
   }) {
-    return _remoteDS
-        .updateDeputy(
-          deputyId: deputyId,
-          schoolId: schoolId,
-          phoneNumber: phoneNumber,
-          name: name,
-        )
-        .then(
+    return _remoteDS.updateDeputy(deputy: deputy).then(
           (value) => value.fold(
             (l) => left<DeputyFailure, DeputySuccessResponse>(
               DeputyFailure.api(l),
@@ -85,7 +75,7 @@ class DeputyRepositoryImpl extends DeputyRepository {
             (r) async {
               try {
                 final updateDeputyOnServer = DeputySuccessResponse.fromJson(
-                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                  BaseResponse.fromJson(r.data ?? {}).payload,
                 );
                 return right<DeputyFailure, DeputySuccessResponse>(
                   updateDeputyOnServer,
@@ -102,12 +92,48 @@ class DeputyRepositoryImpl extends DeputyRepository {
   @override
   Future<Either<DeputyFailure, DeputySuccessResponse>> addDeputy(
       {required Deputy deputy}) {
-    throw UnimplementedError();
+    return _remoteDS.addDeputy(deputy: deputy).then(
+          (value) => value.fold(
+            (l) => left<DeputyFailure, DeputySuccessResponse>(
+                DeputyFailure.api(l)),
+            (r) async {
+              try {
+                final updateDeputyOnServer = DeputySuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<DeputyFailure, DeputySuccessResponse>(
+                  updateDeputyOnServer,
+                );
+              } catch (e) {
+                return left<DeputyFailure, DeputySuccessResponse>(
+                    const DeputyFailure.nullParam());
+              }
+            },
+          ),
+        );
   }
 
   @override
   Future<Either<DeputyFailure, DeputySuccessResponse>> removeDeputy(
       {required int deputyId}) {
-    throw UnimplementedError();
+    return _remoteDS.deleteDeputy(deputyId: deputyId).then(
+          (value) => value.fold(
+            (l) => left<DeputyFailure, DeputySuccessResponse>(
+                DeputyFailure.api(l)),
+            (r) async {
+              try {
+                final updateDeputyOnServer = DeputySuccessResponse.fromJson(
+                  BaseResponse.fromJson(r.data ?? {}).payload,
+                );
+                return right<DeputyFailure, DeputySuccessResponse>(
+                  updateDeputyOnServer,
+                );
+              } catch (e) {
+                return left<DeputyFailure, DeputySuccessResponse>(
+                    const DeputyFailure.nullParam());
+              }
+            },
+          ),
+        );
   }
 }

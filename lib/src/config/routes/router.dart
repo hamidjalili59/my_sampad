@@ -5,6 +5,7 @@ import 'package:my_sampad/src/presentation/classroom/pages/class_details_page.da
 import 'package:my_sampad/src/presentation/classroom/pages/classes_list_page.dart';
 import 'package:my_sampad/src/presentation/classroom/pages/teacher_classes_page.dart';
 import 'package:my_sampad/src/presentation/course/pages/course_list_page.dart';
+import 'package:my_sampad/src/presentation/deputy/pages/deputy_list_page.dart';
 import 'package:my_sampad/src/presentation/exam/pages/exam_page.dart';
 import 'package:my_sampad/src/presentation/home/pages/home_page.dart';
 import 'package:my_sampad/src/presentation/rollcall/pages/class_rollcall_page.dart';
@@ -17,8 +18,7 @@ import 'package:my_sampad/src/presentation/splash/pages/splash_page.dart';
 import 'package:my_sampad/src/presentation/student/pages/class_student_page.dart';
 import 'package:my_sampad/src/presentation/student/pages/student_details_page.dart';
 import 'package:my_sampad/src/presentation/teacher/pages/teacher_list_page.dart';
-import 'package:my_sampad/src/presentation/teacher/widget/teacher_class_card_widget.dart'
-    as teacher;
+import 'package:my_sampad/src/presentation/teacher/widget/teacher_class_card_widget.dart';
 
 part 'router.gr.dart';
 
@@ -39,7 +39,8 @@ part 'router.gr.dart';
   AutoRoute(path: "/student_rollcall_view", page: SingleStudentRollcallsPage),
   AutoRoute(path: "/student_score_view", page: SingleScoreViewPage),
   AutoRoute(path: "/exam_page", page: ExamPage),
-  AutoRoute(path: "/mediator_page", page: teacher.TeacherClassListWidget),
+  AutoRoute(path: "/deputy_page", page: DeputyListPage),
+  AutoRoute(path: "/mediator_page", page: TeacherClassListPage),
   // class page
   AutoRoute(
     path: "/class_details_page",

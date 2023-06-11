@@ -8,6 +8,7 @@ import 'package:my_sampad/src/features/parent/domain/models/parent_model/parent.
 import 'package:my_sampad/src/features/school/domain/models/principal.dart';
 import 'package:my_sampad/src/features/teacher/domain/models/teacher.dart';
 import 'package:my_sampad/src/injectable/injectable.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
   final AuthRemoteDataSource _remoteDS;
@@ -18,8 +19,13 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<Either<AuthFailure, OtpHandshakeResponse>> otpHandshake(
-      {required double phoneNumber}) {
-    return _remoteDS.otpHandshake(phoneNumber: phoneNumber).then((response) {
+      {required double phoneNumber}) async {
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    String mobileId =
+        await deviceInfo.androidInfo.then((value) => value.fingerprint);
+    return _remoteDS
+        .otpHandshake(phoneNumber: phoneNumber, mobileId: mobileId)
+        .then((response) {
       return response.fold(
         (l) => left<AuthFailure, OtpHandshakeResponse>(AuthFailure.api(l)),
         (r) {

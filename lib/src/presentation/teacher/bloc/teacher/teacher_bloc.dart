@@ -47,12 +47,11 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
 
   FutureOr<void> _onGetTeachers(
       _GetTeachers event, Emitter<TeacherState> emit) async {
-    emit(const TeacherState.idle(isLoading: true));
+    emit(state.copyWith(isLoading: true));
     await _getTeacherUseCase
         .call(param: tuple.Tuple1(event.schoolId))
         .then((value) => value.fold(
-              (l) => emit(TeacherState.idle(
-                  isLoading: false, teachers: state.teachers)),
+              (l) => emit(state.copyWith(isLoading: false)),
               (r) {
                 emit(TeacherState.idle(isLoading: false, teachers: r.teachers));
               },
@@ -61,15 +60,12 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
 
   FutureOr<void> _onAddTeacher(
       _AddTeacher event, Emitter<TeacherState> emit) async {
-    emit(TeacherState.idle(isLoading: true, teachers: state.teachers));
+    emit(state.copyWith(isLoading: true));
     await _addTeacherUseCase
         .call(param: tuple.Tuple1<Teacher>(event.teacher))
         .then(
           (value) => value.fold(
-            (l) {
-              return emit(TeacherState.idle(
-                  isLoading: false, teachers: state.teachers));
-            },
+            (l) => emit(state.copyWith(isLoading: false)),
             (r) {
               List<Teacher> tempTeachers = state.teachers.toList();
               tempTeachers.add(r.teacher);
@@ -81,6 +77,7 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
 
   FutureOr<void> _onUpdateTeacher(
       _UpdateTeacher event, Emitter<TeacherState> emit) async {
+    emit(state.copyWith(isLoading: true));
     await _updateTeacherUseCase
         .call(
           param: tuple.Tuple3<String, int, double>(
@@ -91,10 +88,7 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
         )
         .then(
           (value) => value.fold(
-            (l) {
-              return emit(TeacherState.idle(
-                  isLoading: false, teachers: state.teachers));
-            },
+            (l) => emit(state.copyWith(isLoading: false)),
             (r) {
               List<Teacher> tempTeachers = state.teachers;
               add(TeacherEvent.getTeachers(
@@ -108,14 +102,13 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
 
   FutureOr<void> _onRemoveTeacher(
       _RemoveTeacher event, Emitter<TeacherState> emit) async {
-    emit(TeacherState.idle(isLoading: true, teachers: state.teachers));
+    emit(state.copyWith(isLoading: true));
     try {
       await _removeTeacherUseCase
           .call(param: tuple.Tuple1<int>(event.teacherId))
           .then(
             (value) => value.fold(
-              (l) => emit(TeacherState.idle(
-                  isLoading: false, teachers: state.teachers)),
+              (l) => emit(state.copyWith(isLoading: false)),
               (r) {
                 List<Teacher> tempList = state.teachers.toList();
                 tempList.removeAt(tempList
@@ -127,7 +120,7 @@ class TeacherBloc extends Bloc<TeacherEvent, TeacherState> {
             ),
           );
     } catch (e) {
-      emit(TeacherState.idle(isLoading: false, teachers: state.teachers));
+      emit(state.copyWith(isLoading: false));
     }
   }
 }

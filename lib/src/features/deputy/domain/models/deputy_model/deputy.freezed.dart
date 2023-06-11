@@ -22,13 +22,13 @@ Deputy _$DeputyFromJson(Map<String, dynamic> json) {
 mixin _$Deputy {
 // account email
   @HiveField(0)
-  @JsonKey(name: 'deputyId', defaultValue: 0)
+  @JsonKey(name: 'deputy_ID', defaultValue: 0)
   int get deputyId => throw _privateConstructorUsedError; // account password
   @HiveField(1)
-  @JsonKey(name: 'schoolId', defaultValue: 0)
+  @JsonKey(name: 'school_ID', defaultValue: 0)
   int get schoolId => throw _privateConstructorUsedError; // basic Information
   @HiveField(2)
-  @JsonKey(name: 'basicInfo')
+  @JsonKey(name: 'basic_Info')
   BasicInfoModel? get basicInfo => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,9 +42,9 @@ abstract class $DeputyCopyWith<$Res> {
       _$DeputyCopyWithImpl<$Res, Deputy>;
   @useResult
   $Res call(
-      {@HiveField(0) @JsonKey(name: 'deputyId', defaultValue: 0) int deputyId,
-      @HiveField(1) @JsonKey(name: 'schoolId', defaultValue: 0) int schoolId,
-      @HiveField(2) @JsonKey(name: 'basicInfo') BasicInfoModel? basicInfo});
+      {@HiveField(0) @JsonKey(name: 'deputy_ID', defaultValue: 0) int deputyId,
+      @HiveField(1) @JsonKey(name: 'school_ID', defaultValue: 0) int schoolId,
+      @HiveField(2) @JsonKey(name: 'basic_Info') BasicInfoModel? basicInfo});
 }
 
 /// @nodoc
@@ -88,9 +88,9 @@ abstract class _$$_DeputyCopyWith<$Res> implements $DeputyCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@HiveField(0) @JsonKey(name: 'deputyId', defaultValue: 0) int deputyId,
-      @HiveField(1) @JsonKey(name: 'schoolId', defaultValue: 0) int schoolId,
-      @HiveField(2) @JsonKey(name: 'basicInfo') BasicInfoModel? basicInfo});
+      {@HiveField(0) @JsonKey(name: 'deputy_ID', defaultValue: 0) int deputyId,
+      @HiveField(1) @JsonKey(name: 'school_ID', defaultValue: 0) int schoolId,
+      @HiveField(2) @JsonKey(name: 'basic_Info') BasicInfoModel? basicInfo});
 }
 
 /// @nodoc
@@ -129,13 +129,13 @@ class __$$_DeputyCopyWithImpl<$Res>
 class _$_Deputy implements _Deputy {
   _$_Deputy(
       {@HiveField(0)
-      @JsonKey(name: 'deputyId', defaultValue: 0)
+      @JsonKey(name: 'deputy_ID', defaultValue: 0)
           this.deputyId = 0,
       @HiveField(1)
-      @JsonKey(name: 'schoolId', defaultValue: 0)
+      @JsonKey(name: 'school_ID', defaultValue: 0)
           this.schoolId = 0,
       @HiveField(2)
-      @JsonKey(name: 'basicInfo')
+      @JsonKey(name: 'basic_Info')
           this.basicInfo});
 
   factory _$_Deputy.fromJson(Map<String, dynamic> json) =>
@@ -144,17 +144,17 @@ class _$_Deputy implements _Deputy {
 // account email
   @override
   @HiveField(0)
-  @JsonKey(name: 'deputyId', defaultValue: 0)
+  @JsonKey(name: 'deputy_ID', defaultValue: 0)
   final int deputyId;
 // account password
   @override
   @HiveField(1)
-  @JsonKey(name: 'schoolId', defaultValue: 0)
+  @JsonKey(name: 'school_ID', defaultValue: 0)
   final int schoolId;
 // basic Information
   @override
   @HiveField(2)
-  @JsonKey(name: 'basicInfo')
+  @JsonKey(name: 'basic_Info')
   final BasicInfoModel? basicInfo;
 
   @override
@@ -196,28 +196,28 @@ class _$_Deputy implements _Deputy {
 abstract class _Deputy implements Deputy {
   factory _Deputy(
       {@HiveField(0)
-      @JsonKey(name: 'deputyId', defaultValue: 0)
+      @JsonKey(name: 'deputy_ID', defaultValue: 0)
           final int deputyId,
       @HiveField(1)
-      @JsonKey(name: 'schoolId', defaultValue: 0)
+      @JsonKey(name: 'school_ID', defaultValue: 0)
           final int schoolId,
       @HiveField(2)
-      @JsonKey(name: 'basicInfo')
+      @JsonKey(name: 'basic_Info')
           final BasicInfoModel? basicInfo}) = _$_Deputy;
 
   factory _Deputy.fromJson(Map<String, dynamic> json) = _$_Deputy.fromJson;
 
   @override // account email
   @HiveField(0)
-  @JsonKey(name: 'deputyId', defaultValue: 0)
+  @JsonKey(name: 'deputy_ID', defaultValue: 0)
   int get deputyId;
   @override // account password
   @HiveField(1)
-  @JsonKey(name: 'schoolId', defaultValue: 0)
+  @JsonKey(name: 'school_ID', defaultValue: 0)
   int get schoolId;
   @override // basic Information
   @HiveField(2)
-  @JsonKey(name: 'basicInfo')
+  @JsonKey(name: 'basic_Info')
   BasicInfoModel? get basicInfo;
   @override
   @JsonKey(ignore: true)

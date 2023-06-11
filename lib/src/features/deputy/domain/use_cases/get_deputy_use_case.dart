@@ -16,5 +16,5 @@ class GetDeputyUseCase
           {tuple.Tuple1<int>? param}) =>
       (param == null)
           ? Future.value(left(const DeputyFailure.nullParam()))
-          : repo.getDeputy(deputyId: param.value1);
+          : repo.getDeputy(schoolId: param.value1);
 }

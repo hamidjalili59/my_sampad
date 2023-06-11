@@ -5,7 +5,7 @@ import 'package:my_sampad/src/config/constants/general_constants.dart';
 
 abstract class AuthRemoteDataSource {
   Future<Either<DioException, Response<Map<String, dynamic>>>> otpHandshake(
-      {required double phoneNumber});
+      {required double phoneNumber, required String mobileId});
   Future<Either<DioException, Response<Map<String, dynamic>>>> getAccountData(
       {required double phoneNumber});
 }
@@ -16,11 +16,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<Either<DioException, Response<Map<String, dynamic>>>> otpHandshake(
-      {required double phoneNumber}) {
+      {required double phoneNumber, required String mobileId}) {
     return apiService.postMethod<Map<String, dynamic>>(
       '${GeneralConstants.host}api/v1/LogIn',
       body: {
         "phoneNumber": phoneNumber,
+        "mobile_ID": mobileId,
       },
     );
   }

@@ -46,33 +46,29 @@ class DeputyBloc extends Bloc<DeputyEvent, DeputyState> {
 
   FutureOr<void> _onGetDeputys(
       _GetDeputys event, Emitter<DeputyState> emit) async {
-    emit(const DeputyState.idle(isLoading: true));
+    emit(state.copyWith(isLoading: true));
     await _getDeputyUseCase
         .call(param: tuple.Tuple1(event.schoolId))
         .then((value) => value.fold(
-              (l) => emit(
-                  DeputyState.idle(isLoading: false, deputys: state.deputys)),
+              (l) => emit(state.copyWith(isLoading: false)),
               (r) {
-                emit(DeputyState.idle(isLoading: false, deputys: [r.deputys]));
+                emit(DeputyState.idle(isLoading: false, deputys: r.deputys));
               },
             ));
   }
 
   FutureOr<void> _onAddDeputy(
       _AddDeputy event, Emitter<DeputyState> emit) async {
-    emit(DeputyState.idle(isLoading: true, deputys: state.deputys));
+    emit(state.copyWith(isLoading: true));
     await _addDeputyUseCase
         .call(param: tuple.Tuple1<Deputy>(event.deputy))
         .then(
           (value) => value.fold(
-            (l) {
-              return emit(
-                  DeputyState.idle(isLoading: false, deputys: state.deputys));
-            },
+            (l) => emit(state.copyWith(isLoading: false)),
             (r) {
               List<Deputy> tempDeputys = state.deputys.toList();
               tempDeputys.add(r.deputy);
-              emit(DeputyState.idle(isLoading: false, deputys: tempDeputys));
+              emit(state.copyWith(isLoading: false, deputys: tempDeputys));
             },
           ),
         );
@@ -80,21 +76,14 @@ class DeputyBloc extends Bloc<DeputyEvent, DeputyState> {
 
   FutureOr<void> _onUpdateDeputy(
       _UpdateDeputy event, Emitter<DeputyState> emit) async {
+    emit(state.copyWith(isLoading: true));
     await _updateDeputyUseCase
         .call(
-          param: tuple.Tuple4<String, int, double, int>(
-            event.deputy.basicInfo!.name,
-            event.deputy.deputyId,
-            event.deputy.basicInfo!.phoneNumber,
-            event.deputy.schoolId,
-          ),
+          param: tuple.Tuple1<Deputy>(event.deputy),
         )
         .then(
           (value) => value.fold(
-            (l) {
-              return emit(
-                  DeputyState.idle(isLoading: false, deputys: state.deputys));
-            },
+            (l) => emit(state.copyWith(isLoading: false)),
             (r) {
               List<Deputy> tempDeputys = state.deputys;
               add(DeputyEvent.getDeputys(
@@ -108,14 +97,13 @@ class DeputyBloc extends Bloc<DeputyEvent, DeputyState> {
 
   FutureOr<void> _onRemoveDeputy(
       _RemoveDeputy event, Emitter<DeputyState> emit) async {
-    emit(DeputyState.idle(isLoading: true, deputys: state.deputys));
+    emit(state.copyWith(isLoading: true));
     try {
       await _removeDeputyUseCase
           .call(param: tuple.Tuple1<int>(event.deputyId))
           .then(
             (value) => value.fold(
-              (l) => emit(
-                  DeputyState.idle(isLoading: false, deputys: state.deputys)),
+              (l) => emit(state.copyWith(isLoading: false)),
               (r) {
                 List<Deputy> tempList = state.deputys.toList();
                 tempList.removeAt(tempList
@@ -127,7 +115,7 @@ class DeputyBloc extends Bloc<DeputyEvent, DeputyState> {
             ),
           );
     } catch (e) {
-      emit(DeputyState.idle(isLoading: false, deputys: state.deputys));
+      emit(state.copyWith(isLoading: false));
     }
   }
 }

@@ -49,7 +49,7 @@ class ParentRepositoryImpl extends ParentRepository {
             (r) async {
               try {
                 final parentsDataFromServer = ParentGetResponse.fromJson(
-                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                  BaseResponse.fromJson(r.data ?? {}).payload,
                 );
                 return right<ParentFailure, ParentGetResponse>(
                   parentsDataFromServer,
@@ -85,7 +85,7 @@ class ParentRepositoryImpl extends ParentRepository {
             (r) async {
               try {
                 final updateParentOnServer = ParentSuccessResponse.fromJson(
-                  BaseResponse.fromJson(r.data ?? {}).toJson(),
+                  BaseResponse.fromJson(r.data ?? {}).payload,
                 );
                 return right<ParentFailure, ParentSuccessResponse>(
                   updateParentOnServer,

@@ -91,10 +91,16 @@ class _$AppRouter extends RootStackRouter {
         child: const ExamPage(),
       );
     },
-    TeacherClassListWidget.name: (routeData) {
+    DeputyListRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const TeacherClassListWidget(),
+        child: const DeputyListPage(),
+      );
+    },
+    TeacherClassListRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const TeacherClassListPage(),
       );
     },
     ClassDetailsRoute.name: (routeData) {
@@ -190,7 +196,11 @@ class _$AppRouter extends RootStackRouter {
           path: '/exam_page',
         ),
         RouteConfig(
-          TeacherClassListWidget.name,
+          DeputyListRoute.name,
+          path: '/deputy_page',
+        ),
+        RouteConfig(
+          TeacherClassListRoute.name,
           path: '/mediator_page',
         ),
         RouteConfig(
@@ -373,15 +383,27 @@ class ExamRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [TeacherClassListWidget]
-class TeacherClassListWidget extends PageRouteInfo<void> {
-  const TeacherClassListWidget()
+/// [DeputyListPage]
+class DeputyListRoute extends PageRouteInfo<void> {
+  const DeputyListRoute()
       : super(
-          TeacherClassListWidget.name,
+          DeputyListRoute.name,
+          path: '/deputy_page',
+        );
+
+  static const String name = 'DeputyListRoute';
+}
+
+/// generated route for
+/// [TeacherClassListPage]
+class TeacherClassListRoute extends PageRouteInfo<void> {
+  const TeacherClassListRoute()
+      : super(
+          TeacherClassListRoute.name,
           path: '/mediator_page',
         );
 
-  static const String name = 'TeacherClassListWidget';
+  static const String name = 'TeacherClassListRoute';
 }
 
 /// generated route for

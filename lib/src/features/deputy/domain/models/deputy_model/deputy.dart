@@ -22,17 +22,17 @@ class Deputy with _$Deputy {
     // account email
     @HiveField(0)
     @Default(0)
-    @JsonKey(name: 'deputyId', defaultValue: 0)
+    @JsonKey(name: 'deputy_ID', defaultValue: 0)
     int deputyId,
 
     // account password
     @HiveField(1)
     @Default(0)
-    @JsonKey(name: 'schoolId', defaultValue: 0)
+    @JsonKey(name: 'school_ID', defaultValue: 0)
     int schoolId,
 
     // basic Information
-    @HiveField(2) @JsonKey(name: 'basicInfo') BasicInfoModel? basicInfo,
+    @HiveField(2) @JsonKey(name: 'basic_Info') BasicInfoModel? basicInfo,
   }) = _Deputy;
 
   ///das
