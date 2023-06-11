@@ -43,12 +43,85 @@ class TeacherRollcallBloc
     await _addTeacherRollcallUseCase
         .call(param: tuple.Tuple1<TeacherRollcall>(event.rollcalls))
         .then((value) => value.fold(
-              (l) => emit(state.copyWith(isLoading: false)),
-              (r) {
+              (l) async {
+                emit(state.copyWith(isLoading: false));
+                // ScaffoldMessenger.of(
+                //         getIt.get<AppRouter>().navigatorKey.currentContext!)
+                //     .showSnackBar(
+                //   SnackBar(
+                //     backgroundColor: const Color.fromARGB(255, 255, 200, 200),
+                //     content: Text(
+                //       'ثبت موفقیت آمیز نبود',
+                //       textDirection: TextDirection.rtl,
+                //       style: TextStyle(
+                //         color: Colors.black,
+                //         fontFamily: 'Ordibehesht',
+                //         fontSize: 18.sp,
+                //       ),
+                //     ),
+                //   ),
+                // );
+                await getIt.get<AppRouter>().pop();
+                await NAlertDialog(
+                  dialogStyle: DialogStyle(
+                      backgroundColor: const Color(0xffe8ffe8),
+                      contentPadding: EdgeInsets.zero),
+                  content: SizedBox(
+                    width: 100.w,
+                    height: 50.h,
+                    child: Center(
+                      child: Text(
+                        'ثبت موفقیت آمیز نبود',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Ordibehesht',
+                            fontSize: 18.sp),
+                      ),
+                    ),
+                  ),
+                ).show(getIt.get<AppRouter>().navigatorKey.currentContext!);
+              },
+              (r) async {
                 List<TeacherRollcall> tempList = state.rollcalls.toList();
                 tempList.add(r.rollcall);
                 emit(state.copyWith(isLoading: false, rollcalls: tempList));
-                getIt.get<AppRouter>().pop();
+                await getIt.get<AppRouter>().pop();
+                await NAlertDialog(
+                  dialogStyle: DialogStyle(
+                      backgroundColor: const Color(0xffe8ffe8),
+                      contentPadding: EdgeInsets.zero),
+                  content: SizedBox(
+                    width: 100.w,
+                    height: 50.h,
+                    child: Center(
+                      child: Text(
+                        'با موفقیت ثبت شد',
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Ordibehesht',
+                            fontSize: 18.sp),
+                      ),
+                    ),
+                  ),
+                ).show(getIt.get<AppRouter>().navigatorKey.currentContext!);
+                // ScaffoldMessenger.of(
+                //         getIt.get<AppRouter>().navigatorKey.currentContext!)
+                //     .showSnackBar(
+                //   SnackBar(
+                //     backgroundColor: const Color(0xffe8ffe8),
+                //     content: Text(
+                //       'با موفقیت ثبت شد',
+                //       textDirection: TextDirection.rtl,
+                //       style: TextStyle(
+                //         color: Colors.black,
+                //         fontFamily: 'Ordibehesht',
+                //         fontSize: 18.sp,
+                //       ),
+                //     ),
+                //   ),
+                // );
               },
             ));
   }
