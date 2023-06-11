@@ -460,8 +460,9 @@ class ClassroomDialogWidget extends StatelessWidget {
     _classNameController.value = TextEditingValue(text: className);
     return SizedBox(
       width: 210.w,
-      height: 95.h,
+      height: 120.h,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Align(
             alignment: Alignment.centerRight,
@@ -479,60 +480,64 @@ class ClassroomDialogWidget extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 60.h,
+            height: 80.h,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FormBuilder(
                   key: _formKey,
-                  child: CustomTextField(
-                    islabel: true,
-                    width: 130.w,
-                    name: 'class',
-                    heghit: 40.h,
-                    haveIcon: false,
-                    labelText: 'اسم‌کلاس',
-                    labelStyle: TextStyle(
-                        fontSize: 18.sp,
-                        color: Colors.black45,
-                        fontFamily: 'Ordibehesht',
-                        fontWeight: FontWeight.bold),
-                    controller: _classNameController,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(
-                          errorText: 'انتخاب اسم اجباری است'),
-                      FormBuilderValidators.maxLength(
-                        30,
-                        errorText: 'کمتر از 30 حرف داشته باشد',
-                      ),
-                      FormBuilderValidators.minLength(
-                        3,
-                        errorText: 'بیشتر از 3 حرف داشته باشد',
-                      ),
-                    ]),
-                    onSubmitted: (value) {
-                      if (_formKey.currentState?.validate() ?? false) {
-                        if (isEditing) {
-                          getIt.get<ClassroomBloc>().add(
-                                ClassroomEvent.updateClass(
-                                  classroom!.copyWith(
-                                      className: _classNameController.text),
-                                ),
-                              );
-                        } else {
-                          getIt.get<ClassroomBloc>().add(
-                                ClassroomEvent.createClasses(
-                                  _classNameController.text,
-                                ),
-                              );
-                        }
-                        _classNameController.clear();
-                        Navigator.pop(getIt
-                            .get<AppRouter>()
-                            .navigatorKey
-                            .currentContext!);
-                      } else {}
-                    },
-                    keyboardType: TextInputType.name,
+                  child: Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: CustomTextField(
+                      islabel: true,
+                      width: 130.w,
+                      name: 'class',
+                      heghit: 55.h,
+                      haveIcon: false,
+                      labelText: 'اسم‌کلاس',
+                      labelStyle: TextStyle(
+                          fontSize: 18.sp,
+                          color: Colors.black45,
+                          fontFamily: 'Ordibehesht',
+                          fontWeight: FontWeight.bold),
+                      controller: _classNameController,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(
+                            errorText: 'انتخاب اسم اجباری است'),
+                        FormBuilderValidators.maxLength(
+                          30,
+                          errorText: 'کمتر از 30 حرف داشته باشد',
+                        ),
+                        FormBuilderValidators.minLength(
+                          3,
+                          errorText: 'بیشتر از 3 حرف داشته باشد',
+                        ),
+                      ]),
+                      onSubmitted: (value) {
+                        if (_formKey.currentState?.validate() ?? false) {
+                          if (isEditing) {
+                            getIt.get<ClassroomBloc>().add(
+                                  ClassroomEvent.updateClass(
+                                    classroom!.copyWith(
+                                        className: _classNameController.text),
+                                  ),
+                                );
+                          } else {
+                            getIt.get<ClassroomBloc>().add(
+                                  ClassroomEvent.createClasses(
+                                    _classNameController.text,
+                                  ),
+                                );
+                          }
+                          _classNameController.clear();
+                          Navigator.pop(getIt
+                              .get<AppRouter>()
+                              .navigatorKey
+                              .currentContext!);
+                        } else {}
+                      },
+                      keyboardType: TextInputType.name,
+                    ),
                   ),
                 ),
                 SizedBox(width: 15.w),
@@ -560,7 +565,7 @@ class ClassroomDialogWidget extends StatelessWidget {
                   },
                   child: Container(
                     width: 70.w,
-                    height: 45.h,
+                    height: 50.h,
                     decoration: BoxDecoration(
                       color: const Color(0xffe8ffe8),
                       borderRadius: BorderRadius.circular(10.sp),

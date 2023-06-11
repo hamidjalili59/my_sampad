@@ -78,6 +78,9 @@ class ScoreBoardBloc extends Bloc<ScoreBoardEvent, ScoreBoardState> {
     List<Score> tempList = [];
     emit(state.copyWith(isLoading: true));
     for (var i = 0; i < state.students.length; i++) {
+      if (state.scoresNumeric[i].text.isEmpty) {
+        continue;
+      }
       tempList.add(
         Score(
           classId: getIt.get<Classroom>().classID,

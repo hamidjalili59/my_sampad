@@ -33,12 +33,12 @@ class AddStudentDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (getIt.get<StudentBloc>().state.smsChackBox != student!.sendSMS) {
-      getIt
-          .get<StudentBloc>()
-          .add(StudentEvent.checkSMSCheckBox(student!.sendSMS));
-    }
     if (isEditing && student != null) {
+      if (getIt.get<StudentBloc>().state.smsChackBox != student!.sendSMS) {
+        getIt
+            .get<StudentBloc>()
+            .add(StudentEvent.checkSMSCheckBox(student!.sendSMS));
+      }
       _studentName.value = TextEditingValue(text: student!.basicInfo!.name);
       _phone.value =
           TextEditingValue(text: '0${student!.basicInfo!.phoneNumber.toInt()}');
