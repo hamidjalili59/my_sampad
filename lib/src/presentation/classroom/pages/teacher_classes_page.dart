@@ -33,10 +33,10 @@ class TeacherClassesPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AppbarSchoolWidget(
-                        title: 'کلاس ها : ',
+                        title: 'Classes :',
                         titleHelper:
-                            'با کلیک بر روی هر کلاس میتوانید گزینه های بیشتری برای کلاس را مشاهده کنید',
-                        pathString: 'مدارس >  کلاس‌ها',
+                            'You can view additional options for the class by clicking on each class',
+                        pathString: 'Schools > Classes',
                         isWidget: true,
                         widget: InkWell(
                           onTap: () async {
@@ -151,16 +151,15 @@ class TeacherClassesPage extends StatelessWidget {
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
-                                                              fontSize: 18.sp,
-                                                              color:
-                                                                  Colors.black,
-                                                              fontFamily:
-                                                                  'Ordibehesht',
-                                                            ),
+                                                                fontSize: 14.sp,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
                                                           ),
                                                         ),
                                                       ),
-                                                      SizedBox(height: 5.h),
                                                       SizedBox(
                                                         width: 110.w,
                                                         height: 25.h,
@@ -173,12 +172,12 @@ class TeacherClassesPage extends StatelessWidget {
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
-                                                              fontSize: 18.sp,
-                                                              color:
-                                                                  Colors.black,
-                                                              fontFamily:
-                                                                  'Ordibehesht',
-                                                            ),
+                                                                fontSize: 14.sp,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
                                                           ),
                                                         ),
                                                       ),
@@ -220,13 +219,12 @@ class TeacherClassesPage extends StatelessWidget {
                               child: SizedBox(
                                 width: 315,
                                 child: Text(
-                                  'شما میتوانید بعد از انتخاب هر کدام داخل صفحه اصلی با فشردن کلید بازگشت به این صفحه بازگردید\nگزینه  Qr-Code  بالا جهت حضور و غیاب دبیران محترم استفاده میشود',
-                                  textAlign: TextAlign.start,
-                                  textDirection: TextDirection.rtl,
+                                  'The \'QR-Code\' option at the top of this page is used for the attendance of the respected teachers',
+                                  textAlign: TextAlign.justify,
                                   style: TextStyle(
-                                    fontSize: 14.sp,
+                                    fontSize: 13.sp,
+                                    fontWeight: FontWeight.w500,
                                     color: Colors.black,
-                                    fontFamily: 'Ordibehesht',
                                   ),
                                 ),
                               ),

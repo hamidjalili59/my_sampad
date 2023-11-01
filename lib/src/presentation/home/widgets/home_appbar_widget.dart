@@ -43,7 +43,7 @@ class HomeCustomAppBar extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  title != 'سمپاد من'
+                  title != 'MY School'
                       ? InkWell(
                           onTap: () {
                             appRouter.pop();
@@ -71,7 +71,7 @@ class HomeCustomAppBar extends StatelessWidget {
                               ),
                               items: [
                                 DropdownMenuItem(
-                                  value: 'خروج از حساب',
+                                  value: 'Logout',
                                   child: InkWell(
                                       onTap: () {
                                         getIt
@@ -79,17 +79,11 @@ class HomeCustomAppBar extends StatelessWidget {
                                             .add(const HomeEvent.logout());
                                       },
                                       child: const Text(
-                                        'خروج از حساب',
+                                        'Logout',
                                         textAlign: TextAlign.center,
                                       )),
                                 )
                               ],
-                              // child: SizedBox(
-                              //     width: 60.w,
-                              //     height: 80.w,
-                              //     child: Icon(Icons.more_vert_rounded,
-                              //         color: Colors.white, size: 28.r),
-                              //   ),
                             ),
                           ),
                         ),
@@ -106,7 +100,6 @@ class HomeCustomAppBar extends StatelessWidget {
                               Text(
                                 title,
                                 textAlign: TextAlign.center,
-                                textDirection: TextDirection.rtl,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18.r,
@@ -114,9 +107,8 @@ class HomeCustomAppBar extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                'کنترل هوشمند مدارس',
+                                'Smart School Control',
                                 textAlign: TextAlign.center,
-                                textDirection: TextDirection.rtl,
                                 style: TextStyle(
                                   color: Colors.white70,
                                   fontSize: 12.r,
@@ -176,29 +168,29 @@ class HomeCustomAppBar extends StatelessWidget {
                                   return CustomRowButtonWidget(
                                       title: buttonsList[index].name ==
                                               'teacher'
-                                          ? 'دبیران'
+                                          ? 'Teachers'
                                           : buttonsList[index].name ==
                                                   'classroom'
-                                              ? 'کلاس‌ها'
+                                              ? 'Classes'
                                               : buttonsList[index].name ==
                                                       'course'
-                                                  ? 'درس‌ها'
+                                                  ? 'Courses'
                                                   : buttonsList[index].name ==
                                                           'student'
-                                                      ? 'دانش‌آموزان'
+                                                      ? 'Students'
                                                       : buttonsList[index]
                                                                   .name ==
                                                               'exams'
-                                                          ? 'امتحانات'
+                                                          ? 'Exams'
                                                           : buttonsList[index]
                                                                       .name ==
                                                                   'score'
-                                                              ? 'نمرات'
+                                                              ? 'Scores'
                                                               : buttonsList[index]
                                                                           .name ==
                                                                       'teacherHome'
-                                                                  ? 'کلاس‌ها'
-                                                                  : 'غیبت‌ها',
+                                                                  ? 'Classes'
+                                                                  : 'Absences',
                                       indexType: buttonsList[index],
                                       currentIndexType: currentPageName,
                                       bloc: bloc);

@@ -73,14 +73,12 @@ class _ExamPageState extends State<ExamPage> {
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Text(
-                        'ثبت امتحان',
+                        'Exam Registration',
                         textAlign: TextAlign.start,
-                        textDirection: TextDirection.rtl,
                         style: TextStyle(
-                          fontSize: 22.sp,
-                          color: Colors.black,
-                          fontFamily: 'Ordibehesht',
-                        ),
+                            fontSize: 12.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -96,15 +94,15 @@ class _ExamPageState extends State<ExamPage> {
                 child: Column(
                   children: [
                     AppbarSchoolWidget(
-                      title: 'امتحانات کلاس',
+                      title: 'Class Exams',
                       titleHelper:
-                          'میتوانید در زیر لیستی از امتحانات با توضیح آنها مشاهده کنید',
+                          'You can view a list of exams with their descriptions below',
                       pathString: GeneralConstants.userType == UserType.admin ||
                               GeneralConstants.userType == UserType.deputy
-                          ? 'صفحه‌اصلی > کلاس‌ها > ${getIt.get<Classroom>().className} > امتحانات'
+                          ? 'Main > Classes > ${getIt.get<Classroom>().className} > Exams'
                           : GeneralConstants.userType == UserType.teacher
-                              ? 'کلاس‌ها > ${getIt.get<Classroom>().className} > امتحانات'
-                              : '${getIt.get<Student>().basicInfo!.name} > امتحانات',
+                              ? 'Classes > ${getIt.get<Classroom>().className} > Exams'
+                              : '${getIt.get<Student>().basicInfo!.name} > Exams',
                       isWidget: true,
                       widget: GeneralConstants.userType != UserType.teacher
                           ? null
@@ -116,7 +114,7 @@ class _ExamPageState extends State<ExamPage> {
                               items: [
                                 DropdownMenuItem(
                                   alignment: Alignment.center,
-                                  value: 'حذف',
+                                  value: 'delete',
                                   onTap: () {
                                     getIt.get<AppRouter>().pop();
                                     setState(() {
@@ -128,27 +126,24 @@ class _ExamPageState extends State<ExamPage> {
                                             backgroundColor:
                                                 const Color(0xffe8ffe8),
                                             content: Text(
-                                              'امتحان مورد نظر را برای حذف انتخاب کنید',
-                                              textDirection: TextDirection.rtl,
+                                              'Select the exam you want to delete',
                                               style: TextStyle(
-                                                  fontSize: 18.sp,
+                                                  fontSize: 12.sp,
                                                   color: Colors.black,
-                                                  fontFamily: 'Ordibehesht',
                                                   fontWeight: FontWeight.bold),
                                             )));
                                   },
                                   child: Text(
-                                    'حذف',
+                                    'Delete',
                                     style: TextStyle(
-                                        fontSize: 20.sp,
+                                        fontSize: 14.sp,
                                         color: Colors.black,
-                                        fontFamily: 'Ordibehesht',
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 DropdownMenuItem(
                                   alignment: Alignment.center,
-                                  value: 'تغییر',
+                                  value: 'change',
                                   onTap: () async {
                                     getIt.get<AppRouter>().pop();
                                     setState(() {
@@ -160,21 +155,18 @@ class _ExamPageState extends State<ExamPage> {
                                             backgroundColor:
                                                 const Color(0xffe8ffe8),
                                             content: Text(
-                                              'امتحان مورد نظر را برای تغییر انتخاب کنید',
-                                              textDirection: TextDirection.rtl,
+                                              'Select the exam you want to modify',
                                               style: TextStyle(
-                                                  fontSize: 18.sp,
+                                                  fontSize: 12.sp,
                                                   color: Colors.black,
-                                                  fontFamily: 'Ordibehesht',
                                                   fontWeight: FontWeight.bold),
                                             )));
                                   },
                                   child: Text(
-                                    'تغییر',
+                                    'Change',
                                     style: TextStyle(
-                                        fontSize: 20.sp,
+                                        fontSize: 14.sp,
                                         color: Colors.black,
-                                        fontFamily: 'Ordibehesht',
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -213,13 +205,11 @@ class _ExamPageState extends State<ExamPage> {
                                           ),
                                         ),
                                         Text(
-                                          'امتحانی وجود ندارد',
-                                          textDirection: TextDirection.rtl,
+                                          'There is no exam available',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               fontWeight: FontWeight.w800,
-                                              fontFamily: 'Ordibehesht',
-                                              fontSize: 22.r),
+                                              fontSize: 16.r),
                                         )
                                       ],
                                     ),
@@ -260,16 +250,12 @@ class _ExamPageState extends State<ExamPage> {
                                                     title: SizedBox(
                                                       height: 50.h,
                                                       child: Text(
-                                                        'آیا از حذف این امتحان اطمینان دارید',
+                                                        'Are you sure you want to delete this exam?',
                                                         textAlign:
                                                             TextAlign.center,
-                                                        textDirection:
-                                                            TextDirection.rtl,
                                                         style: TextStyle(
-                                                            fontSize: 20.sp,
+                                                            fontSize: 16.sp,
                                                             color: Colors.black,
-                                                            fontFamily:
-                                                                'Ordibehesht',
                                                             fontWeight:
                                                                 FontWeight
                                                                     .bold),
@@ -306,17 +292,12 @@ class _ExamPageState extends State<ExamPage> {
                                                                   Alignment
                                                                       .center,
                                                               child: Text(
-                                                                'خیر',
-                                                                textDirection:
-                                                                    TextDirection
-                                                                        .rtl,
+                                                                'cancel',
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                        20.sp,
+                                                                        16.sp,
                                                                     color: Colors
                                                                         .black,
-                                                                    fontFamily:
-                                                                        'Ordibehesht',
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold),
@@ -358,17 +339,12 @@ class _ExamPageState extends State<ExamPage> {
                                                                   Alignment
                                                                       .center,
                                                               child: Text(
-                                                                'بله',
-                                                                textDirection:
-                                                                    TextDirection
-                                                                        .rtl,
+                                                                'Accept',
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                        20.sp,
+                                                                        16.sp,
                                                                     color: Colors
                                                                         .black,
-                                                                    fontFamily:
-                                                                        'Ordibehesht',
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold),
@@ -473,14 +449,14 @@ class ExamDialogWidget extends StatelessWidget {
                 },
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(
-                      errorText: 'توضیحات اجباری است'),
+                      errorText: 'Description is mandatory'),
                   FormBuilderValidators.maxLength(
                     200,
-                    errorText: 'کمتر از 200 حرف داشته باشد',
+                    errorText: 'Should be less than 200 characters',
                   ),
                   FormBuilderValidators.minLength(
                     5,
-                    errorText: 'بیشتر از 5 حرف داشته باشد',
+                    errorText: 'Should be more than 5 characters',
                   ),
                 ]),
                 width: 180.w,
@@ -489,7 +465,7 @@ class ExamDialogWidget extends StatelessWidget {
                 heghit: 50.h,
                 controller: _controller,
                 keyboardType: TextInputType.text,
-                labelText: 'توضیحات امتحان',
+                labelText: 'Exam Description',
               ),
             ),
           ),
@@ -543,14 +519,12 @@ class ExamDialogWidget extends StatelessWidget {
                         color: const Color(0xffE8FFE8)),
                     alignment: Alignment.center,
                     child: Text(
-                      isEditing ? 'تغییر امتحان' : 'اضافه کردن امتحان',
+                      isEditing ? 'Change Exam' : 'Add Exam',
                       textAlign: TextAlign.center,
-                      textDirection: TextDirection.rtl,
                       maxLines: null,
                       style: TextStyle(
-                        fontSize: 20.sp,
+                        fontSize: 16.sp,
                         color: Colors.black,
-                        fontFamily: 'Ordibehesht',
                       ),
                     ),
                   ),

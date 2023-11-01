@@ -81,11 +81,10 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                             child: Container(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  'ثبت‌‍‌‌نمره',
+                                  'Grade Entry',
                                   style: TextStyle(
                                     color: Colors.black,
-                                    fontFamily: 'Ordibehesht',
-                                    fontSize: 16.sp,
+                                    fontSize: 14.sp,
                                   ),
                                 )),
                           )),
@@ -101,11 +100,10 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                             child: Container(
                               alignment: Alignment.center,
                               child: Text(
-                                'حضورغیاب',
+                                'Attendance',
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontFamily: 'Ordibehesht',
-                                  fontSize: 16.sp,
+                                  fontSize: 14.sp,
                                 ),
                               ),
                             ),
@@ -139,12 +137,10 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                             ]),
                         alignment: Alignment.center,
                         child: Text(
-                          'اضافه کردن دانش‌آموز',
-                          textDirection: TextDirection.rtl,
+                          'Add Student',
                           style: TextStyle(
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               color: Colors.black,
-                              fontFamily: 'Ordibehesht',
                               fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -160,15 +156,15 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AppbarSchoolWidget(
-                      title: 'دانش‌آموزان : ',
+                      title: 'Students : ',
                       titleHelper:
-                          'با کلیک بر روی هر دانش‌آموز میتوانید سابقه غیبت ها و نمرات وی را مشاهده کنید',
+                          'You can view the academic history, grades, and absences of each student by clicking on them',
                       pathString: GeneralConstants.userType == UserType.admin ||
                               GeneralConstants.userType == UserType.deputy
-                          ? 'صفحه‌اصلی > کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان'
+                          ? 'Main > Classes > ${getIt.get<Classroom>().className} > Students'
                           : GeneralConstants.userType == UserType.parent
-                              ? 'دانش‌آموزان'
-                              : 'کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان',
+                              ? 'Students'
+                              : 'Classes > ${getIt.get<Classroom>().className} > Students',
                       isWidget: true,
                       widget: GeneralConstants.userType == UserType.admin ||
                               GeneralConstants.userType == UserType.deputy
@@ -180,7 +176,7 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                               items: [
                                 DropdownMenuItem(
                                   alignment: Alignment.center,
-                                  value: 'حذف',
+                                  value: 'delete',
                                   onTap: () {
                                     getIt.get<AppRouter>().pop();
                                     setState(() {
@@ -192,27 +188,24 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                             backgroundColor:
                                                 const Color(0xffe8ffe8),
                                             content: Text(
-                                              'دانش‌آموز مورد نظر را برای حذف انتخاب کنید',
-                                              textDirection: TextDirection.rtl,
+                                              'Select the student you wish to remove',
                                               style: TextStyle(
-                                                  fontSize: 18.sp,
+                                                  fontSize: 14.sp,
                                                   color: Colors.black,
-                                                  fontFamily: 'Ordibehesht',
                                                   fontWeight: FontWeight.bold),
                                             )));
                                   },
                                   child: Text(
-                                    'حذف',
+                                    'Delete',
                                     style: TextStyle(
-                                        fontSize: 20.sp,
+                                        fontSize: 16.sp,
                                         color: Colors.black,
-                                        fontFamily: 'Ordibehesht',
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 DropdownMenuItem(
                                   alignment: Alignment.center,
-                                  value: 'تغییر',
+                                  value: 'change',
                                   onTap: () async {
                                     getIt.get<AppRouter>().pop();
                                     setState(() {
@@ -224,21 +217,18 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                             backgroundColor:
                                                 const Color(0xffe8ffe8),
                                             content: Text(
-                                              'دانش‌آموز مورد نظر را برای تغییر انتخاب کنید',
-                                              textDirection: TextDirection.rtl,
+                                              'Choose the student you want to make changes to',
                                               style: TextStyle(
-                                                  fontSize: 18.sp,
+                                                  fontSize: 14.sp,
                                                   color: Colors.black,
-                                                  fontFamily: 'Ordibehesht',
                                                   fontWeight: FontWeight.bold),
                                             )));
                                   },
                                   child: Text(
-                                    'تغییر',
+                                    'Change',
                                     style: TextStyle(
-                                        fontSize: 20.sp,
+                                        fontSize: 16.sp,
                                         color: Colors.black,
-                                        fontFamily: 'Ordibehesht',
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -264,11 +254,10 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                             .add(const AuthEvent.logout());
                                       },
                                       child: Text(
-                                        'خروج از حساب',
+                                        'Logout',
                                         style: TextStyle(
-                                            fontSize: 16.sp,
+                                            fontSize: 14.sp,
                                             color: Colors.black,
-                                            fontFamily: 'Ordibehesht',
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
@@ -338,17 +327,13 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                                       title: SizedBox(
                                                         height: 50.h,
                                                         child: Text(
-                                                          'آیا از حذف ${state.students[index].basicInfo!.name} اطمینان دارید',
+                                                          'Are you sure you want to delete ${state.students[index].basicInfo!.name}',
                                                           textAlign:
                                                               TextAlign.center,
-                                                          textDirection:
-                                                              TextDirection.rtl,
                                                           style: TextStyle(
-                                                              fontSize: 20.sp,
+                                                              fontSize: 16.sp,
                                                               color:
                                                                   Colors.black,
-                                                              fontFamily:
-                                                                  'Ordibehesht',
                                                               fontWeight:
                                                                   FontWeight
                                                                       .bold),
@@ -385,17 +370,12 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                                                     Alignment
                                                                         .center,
                                                                 child: Text(
-                                                                  'خیر',
-                                                                  textDirection:
-                                                                      TextDirection
-                                                                          .rtl,
+                                                                  'cancel',
                                                                   style: TextStyle(
                                                                       fontSize:
-                                                                          20.sp,
+                                                                          16.sp,
                                                                       color: Colors
                                                                           .black,
-                                                                      fontFamily:
-                                                                          'Ordibehesht',
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold),
@@ -436,17 +416,12 @@ class _ClassStudentPageState extends State<ClassStudentPage> {
                                                                     Alignment
                                                                         .center,
                                                                 child: Text(
-                                                                  'بله',
-                                                                  textDirection:
-                                                                      TextDirection
-                                                                          .rtl,
+                                                                  'accept',
                                                                   style: TextStyle(
                                                                       fontSize:
-                                                                          20.sp,
+                                                                          16.sp,
                                                                       color: Colors
                                                                           .black,
-                                                                      fontFamily:
-                                                                          'Ordibehesht',
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .bold),

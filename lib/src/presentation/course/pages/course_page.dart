@@ -33,7 +33,7 @@ class CoursePage extends StatelessWidget {
               _addCourseDialogMethod(false);
             },
             label: Text(
-              'افزودن‌درس',
+              'Add Course',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.r,
@@ -89,13 +89,10 @@ class CoursePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'امتحانی وجود ندارد',
-                          textDirection: TextDirection.rtl,
+                          'No Course available',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontWeight: FontWeight.w800,
-                              fontFamily: 'Ordibehesht',
-                              fontSize: 22.r),
+                              fontWeight: FontWeight.w800, fontSize: 16.r),
                         )
                       ],
                     ),
@@ -131,7 +128,7 @@ class CoursePage extends StatelessWidget {
         // width: 0.15.sw,
         height: 50.h,
         child: Text(
-          isEditing ? 'تغییر درس' : 'افزودن درس',
+          isEditing ? 'Change Course' : 'Add Course',
           style: TextStyle(
               color: Colors.white, fontSize: 16.r, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
@@ -155,19 +152,20 @@ class CoursePage extends StatelessWidget {
                   islabel: true,
                   name: 'course_name',
                   keyboardType: TextInputType.name,
-                  labelText: 'نام درس',
+                  labelText: 'Course Name',
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(
-                        errorText: 'انتخاب اسم برای ساخت درس اجباری است'),
+                        errorText:
+                            'The selection of a name for creating a class is mandatory'),
                     FormBuilderValidators.maxLength(
                       30,
                       errorText:
-                          'لطفا اسمی که انتخاب میکنید کمتر از 30 حرف داشته باشد',
+                          'Please make sure the chosen name is less than 30 characters',
                     ),
                     FormBuilderValidators.minLength(
                       3,
                       errorText:
-                          'لطفا اسمی که انتخاب میکنید بیشتر از 3 حرف داشته باشد',
+                          'Please ensure that the chosen name is more than 3 characters',
                     ),
                   ]),
                   onSubmitted: (value) {
@@ -226,20 +224,6 @@ class CoursePage extends StatelessWidget {
                                   .navigatorKey
                                   .currentContext!);
                             } else {}
-                            // if (isEditing) {
-                            //   getIt.get<CourseBloc>().add(
-                            //         CourseEvent.updateCourse(
-                            //           course!
-                            //               .copyWith(courseName: _controller.text),
-                            //         ),
-                            //       );
-                            // } else {
-                            //   getIt.get<CourseBloc>().add(
-                            //         CourseEvent.addCourse(
-                            //           _controller.text,
-                            //         ),
-                            //       );
-                            // }
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -253,7 +237,7 @@ class CoursePage extends StatelessWidget {
                             child: courseState.isLoading
                                 ? const CircularProgressIndicator()
                                 : Text(
-                                    'تایید',
+                                    'Accept',
                                     style: TextStyle(
                                       fontSize: 16.r,
                                       fontWeight: FontWeight.w700,
@@ -313,7 +297,7 @@ class CourseTileWidget extends StatelessWidget {
                     alignment: Alignment.topRight,
                     child: InkWell(
                       onTap: () => FunctionHelper().removeDialog(
-                        'درس',
+                        'Course',
                         () => getIt.get<CourseBloc>().add(
                               CourseEvent.removeCourse(course.courseId),
                             ),

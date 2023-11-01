@@ -30,10 +30,10 @@ class SelectSchoolPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AppbarSchoolWidget(
-                      title: 'مدارس شما',
+                      title: 'Your schools',
                       titleHelper:
-                          'لطفا مدرسه ای که قصد ورود به آنرا دارید انتخاب کنید',
-                      pathString: 'مدارس >',
+                          'Please select the school you intend to enter',
+                      pathString: 'Schools >',
                       isWidget: true,
                       widget: DropdownButton<String>(
                         underline: const SizedBox(),
@@ -48,12 +48,12 @@ class SelectSchoolPage extends StatelessWidget {
                                   .add(const AuthEvent.logout());
                             },
                             child: Text(
-                              'خروج از حساب',
+                              'Logout',
                               style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color: Colors.black,
-                                  fontFamily: 'Ordibehesht',
-                                  fontWeight: FontWeight.bold),
+                                fontSize: 14.sp,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],
@@ -91,13 +91,12 @@ class SelectSchoolPage extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          'شما مدرسه ای ندارد',
-                                          textDirection: TextDirection.rtl,
+                                          'You do not have a school',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              fontWeight: FontWeight.w800,
-                                              fontFamily: 'Ordibehesht',
-                                              fontSize: 22.r),
+                                            fontWeight: FontWeight.w800,
+                                            fontSize: 20.r,
+                                          ),
                                         )
                                       ],
                                     ),
@@ -145,15 +144,14 @@ class SelectSchoolPage extends StatelessWidget {
                                         height: 109.h,
                                         alignment: Alignment.center,
                                         child: SizedBox(
-                                          width: 315,
+                                          width: 310,
                                           child: Text(
-                                            'شما میتوانید بعد از انتخاب هر کدام داخل صفحه اصلی با فشردن کلید بازگشت به این صفحه بازگردید',
-                                            textAlign: TextAlign.start,
-                                            textDirection: TextDirection.rtl,
+                                            'If you do not see your desired school among the listed schools, please inform the respective school\'s principal to add you to that school',
+                                            textAlign: TextAlign.justify,
                                             style: TextStyle(
-                                              fontSize: 14.sp,
+                                              fontSize: 13.sp,
                                               color: Colors.black,
-                                              fontFamily: 'Ordibehesht',
+                                              fontWeight: FontWeight.w500,
                                             ),
                                           ),
                                         ),
@@ -234,7 +232,6 @@ class SelectSchoolTileWidget extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18.sp,
                       color: Colors.black,
-                      fontFamily: 'Ordibehesht',
                     ),
                   ),
                 ),

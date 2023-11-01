@@ -32,11 +32,11 @@ class SchoolsCardWidget extends StatelessWidget {
               ),
               child: Padding(
                 padding: EdgeInsets.only(left: 8.0.w, bottom: 4.w),
-                child: Text(title,
-                    style:
-                        TextStyle(fontSize: 20.r, fontWeight: FontWeight.w600),
-                    textAlign: TextAlign.right,
-                    textDirection: TextDirection.rtl),
+                child: Text(
+                  title,
+                  style: TextStyle(fontSize: 20.r, fontWeight: FontWeight.w600),
+                  textAlign: TextAlign.right,
+                ),
               ),
             ),
             Container(
@@ -48,10 +48,6 @@ class SchoolsCardWidget extends StatelessWidget {
               height: 0.1.sh,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.r),
-                // child: Image.asset(
-                //   'assets/class_card_cover.png',
-                //   fit: BoxFit.fill,
-                // ),
                 child: SvgPicture.asset(
                   'assets/class_card_cover.svg',
                   fit: BoxFit.fill,
@@ -66,13 +62,14 @@ class SchoolsCardWidget extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Padding(
                 padding: EdgeInsets.only(top: 4.h, right: 12.w),
-                child: Text("مدرسه",
-                    style: TextStyle(
-                        fontSize: 22.r,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w800),
-                    textAlign: TextAlign.right,
-                    textDirection: TextDirection.rtl),
+                child: Text(
+                  "School",
+                  style: TextStyle(
+                      fontSize: 22.r,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800),
+                  textAlign: TextAlign.right,
+                ),
               ),
             ),
           ],

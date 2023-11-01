@@ -61,16 +61,13 @@ class AuthMobileWidget extends StatelessWidget {
                         children: [
                           SizedBox(height: 100.h),
                           SizedBox(
-                            width: 280.w,
+                            width: 250.w,
                             height: 64.h,
                             child: Text(
-                              'کد برای 0${handshakeResponse.phoneNumber} ارسال شد',
+                              'We have sent the code to your number',
                               style: TextStyle(
-                                  fontFamily: 'Ordibehesht',
-                                  fontSize: 22.sp,
-                                  color: Colors.black),
+                                  fontSize: 20.sp, color: Colors.black),
                               textAlign: TextAlign.center,
-                              textDirection: TextDirection.rtl,
                             ),
                           ),
                           SizedBox(height: 55.h),
@@ -84,7 +81,6 @@ class AuthMobileWidget extends StatelessWidget {
                                 textStyle: TextStyle(
                                   fontSize: 36.sp,
                                   color: const Color.fromARGB(255, 0, 0, 0),
-                                  fontFamily: 'Ordibehesht',
                                   fontWeight: FontWeight.bold,
                                 ),
                                 decoration: BoxDecoration(
@@ -112,13 +108,10 @@ class AuthMobileWidget extends StatelessWidget {
                             width: 275.w,
                             height: 50.h,
                             child: Text(
-                              'کد را دریافت نکردید؟ درخواست دوباره کد',
+                              'Didn\'t recive the code?\nRequest again',
                               style: TextStyle(
-                                  fontFamily: 'Ordibehesht',
-                                  fontSize: 22.sp,
-                                  color: Colors.black),
+                                  fontSize: 18.sp, color: Colors.black),
                               textAlign: TextAlign.center,
-                              textDirection: TextDirection.rtl,
                             ),
                           ),
                           SizedBox(height: 80.h),
@@ -131,14 +124,12 @@ class AuthMobileWidget extends StatelessWidget {
                               borderRadius: BorderRadius.circular(14.sp),
                             ),
                             child: Text(
-                              'تایید و ورود',
+                              'Enter',
                               style: TextStyle(
-                                fontFamily: 'Ordibehesht',
                                 fontSize: 24.sp,
                                 color: Colors.black,
                               ),
                               textAlign: TextAlign.center,
-                              textDirection: TextDirection.rtl,
                             ),
                           ),
                         ],
@@ -192,13 +183,12 @@ class OtpHandshakeWidget extends StatelessWidget {
               ),
               SizedBox(height: 25.h),
               SizedBox(
-                width: 200.w,
+                width: 220.w,
                 height: 55.h,
                 child: Text(
-                  'شما یک پیامک  4   رقمی برای تایید هویت دریافت میکنید',
+                  "You'll receive a 4-digit code by entering your number",
                   style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        fontSize: 20.sp,
-                        fontFamily: 'Ordibehesht',
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.bold,
                       ),
                   textAlign: TextAlign.center,
@@ -221,6 +211,105 @@ class OtpHandshakeWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Expanded(
+                      flex: 2,
+                      child: SizedBox(
+                        height: 60.h,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 26.0.w),
+                              child: SizedBox(
+                                width: 120.w,
+                                child: Text(
+                                  'Enter PhoneNumber :',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium!
+                                      .copyWith(
+                                          color: Colors.black54,
+                                          fontSize: 10.sp,
+                                          fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SizedBox(width: 50.w),
+                                SizedBox(
+                                  width: 33.w,
+                                  height: 25.h,
+                                  child: Text(
+                                    '+98',
+                                    textDirection: TextDirection.ltr,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium!
+                                        .copyWith(
+                                          color: Colors.black,
+                                          fontSize: 16.sp,
+                                        ),
+                                  ),
+                                ),
+                                CustomTextField(
+                                  islabel: false,
+                                  width: 100.w,
+                                  enabled: true,
+                                  heghit: 25.h,
+                                  maxLength: 10,
+                                  name: 'phone',
+                                  labelText: '9123456789',
+                                  haveBorder: false,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(
+                                        color: Colors.black,
+                                        fontSize: 16.sp,
+                                      ),
+                                  labelStyle: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(
+                                        color: Colors.black38,
+                                        fontSize: 16.sp,
+                                      ),
+                                  controller: _numbercontroller,
+                                  keyboardType: TextInputType.phone,
+                                  onSubmitted: (value) {
+                                    if (value!.length == 10) {
+                                      bloc.add(
+                                        AuthEvent.otpHandshake(
+                                          double.parse(value),
+                                        ),
+                                      );
+                                      _numbercontroller.clear();
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              backgroundColor:
+                                                  const Color(0xffE8FFE8),
+                                              content: Text(
+                                                'phone number is not valid, the number should be 10 digits',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleMedium!
+                                                    .copyWith(
+                                                      color: Colors.black,
+                                                    ),
+                                              )));
+                                    }
+                                  },
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
                       flex: 1,
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8.r),
@@ -238,8 +327,7 @@ class OtpHandshakeWidget extends StatelessWidget {
                                   .showSnackBar(SnackBar(
                                       backgroundColor: const Color(0xffE8FFE8),
                                       content: Text(
-                                        'شماره تلفن درست نیست ، شماره باید 10 رقم باشد',
-                                        textDirection: TextDirection.rtl,
+                                        'Phone number is not valid, the number should be 10 digits',
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleMedium!
@@ -262,133 +350,26 @@ class OtpHandshakeWidget extends StatelessWidget {
                                     child: CircularProgressIndicator(),
                                   )
                                 : Text(
-                                    'ادامه',
+                                    'Accept',
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyLarge!
                                         .copyWith(
                                           color: Colors.black,
-                                          fontFamily: 'Ordibehesht',
-                                          fontSize: 20.sp,
-                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16.sp,
+                                          fontWeight: FontWeight.w900,
                                         ),
                                   ),
                           ),
                         ),
                       ),
                     ),
-                    Expanded(
-                      flex: 2,
-                      child: SizedBox(
-                        height: 60.h,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                              width: 110.w,
-                              height: 16.h,
-                              child: Text(
-                                'شماره خود را وارد کنید :',
-                                textDirection: TextDirection.rtl,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelMedium!
-                                    .copyWith(
-                                      fontFamily: 'Ordibehesht',
-                                      color: Colors.black54,
-                                      fontSize: 14.sp,
-                                    ),
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(width: 15.w),
-                                SizedBox(
-                                  width: 40.w,
-                                  height: 40.h,
-                                  child: Text(
-                                    '+98',
-                                    textDirection: TextDirection.ltr,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium!
-                                        .copyWith(
-                                          fontFamily: 'Ordibehesht',
-                                          color: Colors.black,
-                                          fontSize: 32.sp,
-                                        ),
-                                  ),
-                                ),
-                                CustomTextField(
-                                  islabel: false,
-                                  width: 110.w,
-                                  enabled: true,
-                                  heghit: 40.h,
-                                  maxLength: 10,
-                                  name: 'phone',
-                                  labelText: '9123456789',
-                                  haveBorder: false,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .copyWith(
-                                        color: Colors.black,
-                                        fontFamily: 'Ordibehesht',
-                                        fontSize: 32.sp,
-                                      ),
-                                  labelStyle: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .copyWith(
-                                        color: Colors.black38,
-                                        fontFamily: 'Ordibehesht',
-                                        fontSize: 32.sp,
-                                      ),
-                                  controller: _numbercontroller,
-                                  keyboardType: TextInputType.phone,
-                                  onSubmitted: (value) {
-                                    if (value!.length == 10) {
-                                      bloc.add(
-                                        AuthEvent.otpHandshake(
-                                          double.parse(value),
-                                        ),
-                                      );
-                                      _numbercontroller.clear();
-                                    } else {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                              backgroundColor:
-                                                  const Color(0xffE8FFE8),
-                                              content: Text(
-                                                'شماره تلفن درست نیست ، شماره باید 10 رقم باشد',
-                                                textDirection:
-                                                    TextDirection.rtl,
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .titleMedium!
-                                                    .copyWith(
-                                                      color: Colors.black,
-                                                    ),
-                                              )));
-                                    }
-                                  },
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),
             ],
           ),
         ),
-        // AuthKeyboardWidget(
-        //   number: _numbercontroller,
-        // )
       ],
     );
   }
@@ -469,8 +450,7 @@ class AuthKeyboardWidget extends StatelessWidget {
                     : Text(
                         index == 10 ? '0' : (index + 1).toString(),
                         style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                              fontFamily: 'Ordibehesht',
-                              fontSize: 36.sp,
+                              fontSize: 30.sp,
                             ),
                       ),
               ),

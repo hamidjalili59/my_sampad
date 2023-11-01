@@ -25,15 +25,15 @@ class StudentDetailsPage extends StatelessWidget {
         child: Column(
           children: [
             AppbarSchoolWidget(
-                title: 'اطلاعات دانش آموز : ',
+                title: 'Student Information :',
                 titleHelper:
-                    'کدام یک از اطلاعات دانش آموز را نیاز دارید کلیک کنید روی آن',
+                    'The absence section shows only dates and times of students\' absences',
                 pathString: GeneralConstants.userType == UserType.admin ||
                         GeneralConstants.userType == UserType.deputy
-                    ? 'صفحه‌اصلی > کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name}'
+                    ? 'Main > Classes > ${getIt.get<Classroom>().className} > Students > ${getIt.get<Student>().basicInfo!.name}'
                     : GeneralConstants.userType == UserType.parent
-                        ? 'دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name}'
-                        : 'کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name}',
+                        ? 'Students > ${getIt.get<Student>().basicInfo!.name}'
+                        : 'Classes > ${getIt.get<Classroom>().className} > Students > ${getIt.get<Student>().basicInfo!.name}',
                 isWidget: true,
                 widget: null),
             SizedBox(
@@ -42,10 +42,10 @@ class StudentDetailsPage extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const StudentDetailCardWidget(title: 'نمرات'),
-                    const StudentDetailCardWidget(title: 'غیبت‌ها'),
+                    const StudentDetailCardWidget(title: 'Grades'),
+                    const StudentDetailCardWidget(title: 'Absences'),
                     GeneralConstants.userType == UserType.parent
-                        ? const StudentDetailCardWidget(title: 'امتحانات')
+                        ? const StudentDetailCardWidget(title: 'Exams')
                         : const SizedBox(),
                     SizedBox(height: 50.h)
                   ],
@@ -72,9 +72,9 @@ class StudentDetailCardWidget extends StatelessWidget {
       padding: EdgeInsets.only(top: 16.h),
       child: InkWell(
         onTap: () {
-          if (title == 'غیبت‌ها') {
+          if (title == 'Absences') {
             getIt.get<AppRouter>().pushNamed('/student_rollcall_view');
-          } else if (title == 'نمرات') {
+          } else if (title == 'Grades') {
             getIt.get<AppRouter>().pushNamed('/student_score_view');
           } else {
             getIt.get<AppRouter>().pushNamed('/exam_page');
@@ -102,10 +102,8 @@ class StudentDetailCardWidget extends StatelessWidget {
                   padding: EdgeInsets.only(top: 16.0.h, right: 28.w),
                   child: Text(
                     title,
-                    style: TextStyle(
-                        fontSize: 46.sp,
-                        fontFamily: 'Ordibehesht',
-                        fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 40.sp, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -121,13 +119,13 @@ class StudentDetailCardWidget extends StatelessWidget {
                       Colors.black12.withAlpha(5),
                     ],
                   ).createShader(Offset.zero & bounds.size),
-                  child: title == 'نمرات'
+                  child: title == 'Grades'
                       ? Text(
                           '20',
                           style: TextStyle(
                               fontSize: 150.sp, fontWeight: FontWeight.bold),
                         )
-                      : title == 'غیبت‌ها'
+                      : title == 'Absences'
                           ? Padding(
                               padding: EdgeInsets.only(top: 16.0.h),
                               child: Icon(Icons.checklist_sharp, size: 180.sp),

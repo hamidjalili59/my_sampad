@@ -24,10 +24,10 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               AppbarSchoolWidget(
-                title: 'صفحه اصلی : ',
+                title: 'Main Page : ',
                 titleHelper:
-                    'شما میتوانید با انتخاب هر یک از گزینه های زیر به قابلیت های آن دسترسی پیدا کنید',
-                pathString: 'صفحه‌اصلی >',
+                    'By selecting any of the options below, you can access its functionalities',
+                pathString: 'Main >',
                 isWidget: true,
                 widget: DropdownButton<String>(
                   underline: const SizedBox(),
@@ -40,11 +40,10 @@ class HomePage extends StatelessWidget {
                         getIt.get<AuthBloc>().add(const AuthEvent.logout());
                       },
                       child: Text(
-                        'خروج از حساب',
+                        'Logout',
                         style: TextStyle(
-                            fontSize: 16.sp,
+                            fontSize: 14.sp,
                             color: Colors.black,
-                            fontFamily: 'Ordibehesht',
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -104,13 +103,11 @@ class HomePage extends StatelessWidget {
                         child: SizedBox(
                           width: 315,
                           child: Text(
-                            'شما میتوانید بعد از انتخاب هر گزینه تغییرات مربوطه را اجرا کنید',
+                            'After selecting each option, you can implement the respective changes',
                             textAlign: TextAlign.start,
-                            textDirection: TextDirection.rtl,
                             style: TextStyle(
-                              fontSize: 16.sp,
+                              fontSize: 13.sp,
                               color: Colors.black,
-                              fontFamily: 'Ordibehesht',
                             ),
                           ),
                         ),
@@ -203,14 +200,14 @@ class HomePageItemWidget extends StatelessWidget {
               ? false
               : true,
           title: index == 0
-              ? 'کلاس‌ها'
+              ? 'Classes'
               : index == 1
-                  ? 'مدیریت درس‌ها'
+                  ? 'Course Manage'
                   : index == 2
-                      ? 'مدیریت دبیران'
+                      ? 'Teacher Manage'
                       : index == 3
-                          ? 'ثبت‌حضور‌اساتید'
-                          : 'مدیریت معاونت',
+                          ? 'Teachers Attendance'
+                          : 'Deputy Manage',
         ),
       ),
     );

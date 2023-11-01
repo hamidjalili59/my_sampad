@@ -45,22 +45,6 @@ class TeacherRollcallBloc
         .then((value) => value.fold(
               (l) async {
                 emit(state.copyWith(isLoading: false));
-                // ScaffoldMessenger.of(
-                //         getIt.get<AppRouter>().navigatorKey.currentContext!)
-                //     .showSnackBar(
-                //   SnackBar(
-                //     backgroundColor: const Color.fromARGB(255, 255, 200, 200),
-                //     content: Text(
-                //       'ثبت موفقیت آمیز نبود',
-                //       textDirection: TextDirection.rtl,
-                //       style: TextStyle(
-                //         color: Colors.black,
-                //         fontFamily: 'Ordibehesht',
-                //         fontSize: 18.sp,
-                //       ),
-                //     ),
-                //   ),
-                // );
                 await getIt.get<AppRouter>().pop();
                 await NAlertDialog(
                   dialogStyle: DialogStyle(
@@ -71,12 +55,8 @@ class TeacherRollcallBloc
                     height: 50.h,
                     child: Center(
                       child: Text(
-                        'ثبت موفقیت آمیز نبود',
-                        textDirection: TextDirection.rtl,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Ordibehesht',
-                            fontSize: 18.sp),
+                        'The registration was not successful',
+                        style: TextStyle(color: Colors.black, fontSize: 13.sp),
                       ),
                     ),
                   ),
@@ -96,32 +76,12 @@ class TeacherRollcallBloc
                     height: 50.h,
                     child: Center(
                       child: Text(
-                        'با موفقیت ثبت شد',
-                        textDirection: TextDirection.rtl,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Ordibehesht',
-                            fontSize: 18.sp),
+                        'Successfully registered',
+                        style: TextStyle(color: Colors.black, fontSize: 13.sp),
                       ),
                     ),
                   ),
                 ).show(getIt.get<AppRouter>().navigatorKey.currentContext!);
-                // ScaffoldMessenger.of(
-                //         getIt.get<AppRouter>().navigatorKey.currentContext!)
-                //     .showSnackBar(
-                //   SnackBar(
-                //     backgroundColor: const Color(0xffe8ffe8),
-                //     content: Text(
-                //       'با موفقیت ثبت شد',
-                //       textDirection: TextDirection.rtl,
-                //       style: TextStyle(
-                //         color: Colors.black,
-                //         fontFamily: 'Ordibehesht',
-                //         fontSize: 18.sp,
-                //       ),
-                //     ),
-                //   ),
-                // );
               },
             ));
   }
@@ -141,40 +101,35 @@ class TeacherRollcallBloc
   FutureOr<void> _onOnStartPage(
       _OnStartPage event, Emitter<TeacherRollcallState> emit) async {
     NDialog(
-      content: Directionality(
-        textDirection: TextDirection.rtl,
-        child: SizedBox(
-          width: 202.w,
-          height: 190.h,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              SizedBox(
-                width: 190.w,
-                child: Text(
-                  'توسط این اسکنر QR-code داخل گوشی دبیر را اسکن نمایید',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Ordibehesht',
-                    fontSize: 18.sp,
-                  ),
+      content: SizedBox(
+        width: 202.w,
+        height: 190.h,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            SizedBox(
+              width: 190.w,
+              child: Text(
+                'Scan the teacher\'s QR code with this scanner inside your phone',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14.sp,
                 ),
               ),
-              SizedBox(
-                width: 170.w,
-                child: Text(
-                  'برای دریافت QR_Code در اکانت دبیر در صفحه انتخاب کلاس بر روی نماد QR-Code بالای صفحه کلیک کنید',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'Ordibehesht',
-                    fontSize: 16.sp,
-                  ),
+            ),
+            SizedBox(
+              width: 170.w,
+              child: Text(
+                'To get the QR code, on the teacher\'s account, click on the QR-Code symbol at the top of the class selection page',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 13.sp,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     ).show(getIt.get<AppRouter>().navigatorKey.currentContext!);

@@ -45,13 +45,12 @@ class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
           ),
           child: Center(
             child: Text(
-              'ثبت نمره',
+              'Grade Registration',
               textAlign: TextAlign.center,
-              textDirection: TextDirection.rtl,
               style: TextStyle(
-                fontSize: 20.sp,
+                fontSize: 12.sp,
                 color: Colors.black,
-                fontFamily: 'Ordibehesht',
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
@@ -68,11 +67,11 @@ class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
               return Column(
                 children: [
                   AppbarSchoolWidget(
-                    title: 'ثبت نمرات : ',
+                    title: 'Grades Registration : ',
                     titleHelper:
-                        'شما میتوانید روبه‌روی هر دانش آموز نمره مربوط به آنرا وارد کنید و دکمه ثبت نمره را بفشارید',
+                        'You can enter the grade for each student, then press the \'Submit Grade\' button',
                     pathString:
-                        'کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان > ثبت نمره',
+                        'Classes > ${getIt.get<Classroom>().className} > Students > Grade Registration',
                     isWidget: true,
                     widget: null,
                   ),
@@ -88,92 +87,89 @@ class _AddScoreForClassPageState extends State<AddScoreForClassPage> {
                           ? const Center(
                               child: EmptyWidget(),
                             )
-                          : Directionality(
-                              textDirection: TextDirection.rtl,
-                              child: SingleChildScrollView(
-                                child: DataTable(
-                                  headingRowHeight: 70.h,
-                                  headingTextStyle: TextStyle(
-                                      fontSize: 10.r, color: Colors.black),
-                                  border: TableBorder.all(
-                                      color: Colors.black54,
-                                      borderRadius: BorderRadius.circular(8.r),
-                                      width: 1.w),
-                                  horizontalMargin: 0,
-                                  checkboxHorizontalMargin: 0,
-                                  columns: <DataColumn>[
-                                    DataColumn(
-                                      onSort: (index, isfelan) {},
-                                      label: Flexible(
-                                        flex: 4,
-                                        child: Center(
-                                          child: Text(
-                                            'نام و نام‌خانوادگی',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w900,
-                                              fontSize: 16.r,
-                                            ),
+                          : SingleChildScrollView(
+                              child: DataTable(
+                                headingRowHeight: 70.h,
+                                headingTextStyle: TextStyle(
+                                    fontSize: 10.r, color: Colors.black),
+                                border: TableBorder.all(
+                                    color: Colors.black54,
+                                    borderRadius: BorderRadius.circular(8.r),
+                                    width: 1.w),
+                                horizontalMargin: 0,
+                                checkboxHorizontalMargin: 0,
+                                columns: <DataColumn>[
+                                  DataColumn(
+                                    onSort: (index, isfelan) {},
+                                    label: Flexible(
+                                      flex: 4,
+                                      child: Center(
+                                        child: Text(
+                                          'First and Last Name',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 16.r,
                                           ),
                                         ),
                                       ),
                                     ),
-                                    DataColumn(
-                                      onSort: (index, isfelan) {},
-                                      label: Flexible(
-                                        flex: 1,
+                                  ),
+                                  DataColumn(
+                                    onSort: (index, isfelan) {},
+                                    label: Flexible(
+                                      flex: 1,
+                                      child: Center(
+                                        child: Text('Grade',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w900,
+                                                fontSize: 16.r)),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                                rows: List.generate(
+                                  scoreBoardState.students.length,
+                                  (index) => DataRow(cells: [
+                                    DataCell(
+                                      SizedBox(
+                                        width: 0.64.sw,
                                         child: Center(
-                                          child: Text('نمره',
+                                          child: Text(
+                                              scoreBoardState.students[index]
+                                                  .basicInfo!.name,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                  fontWeight: FontWeight.w900,
+                                                  fontWeight: FontWeight.w600,
                                                   fontSize: 16.r)),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                  rows: List.generate(
-                                    scoreBoardState.students.length,
-                                    (index) => DataRow(cells: [
-                                      DataCell(
-                                        SizedBox(
-                                          width: 0.64.sw,
-                                          child: Center(
-                                            child: Text(
-                                                scoreBoardState.students[index]
-                                                    .basicInfo!.name,
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 16.r)),
-                                          ),
+                                    DataCell(
+                                      SizedBox(
+                                        width: 0.35.sw,
+                                        child: TextFormField(
+                                          controller: scoreBoardState
+                                              .scoresNumeric[index],
+                                          expands: true,
+                                          maxLength: 4,
+                                          keyboardType: TextInputType.number,
+                                          decoration: const InputDecoration(
+                                              border: OutlineInputBorder(),
+                                              contentPadding: EdgeInsets.zero,
+                                              counterText: '',
+                                              counterStyle:
+                                                  TextStyle(fontSize: 0)),
+                                          textAlign: TextAlign.center,
+                                          maxLines: null,
+                                          minLines: null,
                                         ),
                                       ),
-                                      DataCell(
-                                        SizedBox(
-                                          width: 0.35.sw,
-                                          child: TextFormField(
-                                            controller: scoreBoardState
-                                                .scoresNumeric[index],
-                                            expands: true,
-                                            maxLength: 4,
-                                            keyboardType: TextInputType.number,
-                                            decoration: const InputDecoration(
-                                                border: OutlineInputBorder(),
-                                                contentPadding: EdgeInsets.zero,
-                                                counterText: '',
-                                                counterStyle:
-                                                    TextStyle(fontSize: 0)),
-                                            textAlign: TextAlign.center,
-                                            maxLines: null,
-                                            minLines: null,
-                                          ),
-                                        ),
-                                      )
-                                    ]),
-                                  ),
-                                  columnSpacing: 0,
+                                    )
+                                  ]),
                                 ),
+                                columnSpacing: 0,
                               ),
                             )
                 ],

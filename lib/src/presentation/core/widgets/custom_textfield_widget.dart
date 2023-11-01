@@ -47,28 +47,26 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isdynamicSize) {
-      return Directionality(
-        textDirection: TextDirection.rtl,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-              minHeight: heghit, minWidth: width, maxWidth: width + 1),
-          child: MainTextField(
-              isLabley: islabel,
-              keyboardType: keyboardType,
-              enabled: enabled,
-              style: style,
-              maxLength: null,
-              expand: false,
-              haveIcon: haveIcon,
-              sIcon: sIcon,
-              labelText: labelText,
-              labelStyle: labelStyle,
-              haveBorder: haveBorder,
-              onSubmitted: onSubmitted,
-              controller: controller,
-              name: name,
-              validator: validator,
-              onChange: onChange),
+      return ConstrainedBox(
+        constraints: BoxConstraints(
+            minHeight: heghit, minWidth: width, maxWidth: width + 1),
+        child: MainTextField(
+          isLabley: islabel,
+          keyboardType: keyboardType,
+          enabled: enabled,
+          style: style,
+          maxLength: null,
+          expand: false,
+          haveIcon: haveIcon,
+          sIcon: sIcon,
+          labelText: labelText,
+          labelStyle: labelStyle,
+          haveBorder: haveBorder,
+          onSubmitted: onSubmitted,
+          controller: controller,
+          name: name,
+          validator: validator,
+          onChange: onChange,
         ),
       );
     } else {
@@ -139,7 +137,6 @@ class MainTextField extends StatelessWidget {
     return formtext.FormBuilderTextField(
       keyboardType: keyboardType,
       expands: expand,
-      textDirection: TextDirection.rtl,
       enabled: enabled,
       autofocus: true,
       maxLines: null,
@@ -151,14 +148,9 @@ class MainTextField extends StatelessWidget {
               floatingLabelAlignment: FloatingLabelAlignment.center,
               alignLabelWithHint: true,
               suffixIcon: Icon(sIcon),
-              hintTextDirection: TextDirection.rtl,
               hintText: isLabley ? null : labelText,
               hintStyle: isLabley ? null : labelStyle,
-              label: isLabley
-                  ? Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Text(labelText ?? '', style: labelStyle))
-                  : null,
+              label: isLabley ? Text(labelText ?? '', style: labelStyle) : null,
               border: InputBorder.none,
               counterText: '',
               disabledBorder: haveBorder
@@ -187,14 +179,9 @@ class MainTextField extends StatelessWidget {
               contentPadding: EdgeInsets.only(bottom: 3.h),
               floatingLabelAlignment: FloatingLabelAlignment.start,
               alignLabelWithHint: true,
-              hintTextDirection: TextDirection.rtl,
               hintText: isLabley ? null : labelText,
               hintStyle: isLabley ? null : labelStyle,
-              label: isLabley
-                  ? Directionality(
-                      textDirection: TextDirection.rtl,
-                      child: Text(labelText ?? '', style: labelStyle))
-                  : null,
+              label: isLabley ? Text(labelText ?? '', style: labelStyle) : null,
               border: InputBorder.none,
               counterText: '',
               disabledBorder: haveBorder

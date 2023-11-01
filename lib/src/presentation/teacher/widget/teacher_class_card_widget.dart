@@ -36,13 +36,11 @@ class _TeacherClassListPageState extends State<TeacherClassListPage> {
                   NDialog(
                     dialogStyle: DialogStyle(),
                     title: Text(
-                      'اضافه کردن درس و دبیر',
-                      textDirection: TextDirection.rtl,
+                      'Add Course And Teacher',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 22.sp,
+                          fontSize: 16.sp,
                           color: Colors.black,
-                          fontFamily: 'Ordibehesht',
                           fontWeight: FontWeight.bold),
                     ),
                     content: const AddMediatorDialogWidget(),
@@ -53,12 +51,10 @@ class _TeacherClassListPageState extends State<TeacherClassListPage> {
                           },
                           color: const Color(0xffe8ffe8),
                           child: Text(
-                            'لغو',
-                            textDirection: TextDirection.rtl,
+                            'cancel',
                             style: TextStyle(
-                                fontSize: 22.sp,
+                                fontSize: 16.sp,
                                 color: Colors.black,
-                                fontFamily: 'Ordibehesht',
                                 fontWeight: FontWeight.bold),
                           )),
                       BlocBuilder<TeacherDetailBloc, TeacherDetailState>(
@@ -82,12 +78,10 @@ class _TeacherClassListPageState extends State<TeacherClassListPage> {
                                 ? const Center(
                                     child: CircularProgressIndicator())
                                 : Text(
-                                    'تایید',
-                                    textDirection: TextDirection.rtl,
+                                    'accept',
                                     style: TextStyle(
-                                        fontSize: 22.sp,
+                                        fontSize: 16.sp,
                                         color: Colors.black,
-                                        fontFamily: 'Ordibehesht',
                                         fontWeight: FontWeight.bold),
                                   ),
                           );
@@ -97,7 +91,7 @@ class _TeacherClassListPageState extends State<TeacherClassListPage> {
                   ).show(context, dismissable: false);
                 },
                 child: Container(
-                  width: 150.w,
+                  width: 160.w,
                   height: 50.h,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
@@ -111,12 +105,10 @@ class _TeacherClassListPageState extends State<TeacherClassListPage> {
                             color: const Color.fromARGB(70, 36, 36, 36))
                       ]),
                   child: Text(
-                    'افزودن‌ درس و دبیر',
-                    textDirection: TextDirection.rtl,
+                    'Add Course And Teacher',
                     style: TextStyle(
-                        fontSize: 22.sp,
+                        fontSize: 13.sp,
                         color: Colors.black,
-                        fontFamily: 'Ordibehesht',
                         fontWeight: FontWeight.bold),
                   ),
                 ))
@@ -124,9 +116,9 @@ class _TeacherClassListPageState extends State<TeacherClassListPage> {
         body: Column(
           children: [
             AppbarSchoolWidget(
-              title: 'دبیران کلاس',
+              title: 'Class Teachers',
               titleHelper:
-                  'در این صفحه میتوانید دبیران این کلاس را مشاهده کنید',
+                  'On this page, you can view the teachers of this class',
               pathString: '',
               isWidget: true,
               widget: GeneralConstants.userType != UserType.admin
@@ -139,7 +131,7 @@ class _TeacherClassListPageState extends State<TeacherClassListPage> {
                       items: [
                         DropdownMenuItem(
                           alignment: Alignment.center,
-                          value: 'حذف',
+                          value: 'delete',
                           onTap: () {
                             getIt.get<AppRouter>().pop();
                             setState(() {
@@ -149,21 +141,18 @@ class _TeacherClassListPageState extends State<TeacherClassListPage> {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 backgroundColor: const Color(0xffe8ffe8),
                                 content: Text(
-                                  'دبیر مورد نظر را برای حذف انتخاب کنید',
-                                  textDirection: TextDirection.rtl,
+                                  'Select the teacher you want to delete',
                                   style: TextStyle(
-                                      fontSize: 18.sp,
+                                      fontSize: 13.sp,
                                       color: Colors.black,
-                                      fontFamily: 'Ordibehesht',
                                       fontWeight: FontWeight.bold),
                                 )));
                           },
                           child: Text(
-                            'حذف',
+                            'Delete',
                             style: TextStyle(
-                                fontSize: 20.sp,
+                                fontSize: 14.sp,
                                 color: Colors.black,
-                                fontFamily: 'Ordibehesht',
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
@@ -217,13 +206,11 @@ class _TeacherClassListPageState extends State<TeacherClassListPage> {
                                         title: SizedBox(
                                           height: 50.h,
                                           child: Text(
-                                            'آیا از حذف ${mediatorState.mediators[index].basicInfo!.name} اطمینان دارید',
+                                            'Are you sure you want to delete ${mediatorState.mediators[index].basicInfo!.name}?',
                                             textAlign: TextAlign.center,
-                                            textDirection: TextDirection.rtl,
                                             style: TextStyle(
-                                                fontSize: 20.sp,
+                                                fontSize: 14.sp,
                                                 color: Colors.black,
-                                                fontFamily: 'Ordibehesht',
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
@@ -249,14 +236,10 @@ class _TeacherClassListPageState extends State<TeacherClassListPage> {
                                                   ),
                                                   alignment: Alignment.center,
                                                   child: Text(
-                                                    'خیر',
-                                                    textDirection:
-                                                        TextDirection.rtl,
+                                                    'cancel',
                                                     style: TextStyle(
-                                                        fontSize: 20.sp,
+                                                        fontSize: 13.sp,
                                                         color: Colors.black,
-                                                        fontFamily:
-                                                            'Ordibehesht',
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),
@@ -287,14 +270,10 @@ class _TeacherClassListPageState extends State<TeacherClassListPage> {
                                                   ),
                                                   alignment: Alignment.center,
                                                   child: Text(
-                                                    'بله',
-                                                    textDirection:
-                                                        TextDirection.rtl,
+                                                    'accept',
                                                     style: TextStyle(
-                                                        fontSize: 20.sp,
+                                                        fontSize: 14.sp,
                                                         color: Colors.black,
-                                                        fontFamily:
-                                                            'Ordibehesht',
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),
@@ -331,13 +310,11 @@ class _TeacherClassListPageState extends State<TeacherClassListPage> {
                                 ),
                               ),
                               Text(
-                                'دبیری برای این کلاس وجود ندارد',
-                                textDirection: TextDirection.rtl,
+                                'No teacher exists for this class',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w800,
-                                    fontFamily: 'Ordibehesht',
-                                    fontSize: 22.r),
+                                    fontSize: 16.r),
                               )
                             ],
                           ),
@@ -409,11 +386,9 @@ class AddMediatorDialogWidget extends StatelessWidget {
                                             teacherState.teachers[index]
                                                 .basicInfo!.name,
                                             textAlign: TextAlign.center,
-                                            textDirection: TextDirection.rtl,
                                             style: TextStyle(
-                                                fontSize: 18.sp,
+                                                fontSize: 13.sp,
                                                 color: Colors.black,
-                                                fontFamily: 'Ordibehesht',
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
@@ -468,11 +443,9 @@ class AddMediatorDialogWidget extends StatelessWidget {
                                               courseState
                                                   .courses[index].courseName,
                                               textAlign: TextAlign.center,
-                                              textDirection: TextDirection.rtl,
                                               style: TextStyle(
-                                                  fontSize: 18.sp,
+                                                  fontSize: 13.sp,
                                                   color: Colors.black,
-                                                  fontFamily: 'Ordibehesht',
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ),

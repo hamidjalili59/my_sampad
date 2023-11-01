@@ -47,12 +47,10 @@ class DeputyDialogWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(right: 18.w),
                   child: Text(
-                    isEditing ? 'تغییر معاون' : 'اضافه کردن معاون',
-                    textDirection: TextDirection.rtl,
+                    isEditing ? 'Change' : 'Add Deputy',
                     style: TextStyle(
-                        fontSize: 22.sp,
+                        fontSize: 16.sp,
                         color: Colors.black,
-                        fontFamily: 'Ordibehesht',
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -60,67 +58,62 @@ class DeputyDialogWidget extends StatelessWidget {
               SizedBox(
                 child: FormBuilder(
                   key: _formKey,
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          islabel: true,
-                          width: 200.w,
-                          name: 'deputy_name',
-                          heghit: 60.h,
-                          haveIcon: false,
-                          labelText: 'اسم‌معاون',
-                          labelStyle: TextStyle(
-                              fontSize: 18.sp,
-                              color: Colors.black45,
-                              fontFamily: 'Ordibehesht',
-                              fontWeight: FontWeight.bold),
-                          controller: _deputyName,
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(
-                                errorText: 'انتخاب اسم اجباری است'),
-                            FormBuilderValidators.maxLength(
-                              30,
-                              errorText: 'کمتر از 30 حرف داشته باشد',
-                            ),
-                            FormBuilderValidators.minLength(
-                              3,
-                              errorText: 'بیشتر از 3 حرف داشته باشد',
-                            ),
-                          ]),
-                          onSubmitted: (value) {
-                            if (_formKey.currentState?.validate() ?? false) {}
-                          },
-                          keyboardType: TextInputType.name,
-                        ),
-                        CustomTextField(
-                          islabel: true,
-                          width: 200.w,
-                          name: 'phone_number',
-                          heghit: 60.h,
-                          haveIcon: false,
-                          labelText: 'شماره‌تلفن',
-                          labelStyle: TextStyle(
-                              fontSize: 18.sp,
-                              color: Colors.black45,
-                              fontFamily: 'Ordibehesht',
-                              fontWeight: FontWeight.bold),
-                          controller: _phone,
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(
-                                errorText: 'شماره تلفن اجباری است'),
-                            FormBuilderValidators.equalLength(11,
-                                errorText:
-                                    'باید 11 رقمی باشد و با صفر شروع شود')
-                          ]),
-                          onSubmitted: (value) {
-                            if (_formKey.currentState?.validate() ?? false) {}
-                          },
-                          keyboardType: TextInputType.name,
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    children: [
+                      CustomTextField(
+                        islabel: true,
+                        width: 200.w,
+                        name: 'deputy_name',
+                        heghit: 60.h,
+                        haveIcon: false,
+                        labelText: 'Deputy Name',
+                        labelStyle: TextStyle(
+                            fontSize: 13.sp,
+                            color: Colors.black45,
+                            fontWeight: FontWeight.bold),
+                        controller: _deputyName,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                              errorText: 'Name selection is mandatory'),
+                          FormBuilderValidators.maxLength(
+                            30,
+                            errorText: 'Should be less than 30 characters',
+                          ),
+                          FormBuilderValidators.minLength(
+                            3,
+                            errorText: 'Should be more than 3 characters',
+                          ),
+                        ]),
+                        onSubmitted: (value) {
+                          if (_formKey.currentState?.validate() ?? false) {}
+                        },
+                        keyboardType: TextInputType.name,
+                      ),
+                      CustomTextField(
+                        islabel: true,
+                        width: 200.w,
+                        name: 'phone_number',
+                        heghit: 60.h,
+                        haveIcon: false,
+                        labelText: 'PhoneNumber',
+                        labelStyle: TextStyle(
+                            fontSize: 13.sp,
+                            color: Colors.black45,
+                            fontWeight: FontWeight.bold),
+                        controller: _phone,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                              errorText: 'Phone number is mandatory'),
+                          FormBuilderValidators.equalLength(11,
+                              errorText:
+                                  'It should be an 11-digit number and start with zero')
+                        ]),
+                        onSubmitted: (value) {
+                          if (_formKey.currentState?.validate() ?? false) {}
+                        },
+                        keyboardType: TextInputType.name,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -177,12 +170,10 @@ class DeputyDialogWidget extends StatelessWidget {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                          'تایید',
-                          textDirection: TextDirection.rtl,
+                          'Accept',
                           style: TextStyle(
-                              fontSize: 20.sp,
+                              fontSize: 14.sp,
                               color: Colors.black,
-                              fontFamily: 'Ordibehesht',
                               fontWeight: FontWeight.bold),
                         ),
                       ),

@@ -20,9 +20,9 @@ class SelectRulePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const AppbarSchoolWidget(
-                  title: 'وظایف شما :',
+                  title: 'Your roles:',
                   titleHelper:
-                      'با انتخاب هر یک از وظایف زیر شما به آن عنوان وارد اپلیکیشن میشوید',
+                      'By choosing any of the rules below, you will enter the application under that title',
                   pathString: '',
                   isWidget: true,
                   widget: null),
@@ -68,16 +68,14 @@ class SelectRulePage extends StatelessWidget {
                         height: 109.h,
                         alignment: Alignment.center,
                         child: SizedBox(
-                          width: 315,
+                          width: 270.w,
                           child: Text(
-                            'شما میتوانید بعد از انتخاب هر کدام داخل صفحه اصلی اپلیکیشن با کلیک بر روی گزینه اکانت و انتخاب گزینه دیگر وظایف به این صفحه بازگردید',
-                            textAlign: TextAlign.start,
-                            textDirection: TextDirection.rtl,
+                            'You can enter as a school principal and add other roles to the Application.',
+                            textAlign: TextAlign.justify,
                             style: TextStyle(
-                              fontSize: 14.sp,
-                              color: Colors.black,
-                              fontFamily: 'Ordibehesht',
-                            ),
+                                fontSize: 13.sp,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500),
                           ),
                         ),
                       ),

@@ -75,8 +75,7 @@ class ExamBloc extends Bloc<ExamEvent, ExamState> {
                 SnackBar(
                   backgroundColor: Colors.red,
                   content: Text(
-                    'عملیات با شکست مواجه شد',
-                    textDirection: TextDirection.rtl,
+                    'The operation encountered a failure',
                     style: Theme.of(
                             getIt.get<AppRouter>().navigatorKey.currentContext!)
                         .textTheme
@@ -136,8 +135,7 @@ class ExamBloc extends Bloc<ExamEvent, ExamState> {
                 SnackBar(
                   backgroundColor: Colors.red,
                   content: Text(
-                    'عملیات با شکست مواجه شد',
-                    textDirection: TextDirection.rtl,
+                    'The operation faced failure',
                     style: Theme.of(
                             getIt.get<AppRouter>().navigatorKey.currentContext!)
                         .textTheme

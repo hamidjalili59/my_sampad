@@ -54,12 +54,10 @@ class CustomCardExamWidget extends StatelessWidget {
                         child: Text(
                           exam.examDescription,
                           textAlign: TextAlign.center,
-                          textDirection: TextDirection.rtl,
                           maxLines: null,
                           style: TextStyle(
-                            fontSize: 20.sp,
+                            fontSize: 14.sp,
                             color: Colors.black,
-                            fontFamily: 'Ordibehesht',
                           ),
                         ),
                       ),
@@ -86,11 +84,9 @@ class CustomCardExamWidget extends StatelessWidget {
                           child: Text(
                             exam.teacherName,
                             textAlign: TextAlign.start,
-                            textDirection: TextDirection.rtl,
                             style: TextStyle(
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               color: Colors.black,
-                              fontFamily: 'Ordibehesht',
                             ),
                           ),
                         ),
@@ -114,13 +110,11 @@ class CustomCardExamWidget extends StatelessWidget {
                                     title: SizedBox(
                                       height: 50.h,
                                       child: Text(
-                                        'آیا از تغییر وضعیت امتحان اطمینان دارید',
+                                        'Are you sure about changing the exam status?',
                                         textAlign: TextAlign.center,
-                                        textDirection: TextDirection.rtl,
                                         style: TextStyle(
-                                            fontSize: 20.sp,
+                                            fontSize: 16.sp,
                                             color: Colors.black,
-                                            fontFamily: 'Ordibehesht',
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
@@ -146,13 +140,10 @@ class CustomCardExamWidget extends StatelessWidget {
                                               ),
                                               alignment: Alignment.center,
                                               child: Text(
-                                                'خیر',
-                                                textDirection:
-                                                    TextDirection.rtl,
+                                                'cancel',
                                                 style: TextStyle(
-                                                    fontSize: 20.sp,
+                                                    fontSize: 16.sp,
                                                     color: Colors.black,
-                                                    fontFamily: 'Ordibehesht',
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -178,13 +169,10 @@ class CustomCardExamWidget extends StatelessWidget {
                                               ),
                                               alignment: Alignment.center,
                                               child: Text(
-                                                'بله',
-                                                textDirection:
-                                                    TextDirection.rtl,
+                                                'accept',
                                                 style: TextStyle(
-                                                    fontSize: 20.sp,
+                                                    fontSize: 16.sp,
                                                     color: Colors.black,
-                                                    fontFamily: 'Ordibehesht',
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -208,13 +196,11 @@ class CustomCardExamWidget extends StatelessWidget {
                                           BorderRadius.circular(8.sp)),
                                   child: Center(
                                       child: Text(
-                                    exam.isDone ? 'انجام شده' : 'انجام نشده',
+                                    exam.isDone ? 'Done' : 'Not done',
                                     textAlign: TextAlign.center,
-                                    textDirection: TextDirection.rtl,
                                     style: TextStyle(
-                                      fontSize: 18.sp,
+                                      fontSize: 13.sp,
                                       color: Colors.black,
-                                      fontFamily: 'Ordibehesht',
                                     ),
                                   )),
                                 ),
@@ -235,13 +221,11 @@ class CustomCardExamWidget extends StatelessWidget {
                                     width: 60.w,
                                     height: 40.h,
                                     child: Text(
-                                      'انجام‌شده',
+                                      'Done',
                                       textAlign: TextAlign.center,
-                                      textDirection: TextDirection.rtl,
                                       style: TextStyle(
-                                        fontSize: 18.sp,
+                                        fontSize: 13.sp,
                                         color: Colors.black,
-                                        fontFamily: 'Ordibehesht',
                                       ),
                                     ),
                                   ),

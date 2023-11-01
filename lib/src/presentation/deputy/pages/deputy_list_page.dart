@@ -51,12 +51,10 @@ class _DeputyListPageState extends State<DeputyListPage> {
                   ]),
               alignment: Alignment.center,
               child: Text(
-                'اضافه کردن معاون',
-                textDirection: TextDirection.rtl,
+                'Add Deputy',
                 style: TextStyle(
-                    fontSize: 18.sp,
+                    fontSize: 13.sp,
                     color: Colors.black,
-                    fontFamily: 'Ordibehesht',
                     fontWeight: FontWeight.bold),
               ),
             ),
@@ -73,10 +71,10 @@ class _DeputyListPageState extends State<DeputyListPage> {
                 return Column(
                   children: [
                     AppbarSchoolWidget(
-                      title: 'مدیریت معاونت',
+                      title: 'Deputy Manage',
                       titleHelper:
-                          'در این صفحه می‌توانید معاون‌ها را حذف یا اضافه یا پاک کنید',
-                      pathString: 'صفحه‌اصلی > مدیریت معاونت',
+                          'On this page, you can delete, add, or edit vice-principals',
+                      pathString: 'Main > Deputy Manage',
                       isWidget: true,
                       widget: DropdownButton<String>(
                         underline: const SizedBox(),
@@ -86,7 +84,7 @@ class _DeputyListPageState extends State<DeputyListPage> {
                         items: [
                           DropdownMenuItem(
                             alignment: Alignment.center,
-                            value: 'حذف',
+                            value: 'delete',
                             onTap: () {
                               getIt.get<AppRouter>().pop();
                               setState(() {
@@ -97,27 +95,24 @@ class _DeputyListPageState extends State<DeputyListPage> {
                                   .showSnackBar(SnackBar(
                                       backgroundColor: const Color(0xffe8ffe8),
                                       content: Text(
-                                        'معاون مورد نظر را برای حذف انتخاب کنید',
-                                        textDirection: TextDirection.rtl,
+                                        'Select the desired vice-principal to delete',
                                         style: TextStyle(
-                                            fontSize: 18.sp,
+                                            fontSize: 13.sp,
                                             color: Colors.black,
-                                            fontFamily: 'Ordibehesht',
                                             fontWeight: FontWeight.bold),
                                       )));
                             },
                             child: Text(
-                              'حذف',
+                              'Delete',
                               style: TextStyle(
-                                  fontSize: 20.sp,
+                                  fontSize: 14.sp,
                                   color: Colors.black,
-                                  fontFamily: 'Ordibehesht',
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
                           DropdownMenuItem(
                             alignment: Alignment.center,
-                            value: 'تغییر',
+                            value: 'change',
                             onTap: () async {
                               getIt.get<AppRouter>().pop();
                               setState(() {
@@ -128,21 +123,18 @@ class _DeputyListPageState extends State<DeputyListPage> {
                                   .showSnackBar(SnackBar(
                                       backgroundColor: const Color(0xffe8ffe8),
                                       content: Text(
-                                        'معاون مورد نظر را برای تغییر انتخاب کنید',
-                                        textDirection: TextDirection.rtl,
+                                        'Choose the vice-principal you want to make changes to',
                                         style: TextStyle(
-                                            fontSize: 18.sp,
+                                            fontSize: 13.sp,
                                             color: Colors.black,
-                                            fontFamily: 'Ordibehesht',
                                             fontWeight: FontWeight.bold),
                                       )));
                             },
                             child: Text(
-                              'تغییر',
+                              'Change',
                               style: TextStyle(
-                                  fontSize: 20.sp,
+                                  fontSize: 14.sp,
                                   color: Colors.black,
-                                  fontFamily: 'Ordibehesht',
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -189,13 +181,11 @@ class _DeputyListPageState extends State<DeputyListPage> {
                                             ),
                                           ),
                                           Text(
-                                            'دبیری برای این کلاس وجود ندارد',
-                                            textDirection: TextDirection.rtl,
+                                            'There is no teacher for this class',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w800,
-                                                fontFamily: 'Ordibehesht',
-                                                fontSize: 22.r),
+                                                fontSize: 16.r),
                                           )
                                         ],
                                       ),
@@ -232,15 +222,11 @@ class _DeputyListPageState extends State<DeputyListPage> {
                                                 title: SizedBox(
                                                   height: 50.h,
                                                   child: Text(
-                                                    'آیا از حذف ${state.deputys[index].basicInfo!.name} اطمینان دارید',
+                                                    'Are you sure you want to delete ${state.deputys[index].basicInfo!.name}?',
                                                     textAlign: TextAlign.center,
-                                                    textDirection:
-                                                        TextDirection.rtl,
                                                     style: TextStyle(
-                                                        fontSize: 20.sp,
+                                                        fontSize: 14.sp,
                                                         color: Colors.black,
-                                                        fontFamily:
-                                                            'Ordibehesht',
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),
@@ -273,16 +259,11 @@ class _DeputyListPageState extends State<DeputyListPage> {
                                                           alignment:
                                                               Alignment.center,
                                                           child: Text(
-                                                            'خیر',
-                                                            textDirection:
-                                                                TextDirection
-                                                                    .rtl,
+                                                            'cancel',
                                                             style: TextStyle(
-                                                                fontSize: 20.sp,
+                                                                fontSize: 14.sp,
                                                                 color: Colors
                                                                     .black,
-                                                                fontFamily:
-                                                                    'Ordibehesht',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold),
@@ -320,16 +301,11 @@ class _DeputyListPageState extends State<DeputyListPage> {
                                                           alignment:
                                                               Alignment.center,
                                                           child: Text(
-                                                            'بله',
-                                                            textDirection:
-                                                                TextDirection
-                                                                    .rtl,
+                                                            'accept',
                                                             style: TextStyle(
-                                                                fontSize: 20.sp,
+                                                                fontSize: 14.sp,
                                                                 color: Colors
                                                                     .black,
-                                                                fontFamily:
-                                                                    'Ordibehesht',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold),
@@ -364,13 +340,11 @@ class _DeputyListPageState extends State<DeputyListPage> {
                                                 PngAssets.employee)),
                                         SizedBox(height: 20.h),
                                         Text(
-                                          'آقای ${state.deputys[index].basicInfo!.name}',
-                                          textDirection: TextDirection.rtl,
+                                          'Master ${state.deputys[index].basicInfo!.name}',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              fontSize: 22.sp,
+                                              fontSize: 16.sp,
                                               color: Colors.black,
-                                              fontFamily: 'Ordibehesht',
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ],

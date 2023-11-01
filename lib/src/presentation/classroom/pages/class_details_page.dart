@@ -24,13 +24,13 @@ class ClassDetailsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               AppbarSchoolWidget(
-                title: 'صفحه اصلی : ',
+                title: 'Class Detail :',
                 titleHelper:
-                    'شما میتوانید با انتخاب هر یک از گزینه های زیر به قابلیت های آن دسترسی پیدا کنید',
+                    'You can access the features of each by selecting any of the options below',
                 pathString: GeneralConstants.userType == UserType.admin ||
                         GeneralConstants.userType == UserType.deputy
-                    ? 'صفحه‌اصلی > کلاس‌ها > ${getIt.get<Classroom>().className}'
-                    : 'مدارس > کلاس‌ها > ${getIt.get<Classroom>().className}',
+                    ? 'Main > Classes > ${getIt.get<Classroom>().className}'
+                    : 'Schools > Classes > ${getIt.get<Classroom>().className}',
                 isWidget: true,
                 widget: null,
               ),
@@ -113,12 +113,12 @@ class ClassDetailsPage extends StatelessWidget {
                                     ? false
                                     : true,
                                 title: index == 0
-                                    ? 'دانش‌آموزان'
+                                    ? 'Students'
                                     : index == 1 &&
                                             GeneralConstants.userType ==
                                                 UserType.admin
-                                        ? 'دبیران کلاس'
-                                        : 'امتحانات کلاس',
+                                        ? 'Class Teacher'
+                                        : 'Class Exams',
                               ),
                             ),
                           );
@@ -142,15 +142,14 @@ class ClassDetailsPage extends StatelessWidget {
                         height: 109.h,
                         alignment: Alignment.center,
                         child: SizedBox(
-                          width: 320.w,
+                          width: 290.w,
                           child: Text(
-                            'اضافه کردن دانش‌آموز در کلاس فقط توسط مدیر انجام میشود\nثبت امتحانات فقط توسط دبیر قابل اجرا است',
-                            textAlign: TextAlign.center,
-                            textDirection: TextDirection.rtl,
+                            'Adding students to the class is only possible by the principle. Registering exams is only executable by the teacher',
+                            textAlign: TextAlign.justify,
                             style: TextStyle(
-                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12.5.sp,
                               color: Colors.black,
-                              fontFamily: 'Ordibehesht',
                             ),
                           ),
                         ),

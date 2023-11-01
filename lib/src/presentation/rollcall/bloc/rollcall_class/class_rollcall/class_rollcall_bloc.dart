@@ -56,8 +56,7 @@ class ClassRollcallBloc extends Bloc<ClassRollcallEvent, ClassRollcallState> {
                   SnackBar(
                     backgroundColor: Colors.redAccent,
                     content: Text(
-                      'متاسفانه حضور غیاب ثبت نشد دوباره تلاش کنید',
-                      textDirection: TextDirection.rtl,
+                      'Unfortunately, the attendance was not recorded. Please try again',
                       style: Theme.of(getIt
                               .get<AppRouter>()
                               .navigatorKey
@@ -79,8 +78,7 @@ class ClassRollcallBloc extends Bloc<ClassRollcallEvent, ClassRollcallState> {
                   SnackBar(
                     backgroundColor: Colors.greenAccent,
                     content: Text(
-                      'با موفقیت ثبت شد',
-                      textDirection: TextDirection.rtl,
+                      'Successfully registered',
                       style: Theme.of(getIt
                               .get<AppRouter>()
                               .navigatorKey

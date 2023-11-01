@@ -29,11 +29,11 @@ class ClassRollCallPage extends StatelessWidget {
               return Column(
                 children: [
                   AppbarSchoolWidget(
-                    title: 'حضور غیاب : ',
+                    title: 'Attendance : ',
                     titleHelper:
-                        'با کشیدن صفحه به راست و چپ بین دانش آموزان جابه‌‌جا شوید و حضور غیاب کنید',
+                        'Swipe left and right to navigate between students and mark their attendance',
                     pathString:
-                        'کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان > حضور غیاب',
+                        'Classes > ${getIt.get<Classroom>().className} > Students > Attendance',
                     icon: Icons.check_rounded,
                     onPressed: () {
                       if (state.isLoading) {
@@ -92,10 +92,9 @@ class ClassRollCallPage extends StatelessWidget {
                                                   .name,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
-                                                fontSize: 22.sp,
-                                                color: Colors.black,
-                                                fontFamily: 'Ordibehesht',
-                                              ),
+                                                  fontSize: 18.sp,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
                                             )
                                           ]),
                                         ),
@@ -103,9 +102,8 @@ class ClassRollCallPage extends StatelessWidget {
                                           '${index + 1}/${state.students.length}',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            fontSize: 24.sp,
+                                            fontSize: 16.sp,
                                             color: Colors.black,
-                                            fontFamily: 'Ordibehesht',
                                           ),
                                         ),
                                       ],
@@ -156,12 +154,11 @@ class ClassRollCallPage extends StatelessWidget {
                                                                     16.sp))),
                                                 alignment: Alignment.center,
                                                 child: Text(
-                                                  'غایب',
+                                                  'Absent',
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
-                                                    fontSize: 24.sp,
+                                                    fontSize: 18.sp,
                                                     color: Colors.white,
-                                                    fontFamily: 'Ordibehesht',
                                                   ),
                                                 ),
                                               ),
@@ -208,12 +205,11 @@ class ClassRollCallPage extends StatelessWidget {
                                                                     16.sp))),
                                                 alignment: Alignment.center,
                                                 child: Text(
-                                                  'حاضر',
+                                                  'Present',
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
-                                                    fontSize: 24.sp,
+                                                    fontSize: 18.sp,
                                                     color: Colors.white,
-                                                    fontFamily: 'Ordibehesht',
                                                   ),
                                                 ),
                                               ),
@@ -270,12 +266,11 @@ class EmptyWidget extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
           Text(
-            'دانش‌آموزی در کلاس اضافه نشده',
+            'The student is not added to the class',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 22.sp,
+              fontSize: 16.sp,
               color: Colors.black,
-              fontFamily: 'Ordibehesht',
             ),
           ),
         ],

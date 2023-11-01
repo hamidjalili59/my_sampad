@@ -111,8 +111,7 @@ class ScoreBoardBloc extends Bloc<ScoreBoardEvent, ScoreBoardState> {
                 SnackBar(
                   backgroundColor: Colors.redAccent,
                   content: Text(
-                    'متاسفانه نمرات ثبت نشد دوباره تلاش کنید',
-                    textDirection: TextDirection.rtl,
+                    'Unfortunately, the grades were not recorded. Please try again',
                     style: Theme.of(
                             getIt.get<AppRouter>().navigatorKey.currentContext!)
                         .textTheme
@@ -133,8 +132,7 @@ class ScoreBoardBloc extends Bloc<ScoreBoardEvent, ScoreBoardState> {
                 SnackBar(
                   backgroundColor: Colors.greenAccent,
                   content: Text(
-                    'نمرات با موفقیت ثبت شد',
-                    textDirection: TextDirection.rtl,
+                    'Grades have been successfully recorded',
                     style: Theme.of(
                             getIt.get<AppRouter>().navigatorKey.currentContext!)
                         .textTheme

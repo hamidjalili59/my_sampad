@@ -8,7 +8,7 @@ class GeneralConstants {
   static int currentIndexPage = 0;
   static List<String> roleCount = [];
   static String defaultFontName = '';
-  static String host = 'https://my-school.iran.liara.run/';
+  static String host = 'https://mysampad.iran.liara.run/';
   static String firstAppbarItem = '';
   static String jwt = '';
   static bool isParent = false;

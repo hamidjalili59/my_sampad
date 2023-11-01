@@ -10,7 +10,6 @@ import 'package:my_sampad/src/features/student/domain/models/student_model/stude
 import 'package:my_sampad/src/injectable/injectable.dart';
 import 'package:my_sampad/src/presentation/core/widgets/my_sampad_appbar_widget.dart';
 import 'package:my_sampad/src/presentation/score/bloc/score/score_bloc.dart';
-import 'package:persian_datetimepickers/persian_datetimepickers.dart';
 
 class SingleScoreViewPage extends StatefulWidget {
   const SingleScoreViewPage({super.key});
@@ -57,16 +56,16 @@ class _SingleScoreViewPageState extends State<SingleScoreViewPage> {
                 child: Column(
                   children: [
                     AppbarSchoolWidget(
-                        title: 'نمرات دانش آموز : ',
+                        title: 'Student Grades :',
                         titleHelper:
-                            'هر یک از کاشی های زیر حاوی اطلاعات روز و ساعت کلاس هر نمره ثبت شده این دانش‌آموز است',
+                            'Each tile below contains information about the day and time each grade of this student is recorded',
                         pathString: GeneralConstants.userType ==
                                     UserType.admin ||
                                 GeneralConstants.userType == UserType.deputy
-                            ? 'صفحه‌اصلی > کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name} > نمرات'
+                            ? 'Main > Classes > ${getIt.get<Classroom>().className} > Students > ${getIt.get<Student>().basicInfo!.name} > Grades'
                             : GeneralConstants.userType == UserType.parent
-                                ? 'دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name} > نمرات'
-                                : 'کلاس‌ها > ${getIt.get<Classroom>().className} > دانش‌آموزان > ${getIt.get<Student>().basicInfo!.name} > نمرات',
+                                ? 'Students > ${getIt.get<Student>().basicInfo!.name} > Grades'
+                                : 'Classes > ${getIt.get<Classroom>().className} > Students > ${getIt.get<Student>().basicInfo!.name} > Grades',
                         isWidget: true,
                         widget: null),
                     SizedBox(
@@ -89,12 +88,11 @@ class _SingleScoreViewPageState extends State<SingleScoreViewPage> {
                                       ),
                                     ),
                                     Text(
-                                      'اطلاعاتی وجود ندارد',
-                                      textDirection: TextDirection.rtl,
+                                      'No information available',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w800,
-                                          fontSize: 18.r),
+                                          fontSize: 16.r),
                                     )
                                   ],
                                 ),
@@ -108,7 +106,8 @@ class _SingleScoreViewPageState extends State<SingleScoreViewPage> {
                                 //date mored nazar
                                 String tarikh = scoreState
                                     .scores[index].createdDate!
-                                    .toFancyString();
+                                    .toString()
+                                    .substring(0, 10);
                                 // darse morde nazars
 
                                 String dars = scoreState.scores
@@ -159,11 +158,10 @@ class _SingleScoreViewPageState extends State<SingleScoreViewPage> {
                                                                   12.sp))),
                                               alignment: Alignment.center,
                                               child: Text(
-                                                'درس $dars',
+                                                '$dars Course',
                                                 style: TextStyle(
-                                                    fontSize: 18.sp,
+                                                    fontSize: 14.sp,
                                                     color: Colors.black,
-                                                    fontFamily: 'Ordibehesht',
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -183,10 +181,8 @@ class _SingleScoreViewPageState extends State<SingleScoreViewPage> {
                                                     tarikh,
                                                     textAlign: TextAlign.left,
                                                     style: TextStyle(
-                                                        fontSize: 20.sp,
+                                                        fontSize: 16.sp,
                                                         color: Colors.black,
-                                                        fontFamily:
-                                                            'Ordibehesht',
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),
@@ -194,13 +190,11 @@ class _SingleScoreViewPageState extends State<SingleScoreViewPage> {
                                                 Expanded(
                                                   flex: 2,
                                                   child: Text(
-                                                    'نمره : $grade',
+                                                    'Grade : $grade',
                                                     textAlign: TextAlign.left,
                                                     style: TextStyle(
-                                                        fontSize: 22.sp,
+                                                        fontSize: 12.sp,
                                                         color: Colors.black,
-                                                        fontFamily:
-                                                            'Ordibehesht',
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),

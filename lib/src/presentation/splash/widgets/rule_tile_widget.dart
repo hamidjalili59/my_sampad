@@ -61,7 +61,7 @@ class SelectRuleTileWidget extends StatelessWidget {
           offset: Offset(10.w, 10.h),
           paddingContainer: 80.h,
           title:
-              'ورود به عنوان ${rule == 'principal' ? 'مدیر' : rule == 'teacher' ? 'دبیر' : rule == 'parent' ? 'والد' : 'معاون'}',
+              'Entry as ${rule == 'principal' ? 'Principal' : rule == 'teacher' ? 'Teacher' : rule == 'parent' ? 'Parent' : 'Deputy'}',
         ),
       ),
     );
@@ -98,8 +98,7 @@ class ImageInsideContainerWidget extends StatelessWidget {
                 title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontFamily: 'Ordibehesht',
-                  fontSize: 18.sp,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.bold,
                 ),
               )),

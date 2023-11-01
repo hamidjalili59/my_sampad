@@ -40,7 +40,6 @@ class CustomLabelField extends StatelessWidget {
                 fontSize: 14.r,
                 fontWeight: FontWeight.w800,
               ),
-              textDirection: TextDirection.rtl,
             ),
           ),
         ),

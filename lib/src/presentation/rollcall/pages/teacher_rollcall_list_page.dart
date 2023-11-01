@@ -81,8 +81,7 @@ class _TeacherRollcallListPageState extends State<TeacherRollcallListPage> {
                                       ),
                                     ),
                                     Text(
-                                      'اطلاعاتی وجود ندارد',
-                                      textDirection: TextDirection.rtl,
+                                      'No information available',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w800,
@@ -130,11 +129,10 @@ class _TeacherRollcallListPageState extends State<TeacherRollcallListPage> {
                                                                   12.sp))),
                                               alignment: Alignment.center,
                                               child: Text(
-                                                'غیبت غیر موجه',
+                                                'Unjustified Absence',
                                                 style: TextStyle(
-                                                    fontSize: 18.sp,
+                                                    fontSize: 14.sp,
                                                     color: Colors.white,
-                                                    fontFamily: 'Ordibehesht',
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
@@ -160,10 +158,8 @@ class _TeacherRollcallListPageState extends State<TeacherRollcallListPage> {
                                                             .date)
                                                         .toFancyString(),
                                                     style: TextStyle(
-                                                        fontSize: 20.sp,
+                                                        fontSize: 14.sp,
                                                         color: Colors.black,
-                                                        fontFamily:
-                                                            'Ordibehesht',
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),

@@ -46,12 +46,10 @@ class TeacherDialogWidget extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(right: 18.w),
                   child: Text(
-                    isEditing ? 'تغییر دبیر' : 'اضافه کردن دبیر',
-                    textDirection: TextDirection.rtl,
+                    isEditing ? 'Change Teacher' : 'Add Teacher',
                     style: TextStyle(
-                        fontSize: 22.sp,
+                        fontSize: 16.sp,
                         color: Colors.black,
-                        fontFamily: 'Ordibehesht',
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -59,67 +57,62 @@ class TeacherDialogWidget extends StatelessWidget {
               SizedBox(
                 child: FormBuilder(
                   key: _formKey,
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          islabel: true,
-                          width: 200.w,
-                          name: 'teacher_name',
-                          heghit: 50.h,
-                          haveIcon: false,
-                          labelText: 'اسم‌دبیر',
-                          labelStyle: TextStyle(
-                              fontSize: 18.sp,
-                              color: Colors.black45,
-                              fontFamily: 'Ordibehesht',
-                              fontWeight: FontWeight.bold),
-                          controller: _teacherName,
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(
-                                errorText: 'انتخاب اسم اجباری است'),
-                            FormBuilderValidators.maxLength(
-                              30,
-                              errorText: 'کمتر از 30 حرف داشته باشد',
-                            ),
-                            FormBuilderValidators.minLength(
-                              3,
-                              errorText: 'بیشتر از 3 حرف داشته باشد',
-                            ),
-                          ]),
-                          onSubmitted: (value) {
-                            if (_formKey.currentState?.validate() ?? false) {}
-                          },
-                          keyboardType: TextInputType.name,
-                        ),
-                        CustomTextField(
-                          islabel: true,
-                          width: 200.w,
-                          name: 'phone_number',
-                          heghit: 50.h,
-                          haveIcon: false,
-                          labelText: 'شماره‌تلفن',
-                          labelStyle: TextStyle(
-                              fontSize: 18.sp,
-                              color: Colors.black45,
-                              fontFamily: 'Ordibehesht',
-                              fontWeight: FontWeight.bold),
-                          controller: _phone,
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(
-                                errorText: 'شماره تلفن اجباری است'),
-                            FormBuilderValidators.equalLength(11,
-                                errorText:
-                                    'باید 11 رقمی باشد و با صفر شروع شود')
-                          ]),
-                          onSubmitted: (value) {
-                            if (_formKey.currentState?.validate() ?? false) {}
-                          },
-                          keyboardType: TextInputType.name,
-                        ),
-                      ],
-                    ),
+                  child: Column(
+                    children: [
+                      CustomTextField(
+                        islabel: true,
+                        width: 200.w,
+                        name: 'teacher_name',
+                        heghit: 50.h,
+                        haveIcon: false,
+                        labelText: 'Teacher Name',
+                        labelStyle: TextStyle(
+                            fontSize: 13.sp,
+                            color: Colors.black45,
+                            fontWeight: FontWeight.bold),
+                        controller: _teacherName,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                              errorText: 'Name selection is mandatory'),
+                          FormBuilderValidators.maxLength(
+                            30,
+                            errorText: 'Should be less than 30 characters',
+                          ),
+                          FormBuilderValidators.minLength(
+                            3,
+                            errorText: 'Should be more than 3 characters',
+                          ),
+                        ]),
+                        onSubmitted: (value) {
+                          if (_formKey.currentState?.validate() ?? false) {}
+                        },
+                        keyboardType: TextInputType.name,
+                      ),
+                      CustomTextField(
+                        islabel: true,
+                        width: 200.w,
+                        name: 'phone_number',
+                        heghit: 50.h,
+                        haveIcon: false,
+                        labelText: 'PhoneNumber',
+                        labelStyle: TextStyle(
+                            fontSize: 13.sp,
+                            color: Colors.black45,
+                            fontWeight: FontWeight.bold),
+                        controller: _phone,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                              errorText: 'PhoneNumber is mandatory'),
+                          FormBuilderValidators.equalLength(11,
+                              errorText:
+                                  'It must be an 11-digit number and start with zero')
+                        ]),
+                        onSubmitted: (value) {
+                          if (_formKey.currentState?.validate() ?? false) {}
+                        },
+                        keyboardType: TextInputType.name,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -172,12 +165,10 @@ class TeacherDialogWidget extends StatelessWidget {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                          'تایید',
-                          textDirection: TextDirection.rtl,
+                          'Accept',
                           style: TextStyle(
-                              fontSize: 20.sp,
+                              fontSize: 13.sp,
                               color: Colors.black,
-                              fontFamily: 'Ordibehesht',
                               fontWeight: FontWeight.bold),
                         ),
                       ),

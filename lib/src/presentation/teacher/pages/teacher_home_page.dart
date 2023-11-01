@@ -62,13 +62,10 @@ class TeacherHomePage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'کلاسی وجود ندارد',
-                            textDirection: TextDirection.rtl,
+                            'There is no class available',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontWeight: FontWeight.w800,
-                                fontFamily: 'Ordibehesht',
-                                fontSize: 22.r),
+                                fontWeight: FontWeight.w800, fontSize: 16.r),
                           )
                         ],
                       ),

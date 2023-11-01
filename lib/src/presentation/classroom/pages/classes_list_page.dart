@@ -41,10 +41,10 @@ class _ClassesListPageState extends State<ClassesListPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     AppbarSchoolWidget(
-                      title: 'کلاس ها : ',
+                      title: 'Classes : ',
                       titleHelper:
-                          'با کلیک بر روی هر کلاس میتوانید گزینه های بیشتری برای کلاس را مشاهده کنید',
-                      pathString: 'صفحه‌اصلی > کلاس‌ها',
+                          'You can view additional options for the class by clicking on each class',
+                      pathString: 'Schools > Classes',
                       isWidget: true,
                       widget: GeneralConstants.userType != UserType.admin
                           ? null
@@ -63,11 +63,10 @@ class _ClassesListPageState extends State<ClassesListPage> {
                                         .add(const ClassroomEvent.showDialog());
                                   },
                                   child: Text(
-                                    'افزودن',
+                                    'Add',
                                     style: TextStyle(
-                                        fontSize: 20.sp,
+                                        fontSize: 14.sp,
                                         color: Colors.black,
-                                        fontFamily: 'Ordibehesht',
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -85,21 +84,18 @@ class _ClassesListPageState extends State<ClassesListPage> {
                                             backgroundColor:
                                                 const Color(0xffe8ffe8),
                                             content: Text(
-                                              'کلاس مورد نظر را برای حذف انتخاب کنید',
-                                              textDirection: TextDirection.rtl,
+                                              'Select the desired class to delete',
                                               style: TextStyle(
-                                                  fontSize: 18.sp,
+                                                  fontSize: 13.sp,
                                                   color: Colors.black,
-                                                  fontFamily: 'Ordibehesht',
                                                   fontWeight: FontWeight.bold),
                                             )));
                                   },
                                   child: Text(
-                                    'حذف',
+                                    'Delete',
                                     style: TextStyle(
-                                        fontSize: 20.sp,
+                                        fontSize: 14.sp,
                                         color: Colors.black,
-                                        fontFamily: 'Ordibehesht',
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -117,21 +113,18 @@ class _ClassesListPageState extends State<ClassesListPage> {
                                             backgroundColor:
                                                 const Color(0xffe8ffe8),
                                             content: Text(
-                                              'کلاس مورد نظر را برای تغییر انتخاب کنید',
-                                              textDirection: TextDirection.rtl,
+                                              'Choose the class you wish to modify',
                                               style: TextStyle(
-                                                  fontSize: 18.sp,
+                                                  fontSize: 13.sp,
                                                   color: Colors.black,
-                                                  fontFamily: 'Ordibehesht',
                                                   fontWeight: FontWeight.bold),
                                             )));
                                   },
                                   child: Text(
-                                    'تغییر',
+                                    'Change',
                                     style: TextStyle(
-                                        fontSize: 20.sp,
+                                        fontSize: 14.sp,
                                         color: Colors.black,
-                                        fontFamily: 'Ordibehesht',
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
@@ -199,18 +192,13 @@ class _ClassesListPageState extends State<ClassesListPage> {
                                                         title: SizedBox(
                                                           height: 50.h,
                                                           child: Text(
-                                                            'آیا از حذف ${state.classes[index].className} اطمینان دارید',
+                                                            'Are you sure you want to delete ${state.classes[index].className}?',
                                                             textAlign: TextAlign
                                                                 .center,
-                                                            textDirection:
-                                                                TextDirection
-                                                                    .rtl,
                                                             style: TextStyle(
-                                                                fontSize: 20.sp,
+                                                                fontSize: 14.sp,
                                                                 color: Colors
                                                                     .black,
-                                                                fontFamily:
-                                                                    'Ordibehesht',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold),
@@ -247,17 +235,12 @@ class _ClassesListPageState extends State<ClassesListPage> {
                                                                       Alignment
                                                                           .center,
                                                                   child: Text(
-                                                                    'خیر',
-                                                                    textDirection:
-                                                                        TextDirection
-                                                                            .rtl,
+                                                                    'cancel',
                                                                     style: TextStyle(
-                                                                        fontSize: 20
+                                                                        fontSize: 14
                                                                             .sp,
                                                                         color: Colors
                                                                             .black,
-                                                                        fontFamily:
-                                                                            'Ordibehesht',
                                                                         fontWeight:
                                                                             FontWeight.bold),
                                                                   ),
@@ -297,17 +280,12 @@ class _ClassesListPageState extends State<ClassesListPage> {
                                                                       Alignment
                                                                           .center,
                                                                   child: Text(
-                                                                    'بله',
-                                                                    textDirection:
-                                                                        TextDirection
-                                                                            .rtl,
+                                                                    'accept',
                                                                     style: TextStyle(
-                                                                        fontSize: 20
+                                                                        fontSize: 14
                                                                             .sp,
                                                                         color: Colors
                                                                             .black,
-                                                                        fontFamily:
-                                                                            'Ordibehesht',
                                                                         fontWeight:
                                                                             FontWeight.bold),
                                                                   ),
@@ -372,10 +350,8 @@ class _ClassesListPageState extends State<ClassesListPage> {
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
-                                                        fontSize: 20.sp,
+                                                        fontSize: 14.sp,
                                                         color: Colors.black,
-                                                        fontFamily:
-                                                            'Ordibehesht',
                                                       ),
                                                     ),
                                                   ),
@@ -415,14 +391,12 @@ class _ClassesListPageState extends State<ClassesListPage> {
                               child: SizedBox(
                                 width: 315,
                                 child: Text(
-                                  'شما میتوانید بعد از انتخاب هر کدام داخل صفحه اصلی با فشردن کلید بازگشت به این صفحه بازگردید',
+                                  'If you do not see your desired school among the listed schools, please inform the respective school\'s principal to add you to that school',
                                   textAlign: TextAlign.start,
-                                  textDirection: TextDirection.rtl,
                                   style: TextStyle(
-                                    fontSize: 16.sp,
-                                    color: Colors.black,
-                                    fontFamily: 'Ordibehesht',
-                                  ),
+                                      fontSize: 13.sp,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500),
                                 ),
                               ),
                             ),
@@ -469,12 +443,10 @@ class ClassroomDialogWidget extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(right: isEditing ? 8.0.w : 0),
               child: Text(
-                isEditing ? 'تغییر اسم' : 'اضافه کردن کلاس',
-                textDirection: TextDirection.rtl,
+                isEditing ? 'Change Name' : 'Add Class',
                 style: TextStyle(
-                    fontSize: 22.sp,
+                    fontSize: 16.sp,
                     color: Colors.black,
-                    fontFamily: 'Ordibehesht',
                     fontWeight: FontWeight.bold),
               ),
             ),
@@ -486,58 +458,54 @@ class ClassroomDialogWidget extends StatelessWidget {
               children: [
                 FormBuilder(
                   key: _formKey,
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: CustomTextField(
-                      islabel: true,
-                      width: 130.w,
-                      name: 'class',
-                      heghit: 55.h,
-                      haveIcon: false,
-                      labelText: 'اسم‌کلاس',
-                      labelStyle: TextStyle(
-                          fontSize: 18.sp,
-                          color: Colors.black45,
-                          fontFamily: 'Ordibehesht',
-                          fontWeight: FontWeight.bold),
-                      controller: _classNameController,
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(
-                            errorText: 'انتخاب اسم اجباری است'),
-                        FormBuilderValidators.maxLength(
-                          30,
-                          errorText: 'کمتر از 30 حرف داشته باشد',
-                        ),
-                        FormBuilderValidators.minLength(
-                          3,
-                          errorText: 'بیشتر از 3 حرف داشته باشد',
-                        ),
-                      ]),
-                      onSubmitted: (value) {
-                        if (_formKey.currentState?.validate() ?? false) {
-                          if (isEditing) {
-                            getIt.get<ClassroomBloc>().add(
-                                  ClassroomEvent.updateClass(
-                                    classroom!.copyWith(
-                                        className: _classNameController.text),
-                                  ),
-                                );
-                          } else {
-                            getIt.get<ClassroomBloc>().add(
-                                  ClassroomEvent.createClasses(
-                                    _classNameController.text,
-                                  ),
-                                );
-                          }
-                          _classNameController.clear();
-                          Navigator.pop(getIt
-                              .get<AppRouter>()
-                              .navigatorKey
-                              .currentContext!);
-                        } else {}
-                      },
-                      keyboardType: TextInputType.name,
-                    ),
+                  child: CustomTextField(
+                    islabel: true,
+                    width: 130.w,
+                    name: 'class',
+                    heghit: 55.h,
+                    haveIcon: false,
+                    labelText: 'Class Name',
+                    labelStyle: TextStyle(
+                        fontSize: 13.sp,
+                        color: Colors.black45,
+                        fontWeight: FontWeight.bold),
+                    controller: _classNameController,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(
+                          errorText: 'Name selection is mandatory'),
+                      FormBuilderValidators.maxLength(
+                        30,
+                        errorText: 'Should be less than 30 characters',
+                      ),
+                      FormBuilderValidators.minLength(
+                        3,
+                        errorText: 'Should be more than 3 characters',
+                      ),
+                    ]),
+                    onSubmitted: (value) {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        if (isEditing) {
+                          getIt.get<ClassroomBloc>().add(
+                                ClassroomEvent.updateClass(
+                                  classroom!.copyWith(
+                                      className: _classNameController.text),
+                                ),
+                              );
+                        } else {
+                          getIt.get<ClassroomBloc>().add(
+                                ClassroomEvent.createClasses(
+                                  _classNameController.text,
+                                ),
+                              );
+                        }
+                        _classNameController.clear();
+                        Navigator.pop(getIt
+                            .get<AppRouter>()
+                            .navigatorKey
+                            .currentContext!);
+                      } else {}
+                    },
+                    keyboardType: TextInputType.name,
                   ),
                 ),
                 SizedBox(width: 15.w),
@@ -572,12 +540,10 @@ class ClassroomDialogWidget extends StatelessWidget {
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      'تایید',
-                      textDirection: TextDirection.rtl,
+                      'Accept',
                       style: TextStyle(
-                          fontSize: 20.sp,
+                          fontSize: 14.sp,
                           color: Colors.black,
-                          fontFamily: 'Ordibehesht',
                           fontWeight: FontWeight.bold),
                     ),
                   ),

@@ -65,10 +65,10 @@ class AppbarSchoolWidget extends StatelessWidget {
                 const Spacer(),
                 SizedBox(
                     child: Text(
-                  'سمپاد من',
+                  'My School',
                   style: TextStyle(
-                    fontFamily: 'Ordibehesht',
-                    fontSize: 28.sp,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w900,
                     color: Colors.black,
                   ),
                 )),
@@ -88,49 +88,43 @@ class AppbarSchoolWidget extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 5.h),
+          SizedBox(height: 10.h),
           SizedBox(
-              width: 0.72.sw,
+              width: 0.73.sw,
               child: Text(
                 title,
                 textAlign: TextAlign.start,
-                textDirection: TextDirection.rtl,
                 style: TextStyle(
                   color: const Color(0xff868686),
-                  fontFamily: 'Ordibehesht',
-                  fontSize: 18.sp,
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w800,
                 ),
               )),
-          SizedBox(height: 3.h),
+          SizedBox(height: 5.h),
           SizedBox(
               width: 0.75.sw,
               child: Text(
                 titleHelper,
                 textAlign: TextAlign.start,
-                textDirection: TextDirection.rtl,
                 style: TextStyle(
                   color: const Color(0xff868686),
-                  fontFamily: 'Ordibehesht',
-                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 12.sp,
                 ),
               )),
           const Spacer(),
           SizedBox(
               width: 0.85.sw,
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Text(
-                    pathString,
-                    maxLines: 1,
-                    textAlign: TextAlign.center,
-                    textDirection: TextDirection.rtl,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w700),
-                  ),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Text(
+                  pathString,
+                  maxLines: 1,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w700),
                 ),
               )),
           const Spacer(),

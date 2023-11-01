@@ -40,14 +40,6 @@ class ClassesCardWidget extends StatelessWidget {
               }
             : () {},
         onTap: () {
-          // if(GeneralConstants.userType == UserType.teacher){
-          // if (getIt.isRegistered<Classroom>()) {
-          //   getIt.unregister<Classroom>();
-          //   getIt.registerSingleton<Classroom>(classroom);
-          // } else {
-          //   getIt.registerSingleton<Classroom>(classroom);
-          // }
-          // }
           if (getIt.isRegistered<Classroom>()) {
             getIt.unregister<Classroom>();
             getIt.registerSingleton<Classroom>(classroom);
@@ -84,11 +76,12 @@ class ClassesCardWidget extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: EdgeInsets.only(left: 22.0.w, bottom: 8.w),
-                    child: Text(classroom.className,
-                        style: TextStyle(
-                            fontSize: 20.r, fontWeight: FontWeight.w600),
-                        textAlign: TextAlign.right,
-                        textDirection: TextDirection.rtl),
+                    child: Text(
+                      classroom.className,
+                      style: TextStyle(
+                          fontSize: 20.r, fontWeight: FontWeight.w600),
+                      textAlign: TextAlign.right,
+                    ),
                   ),
                 ),
               ),
@@ -117,13 +110,14 @@ class ClassesCardWidget extends StatelessWidget {
                 alignment: Alignment.topRight,
                 child: Padding(
                   padding: EdgeInsets.only(top: 5.h, right: 28.w),
-                  child: Text("کلاس",
-                      style: TextStyle(
-                          fontSize: 22.r,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w800),
-                      textAlign: TextAlign.right,
-                      textDirection: TextDirection.rtl),
+                  child: Text(
+                    "کلاس",
+                    style: TextStyle(
+                        fontSize: 22.r,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800),
+                    textAlign: TextAlign.right,
+                  ),
                 ),
               ),
               GeneralConstants.userType == UserType.admin
@@ -132,7 +126,7 @@ class ClassesCardWidget extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           FunctionHelper().removeDialog(
-                            'کلاس',
+                            'Class',
                             () => getIt.get<ClassroomBloc>().add(
                                   ClassroomEvent.removeClass(
                                     classroom.classID,
@@ -180,7 +174,7 @@ class ClassesCardWidget extends StatelessWidget {
         // width: 0.15.sw,
         height: 50.h,
         child: Text(
-          'تغییر اسم کلاس',
+          'Change Class Name',
           style: TextStyle(
               color: Colors.white, fontSize: 16.r, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
@@ -203,20 +197,21 @@ class ClassesCardWidget extends StatelessWidget {
                   islabel: true,
                   key: formKey,
                   name: 'class_name',
-                  labelText: 'نام کلاس',
+                  labelText: 'Class Name',
                   keyboardType: TextInputType.name,
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(
-                        errorText: 'انتخاب اسم برای ساخت کلاس اجباری است'),
+                        errorText:
+                            'Name selection for creating a class is mandatory'),
                     FormBuilderValidators.maxLength(
                       30,
                       errorText:
-                          'لطفا اسمی که انتخاب میکنید کمتر از 30 حرف داشته باشد',
+                          'Please ensure the chosen name is less than 30 characters',
                     ),
                     FormBuilderValidators.minLength(
                       3,
                       errorText:
-                          'لطفا اسمی که انتخاب میکنید بیشتر از 3 حرف داشته باشد',
+                          'Please ensure the chosen name is more than 3 characters',
                     ),
                   ]),
                   onSubmitted: (value) {
@@ -279,7 +274,7 @@ class ClassesCardWidget extends StatelessWidget {
                             child: classroomState.isLoading
                                 ? const CircularProgressIndicator()
                                 : Text(
-                                    'تایید',
+                                    'Accept',
                                     style: TextStyle(
                                       fontSize: 16.r,
                                       fontWeight: FontWeight.w700,

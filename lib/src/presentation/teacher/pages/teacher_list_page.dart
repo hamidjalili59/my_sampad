@@ -52,12 +52,10 @@ class _TeacherListPageState extends State<TeacherListPage> {
                   ]),
               alignment: Alignment.center,
               child: Text(
-                'اضافه کردن دبیر',
-                textDirection: TextDirection.rtl,
+                'Add Teacher',
                 style: TextStyle(
-                    fontSize: 18.sp,
+                    fontSize: 14.sp,
                     color: Colors.black,
-                    fontFamily: 'Ordibehesht',
                     fontWeight: FontWeight.bold),
               ),
             ),
@@ -74,10 +72,10 @@ class _TeacherListPageState extends State<TeacherListPage> {
                 return Column(
                   children: [
                     AppbarSchoolWidget(
-                      title: 'مدیریت دبیران',
+                      title: 'Teacher Manage',
                       titleHelper:
-                          'در این صفحه می‌توانید دبیران را حذف یا اضافه یا پاک کنید',
-                      pathString: 'صفحه‌اصلی > مدیریت دبیران',
+                          'On this page, you can delete, add, or edit teachers',
+                      pathString: 'Main > Teacher Manage',
                       isWidget: true,
                       widget: DropdownButton<String>(
                         underline: const SizedBox(),
@@ -87,7 +85,7 @@ class _TeacherListPageState extends State<TeacherListPage> {
                         items: [
                           DropdownMenuItem(
                             alignment: Alignment.center,
-                            value: 'حذف',
+                            value: 'delete',
                             onTap: () {
                               getIt.get<AppRouter>().pop();
                               setState(() {
@@ -98,27 +96,24 @@ class _TeacherListPageState extends State<TeacherListPage> {
                                   .showSnackBar(SnackBar(
                                       backgroundColor: const Color(0xffe8ffe8),
                                       content: Text(
-                                        'دبیر مورد نظر را برای حذف انتخاب کنید',
-                                        textDirection: TextDirection.rtl,
+                                        'Select the desired teacher to delete',
                                         style: TextStyle(
-                                            fontSize: 18.sp,
+                                            fontSize: 14.sp,
                                             color: Colors.black,
-                                            fontFamily: 'Ordibehesht',
                                             fontWeight: FontWeight.bold),
                                       )));
                             },
                             child: Text(
-                              'حذف',
+                              'Delete',
                               style: TextStyle(
-                                  fontSize: 20.sp,
+                                  fontSize: 16.sp,
                                   color: Colors.black,
-                                  fontFamily: 'Ordibehesht',
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
                           DropdownMenuItem(
                             alignment: Alignment.center,
-                            value: 'تغییر',
+                            value: 'change',
                             onTap: () async {
                               getIt.get<AppRouter>().pop();
                               setState(() {
@@ -129,21 +124,18 @@ class _TeacherListPageState extends State<TeacherListPage> {
                                   .showSnackBar(SnackBar(
                                       backgroundColor: const Color(0xffe8ffe8),
                                       content: Text(
-                                        'دبیر مورد نظر را برای تغییر انتخاب کنید',
-                                        textDirection: TextDirection.rtl,
+                                        'Select the teacher you want to make changes to',
                                         style: TextStyle(
-                                            fontSize: 18.sp,
+                                            fontSize: 13.sp,
                                             color: Colors.black,
-                                            fontFamily: 'Ordibehesht',
                                             fontWeight: FontWeight.bold),
                                       )));
                             },
                             child: Text(
-                              'تغییر',
+                              'Change',
                               style: TextStyle(
-                                  fontSize: 20.sp,
+                                  fontSize: 14.sp,
                                   color: Colors.black,
-                                  fontFamily: 'Ordibehesht',
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -190,13 +182,11 @@ class _TeacherListPageState extends State<TeacherListPage> {
                                             ),
                                           ),
                                           Text(
-                                            'دبیری برای این کلاس وجود ندارد',
-                                            textDirection: TextDirection.rtl,
+                                            'There is no teacher for this class',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w800,
-                                                fontFamily: 'Ordibehesht',
-                                                fontSize: 22.r),
+                                                fontSize: 18.r),
                                           )
                                         ],
                                       ),
@@ -232,15 +222,11 @@ class _TeacherListPageState extends State<TeacherListPage> {
                                                 title: SizedBox(
                                                   height: 50.h,
                                                   child: Text(
-                                                    'آیا از حذف ${state.teachers[index].basicInfo!.name} اطمینان دارید',
+                                                    'Are you sure you want to delete ${state.teachers[index].basicInfo!.name}?',
                                                     textAlign: TextAlign.center,
-                                                    textDirection:
-                                                        TextDirection.rtl,
                                                     style: TextStyle(
-                                                        fontSize: 20.sp,
+                                                        fontSize: 14.sp,
                                                         color: Colors.black,
-                                                        fontFamily:
-                                                            'Ordibehesht',
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),
@@ -273,16 +259,11 @@ class _TeacherListPageState extends State<TeacherListPage> {
                                                           alignment:
                                                               Alignment.center,
                                                           child: Text(
-                                                            'خیر',
-                                                            textDirection:
-                                                                TextDirection
-                                                                    .rtl,
+                                                            'cancel',
                                                             style: TextStyle(
-                                                                fontSize: 20.sp,
+                                                                fontSize: 16.sp,
                                                                 color: Colors
                                                                     .black,
-                                                                fontFamily:
-                                                                    'Ordibehesht',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold),
@@ -321,16 +302,11 @@ class _TeacherListPageState extends State<TeacherListPage> {
                                                           alignment:
                                                               Alignment.center,
                                                           child: Text(
-                                                            'بله',
-                                                            textDirection:
-                                                                TextDirection
-                                                                    .rtl,
+                                                            'accept',
                                                             style: TextStyle(
-                                                                fontSize: 20.sp,
+                                                                fontSize: 16.sp,
                                                                 color: Colors
                                                                     .black,
-                                                                fontFamily:
-                                                                    'Ordibehesht',
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold),
@@ -380,13 +356,11 @@ class _TeacherListPageState extends State<TeacherListPage> {
                                                 Image.asset(PngAssets.teacher)),
                                         SizedBox(height: 20.h),
                                         Text(
-                                          'استاد ${state.teachers[index].basicInfo!.name}',
-                                          textDirection: TextDirection.rtl,
+                                          'Master ${state.teachers[index].basicInfo!.name}',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              fontSize: 22.sp,
+                                              fontSize: 14.sp,
                                               color: Colors.black,
-                                              fontFamily: 'Ordibehesht',
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ],

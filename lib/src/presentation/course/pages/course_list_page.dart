@@ -55,12 +55,10 @@ class _CourseListPageState extends State<CourseListPage> {
                   ]),
               alignment: Alignment.center,
               child: Text(
-                'اضافه کردن درس',
-                textDirection: TextDirection.rtl,
+                'Add Course',
                 style: TextStyle(
-                    fontSize: 18.sp,
+                    fontSize: 13.sp,
                     color: Colors.black,
-                    fontFamily: 'Ordibehesht',
                     fontWeight: FontWeight.bold),
               ),
             ),
@@ -77,10 +75,10 @@ class _CourseListPageState extends State<CourseListPage> {
                 return Column(
                   children: [
                     AppbarSchoolWidget(
-                      title: 'مدیریت درس‌ها',
+                      title: 'Course Manage',
                       titleHelper:
-                          'در این صفحه می‌توانید درس‌ها را حذف یا اضافه یا پاک کنید',
-                      pathString: 'صفحه‌اصلی > مدیریت‌درس‌ها',
+                          'On this page, you can delete, add, or edit classes',
+                      pathString: 'Main > Course Manage',
                       isWidget: true,
                       widget: DropdownButton<String>(
                         underline: const SizedBox(),
@@ -90,7 +88,7 @@ class _CourseListPageState extends State<CourseListPage> {
                         items: [
                           DropdownMenuItem(
                             alignment: Alignment.center,
-                            value: 'حذف',
+                            value: 'delete',
                             onTap: () {
                               getIt.get<AppRouter>().pop();
                               setState(() {
@@ -101,27 +99,24 @@ class _CourseListPageState extends State<CourseListPage> {
                                   .showSnackBar(SnackBar(
                                       backgroundColor: const Color(0xffe8ffe8),
                                       content: Text(
-                                        'درس مورد نظر را برای حذف انتخاب کنید',
-                                        textDirection: TextDirection.rtl,
+                                        'Select the desired course to delete',
                                         style: TextStyle(
-                                            fontSize: 18.sp,
+                                            fontSize: 13.sp,
                                             color: Colors.black,
-                                            fontFamily: 'Ordibehesht',
                                             fontWeight: FontWeight.bold),
                                       )));
                             },
                             child: Text(
-                              'حذف',
+                              'Delete',
                               style: TextStyle(
-                                  fontSize: 20.sp,
+                                  fontSize: 14.sp,
                                   color: Colors.black,
-                                  fontFamily: 'Ordibehesht',
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
                           DropdownMenuItem(
                             alignment: Alignment.center,
-                            value: 'تغییر',
+                            value: 'change',
                             onTap: () async {
                               getIt.get<AppRouter>().pop();
                               setState(() {
@@ -132,21 +127,18 @@ class _CourseListPageState extends State<CourseListPage> {
                                   .showSnackBar(SnackBar(
                                       backgroundColor: const Color(0xffe8ffe8),
                                       content: Text(
-                                        'درس مورد نظر را برای تغییر انتخاب کنید',
-                                        textDirection: TextDirection.rtl,
+                                        'Select the course you wish to modify',
                                         style: TextStyle(
-                                            fontSize: 18.sp,
+                                            fontSize: 13.sp,
                                             color: Colors.black,
-                                            fontFamily: 'Ordibehesht',
                                             fontWeight: FontWeight.bold),
                                       )));
                             },
                             child: Text(
-                              'تغییر',
+                              'Change',
                               style: TextStyle(
-                                  fontSize: 20.sp,
+                                  fontSize: 14.sp,
                                   color: Colors.black,
-                                  fontFamily: 'Ordibehesht',
                                   fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -212,16 +204,12 @@ class _CourseListPageState extends State<CourseListPage> {
                                                     title: SizedBox(
                                                       height: 50.h,
                                                       child: Text(
-                                                        'آیا از حذف ${state.courses[index].courseName} اطمینان دارید',
+                                                        'Are you sure you want to delete ${state.courses[index].courseName}?',
                                                         textAlign:
                                                             TextAlign.center,
-                                                        textDirection:
-                                                            TextDirection.rtl,
                                                         style: TextStyle(
-                                                            fontSize: 20.sp,
+                                                            fontSize: 13.sp,
                                                             color: Colors.black,
-                                                            fontFamily:
-                                                                'Ordibehesht',
                                                             fontWeight:
                                                                 FontWeight
                                                                     .bold),
@@ -258,17 +246,12 @@ class _CourseListPageState extends State<CourseListPage> {
                                                                   Alignment
                                                                       .center,
                                                               child: Text(
-                                                                'خیر',
-                                                                textDirection:
-                                                                    TextDirection
-                                                                        .rtl,
+                                                                'cancel',
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                        20.sp,
+                                                                        13.sp,
                                                                     color: Colors
                                                                         .black,
-                                                                    fontFamily:
-                                                                        'Ordibehesht',
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold),
@@ -310,17 +293,12 @@ class _CourseListPageState extends State<CourseListPage> {
                                                                   Alignment
                                                                       .center,
                                                               child: Text(
-                                                                'بله',
-                                                                textDirection:
-                                                                    TextDirection
-                                                                        .rtl,
+                                                                'accept',
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                        20.sp,
+                                                                        13.sp,
                                                                     color: Colors
                                                                         .black,
-                                                                    fontFamily:
-                                                                        'Ordibehesht',
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold),
@@ -355,12 +333,10 @@ class _CourseListPageState extends State<CourseListPage> {
                                                     PngAssets.course)),
                                             SizedBox(height: 20.h),
                                             Text(
-                                              'درس ${state.courses[index].courseName}',
-                                              textDirection: TextDirection.rtl,
+                                              '${state.courses[index].courseName} Course',
                                               style: TextStyle(
-                                                  fontSize: 26.sp,
+                                                  fontSize: 18.sp,
                                                   color: Colors.black,
-                                                  fontFamily: 'Ordibehesht',
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ],
@@ -407,14 +383,12 @@ class CourseDialogWidget extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: Padding(
-              padding: EdgeInsets.only(right: isEditing ? 8.0.w : 0),
+              padding: EdgeInsets.only(right: isEditing ? 8.0.w : 8.w, top: 5),
               child: Text(
-                isEditing ? 'تغییر اسم' : 'اضافه کردن درس',
-                textDirection: TextDirection.rtl,
+                isEditing ? 'Change Name' : 'Add Course',
                 style: TextStyle(
-                    fontSize: 22.sp,
+                    fontSize: 18.sp,
                     color: Colors.black,
-                    fontFamily: 'Ordibehesht',
                     fontWeight: FontWeight.bold),
               ),
             ),
@@ -424,60 +398,56 @@ class CourseDialogWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Directionality(
-                  textDirection: TextDirection.rtl,
-                  child: FormBuilder(
-                    key: _formKey,
-                    child: CustomTextField(
-                      islabel: true,
-                      width: 130.w,
-                      name: 'course',
-                      heghit: 55.h,
-                      haveIcon: false,
-                      labelText: 'اسم‌درس',
-                      labelStyle: TextStyle(
-                          fontSize: 18.sp,
-                          color: Colors.black45,
-                          fontFamily: 'Ordibehesht',
-                          fontWeight: FontWeight.bold),
-                      controller: _courseNameController,
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(
-                            errorText: 'انتخاب اسم اجباری است'),
-                        FormBuilderValidators.maxLength(
-                          30,
-                          errorText: 'کمتر از 30 حرف داشته باشد',
-                        ),
-                        FormBuilderValidators.minLength(
-                          3,
-                          errorText: 'بیشتر از 3 حرف داشته باشد',
-                        ),
-                      ]),
-                      onSubmitted: (value) {
-                        if (_formKey.currentState?.validate() ?? false) {
-                          if (isEditing) {
-                            getIt.get<CourseBloc>().add(
-                                  CourseEvent.updateCourse(
-                                    course!.copyWith(
-                                        courseName: _courseNameController.text),
-                                  ),
-                                );
-                          } else {
-                            getIt.get<CourseBloc>().add(
-                                  CourseEvent.addCourse(
-                                    _courseNameController.text,
-                                  ),
-                                );
-                          }
-                          _courseNameController.clear();
-                          Navigator.pop(getIt
-                              .get<AppRouter>()
-                              .navigatorKey
-                              .currentContext!);
-                        } else {}
-                      },
-                      keyboardType: TextInputType.name,
-                    ),
+                FormBuilder(
+                  key: _formKey,
+                  child: CustomTextField(
+                    islabel: true,
+                    width: 130.w,
+                    name: 'course',
+                    heghit: 55.h,
+                    haveIcon: false,
+                    labelText: 'Course Name',
+                    labelStyle: TextStyle(
+                        fontSize: 13.sp,
+                        color: Colors.black45,
+                        fontWeight: FontWeight.bold),
+                    controller: _courseNameController,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(
+                          errorText: 'Name selection is mandatory'),
+                      FormBuilderValidators.maxLength(
+                        30,
+                        errorText: 'Should be less than 30 characters',
+                      ),
+                      FormBuilderValidators.minLength(
+                        3,
+                        errorText: 'Should be more than 3 characters',
+                      ),
+                    ]),
+                    onSubmitted: (value) {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        if (isEditing) {
+                          getIt.get<CourseBloc>().add(
+                                CourseEvent.updateCourse(
+                                  course!.copyWith(
+                                      courseName: _courseNameController.text),
+                                ),
+                              );
+                        } else {
+                          getIt.get<CourseBloc>().add(
+                                CourseEvent.addCourse(
+                                  _courseNameController.text,
+                                ),
+                              );
+                        }
+                        _courseNameController.clear();
+                        Navigator.pop(getIt
+                            .get<AppRouter>()
+                            .navigatorKey
+                            .currentContext!);
+                      } else {}
+                    },
+                    keyboardType: TextInputType.name,
                   ),
                 ),
                 SizedBox(width: 15.w),
@@ -512,12 +482,10 @@ class CourseDialogWidget extends StatelessWidget {
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      'تایید',
-                      textDirection: TextDirection.rtl,
+                      'Accept',
                       style: TextStyle(
-                          fontSize: 20.sp,
+                          fontSize: 13.sp,
                           color: Colors.black,
-                          fontFamily: 'Ordibehesht',
                           fontWeight: FontWeight.bold),
                     ),
                   ),

@@ -70,15 +70,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               .showSnackBar(
             SnackBar(
               backgroundColor: const Color.fromARGB(255, 255, 232, 232),
-              content: Directionality(
-                textDirection: TextDirection.rtl,
-                child: Text(
-                  'مشکلی در ورود وجود دارد شماره شما ثبت نشده است',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 14.sp,
-                    fontFamily: 'Ordibehesht',
-                  ),
+              content: Text(
+                'There is an issue with the login, your number is not registered',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 10.sp,
                 ),
               ),
             ),
@@ -156,7 +152,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           (value) => value.fold(
             (l) => null,
             (r) {
-              getIt.get<AppRouter>().replaceNamed('/splash');
+              getIt.get<AppRouter>().replaceNamed('/auth');
             },
           ),
         );

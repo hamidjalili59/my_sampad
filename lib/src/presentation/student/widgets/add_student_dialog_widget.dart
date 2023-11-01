@@ -57,12 +57,10 @@ class AddStudentDialog extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.only(right: 18.w),
                   child: Text(
-                    isEditing ? 'تغییر دانش‌آموز' : 'اضافه کردن دانش‌آموز',
-                    textDirection: TextDirection.rtl,
+                    isEditing ? 'Change Student' : 'Add Student',
                     style: TextStyle(
-                        fontSize: 22.sp,
+                        fontSize: 16.sp,
                         color: Colors.black,
-                        fontFamily: 'Ordibehesht',
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -70,100 +68,95 @@ class AddStudentDialog extends StatelessWidget {
               SizedBox(
                 child: FormBuilder(
                   key: _formKey,
-                  child: Directionality(
-                    textDirection: TextDirection.rtl,
-                    child: Column(
-                      children: [
-                        CustomTextField(
-                          islabel: true,
-                          width: 200.w,
-                          name: 'student_name',
-                          heghit: 50.h,
-                          haveIcon: false,
-                          labelText: 'اسم‌دانش‌آموز',
-                          labelStyle: TextStyle(
-                              fontSize: 18.sp,
-                              color: Colors.black45,
-                              fontFamily: 'Ordibehesht',
-                              fontWeight: FontWeight.bold),
-                          controller: _studentName,
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(
-                                errorText: 'انتخاب اسم اجباری است'),
-                            FormBuilderValidators.maxLength(
-                              30,
-                              errorText: 'کمتر از 30 حرف داشته باشد',
+                  child: Column(
+                    children: [
+                      CustomTextField(
+                        islabel: true,
+                        width: 200.w,
+                        name: 'student_name',
+                        heghit: 50.h,
+                        haveIcon: false,
+                        labelText: 'Student Name',
+                        labelStyle: TextStyle(
+                            fontSize: 13.sp,
+                            color: Colors.black45,
+                            fontWeight: FontWeight.bold),
+                        controller: _studentName,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                              errorText: 'Name selection is mandatory'),
+                          FormBuilderValidators.maxLength(
+                            30,
+                            errorText: 'Should be less than 30 characters',
+                          ),
+                          FormBuilderValidators.minLength(
+                            3,
+                            errorText: 'Should be more than 3 characters',
+                          ),
+                        ]),
+                        onSubmitted: (value) {
+                          if (_formKey.currentState?.validate() ?? false) {}
+                        },
+                        keyboardType: TextInputType.name,
+                      ),
+                      isEditing
+                          ? const SizedBox()
+                          : CustomTextField(
+                              islabel: true,
+                              width: 200.w,
+                              name: 'parent_name',
+                              heghit: 50.h,
+                              haveIcon: false,
+                              labelText: 'Parent Name',
+                              labelStyle: TextStyle(
+                                  fontSize: 13.sp,
+                                  color: Colors.black45,
+                                  fontWeight: FontWeight.bold),
+                              controller: _parentName,
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(
+                                    errorText: 'Name selection is mandatory'),
+                                FormBuilderValidators.maxLength(
+                                  30,
+                                  errorText:
+                                      'Should be less than 30 characters',
+                                ),
+                                FormBuilderValidators.minLength(
+                                  3,
+                                  errorText: 'Should be more than 3 characters',
+                                ),
+                              ]),
+                              onSubmitted: (value) {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {}
+                              },
+                              keyboardType: TextInputType.name,
                             ),
-                            FormBuilderValidators.minLength(
-                              3,
-                              errorText: 'بیشتر از 3 حرف داشته باشد',
-                            ),
-                          ]),
-                          onSubmitted: (value) {
-                            if (_formKey.currentState?.validate() ?? false) {}
-                          },
-                          keyboardType: TextInputType.name,
-                        ),
-                        isEditing
-                            ? const SizedBox()
-                            : CustomTextField(
-                                islabel: true,
-                                width: 200.w,
-                                name: 'parent_name',
-                                heghit: 50.h,
-                                haveIcon: false,
-                                labelText: 'اسم‌والد',
-                                labelStyle: TextStyle(
-                                    fontSize: 18.sp,
-                                    color: Colors.black45,
-                                    fontFamily: 'Ordibehesht',
-                                    fontWeight: FontWeight.bold),
-                                controller: _parentName,
-                                validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(
-                                      errorText: 'انتخاب اسم اجباری است'),
-                                  FormBuilderValidators.maxLength(
-                                    30,
-                                    errorText: 'کمتر از 30 حرف داشته باشد',
-                                  ),
-                                  FormBuilderValidators.minLength(
-                                    3,
-                                    errorText: 'بیشتر از 3 حرف داشته باشد',
-                                  ),
-                                ]),
-                                onSubmitted: (value) {
-                                  if (_formKey.currentState?.validate() ??
-                                      false) {}
-                                },
-                                keyboardType: TextInputType.name,
-                              ),
-                        CustomTextField(
-                          islabel: true,
-                          width: 200.w,
-                          name: 'phone_number',
-                          heghit: 50.h,
-                          haveIcon: false,
-                          labelText: 'شماره‌تلفن',
-                          labelStyle: TextStyle(
-                              fontSize: 18.sp,
-                              color: Colors.black45,
-                              fontFamily: 'Ordibehesht',
-                              fontWeight: FontWeight.bold),
-                          controller: _phone,
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(
-                                errorText: 'شماره تلفن اجباری است'),
-                            FormBuilderValidators.equalLength(11,
-                                errorText:
-                                    'باید 11 رقمی باشد و با صفر شروع شود')
-                          ]),
-                          onSubmitted: (value) {
-                            if (_formKey.currentState?.validate() ?? false) {}
-                          },
-                          keyboardType: TextInputType.name,
-                        ),
-                      ],
-                    ),
+                      CustomTextField(
+                        islabel: true,
+                        width: 200.w,
+                        name: 'phone_number',
+                        heghit: 50.h,
+                        haveIcon: false,
+                        labelText: 'PhoneNumber',
+                        labelStyle: TextStyle(
+                            fontSize: 13.sp,
+                            color: Colors.black45,
+                            fontWeight: FontWeight.bold),
+                        controller: _phone,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                              errorText: 'Phone number is mandatory'),
+                          FormBuilderValidators.equalLength(11,
+                              errorText:
+                                  'It should be an 11-digit number and start with zero')
+                        ]),
+                        onSubmitted: (value) {
+                          if (_formKey.currentState?.validate() ?? false) {}
+                        },
+                        keyboardType: TextInputType.name,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -175,16 +168,14 @@ class AddStudentDialog extends StatelessWidget {
                     Checkbox(
                         value: getIt.get<StudentBloc>().state.smsChackBox,
                         onChanged: (value) {
-                          // sendSms = value ?? false;
                           getIt.get<StudentBloc>().add(
                               StudentEvent.checkSMSCheckBox(value ?? false));
                         }),
                     Text(
-                      'ارسال پیامک',
+                      'Send SMS',
                       style: TextStyle(
-                          fontSize: 16.sp,
+                          fontSize: 11.sp,
                           color: Colors.black45,
-                          fontFamily: 'Ordibehesht',
                           fontWeight: FontWeight.bold),
                     ),
                     const Spacer(),
@@ -242,12 +233,10 @@ class AddStudentDialog extends StatelessWidget {
                         ),
                         alignment: Alignment.center,
                         child: Text(
-                          'تایید',
-                          textDirection: TextDirection.rtl,
+                          'Accept',
                           style: TextStyle(
-                              fontSize: 20.sp,
+                              fontSize: 14.sp,
                               color: Colors.black,
-                              fontFamily: 'Ordibehesht',
                               fontWeight: FontWeight.bold),
                         ),
                       ),
